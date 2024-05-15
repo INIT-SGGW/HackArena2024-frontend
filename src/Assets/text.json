@@ -1,0 +1,156 @@
+{
+  "main": {
+    "header": {
+      "navItems": [
+        "Rejestracja",
+        "Zadanie",
+        "Agenda",
+        "Sponsorzy",
+        "FAQ",
+        "Konto"
+      ]
+    },
+    "welcome": {
+      "title": "HackArena"
+    },
+    "register": {
+      "title": "Rejestracja",
+      "description": "Zbierz swój zespół i dołącz do wydarzenia!",
+      "dateReminder": "Zapisy trawją do 17.10.2024",
+      "button": "Zapisz się"
+    }
+  },
+  "register": {
+    "title": "Rejestracja",
+    "description": "Zbierz swój zespół i dołącz do wydarzenia!",
+    "teamMembers": "Członkowie zespołu",
+    "teamMember": "Członek zespołu",
+    "registerFields": {
+      "firstName": {
+        "label": "Imię",
+        "name": "firstName",
+        "id": "firstName",
+        "errorMessage": "Znaki specjalne są niedozwolone"
+      },
+      "lastName": {
+        "label": "Nazwisko",
+        "name": "lastName",
+        "id": "lastName",
+        "errorMessage": "Znaki specjalne są niedozwolone"
+      },
+      "email": {
+        "label": "Email",
+        "name": "email",
+        "id": "email",
+        "errorMessage": "Wprowadź poprawny adres email"
+      },
+      "dateOfBirth": {
+        "label": "Data urodzenia",
+        "name": "dateOfBirth",
+        "id": "dateOfBirth",
+        "errorMessage": ""
+      },
+      "occupation": {
+        "label": "Status zawodowy",
+        "name": "occupation",
+        "id": "occupation",
+        "occupationChoices": ["Uczeń", "Student", "Absolwent", "Inne"],
+        "errorMessage": ""
+      },
+      "teamName": {
+        "label": "Nazwa zespołu",
+        "name": "teamName",
+        "id": "teamName",
+        "errorMessage": ""
+      },
+      "password": {
+        "label": "Hasło",
+        "name": "password",
+        "id": "password",
+        "errorMessage": "Hasło musi mieć: minimum 8 znaków, jedną dużą literę, jedną małą literę, jedną cyfrę i jeden znak specjalny"
+      },
+      "repeatPassword": {
+        "label": "Powtórz hasło",
+        "name": "repeatPassword",
+        "id": "repeatPassword",
+        "errorMessage": "Hasła nie są takie same"
+      },
+      "vegan": {
+        "label": "Wegańskie menu",
+        "name": "isVegan",
+        "id": "isVegan",
+        "errorMessage": ""
+      },
+      "agreement": {
+        "label": "Wyrażam zgodę na przetwarzanie moich danych osobowych w celu rejestracji na HackArena 2024.*",
+        "name": "agreement",
+        "id": "agreement",
+        "errorMessage": ""
+      }
+    },
+    "buttonAddTeamMember": "Dodaj członka zespołu",
+    "button": {
+      "active": "Zarejestruj",
+      "disabled": "Przekierowuję..."
+    }
+  },
+  "login": {
+    "title": "Logowanie",
+    "loginFields": {
+      "email": {
+        "label": "Email",
+        "name": "email",
+        "id": "email",
+        "errorMessage": "Wprowadź poprawny adres email"
+      },
+      "password": {
+        "label": "Hasło",
+        "name": "password",
+        "id": "password",
+        "errorMessage": "Hasło musi mieć: minimum 8 znaków, jedną dużą literę, jedną małą literę, jedną cyfrę i jeden znak specjalny"
+      },
+      "forgotPassword": {
+        "label": "Zapomniałeś hasła?"
+      },
+      "noAccount": {
+        "label": "Nie masz konta?"
+      },
+      "rememberMe": {
+        "label": "Zapamiętaj mnie",
+        "name": "remember",
+        "id": "remember"
+      }
+    },
+    "button": {
+      "acitve": "Zaloguj się",
+      "disabled": "Przekierowuję..."
+    }
+  },
+  "resetPassword": {
+    "title": "Resetowanie hasła",
+    "formFields": {
+      "email": {
+        "label": "Email",
+        "name": "email",
+        "id": "email",
+        "errorMessage": "Wprowadź poprawny adres email"
+      },
+      "password": {
+        "label": "Hasło",
+        "name": "password",
+        "id": "password",
+        "errorMessage": "Hasło musi mieć: minimum 8 znaków, jedną dużą literę, jedną małą literę, jedną cyfrę i jeden znak specjalny"
+      },
+      "repeatPassword": {
+        "label": "Powtórz hasło",
+        "name": "repeatPassword",
+        "id": "repeatPassword",
+        "errorMessage": "Hasła nie są takie same"
+      }
+    },
+    "button": {
+      "active": "Zresetuj",
+      "disabled": "Przekierowuję..."
+    }
+  }
+}

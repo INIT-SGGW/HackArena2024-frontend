@@ -1,0 +1,57 @@
+.login {
+  --input-padding: 0.7rem;
+  --input-border-width: 3px;
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.login--form {
+  width: 95%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.login--input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.login--submit {
+  width: 100% !important;
+  cursor: pointer;
+}
+
+.login--submit:hover {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+}
+
+.login--options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.login--options > a {
+  text-decoration: none;
+  font-size: 0.8rem;
+  color: var(--text-one-color);
+}
+
+.login--options > a:hover {
+  text-decoration: underline;
+}
+
+.login--checkbox {
+  margin: 0.5rem 0 !important;
+}
