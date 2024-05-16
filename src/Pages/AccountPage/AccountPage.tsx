@@ -11,7 +11,7 @@ import { eventEndDate, eventStartDate } from "../../Constants/Constants";
 import isEventLive from "../../Utils/isEventLive";
 import FileUploader from "../../Components/FileUploader/FileUploader";
 
-interface Props {}
+interface Props { }
 
 const teamData: AccountTeam = {
   _id: "1",
@@ -162,9 +162,8 @@ function AccountPage(props: Props) {
         <div className="account--header">
           <div className="register--input">
             <input
-              className={`account--input account--input__header${
-                errors.teamName && showErrors ? " account--input__error" : ""
-              }`}
+              className={`account--input account--input__header${errors.teamName && showErrors ? " account--input__error" : ""
+                }`}
               placeholder={register.registerFields.teamName.label}
               name={register.registerFields.teamName.name}
               id={register.registerFields.teamName.id}
@@ -194,9 +193,8 @@ function AccountPage(props: Props) {
               maxLength={40}
             />
             <span
-              className={`input--span${
-                showErrors ? " input--span__visible" : ""
-              }`}
+              className={`input--span${showErrors ? " input--span__visible" : ""
+                }`}
             >
               {errors.teamName}
             </span>
@@ -204,9 +202,8 @@ function AccountPage(props: Props) {
           <div className="header--buttons">
             {!inputsDisabled && (
               <input
-                className={`account--button account--button__primary${
-                  inputsDisabled ? "" : " account--button__halfborder"
-                }`}
+                className={`account--button account--button__primary${inputsDisabled ? "" : " account--button__halfborder"
+                  }`}
                 type="submit"
                 value={inputsDisabled ? register.button.disabled : "Zapisz"}
                 onClick={handleTrySubmit}
@@ -216,9 +213,8 @@ function AccountPage(props: Props) {
             {!isEventLive(eventStartDate, eventEndDate) && (
               <input
                 type="button"
-                className={`account--button account--button__primary${
-                  inputsDisabled ? "" : " account--button__halfborder"
-                }`}
+                className={`account--button account--button__primary${inputsDisabled ? "" : " account--button__halfborder"
+                  }`}
                 onClick={handleEditForm}
                 value={inputsDisabled ? "Edit" : "Cancel"}
               ></input>
@@ -262,11 +258,10 @@ function AccountPage(props: Props) {
                 {/* FIRST NAME */}
                 <div className="register--input">
                   <input
-                    className={`account--input${
-                      errors.teamMembers[index].firstName && showErrors
+                    className={`account--input${errors.teamMembers[index].firstName && showErrors
                         ? " account--input__error"
                         : ""
-                    }`}
+                      }`}
                     placeholder={register.registerFields.firstName.label}
                     name={register.registerFields.firstName.name + index}
                     id={register.registerFields.firstName.id + index}
@@ -309,9 +304,8 @@ function AccountPage(props: Props) {
                     maxLength={50}
                   />
                   <span
-                    className={`input--span${
-                      showErrors ? " input--span__visible" : ""
-                    }`}
+                    className={`input--span${showErrors ? " input--span__visible" : ""
+                      }`}
                   >
                     {errors.teamMembers[index].firstName}
                   </span>
@@ -319,11 +313,10 @@ function AccountPage(props: Props) {
                 {/* LAST NAME */}
                 <div className="register--input">
                   <input
-                    className={`account--input${
-                      errors.teamMembers[index].lastName && showErrors
+                    className={`account--input${errors.teamMembers[index].lastName && showErrors
                         ? " account--input__error"
                         : ""
-                    }`}
+                      }`}
                     placeholder={register.registerFields.lastName.label}
                     name={register.registerFields.lastName.name + index}
                     id={register.registerFields.lastName.id + index}
@@ -365,9 +358,8 @@ function AccountPage(props: Props) {
                     maxLength={50}
                   />
                   <span
-                    className={`input--span${
-                      showErrors ? " input--span__visible" : ""
-                    }`}
+                    className={`input--span${showErrors ? " input--span__visible" : ""
+                      }`}
                   >
                     {errors.teamMembers[index].lastName}
                   </span>
@@ -376,11 +368,10 @@ function AccountPage(props: Props) {
               {/* EMAIL */}
               <div className="register--input">
                 <input
-                  className={`account--input${
-                    errors.teamMembers[index].email && showErrors
+                  className={`account--input${errors.teamMembers[index].email && showErrors
                       ? " account--input__error"
                       : ""
-                  }`}
+                    }`}
                   placeholder={register.registerFields.email.label}
                   name={register.registerFields.email.name + index}
                   id={register.registerFields.email.id + index}
@@ -421,9 +412,8 @@ function AccountPage(props: Props) {
                   maxLength={60}
                 />
                 <span
-                  className={`input--span${
-                    showErrors ? " input--span__visible" : ""
-                  }`}
+                  className={`input--span${showErrors ? " input--span__visible" : ""
+                    }`}
                 >
                   {errors.teamMembers[index].email}
                 </span>
@@ -432,11 +422,10 @@ function AccountPage(props: Props) {
                 {/* DATE OF BIRTH */}
                 <div className="register--input">
                   <input
-                    className={`account--input${
-                      errors.teamMembers[index].dateOfBirth && showErrors
+                    className={`account--input${errors.teamMembers[index].dateOfBirth && showErrors
                         ? " account--input__error"
                         : ""
-                    }`}
+                      }`}
                     placeholder={register.registerFields.dateOfBirth.label}
                     name={register.registerFields.dateOfBirth.name + index}
                     id={register.registerFields.dateOfBirth.id + index}
@@ -477,9 +466,8 @@ function AccountPage(props: Props) {
                     max="2017-01-01"
                   />
                   <span
-                    className={`input--span${
-                      showErrors ? " input--span__visible" : ""
-                    }`}
+                    className={`input--span${showErrors ? " input--span__visible" : ""
+                      }`}
                   >
                     {errors.teamMembers[index].dateOfBirth}
                   </span>
@@ -515,9 +503,8 @@ function AccountPage(props: Props) {
                     )}
                   </select>
                   <span
-                    className={`input--span${
-                      showErrors ? " input--span__visible" : ""
-                    }`}
+                    className={`input--span${showErrors ? " input--span__visible" : ""
+                      }`}
                   >
                     {errors.teamMembers[index].occupation}
                   </span>
@@ -566,11 +553,10 @@ function AccountPage(props: Props) {
                   {register.registerFields.agreement.label}
                 </label>
                 <input
-                  className={`account--checkbox${
-                    showErrors && errors.teamMembers[index].agreement
+                  className={`account--checkbox${showErrors && errors.teamMembers[index].agreement
                       ? " account--checkbox__error"
                       : ""
-                  }
+                    }
                   `}
                   onChange={(e) => {
                     handleErrorMessagesTeamMembers(

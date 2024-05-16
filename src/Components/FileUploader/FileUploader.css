@@ -1,3 +1,82 @@
-.file--uploader {
-  width: 100%;
+.file--wrapper {
+  position: relative;
+}
+
+.file--input {
+  --file-input-padding: 1rem;
+  --file-input-border-width: 2px;
+
+  max-width: 100% !important;
+  min-width: 0 !important;
+  padding: calc(var(--file-input-padding) / 2) var(--file-input-padding) !important;
+  width: calc(
+    100% - var(--file-input-padding) * 2 - var(--file-input-border-width) * 2
+  ) !important;
+  border-width: var(--file-input-border-width) !important;
+  position: unset;
+}
+
+.kFhUBM span {
+  text-decoration: none !important;
+  margin-left: 0.5rem;
+}
+
+.guZdik {
+  border-color: var(--input-color) !important;
+  border-radius: 0.8rem !important;
+}
+.jWkLDY > span {
+  color: var(--text-one-color) !important;
+}
+.guZdik > svg {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
+    hue-rotate(49deg) brightness(103%) contrast(103%);
+}
+
+.file--sending {
+  --file-sending-padding: 1rem;
+
+  position: absolute;
+  background-color: var(--background-color);
+  width: calc(100% - 4px - 2 * var(--file-sending-padding));
+  height: calc(100% - 4px - var(--file-sending-padding));
+  border-radius: 0.8rem;
+  top: 0;
+  left: 0;
+  border: 2px dashed var(--input-color);
+  display: flex;
+  padding: calc(var(--file-sending-padding) / 2) var(--file-sending-padding);
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.file--sending > span {
+  color: var(--text-one-color);
+  font-size: 0.9rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding-right: 2rem;
+}
+
+.file--sending > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.file--button {
+  --file-button-padding: 0.6rem;
+  padding: 0.3rem 1rem !important;
+}
+
+.file--button__halfborder:last-child {
+  border-left: none;
+  border-radius: 0 var(--file-button-padding) var(--file-button-padding) 0 !important;
+}
+
+.file--button__halfborder:first-child {
+  border-right: none;
+  border-radius: var(--file-button-padding) 0 0 var(--file-button-padding) !important;
 }

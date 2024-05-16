@@ -2,6 +2,9 @@
 const today = new Date();
 const eventDuration = 2; // Event Duration in days
 const startDate = process.env.REACT_APP_EVENT_START_DATE || "2024-06-02T10:00:00+02:00";
+const future = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2, today.getHours(), today.getMinutes(), today.getSeconds());
+const past = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 2, today.getHours(), today.getMinutes(), today.getSeconds());
+
 
 type EventDate = {
     future: Date;
@@ -9,7 +12,7 @@ type EventDate = {
     past: Date;
 };
 
-export const eventStartDate: Date = new Date(startDate);
+export const eventStartDate: Date = new Date(future);
 export const eventEndDate: Date = new Date(eventStartDate.getFullYear(), eventStartDate.getMonth(), eventStartDate.getDate() + eventDuration, eventStartDate.getHours(), eventStartDate.getMinutes(), eventStartDate.getSeconds());
 
 // Event Start Date - Future, Present, Past

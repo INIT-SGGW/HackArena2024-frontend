@@ -144,7 +144,7 @@ function RegisterPage(props: Props) {
               id={register.registerFields.teamName.id}
               type="text"
               disabled={inputsDisabled}
-              pattern="^[\w\s-]+$"
+              pattern=".*"
               onInvalid={(e) => {
                 handleErrorMessages<InputErrors>(
                   e.currentTarget,

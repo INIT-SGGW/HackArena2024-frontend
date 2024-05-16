@@ -1,11 +1,13 @@
 .account {
   --account-input-padding: 0.3rem;
   --account-input-border-width: 2px;
+  --account-padding: 3rem;
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 3rem;
+  width: calc(100%);
+  padding: var(--account-padding) 0;
 }
 
 .account--header {
@@ -14,8 +16,13 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 2rem;
-  gap: 2rem;
+}
+
+@media screen and (max-width: 668px) {
+  .account--header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .account--input {

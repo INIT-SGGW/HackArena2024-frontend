@@ -1,5 +1,5 @@
 .register {
-  --input-padding: 0.7rem;
+  --input-padding: 0.6rem;
   --input-border-width: 3px;
 
   padding: 4rem 0;
@@ -62,14 +62,14 @@
 }
 
 form label {
-  margin-left: calc(var(--input-padding) * 1.5 + var(--input-border-width));
+  margin-left: calc(var(--input-padding) * 2 + var(--input-border-width));
 }
 
 .input--input {
   width: calc(
-    100% - var(--input-padding) * 1.5 * 2 - var(--input-border-width) * 2
+    100% - var(--input-padding) * 2 * 2 - var(--input-border-width) * 2
   );
-  padding: var(--input-padding) calc(var(--input-padding) * 1.5);
+  padding: var(--input-padding) calc(var(--input-padding) * 2);
   border: var(--input-border-width) solid var(--input-color);
   border-radius: 2rem;
   font-size: 0.8rem;
