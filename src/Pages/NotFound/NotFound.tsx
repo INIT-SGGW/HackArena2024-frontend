@@ -1,11 +1,13 @@
 import React from "react";
 import "./NotFound.css";
 
-interface Props {}
+interface Props { }
 
 function NotFound(props: Props) {
-  //TODO
-  return <div className="NotFound">NotFound</div>;
+  return <div className="notfound pagewidth">
+    <h4>Błąd 404</h4>
+    <h6>Strona, którą próbujesz otworzyć nie istnieje</h6>
+  </div>;
 }
 
 export default NotFound;

@@ -1,5 +1,6 @@
 .navbar {
   width: 100%;
+  background-color: var(--background-color);
 }
 
 @media screen and (max-width: 768px) {
@@ -16,7 +17,6 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--navbar-content-padding) 0;
-  background-color: var(--background-color);
 }
 
 @media screen and (max-width: 768px) {

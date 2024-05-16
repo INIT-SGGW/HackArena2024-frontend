@@ -6,6 +6,7 @@ import HomePage from "../Pages/HomePage/HomePage";
 import AccountPage from "../Pages/AccountPage/AccountPage";
 import NotFound from "../Pages/NotFound/NotFound";
 import ResetPasswordPage from "../Pages/ResetPasswordPage/ResetPasswordPage";
+import MessagePage from "../Pages/MessagePage/MessagePage";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/rejestracja",
         element: <RegisterPage />,
+      },
+      {
+        path: "/rejestracja/sukces",
+        element: <MessagePage title="Gratulajce!" message="Twój zespół został stworzony." />
       },
       {
         path: "/konto/:zespolID",

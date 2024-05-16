@@ -7,14 +7,16 @@ import {
 } from "../../Utils/handleErrorMessages";
 import { InputTeam, InputErrors } from "../../Types/types";
 import { useNavigate } from "react-router-dom";
+import AuthenticationService from "../../Services/AuthenticationService";
 
-interface Props {}
+interface Props { }
 
 function RegisterPage(props: Props) {
   const navigate = useNavigate();
   const { register } = text;
   const [showErrors, setShowErrors] = useState<boolean>(false);
   const [inputsDisabled, setInputsDisabled] = useState<boolean>(false);
+
 
   const [values, setValues] = useState<InputTeam>({
     teamName: "",
@@ -62,9 +64,23 @@ function RegisterPage(props: Props) {
       }));
       return;
     } else {
-      console.log(values);
       setInputsDisabled(true);
-      // setLoadingStatus(Status.Loading);
+      console.log(process.env.REACT_APP_API_URL);
+      AuthenticationService.register(values)
+        .then((response) => {
+          if (response.status === 201) {
+            const token = response.headers.get("Authorization");
+            console.log(token);
+            navigate("/rejestracja/sukces");
+          } else {
+            setInputsDisabled(false);
+            alert("Coś poszło nie tak, spróbuj ponownie");
+          }
+        })
+        .catch((error) => {
+          setInputsDisabled(false);
+          alert("Coś poszło nie tak, spróbuj ponownie");
+        });
     }
   };
 
@@ -136,9 +152,8 @@ function RegisterPage(props: Props) {
               {register.registerFields.teamName.label}
             </label>
             <input
-              className={`input--input${
-                errors.teamName && showErrors ? " input--input__error" : ""
-              }`}
+              className={`input--input${errors.teamName && showErrors ? " input--input__error" : ""
+                }`}
               placeholder={register.registerFields.teamName.label}
               name={register.registerFields.teamName.name}
               id={register.registerFields.teamName.id}
@@ -168,9 +183,8 @@ function RegisterPage(props: Props) {
               maxLength={40}
             />
             <span
-              className={`input--span${
-                showErrors ? " input--span__visible" : ""
-              }`}
+              className={`input--span${showErrors ? " input--span__visible" : ""
+                }`}
             >
               {errors.teamName}
             </span>
@@ -185,9 +199,8 @@ function RegisterPage(props: Props) {
                 {register.registerFields.password.label}
               </label>
               <input
-                className={`input--input${
-                  errors.password && showErrors ? " input--input__error" : ""
-                }`}
+                className={`input--input${errors.password && showErrors ? " input--input__error" : ""
+                  }`}
                 placeholder={register.registerFields.password.label}
                 name={register.registerFields.password.name}
                 id={register.registerFields.password.id}
@@ -215,9 +228,8 @@ function RegisterPage(props: Props) {
                 maxLength={80}
               />
               <span
-                className={`input--span${
-                  showErrors ? " input--span__visible" : ""
-                }`}
+                className={`input--span${showErrors ? " input--span__visible" : ""
+                  }`}
               >
                 {errors.password}
               </span>
@@ -231,11 +243,10 @@ function RegisterPage(props: Props) {
                 {register.registerFields.repeatPassword.label}
               </label>
               <input
-                className={`input--input${
-                  errors.repeatPassword && showErrors
-                    ? " input--input__error"
-                    : ""
-                }`}
+                className={`input--input${errors.repeatPassword && showErrors
+                  ? " input--input__error"
+                  : ""
+                  }`}
                 placeholder={register.registerFields.repeatPassword.label}
                 name={register.registerFields.repeatPassword.name}
                 id={register.registerFields.repeatPassword.id}
@@ -264,9 +275,8 @@ function RegisterPage(props: Props) {
                 }}
               />
               <span
-                className={`input--span${
-                  showErrors ? " input--span__visible" : ""
-                }`}
+                className={`input--span${showErrors ? " input--span__visible" : ""
+                  }`}
               >
                 {errors.repeatPassword}
               </span>
@@ -291,11 +301,10 @@ function RegisterPage(props: Props) {
                       {register.registerFields.firstName.label}
                     </label>
                     <input
-                      className={`input--input${
-                        errors.teamMembers[index].firstName && showErrors
-                          ? " input--input__error"
-                          : ""
-                      }`}
+                      className={`input--input${errors.teamMembers[index].firstName && showErrors
+                        ? " input--input__error"
+                        : ""
+                        }`}
                       placeholder={register.registerFields.firstName.label}
                       name={register.registerFields.firstName.name + index}
                       id={register.registerFields.firstName.id + index}
@@ -337,9 +346,8 @@ function RegisterPage(props: Props) {
                       maxLength={50}
                     />
                     <span
-                      className={`input--span${
-                        showErrors ? " input--span__visible" : ""
-                      }`}
+                      className={`input--span${showErrors ? " input--span__visible" : ""
+                        }`}
                     >
                       {errors.teamMembers[index].firstName}
                     </span>
@@ -353,11 +361,10 @@ function RegisterPage(props: Props) {
                       {register.registerFields.lastName.label}
                     </label>
                     <input
-                      className={`input--input${
-                        errors.teamMembers[index].lastName && showErrors
-                          ? " input--input__error"
-                          : ""
-                      }`}
+                      className={`input--input${errors.teamMembers[index].lastName && showErrors
+                        ? " input--input__error"
+                        : ""
+                        }`}
                       placeholder={register.registerFields.lastName.label}
                       name={register.registerFields.lastName.name + index}
                       id={register.registerFields.lastName.id + index}
@@ -399,9 +406,8 @@ function RegisterPage(props: Props) {
                       maxLength={50}
                     />
                     <span
-                      className={`input--span${
-                        showErrors ? " input--span__visible" : ""
-                      }`}
+                      className={`input--span${showErrors ? " input--span__visible" : ""
+                        }`}
                     >
                       {errors.teamMembers[index].lastName}
                     </span>
@@ -416,11 +422,10 @@ function RegisterPage(props: Props) {
                     {register.registerFields.email.label}
                   </label>
                   <input
-                    className={`input--input${
-                      errors.teamMembers[index].email && showErrors
-                        ? " input--input__error"
-                        : ""
-                    }`}
+                    className={`input--input${errors.teamMembers[index].email && showErrors
+                      ? " input--input__error"
+                      : ""
+                      }`}
                     placeholder={register.registerFields.email.label}
                     name={register.registerFields.email.name + index}
                     id={register.registerFields.email.id + index}
@@ -461,9 +466,8 @@ function RegisterPage(props: Props) {
                     maxLength={60}
                   />
                   <span
-                    className={`input--span${
-                      showErrors ? " input--span__visible" : ""
-                    }`}
+                    className={`input--span${showErrors ? " input--span__visible" : ""
+                      }`}
                   >
                     {errors.teamMembers[index].email}
                   </span>
@@ -478,11 +482,10 @@ function RegisterPage(props: Props) {
                       {register.registerFields.dateOfBirth.label}
                     </label>
                     <input
-                      className={`input--input${
-                        errors.teamMembers[index].dateOfBirth && showErrors
-                          ? " input--input__error"
-                          : ""
-                      }`}
+                      className={`input--input${errors.teamMembers[index].dateOfBirth && showErrors
+                        ? " input--input__error"
+                        : ""
+                        }`}
                       placeholder={register.registerFields.dateOfBirth.label}
                       name={register.registerFields.dateOfBirth.name + index}
                       id={register.registerFields.dateOfBirth.id + index}
@@ -523,9 +526,8 @@ function RegisterPage(props: Props) {
                       max="2017-01-01"
                     />
                     <span
-                      className={`input--span${
-                        showErrors ? " input--span__visible" : ""
-                      }`}
+                      className={`input--span${showErrors ? " input--span__visible" : ""
+                        }`}
                     >
                       {errors.teamMembers[index].dateOfBirth}
                     </span>
@@ -566,9 +568,8 @@ function RegisterPage(props: Props) {
                       )}
                     </select>
                     <span
-                      className={`input--span${
-                        showErrors ? " input--span__visible" : ""
-                      }`}
+                      className={`input--span${showErrors ? " input--span__visible" : ""
+                        }`}
                     >
                       {errors.teamMembers[index].occupation}
                     </span>
@@ -616,11 +617,10 @@ function RegisterPage(props: Props) {
                     {register.registerFields.agreement.label}
                   </label>
                   <input
-                    className={`input--checkbox${
-                      showErrors && errors.teamMembers[index].agreement
-                        ? " input--checkbox__error"
-                        : ""
-                    }
+                    className={`input--checkbox${showErrors && errors.teamMembers[index].agreement
+                      ? " input--checkbox__error"
+                      : ""
+                      }
                   `}
                     onChange={(e) => {
                       handleErrorMessagesTeamMembers(

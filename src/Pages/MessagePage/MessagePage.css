@@ -1,8 +1,12 @@
-.notfound {
+.message {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding: 5rem 0;
   text-align: center;
+}
+
+.message h2 {
+  color: var(--primary-color);
 }

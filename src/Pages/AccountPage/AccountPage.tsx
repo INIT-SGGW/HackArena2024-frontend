@@ -131,10 +131,8 @@ function AccountPage(props: Props) {
     setInputsDisabled(!inputsDisabled);
     setShowErrors(false);
     if (inputsDisabled) {
-      console.log("edit");
       setValuesBackup({ ...values, teamMembers: [...values.teamMembers] });
     } else {
-      console.log("cancel");
       setValues({
         ...valuesBackup,
         teamMembers: [...valuesBackup.teamMembers],
@@ -216,7 +214,7 @@ function AccountPage(props: Props) {
                 className={`account--button account--button__primary${inputsDisabled ? "" : " account--button__halfborder"
                   }`}
                 onClick={handleEditForm}
-                value={inputsDisabled ? "Edit" : "Cancel"}
+                value={inputsDisabled ? "Edytuj" : "Anuluj"}
               ></input>
             )}
           </div>
@@ -259,8 +257,8 @@ function AccountPage(props: Props) {
                 <div className="register--input">
                   <input
                     className={`account--input${errors.teamMembers[index].firstName && showErrors
-                        ? " account--input__error"
-                        : ""
+                      ? " account--input__error"
+                      : ""
                       }`}
                     placeholder={register.registerFields.firstName.label}
                     name={register.registerFields.firstName.name + index}
@@ -314,8 +312,8 @@ function AccountPage(props: Props) {
                 <div className="register--input">
                   <input
                     className={`account--input${errors.teamMembers[index].lastName && showErrors
-                        ? " account--input__error"
-                        : ""
+                      ? " account--input__error"
+                      : ""
                       }`}
                     placeholder={register.registerFields.lastName.label}
                     name={register.registerFields.lastName.name + index}
@@ -369,8 +367,8 @@ function AccountPage(props: Props) {
               <div className="register--input">
                 <input
                   className={`account--input${errors.teamMembers[index].email && showErrors
-                      ? " account--input__error"
-                      : ""
+                    ? " account--input__error"
+                    : ""
                     }`}
                   placeholder={register.registerFields.email.label}
                   name={register.registerFields.email.name + index}
@@ -423,8 +421,8 @@ function AccountPage(props: Props) {
                 <div className="register--input">
                   <input
                     className={`account--input${errors.teamMembers[index].dateOfBirth && showErrors
-                        ? " account--input__error"
-                        : ""
+                      ? " account--input__error"
+                      : ""
                       }`}
                     placeholder={register.registerFields.dateOfBirth.label}
                     name={register.registerFields.dateOfBirth.name + index}
@@ -554,8 +552,8 @@ function AccountPage(props: Props) {
                 </label>
                 <input
                   className={`account--checkbox${showErrors && errors.teamMembers[index].agreement
-                      ? " account--checkbox__error"
-                      : ""
+                    ? " account--checkbox__error"
+                    : ""
                     }
                   `}
                   onChange={(e) => {

@@ -20,18 +20,16 @@ function NavBar() {
         {windowWidth < 768 ? (
           <>
             <a
-              className={`navbar--openside${
-                !showSidebar ? " navbar--openside__closed" : ""
-              }`}
+              className={`navbar--openside${!showSidebar ? " navbar--openside__closed" : ""
+                }`}
               onClick={() => setShowSidebar(!showSidebar)}
             >
               <img src={Menu} alt="-" />
               {/* <img src={MenuOpen} alt="-" /> */}
             </a>
             <div
-              className={`navbar--sidebar${
-                !showSidebar ? " navbar--sidebar__hidden" : ""
-              }`}
+              className={`navbar--sidebar${!showSidebar ? " navbar--sidebar__hidden" : ""
+                }`}
             >
               <nav className="navbar__nav">
                 <Link
@@ -72,7 +70,7 @@ function NavBar() {
               >
                 {navItems[0]}
               </Link>
-              {navItems.slice(1, navItems.length - 1).map((item, index) => {
+              {navItems.slice(1, navItems.length).map((item, index) => {
                 return (
                   <a
                     key={index}
@@ -83,9 +81,9 @@ function NavBar() {
                   </a>
                 );
               })}
-              <Link to="/login" className="navbar__link">
+              {/* <Link to="/login" className="navbar__link">
                 {navItems[navItems.length - 1]}
-              </Link>
+              </Link> */}
             </nav>
           </>
         )}

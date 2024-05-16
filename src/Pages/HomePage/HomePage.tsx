@@ -1,63 +1,96 @@
-import React from "react";
 import "./HomePage.css";
+import { useNavigate } from "react-router";
+import useTimeToEvent from "../../Hooks/useTimeToEvent";
+import { getEventDate, getEventTime, getRegistrationEndDate } from "../../Constants/Constants";
+import text from "../../Assets/text.json";
+import ChevronIcon from "../../Assets/chevron-down.svg";
+import { useState } from "react";
 
-interface Props {}
+interface Props { }
+
+interface AgendaItemProps {
+  question: string;
+  answer: string;
+}
+
+const FAQComponent = ({ question, answer }: AgendaItemProps) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  return (
+    <div className="faq--component">
+      <div className={`faq--box faq--question`} onClick={() => setIsOpen(!isOpen)}>
+        <h6>{question}</h6>
+        <img src={ChevronIcon} alt=">" className={`${isOpen ? "faq--icon__open" : ""}`} />
+      </div>
+      <div className={`faq--answer__wrapper${isOpen ? " faq--answer__open" : ""}`}>
+        <div className={`faq--box faq--answer`}>
+          <p>{answer}</p>
+        </div>
+      </div>
+
+    </div>
+  );
+}
 
 function HomePage(props: Props) {
+  const navigate = useNavigate();
+  const timeToEvent = useTimeToEvent();
+  const homeText = text.home;
   //TODO
   return (
-    <div className="home pagewidth">
-      <div className="home--welcome">
-        <h1>HackArena</h1>
-        <h3>Spróbuj swoje siły w hackatonie</h3>
-        <button>Zarejestruj się</button>
+    <div className="home">
+      <div id="welcome" className="home--welcome pagewidth home--section">
+        <h1><span>Hack</span>Arena 2024</h1>
+        <div className="welcome--text">
+          <h6>Bezpłatny, 8 godzinny hackathon odbywający się na terenie <span>SGGW w Warszawie</span></h6>
+          <p>Zbierz drużynę, stwórz bota, zwycięż w turnieju</p>
+        </div>
+        <div className="welcome--buttons">
+          <button onClick={() => navigate("/rejestracja")} className="account--button account--button__primary">Zapisz się</button>
+          <button onClick={() => window.location.href = "#zadanie"} className="account--button account--button__secondary">Zobacz więcej</button>
+        </div>
       </div>
-      <div id="zadanie" className="home--about">
-        <h2>O co chodzi?</h2>
-        <p>
-          HackArena to platforma, która pozwala na organizację i udział w
-          hackatonach. Wystarczy, że założysz konto, stworzysz zespół i
-          przystąpisz do wybranego hackatonu. Zespół, który zdobędzie najwięcej
-          punktów, wygrywa nagrodę!
-        </p>
-        <h2>Zadanie</h2>
-        <p>
-          W każdym hackatonie dostępne są zadania. Wybierz jedno, które chcesz
-          wykonać i zacznij pracę. W razie problemów zawsze możesz skonsultować
-          się z mentorem.
-        </p>
+      <div className="home--date home--section">
+        <h3>Start {getEventDate()} o {getEventTime()}</h3>
+        <h1>{timeToEvent}</h1>
       </div>
-      <div id="agenda" className="home--agenda">
-        <h2>Agenda</h2>
+      <div id="zadanie" className="home--about pagewidth home--section">
+        <h1>Zadanie</h1>
+        <p>Waszym zadaniem będzie <span>stworzenie bota w języku python</span>, do gry która zostanie
+          ujawniona w dniu rozpoczęcia HackAreny. W maksymalnie <span>3 osobowych
+            grupach</span> będziecie mieli <span>8 godzin</span> na implementację algorytmu zdolnego
+          do samodzielnego przeprowadzenia rozgrywki. Komunikację z grą
+          zapewni dostarczone przez nas API. Na koniec wydarzenia zostanie
+          przeprowadzony <span>turniej, który wyłoni zwycięską drużynę.</span></p>
       </div>
-      <div id="sponsorzy" className="home--sponsors">
-        <h2>Sponsorzy</h2>
+      <div id="agenda" className="home--agenda home--section pagewidth">
+        <h1>Agenda</h1>
+        <div className="agenda--schedule">
+          {
+            homeText.agenda.schedule.map(({ time, event }, index) => {
+              return <div className="agenda--component">
+                <p>{time}</p>
+                <p>{event}</p>
+              </div>
+            })
+          }
+        </div>
       </div>
-      <div id="faq" className="home--faq">
-        <h2>FAQ</h2>
-        <p>
-          <strong>Pytanie:</strong> Czy mogę wziąć udział w hackatonie sam?
-        </p>
-        <p>
-          <strong>Odpowiedź:</strong> Tak, ale zalecamy, abyś dołączył do
-          zespołu. Współpraca z innymi uczestnikami zwiększa szanse na wygraną.
-        </p>
-        <p>
-          <strong>Pytanie:</strong> Czy mogę wziąć udział w hackatonie z
-          zespołem?
-        </p>
-        <p>
-          <strong>Odpowiedź:</strong> Tak, ale zespół nie może składać się z
-          więcej niż 5 osób.
-        </p>
-        <p>
-          <strong>Pytanie:</strong> Czy mogę wziąć udział w hackatonie z
-          zespołem, który nie jest zarejestrowany na platformie?
-        </p>
-        <p>
-          <strong>Odpowiedź:</strong> Nie, każdy zespół musi być zarejestrowany
-          na platformie.
-        </p>
+      <div id='nieczekaj' className="home--dwait pagewidth home--section">
+        <h1>Nie czekaj!</h1>
+        <h4>Zbierz swój zespół i dołącz już teraz</h4>
+        <p>Zapisy trwają do <b>{getRegistrationEndDate()}</b></p>
+        <button onClick={() => navigate("/rejestracja")} className="account--button account--button__primary">Zarejestruj się</button>
+      </div>
+      <div id="faq" className="home--faq pagewidth home--section">
+        <h1>FAQ</h1>
+        <div className="faq--content">
+          {
+            homeText.faq.questions.map(({ question, answer }, index) => {
+              return <FAQComponent question={question} answer={answer} />
+            })
+          }
+        </div>
       </div>
     </div>
   );

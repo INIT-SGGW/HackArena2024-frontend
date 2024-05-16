@@ -1,14 +1,7 @@
 {
   "main": {
     "header": {
-      "navItems": [
-        "Rejestracja",
-        "Zadanie",
-        "Agenda",
-        "Sponsorzy",
-        "FAQ",
-        "Konto"
-      ]
+      "navItems": ["Rejestracja", "Zadanie", "Agenda", "FAQ"]
     },
     "welcome": {
       "title": "HackArena"
@@ -151,6 +144,70 @@
     "button": {
       "active": "Zresetuj",
       "disabled": "Przekierowuję..."
+    }
+  },
+  "home": {
+    "zadanie": {
+      "title": "Zadanie",
+      "description": "Waszym zadaniem będzie <span>stworzenie bota</span>, do gry która zostanie ujawniona w dniu rozpoczęcia HackAreny. W maksymalnie <span>3 osobowych grupach</span> będziecie mieli <span>8 godzin</span> na implementację algorytmu zdolnego do samodzielnego przeprowadzenia rozgrywki. Komunikację z grą zapewni dostarczone przez nas API. Na koniec wydarzenia zostanie przeprowadzony <span>turniej, który wyłoni zwycięską drużynę.</span>"
+    },
+    "agenda": {
+      "title": "Agenda",
+      "schedule": [
+        {
+          "time": "9:00",
+          "event": "Rejestracja"
+        },
+        {
+          "time": "9:30",
+          "event": "Otwarcie"
+        },
+        {
+          "time": "10:00",
+          "event": "Początek pracy"
+        },
+        {
+          "time": "14:00",
+          "event": "Obiad - pizza"
+        },
+        {
+          "time": "18:00",
+          "event": "Przesłanie rozwiązań"
+        },
+        {
+          "time": "19:00",
+          "event": "Turniej"
+        }
+      ]
+    },
+    "faq": {
+      "title": "FAQ",
+      "questions": [
+        {
+          "question": "Czym jest hackathon?",
+          "answer": "Hackathon to wydarzenie, na którym w określonym czasie musisz wykonać podane zadanie programistyczne. W naszym przypadku będzie to stworzenie bota do gry."
+        },
+        {
+          "question": "Czy mogę przyjść sam?",
+          "answer": "Tak, w przypaku niepełnych zespołów, będziemy się starali je uzupełnić o innych uczestników."
+        },
+        {
+          "question": "Gdzie odbędzie się HackArena?",
+          "answer": "HackArena odbędzie się w budynku 34 kampusu SGGW w Warszawie. Adres: ul. Nowoursynowska 159, 02-787 Warszawa."
+        },
+        {
+          "question": "Czy muszę przynieść własny komputer?",
+          "answer": "Tak, nie zapewniamy sprzętu, każdy uczestnik musi przynieść własny komputer. Nie zapomnij również o ładowarce!"
+        },
+        {
+          "question": "Czy będzie zapewnione wyżywienie?",
+          "answer": "Tak, zapewniamy podstawowe wyżywienie. Przez cały czas trwania HackAreny będzie dostępna woda i drobne przekąski, a około godziny 14:00 zaserwujemy pizzę. Jeżeli jesteś wege, zaznacz odpowiednią opcję w formularzu rejestracyjnym."
+        },
+        {
+          "question": "Czy mogę przyjść z gotowym projektem?",
+          "answer": "Nie, projekty muszą być tworzone od zera."
+        }
+      ]
     }
   }
 }

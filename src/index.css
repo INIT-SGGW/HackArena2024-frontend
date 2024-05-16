@@ -6,7 +6,7 @@
   --secondary-color: light-dark(#698e52, #4b5068);
   --accent-color: light-dark(#95892d, #757c9f);
   --text-one-color: light-dark(#000000, #ffffff);
-  --text-two-color: light-dark(#ffffff, #000000);
+  --text-two-color: light-dark(#ffffff, #000314);
   --input-color: var(--primary-color);
   --input-disabled-color: #6d5c0f;
   --shadow-color: light-dark(#34554b5d, #34554b5d);
@@ -98,6 +98,7 @@ h6 {
 
 h1 {
   font-size: 3.5rem;
+  line-height: 3.5rem;
 }
 
 h2 {
@@ -123,6 +124,9 @@ h6 {
 p {
   color: var(--text-one-color);
   font-size: 1rem;
+  line-height: 1.5rem;
+  padding: 0;
+  margin: 0;
 }
 
 label {
