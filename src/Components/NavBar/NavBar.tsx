@@ -32,13 +32,13 @@ function NavBar() {
                 }`}
             >
               <nav className="navbar__nav">
-                <Link
+                {/* <Link
                   to="/rejestracja"
                   onClick={() => setShowSidebar(false)}
                   className="navbar__link navbar__link--special"
                 >
                   {navItems[0]}
-                </Link>
+                </Link> */}
                 {navItems.slice(1, navItems.length - 1).map((item, index) => {
                   return (
                     <a
@@ -64,12 +64,12 @@ function NavBar() {
         ) : (
           <>
             <nav className="navbar__nav">
-              <Link
+              {/* <Link
                 to="/rejestracja"
                 className="navbar__link navbar__link--special"
               >
                 {navItems[0]}
-              </Link>
+              </Link> */}
               {navItems.slice(1, navItems.length).map((item, index) => {
                 return (
                   <a
