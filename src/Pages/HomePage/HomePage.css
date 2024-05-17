@@ -54,6 +54,7 @@
 .home--date > h3 {
   font-size: 2rem;
   color: var(--text-two-color);
+  text-align: center;
 }
 
 .home--date > h1 {
@@ -73,6 +74,10 @@
 
 .home--about span {
   color: var(--text-one-color);
+}
+
+.home--dwait {
+  text-align: center;
 }
 
 .home--dwait > h4 {
