@@ -1,3 +1,5 @@
+// general types for the application
+
 type Team = {
     teamName: string;
     teamMembers: Array<TeamMember>;
@@ -13,10 +15,30 @@ type TeamMember = {
     agreement: boolean;
 }
 
+type TeamMemberErrors = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    dateOfBirth: string;
+    occupation: string;
+    agreement: string;
+};
+
+// Types for register page
+
 type InputTeam = Team & {
     password: string;
     repeatPassword: string;
 };
+
+type InputErrors = {
+    teamName: string;
+    password: string;
+    repeatPassword: string;
+    teamMembers: Array<TeamMemberErrors>;
+};
+
+// Types for account page
 
 type AccountTeamMember = TeamMember & {
     _id: string;
@@ -27,25 +49,21 @@ type AccountTeam = Team & {
     teamMembers: Array<AccountTeamMember>;
 };
 
-type AccountTeamErrors = {
-    teamName: string;
+type AccountTeamErrors = Team & {
     teamMembers: Array<TeamMemberErrors>;
 };
 
-type TeamMemberErrors = {
-    firstName: string;
-    lastName: string;
+// Types for authentication
+
+type RegisterBody = {
+    teamName: string,
+    password: string,
+    teamMembers: TeamMember[]
+}
+
+type LoginBody = {
     email: string;
-    dateOfBirth: string;
-    occupation: string;
-    agreement: string;
-};
-
-type InputErrors = {
-    teamName: string;
     password: string;
-    repeatPassword: string;
-    teamMembers: Array<TeamMemberErrors>;
 };
 
-export type { InputTeam, AccountTeam, InputErrors, AccountTeamErrors };
+export type { InputTeam, AccountTeam, InputErrors, AccountTeamErrors, RegisterBody, LoginBody };

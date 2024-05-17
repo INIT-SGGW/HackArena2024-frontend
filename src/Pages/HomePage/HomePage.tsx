@@ -36,7 +36,6 @@ function HomePage(props: Props) {
   const navigate = useNavigate();
   const timeToEvent = useTimeToEvent();
   const homeText = text.home;
-  //TODO
   return (
     <div className="home">
       <div id="welcome" className="home--welcome pagewidth home--section">

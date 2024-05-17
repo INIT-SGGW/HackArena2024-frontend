@@ -5,7 +5,7 @@ import {
   handleErrorMessages,
   handleErrorMessagesTeamMembers,
 } from "../../Utils/handleErrorMessages";
-import { InputTeam, InputErrors } from "../../Types/types";
+import { InputTeam, InputErrors, RegisterBody } from "../../Types/types";
 import { useNavigate } from "react-router-dom";
 import AuthenticationService from "../../Services/AuthenticationService";
 
@@ -65,8 +65,23 @@ function RegisterPage(props: Props) {
       return;
     } else {
       setInputsDisabled(true);
-      console.log(process.env.REACT_APP_API_URL);
-      AuthenticationService.register(values)
+      const requestBody = {
+        teamName: values.teamName,
+        password: values.password,
+        teamMembers: values.teamMembers.map((teamMember) => {
+          return {
+            firstName: teamMember.firstName,
+            lastName: teamMember.lastName,
+            email: teamMember.email,
+            dateOfBirth: teamMember.dateOfBirth,
+            occupation: teamMember.occupation,
+            isVegan: teamMember.isVegan,
+            agreement: teamMember.agreement,
+          };
+        }),
+      } as RegisterBody;
+
+      AuthenticationService.register(requestBody)
         .then((response) => {
           if (response.status === 201) {
             const token = response.headers.get("Authorization");
