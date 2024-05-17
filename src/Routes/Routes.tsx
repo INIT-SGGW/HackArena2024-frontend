@@ -25,13 +25,17 @@ const router = createBrowserRouter([
         path: "/reset",
         element: <ResetPasswordPage />,
       },
-      {
-        path: "/rejestracja",
-        element: <RegisterPage />,
-      },
+      // {
+      //   path: "/rejestracja",
+      //   element: <RegisterPage />,
+      // },
       {
         path: "/rejestracja/sukces",
         element: <MessagePage title="Gratulajce!" message="Twój zespół został stworzony." />
+      },
+      {
+        path: "/rejestracja",
+        element: <MessagePage title="Rejestracja" message="Zapisy rozpoczną się już wkrótce." />
       },
       {
         path: "/konto/:zespolID",
