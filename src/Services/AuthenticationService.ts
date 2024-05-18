@@ -20,10 +20,10 @@ export default class AuthenticationService {
         console.log(this.API_URL + "/register")
         const response = await fetch(this.API_URL + "/register", {
             method: "POST",
+            mode: "cors",
             headers: {
                 "Content-Type": "application/json",
                 "Hack-Arena-API-Key": "$illyGame11",
-                "Access-Control-Allow-Origin": "*"
             },
             body: JSON.stringify(registerBody),
         });

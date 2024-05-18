@@ -55,10 +55,21 @@ type AccountTeamErrors = Team & {
 
 // Types for authentication
 
+type RegisterTeamMemberBody = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    dateOfBirth: Date;
+    occupation: string;
+    isVegan: boolean;
+    agreement: boolean;
+
+}
+
 type RegisterBody = {
     teamName: string,
     password: string,
-    teamMembers: TeamMember[]
+    teamMembers: RegisterTeamMemberBody[]
 }
 
 type LoginBody = {

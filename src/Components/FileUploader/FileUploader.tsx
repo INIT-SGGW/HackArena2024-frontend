@@ -52,7 +52,7 @@ function FileUploader(props: Props) {
 
   return (
     <div className="file">
-      <p>Dodaj swoje rozwiązanie poniżej</p>
+      <h3>Dodaj swoje rozwiązanie poniżej</h3>
       <div className="file--wrapper">
         <FU
           classes="file--input"

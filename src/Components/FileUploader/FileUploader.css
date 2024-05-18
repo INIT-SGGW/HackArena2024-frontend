@@ -1,5 +1,24 @@
+.file {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem;
+}
+
+.file > h3 {
+  color: var(--text-one-color);
+  margin-bottom: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .file {
+    padding: 2rem 0;
+  }
+}
+
 .file--wrapper {
   position: relative;
+  width: 100%;
 }
 
 .file--input {
@@ -16,9 +35,12 @@
   position: unset;
 }
 
-.kFhUBM span {
-  text-decoration: none !important;
+.kFhUBM {
   margin-left: 0.5rem;
+}
+
+.kFhUBM > span {
+  text-decoration: none !important;
 }
 
 .guZdik {

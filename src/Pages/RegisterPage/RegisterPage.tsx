@@ -73,7 +73,7 @@ function RegisterPage(props: Props) {
             firstName: teamMember.firstName,
             lastName: teamMember.lastName,
             email: teamMember.email,
-            dateOfBirth: teamMember.dateOfBirth,
+            dateOfBirth: new Date(teamMember.dateOfBirth),
             occupation: teamMember.occupation,
             isVegan: teamMember.isVegan,
             agreement: teamMember.agreement,
@@ -84,8 +84,6 @@ function RegisterPage(props: Props) {
       AuthenticationService.register(requestBody)
         .then((response) => {
           if (response.status === 201) {
-            const token = response.headers.get("Authorization");
-            console.log(token);
             navigate("/rejestracja/sukces");
           } else {
             setInputsDisabled(false);

@@ -10,6 +10,7 @@ import {
 import { eventEndDate, eventStartDate } from "../../Constants/Constants";
 import isEventLive from "../../Utils/isEventLive";
 import FileUploader from "../../Components/FileUploader/FileUploader";
+import useWindowWidth from "../../Hooks/useWindowWidth";
 
 interface Props { }
 
@@ -44,6 +45,7 @@ function AccountPage(props: Props) {
   const register = text.register;
   const { zespolID } = useParams<{ zespolID: string }>();
   const navigate = useNavigate();
+  const windowWidth = useWindowWidth();
 
   const [showErrors, setShowErrors] = useState<boolean>(false);
   const [inputsDisabled, setInputsDisabled] = useState<boolean>(true);
@@ -200,7 +202,7 @@ function AccountPage(props: Props) {
           <div className="header--buttons">
             {!inputsDisabled && (
               <input
-                className={`account--button account--button__primary${inputsDisabled ? "" : " account--button__halfborder"
+                className={`account--button${windowWidth < 768 ? " account--button__secondary" : " account--button__primary"}${inputsDisabled ? "" : " account--button__halfborder"
                   }`}
                 type="submit"
                 value={inputsDisabled ? register.button.disabled : "Zapisz"}
@@ -597,22 +599,25 @@ function AccountPage(props: Props) {
           ))}
         </div>
       </form>
-      <button
-        className="account--button account--button__primary"
-        onClick={() => {
-          localStorage.removeItem("teamID");
-          navigate("/");
-        }}
-      >
-        Logout
-      </button>
-      <button
-        type="button"
-        className="account--button account--button__primary"
-        onClick={() => navigate("/reset")}
-      >
-        Zresetuj hasło
-      </button>
+      <div className="account--bottom">
+
+        <button
+          className="account--button account--button__primary"
+          onClick={() => {
+            localStorage.removeItem("teamID");
+            navigate("/");
+          }}
+        >
+          Logout
+        </button>
+        <button
+          type="button"
+          className="account--button account--button__primary"
+          onClick={() => navigate("/reset")}
+        >
+          Zresetuj hasło
+        </button>
+      </div>
     </div>
   );
 }

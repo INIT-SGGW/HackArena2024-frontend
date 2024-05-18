@@ -1,7 +1,7 @@
 {
   "main": {
     "header": {
-      "navItems": ["Rejestracja", "Zadanie", "Agenda", "FAQ"]
+      "navItems": ["Rejestracja", "Zadanie", "Agenda", "FAQ", "Konto"]
     },
     "welcome": {
       "title": "HackArena"
@@ -197,7 +197,7 @@
         },
         {
           "question": "Czy muszę przynieść własny komputer?",
-          "answer": "Tak, nie zapewniamy sprzętu, każdy uczestnik musi przynieść własny komputer. Nie zapomnij również o ładowarce!"
+          "answer": "Tak, każdy uczestnik musi przyjść z własnym komputerem. Nie zapomnij również o ładowarce!"
         },
         {
           "question": "Czy będzie zapewnione wyżywienie?",

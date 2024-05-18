@@ -10,3 +10,17 @@
 .message h2 {
   color: var(--primary-color);
 }
+
+.message > div {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .message > div {
+    flex-direction: column;
+  }
+}

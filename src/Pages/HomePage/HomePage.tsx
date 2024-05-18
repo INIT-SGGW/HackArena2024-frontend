@@ -70,6 +70,7 @@ function HomePage(props: Props) {
               return <div className="agenda--component">
                 <p>{time}</p>
                 <p>{event}</p>
+                <p />
               </div>
             })
           }
