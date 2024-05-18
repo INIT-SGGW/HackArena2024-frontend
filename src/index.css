@@ -1,16 +1,16 @@
 :root {
   /* COLORS */
-  --background-color: light-dark(#ffffff, #000314);
-  --background-secondary-color: light-dark(#f7f7f7, #1a160f);
-  --primary-color: light-dark(#14481f, #ffd200);
-  --secondary-color: light-dark(#698e52, #4b5068);
-  --accent-color: light-dark(#95892d, #757c9f);
-  --text-one-color: light-dark(#000000, #ffffff);
-  --text-two-color: light-dark(#ffffff, #000314);
+  --background-color: #000314;
+  --background-secondary-color: #1a160f;
+  --primary-color: #ffd200;
+  --secondary-color: #4b5068;
+  --accent-color: #757c9f;
+  --text-one-color: #ffffff;
+  --text-two-color: #000314;
   --input-color: var(--primary-color);
   --input-disabled-color: #6d5c0f;
-  --shadow-color: light-dark(#34554b5d, #34554b5d);
-  --warning-color: light-dark(#ff0000, #ff0000);
+  --shadow-color: #34554b5d;
+  --warning-color: #ff0000;
   --warning-color-delicate: #f56f6f;
 
   /* SCREEN SIZES */
@@ -25,8 +25,6 @@
 
 body {
   background-color: var(--background-color);
-
-  color-scheme: dark;
 
   margin: 0;
   padding: 0;
