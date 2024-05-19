@@ -1,6 +1,7 @@
 :root {
   /* COLORS */
   --background-color: #000314;
+  --background-color-transparent: #000314e5;
   --background-secondary-color: #1a160f;
   --primary-color: #ffd200;
   --secondary-color: #4b5068;
@@ -19,7 +20,7 @@
   --laptop: 1024px;
   --desktop: 1440px;
 
-  --page-width: min(100%, 1000px);
+  --page-width: min(100%, 1100px);
   --section-padding: 4rem;
 }
 

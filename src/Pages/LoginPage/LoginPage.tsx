@@ -176,7 +176,7 @@ function LoginPage(props: Props) {
           <Link to="/reset">{loginText.loginFields.forgotPassword.label}</Link>
           <Link to="/rejestracja">{loginText.loginFields.noAccount.label}</Link>
         </div>
-        <div className="register--checkbox login--checkbox">
+        {/* <div className="register--checkbox login--checkbox">
           <label
             className="input--label"
             htmlFor={loginText.loginFields.rememberMe.id}
@@ -190,7 +190,7 @@ function LoginPage(props: Props) {
             id={loginText.loginFields.rememberMe.id}
             name={loginText.loginFields.rememberMe.name}
           />
-        </div>
+        </div> */}
         <input
           className="input--input login--submit input--submit__primary"
           type="submit"

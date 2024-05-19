@@ -1,17 +1,6 @@
 {
-  "main": {
-    "header": {
-      "navItems": ["Rejestracja", "Zadanie", "Agenda", "FAQ", "Konto"]
-    },
-    "welcome": {
-      "title": "HackArena"
-    },
-    "register": {
-      "title": "Rejestracja",
-      "description": "Zbierz swój zespół i dołącz do wydarzenia!",
-      "dateReminder": "Zapisy trawją do 17.10.2024",
-      "button": "Zapisz się"
-    }
+  "nav": {
+    "navItems": ["Rejestracja", "Zadanie", "Agenda", "FAQ", "Konto"]
   },
   "register": {
     "title": "Rejestracja",
@@ -87,6 +76,84 @@
       "disabled": "Przekierowuję..."
     }
   },
+  "account": {
+    "teamMembers": "Członkowie zespołu",
+    "teamMember": "Członek zespołu",
+    "registerFields": {
+      "firstName": {
+        "label": "Imię",
+        "name": "firstName",
+        "id": "firstName",
+        "errorMessage": "Znaki specjalne są niedozwolone"
+      },
+      "lastName": {
+        "label": "Nazwisko",
+        "name": "lastName",
+        "id": "lastName",
+        "errorMessage": "Znaki specjalne są niedozwolone"
+      },
+      "email": {
+        "label": "Email",
+        "name": "email",
+        "id": "email",
+        "errorMessage": "Wprowadź poprawny adres email"
+      },
+      "dateOfBirth": {
+        "label": "Data urodzenia",
+        "name": "dateOfBirth",
+        "id": "dateOfBirth",
+        "errorMessage": ""
+      },
+      "occupation": {
+        "label": "Status zawodowy",
+        "name": "occupation",
+        "id": "occupation",
+        "occupationChoices": ["Uczeń", "Student", "Absolwent", "Inne"],
+        "errorMessage": ""
+      },
+      "teamName": {
+        "label": "Nazwa zespołu",
+        "name": "teamName",
+        "id": "teamName",
+        "errorMessage": ""
+      },
+      "vegan": {
+        "label": "Wegańskie menu",
+        "name": "isVegan",
+        "id": "isVegan",
+        "errorMessage": ""
+      },
+      "agreement": {
+        "label": "Wyrażam zgodę na przetwarzanie moich danych osobowych w celu rejestracji na HackArena 2024.*",
+        "name": "agreement",
+        "id": "agreement",
+        "errorMessage": ""
+      }
+    },
+    "buttons": {
+      "save": {
+        "active": "Zapisz",
+        "disabled": "Zapisuję..."
+      },
+      "edit-cancel": {
+        "active": "Cofniij",
+        "disabled": "Edytuj"
+      },
+      "addTeamMember": "Dodaj",
+      "deleteTeamMember": "Usuń",
+      "resetPassword": "Zmień hasło",
+      "deleteTeam": "Usuń zespół",
+      "logout": "Wyloguj"
+    },
+    "alert": {
+      "title": "Usuwanie zespołu",
+      "message": "Czy na pewno chcesz usunąć zespół?",
+      "buttons": {
+        "delete": "Usuń",
+        "cancel": "Anuluj"
+      }
+    }
+  },
   "login": {
     "title": "Logowanie",
     "loginFields": {
@@ -147,9 +214,36 @@
     }
   },
   "home": {
+    "welcome": {
+      "title": "HackArena 2024",
+      "description": {
+        "first": "Bezpłatny, 8 godzinny hackathon odbywający się na terenie",
+        "second": "SGGW w Warszawie"
+      },
+      "slogan": "Zbierz drużynę, stwórz bota, zwycięż w turnieju",
+      "buttons": {
+        "register": "Zapisz się",
+        "seeMore": "Zobacz więcej"
+      }
+    },
+    "date": {
+      "text": {
+        "first": "Start",
+        "second": "o"
+      }
+    },
     "zadanie": {
       "title": "Zadanie",
-      "description": "Waszym zadaniem będzie <span>stworzenie bota</span>, do gry która zostanie ujawniona w dniu rozpoczęcia HackAreny. W maksymalnie <span>3 osobowych grupach</span> będziecie mieli <span>8 godzin</span> na implementację algorytmu zdolnego do samodzielnego przeprowadzenia rozgrywki. Komunikację z grą zapewni dostarczone przez nas API. Na koniec wydarzenia zostanie przeprowadzony <span>turniej, który wyłoni zwycięską drużynę.</span>"
+      "description": {
+        "first": "Waszym zadaniem będzie",
+        "second": "stworzenie bota",
+        "third": "do gry która zostanie ujawniona w dniu rozpoczęcia HackAreny. W maksymalnie",
+        "fourth": "3 osobowych grupach",
+        "fifth": "będziecie mieli",
+        "sixth": "8 godzin",
+        "seventh": "na implementację algorytmu zdolnego do samodzielnego przeprowadzenia rozgrywki. Komunikację z grą zapewni dostarczone przez nas API. Na koniec wydarzenia zostanie przeprowadzony",
+        "eighth": "turniej, który wyłoni zwycięską drużynę."
+      }
     },
     "agenda": {
       "title": "Agenda",
@@ -180,6 +274,12 @@
         }
       ]
     },
+    "dontWait": {
+      "title": "Nie czekaj",
+      "description": "Zbierz swój zespół i dołącz już teraz",
+      "dateReminder": "Zapisy trwają do",
+      "button": "Zarejestruj się"
+    },
     "faq": {
       "title": "FAQ",
       "questions": [
@@ -209,5 +309,22 @@
         }
       ]
     }
+  },
+  "fileUploader": {
+    "showing": {
+      "title": "Dodaj plik z rozwiązaniem poniżej",
+      "label": "Przeciągnij plik lub kliknij, aby wybrać",
+      "buttons": {
+        "send": "Wyślij",
+        "cancel": "Cofnij"
+      }
+    },
+    "hidden": {
+      "description": "Tutaj oddasz swoje rozwiązanie w trakcie trwanie HackAreny"
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "description": "Strona, którą próbujesz otworzyć nie istnieje"
   }
 }

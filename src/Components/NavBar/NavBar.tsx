@@ -10,7 +10,7 @@ import Menu from "../../Assets/menu.svg";
 function NavBar() {
   const [showSidebar, setShowSidebar] = useState(false);
   const windowWidth = useWindowWidth();
-  const navItems = text.main.header.navItems;
+  const navItems = text.nav.navItems;
   return (
     <div className="navbar">
       <div className="navbar--content pagewidth">

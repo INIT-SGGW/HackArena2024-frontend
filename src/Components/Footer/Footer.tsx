@@ -5,13 +5,12 @@ import Logo from "../../Assets/logo.png";
 import text from "../../Assets/text.json";
 import FacebookIcon from "../../Assets/facebook.svg";
 import InstagramIcon from "../../Assets/instagram.svg";
-import DiscordIcon from "../../Assets/discord.svg";
 import LinkedInIcon from "../../Assets/linkedin.svg";
 
 interface Props { }
 
 function Footer(props: Props) {
-  const navItems = text.main.header.navItems;
+  const navItems = text.nav.navItems;
   return <div className="footer">
     <div className="footer--upper">
       <a href="/">
