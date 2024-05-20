@@ -1,6 +1,7 @@
 .navbar {
   width: 100%;
   background-color: var(--background-color);
+  z-index: 10;
 }
 
 @media screen and (max-width: 768px) {
@@ -9,7 +10,7 @@
   }
 }
 
-.navbar__content {
+.navbar--content {
   --navbar-height: 4.4rem;
   --navbar-content-padding: 0.5rem;
 
@@ -20,7 +21,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .navbar__content {
+  .navbar--content {
     --navbar-content-padding: 1rem;
   }
 }
@@ -28,7 +29,6 @@
 .navbar--sidebar {
   --navbar-sidebar-padding: 1rem;
 
-  z-index: 10;
   background-color: var(--background-color);
   position: absolute;
   top: var(--navbar-height);
@@ -52,34 +52,31 @@
   transform: translateX(100%);
 }
 
-.navbar__content > a {
+.navbar--content > a {
   height: 2.4rem;
-  width: 2.4rem;
 }
 
-.navbar__content img {
+.navbar--content > a > img {
   height: 100%;
 }
 
-.navbar--openside {
+.navbar--icon {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
     contrast(103%);
   cursor: pointer;
   position: relative;
 }
 
-.navbar--openside > img {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  transition: all 0.25s ease-in-out;
-}
+@media screen and (max-width: 768px) {
+  .navbar--icon {
+    position: absolute;
+    top: var(--navbar-content-padding);
+    right: var(--navbar-content-padding);
+  }
 
-.navbar--openside > img {
-}
-
-.navbar--openside__closed > img:last-child {
+  .navbar--content {
+    justify-content: center;
+  }
 }
 
 .navbar__nav {

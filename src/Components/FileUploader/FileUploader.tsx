@@ -3,6 +3,7 @@ import { FileUploader as FU } from "react-drag-drop-files";
 import { useState } from "react";
 import { eventEndDate, eventStartDate } from "../../Constants/Constants"
 import isEventLive from "../../Utils/isEventLive"
+import text from "../../Assets/text.json";
 
 interface Props { }
 
@@ -19,6 +20,7 @@ function FileUploader(props: Props) {
   const [message, setMessage] = useState<string>("");
   const [status, setStatus] = useState<FileStatus>(FileStatus.UNSELECTED);
   const fileTypes = ["zip", "7z"];
+  const fileText = text.fileUploader;
 
   const handleChange = (file: File) => {
     setMessage(file.name);
@@ -46,17 +48,17 @@ function FileUploader(props: Props) {
 
   if (!isEventLive(eventStartDate, eventEndDate)) {
     return (
-      <p>Tutaj oddasz swoje rozwiązanie w trakcie trwanie HackAreny </p>
+      <p>{fileText.hidden.description}</p>
     )
   }
 
   return (
     <div className="file">
-      <p>Dodaj swoje rozwiązanie poniżej</p>
+      <h3>{fileText.showing.title}</h3>
       <div className="file--wrapper">
         <FU
           classes="file--input"
-          label="Przeciągnij plik lub kliknij, aby wybrać"
+          label={fileText.showing.label}
           handleChange={handleChange}
           types={fileTypes}
         />
@@ -65,8 +67,19 @@ function FileUploader(props: Props) {
             <span>{message}</span>
             {status !== FileStatus.SENDING &&
               <div>
-                <button onClick={handleCancel} className={`file--button account--button account--button__secondary${status !== FileStatus.SUCCESS ? " file--button__halfborder" : ""}`}>Cofnij</button>
-                {status !== FileStatus.SUCCESS && <button onClick={handleSendFile} className="file--button account--button account--button__secondary file--button__halfborder">Wyślij</button>}
+                <button
+                  onClick={handleCancel}
+                  className={`file--button account--button account--button__secondary${status !== FileStatus.SUCCESS ? " file--button__halfborder" : ""}`}>
+                  {fileText.showing.buttons.cancel}
+                </button>
+                {
+                  status !== FileStatus.SUCCESS &&
+                  <button
+                    onClick={handleSendFile}
+                    className="file--button account--button account--button__secondary file--button__halfborder">
+                    {fileText.showing.buttons.send}
+                  </button>
+                }
               </div>
             }
           </div>
