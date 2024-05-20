@@ -9,7 +9,7 @@ export default class AuthenticationService {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    "Hack-Arena-API-Key": "$illyGame11"
+                    "Hack-Arena-API-Key": process.env.REACT_APP_API_KEY || ""
                 }
             });
 

@@ -128,6 +128,7 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px #443b11 inset !important;
   -webkit-text-fill-color: var(--input-color) !important;
+  caret-color: var(--primary-color);
 }
 
 .input--input__error {
@@ -149,6 +150,12 @@ input:-webkit-autofill:active {
 .input--input__error:hover {
   color: var(--warning-color-delicate);
   border-color: var(--warning-color-delicate);
+}
+
+.input--input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(74%) sepia(66%) saturate(1182%) hue-rotate(360deg)
+    brightness(106%) contrast(103%);
+  cursor: pointer;
 }
 
 .input--span {

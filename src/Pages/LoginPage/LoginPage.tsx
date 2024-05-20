@@ -78,7 +78,6 @@ function LoginPage(props: Props) {
       setInputsDisabled(false);
       alert("Wystąpił błąd podczas logowania. Spróbuj ponownie.");
     });
-    console.log("end of submit")
   };
 
   if (teamID) return null;
@@ -173,7 +172,7 @@ function LoginPage(props: Props) {
           </span>
         </div>
         <div className="login--options">
-          <Link to="/reset">{loginText.loginFields.forgotPassword.label}</Link>
+          {/* <Link to="/reset">{loginText.loginFields.forgotPassword.label}</Link> */}
           <Link to="/rejestracja">{loginText.loginFields.noAccount.label}</Link>
         </div>
         {/* <div className="register--checkbox login--checkbox">

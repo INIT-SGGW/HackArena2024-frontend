@@ -87,7 +87,7 @@ function AccountPage(props: Props) {
         }))
       })
     }).catch((error) => {
-      console.error(error);
+      alert("Wystąpił błąd podczas pobierania danych z serwera. Spróbuj ponownie.")
     });
   }, [])
 

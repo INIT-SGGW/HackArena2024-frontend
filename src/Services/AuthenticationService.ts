@@ -1,15 +1,16 @@
 import { RegisterBody, LoginBody } from "../Types/types";
 
 export default class AuthenticationService {
-    static API_URL = process.env.REACT_APP_API_URL;
+    static API_URL = "http://51.38.132.180:8080/api/v1";
 
     static async login({ email, password }: LoginBody) {
         const response = await fetch(this.API_URL + "/login", {
             method: "POST",
-            credentials: "omit",
+            mode: "cors",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json",
-                "Hack-Arena-API-Key": "$illyGame11"
+                "Hack-Arena-API-Key": process.env.REACT_APP_API_KEY || "",
             },
             body: JSON.stringify({ email, password }),
         });
@@ -23,7 +24,7 @@ export default class AuthenticationService {
             credentials: "include",
             headers: {
                 "Content-Type": "application/json",
-                "Hack-Arena-API-Key": "$illyGame11",
+                "Hack-Arena-API-Key": process.env.REACT_APP_API_KEY || "",
             },
             body: JSON.stringify(registerBody),
         });
