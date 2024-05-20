@@ -63,8 +63,8 @@ function LoginPage(props: Props) {
         console.log(response.headers);
         response.json().then((data) => {
           //TODO: actuall data handling
-          localStorage.setItem("teamID", "adsf");
-          setTeamID(() => "asdf");
+          localStorage.setItem("teamID", "Team");
+          setTeamID(() => "Team");
         });
       } else {
         response.json().then((data) => {

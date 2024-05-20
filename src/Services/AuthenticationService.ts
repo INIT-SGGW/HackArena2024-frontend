@@ -6,6 +6,7 @@ export default class AuthenticationService {
     static async login({ email, password }: LoginBody) {
         const response = await fetch(this.API_URL + "/login", {
             method: "POST",
+            credentials: "omit",
             headers: {
                 "Content-Type": "application/json",
                 "Hack-Arena-API-Key": "$illyGame11"
@@ -16,11 +17,10 @@ export default class AuthenticationService {
     }
 
     static async register(registerBody: RegisterBody) {
-        console.log(registerBody)
-        console.log(this.API_URL + "/register")
         const response = await fetch(this.API_URL + "/register", {
             method: "POST",
             mode: "cors",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json",
                 "Hack-Arena-API-Key": "$illyGame11",

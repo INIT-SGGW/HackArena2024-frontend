@@ -1,7 +1,7 @@
 import "./AccountPage.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { AccountTeam, InputErrors } from "../../Types/types";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import text from "../../Assets/text.json";
 import {
   handleErrorMessages,
@@ -12,38 +12,35 @@ import isEventLive from "../../Utils/isEventLive";
 import FileUploader from "../../Components/FileUploader/FileUploader";
 import useWindowWidth from "../../Hooks/useWindowWidth";
 import Alert from "../../Components/Alert/Alert";
+import AccountService from "../../Services/AccountService";
 
 interface Props { }
 
-const teamData: AccountTeam = {
-  _id: "1",
-  teamName: "Big cocks",
-  teamMembers: [
-    {
-      _id: "1",
-      firstName: "John",
-      lastName: "Doe",
-      email: "johndoe@gamil.com",
-      dateOfBirth: "2000-01-01",
-      occupation: "Student",
-      isVegan: true,
-      agreement: true,
-    },
-    {
-      _id: "2",
-      firstName: "Jane",
-      lastName: "Doe",
-      email: "janedoe@gmail.com",
-      dateOfBirth: "2000-01-02",
-      occupation: "Uczeń",
-      isVegan: false,
-      agreement: true,
-    },
-  ],
-};
+// const teamData: AccountTeam = {
+//   teamName: "Big cocks",
+//   teamMembers: [
+//     {
+//       firstName: "John",
+//       lastName: "Doe",
+//       email: "johndoe@gamil.com",
+//       dateOfBirth: "2000-01-01",
+//       occupation: "Student",
+//       isVegan: true,
+//       agreement: true,
+//     },
+//     {
+//       firstName: "Jane",
+//       lastName: "Doe",
+//       email: "janedoe@gmail.com",
+//       dateOfBirth: "2000-01-02",
+//       occupation: "Uczeń",
+//       isVegan: false,
+//       agreement: true,
+//     },
+//   ],
+// };
 
 function AccountPage(props: Props) {
-  const { zespolID } = useParams<{ zespolID: string }>();
   const navigate = useNavigate();
   const windowWidth = useWindowWidth();
   const accountText = text.account;
@@ -52,21 +49,47 @@ function AccountPage(props: Props) {
   const [showErrors, setShowErrors] = useState<boolean>(false);
   const [inputsDisabled, setInputsDisabled] = useState<boolean>(true);
 
-  const [values, setValues] = useState<AccountTeam>(teamData);
-  const [valuesBackup, setValuesBackup] = useState<AccountTeam>(teamData);
+  const [values, setValues] = useState<AccountTeam>({
+    teamName: "",
+    teamMembers: [],
+
+  });
+  const [valuesBackup, setValuesBackup] = useState<AccountTeam>({
+    teamName: "",
+    teamMembers: [],
+
+  });
   const [errors, setErrors] = useState<InputErrors>({
     teamName: "",
     password: "",
     repeatPassword: "",
-    teamMembers: teamData.teamMembers.map((member) => ({
-      firstName: "",
-      lastName: "",
-      email: "",
-      dateOfBirth: "",
-      occupation: "",
-      agreement: "",
-    })),
-  });
+    teamMembers: []
+  })
+
+  const { zespolID } = useParams<{ zespolID: string }>();
+
+  useEffect(() => {
+    AccountService.getTeam(zespolID).then((team) => {
+      console.log(team);
+      setValues(team);
+      setValuesBackup(team);
+      setErrors({
+        teamName: "",
+        password: "",
+        repeatPassword: "",
+        teamMembers: team.teamMembers.map(() => ({
+          firstName: "",
+          lastName: "",
+          email: "",
+          dateOfBirth: "",
+          occupation: "",
+          agreement: "",
+        }))
+      })
+    }).catch((error) => {
+      console.error(error);
+    });
+  }, [])
 
   const handleTrySubmit = () => {
     setShowErrors(true);
@@ -85,7 +108,6 @@ function AccountPage(props: Props) {
       teamMembers: [
         ...values.teamMembers,
         {
-          _id: "",
           firstName: "",
           lastName: "",
           email: "",
@@ -145,7 +167,7 @@ function AccountPage(props: Props) {
         teamName: "",
         password: "",
         repeatPassword: "",
-        teamMembers: teamData.teamMembers.map((member) => ({
+        teamMembers: values.teamMembers.map(() => ({
           firstName: "",
           lastName: "",
           email: "",

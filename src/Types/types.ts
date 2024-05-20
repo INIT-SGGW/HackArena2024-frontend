@@ -39,15 +39,7 @@ type InputErrors = {
 };
 
 // Types for account page
-
-type AccountTeamMember = TeamMember & {
-    _id: string;
-};
-
-type AccountTeam = Team & {
-    _id: string;
-    teamMembers: Array<AccountTeamMember>;
-};
+type AccountTeam = Team
 
 type AccountTeamErrors = Team & {
     teamMembers: Array<TeamMemberErrors>;
