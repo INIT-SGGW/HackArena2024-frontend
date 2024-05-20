@@ -58,6 +58,7 @@
 .input--select > option {
   background-color: var(--background-color);
   color: var(--input-color);
+  padding: var(--input-padding);
 }
 
 form label {
@@ -174,22 +175,14 @@ input:-webkit-autofill:active {
   width: 100%;
 }
 
+.input--submit:hover {
+  transform: scaleX(0.98);
+}
+
 .input--submit__primary {
   background-color: var(--input-color);
   color: var(--background-color);
   border: 3px solid var(--input-color);
-}
-
-.input--submit__primary:hover {
-  background-color: var(--background-color);
-  color: var(--input-color);
-}
-
-@media screen and (max-width: 768px) {
-  .input--submit__primary:hover {
-    background-color: var(--input-color);
-    color: var(--background-color);
-  }
 }
 
 .register--checkbox {

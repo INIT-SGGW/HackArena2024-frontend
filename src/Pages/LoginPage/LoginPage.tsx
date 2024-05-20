@@ -4,10 +4,8 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { handleErrorMessages } from "../../Utils/handleErrorMessages";
 import text from "../../Assets/text.json";
-import { LoginBody } from "../../Types/types";
-import AuthenticationService from "../../Services/AuthenticationService";
 
-interface Props { }
+interface Props {}
 
 type LoginValues = {
   email: string;
@@ -54,31 +52,9 @@ function LoginPage(props: Props) {
       rememberMe: formData.get("remember") === "on",
     };
 
-    const loginBody: LoginBody = {
-      email: data.email,
-      password: data.password,
-    };
-    AuthenticationService.login(loginBody).then((response) => {
-      if (response.status === 202) {
-        console.log(response.headers);
-        response.json().then((data) => {
-          //TODO: actuall data handling
-          localStorage.setItem("teamID", "Team");
-          setTeamID(() => "Team");
-        });
-      } else {
-        response.json().then((data) => {
-          console.log(data);
-        });
-        setInputsDisabled(false);
-        alert("Wystąpił błąd podczas logowania. Spróbuj ponownie.");
-      }
-    }).catch((e) => {
-      console.error(e.message);
-      setInputsDisabled(false);
-      alert("Wystąpił błąd podczas logowania. Spróbuj ponownie.");
-    });
-    console.log("end of submit")
+    console.log(data);
+    localStorage.setItem("teamID", "123");
+    setTeamID(() => "123");
   };
 
   if (teamID) return null;
@@ -118,14 +94,16 @@ function LoginPage(props: Props) {
             name={loginText.loginFields.email.name}
             placeholder={loginText.loginFields.email.label}
             pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-            className={`input--input${showErrors && errors.email ? " input--input__error" : ""
-              }`}
+            className={`input--input${
+              showErrors && errors.email ? " input--input__error" : ""
+            }`}
             required
             maxLength={60}
           />
           <span
-            className={`input--span${showErrors ? " input--span__visible" : ""
-              }`}
+            className={`input--span${
+              showErrors ? " input--span__visible" : ""
+            }`}
           >
             {errors.email}
           </span>
@@ -159,15 +137,17 @@ function LoginPage(props: Props) {
             id={loginText.loginFields.password.id}
             placeholder={loginText.loginFields.password.label}
             name={loginText.loginFields.password.name}
-            className={`input--input${errors.password && showErrors ? " input--input__error" : ""
-              }`}
+            className={`input--input${
+              errors.password && showErrors ? " input--input__error" : ""
+            }`}
             pattern="^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$"
             required
             maxLength={80}
           />
           <span
-            className={`input--span${showErrors ? " input--span__visible" : ""
-              }`}
+            className={`input--span${
+              showErrors ? " input--span__visible" : ""
+            }`}
           >
             {errors.password}
           </span>
@@ -176,7 +156,7 @@ function LoginPage(props: Props) {
           <Link to="/reset">{loginText.loginFields.forgotPassword.label}</Link>
           <Link to="/rejestracja">{loginText.loginFields.noAccount.label}</Link>
         </div>
-        {/* <div className="register--checkbox login--checkbox">
+        <div className="register--checkbox login--checkbox">
           <label
             className="input--label"
             htmlFor={loginText.loginFields.rememberMe.id}
@@ -190,7 +170,7 @@ function LoginPage(props: Props) {
             id={loginText.loginFields.rememberMe.id}
             name={loginText.loginFields.rememberMe.name}
           />
-        </div> */}
+        </div>
         <input
           className="input--input login--submit input--submit__primary"
           type="submit"

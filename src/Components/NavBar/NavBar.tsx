@@ -10,17 +10,17 @@ import Menu from "../../Assets/menu.svg";
 function NavBar() {
   const [showSidebar, setShowSidebar] = useState(false);
   const windowWidth = useWindowWidth();
-  const navItems = text.nav.navItems;
+  const navItems = text.main.header.navItems;
   return (
     <div className="navbar">
-      <div className="navbar--content pagewidth">
+      <div className="navbar__content pagewidth">
         <Link to="/" onClick={() => setShowSidebar(false)}>
           <img src={Logo} alt="HackArena" />
         </Link>
         {windowWidth < 768 ? (
           <>
             <a
-              className={`navbar--icon${!showSidebar ? " navbar--icon__closed" : ""
+              className={`navbar--openside${!showSidebar ? " navbar--openside__closed" : ""
                 }`}
               onClick={() => setShowSidebar(!showSidebar)}
             >
@@ -70,7 +70,7 @@ function NavBar() {
               >
                 {navItems[0]}
               </Link>
-              {navItems.slice(1, navItems.length - 1).map((item, index) => {
+              {navItems.slice(1, navItems.length).map((item, index) => {
                 return (
                   <a
                     key={index}
@@ -81,14 +81,14 @@ function NavBar() {
                   </a>
                 );
               })}
-              <Link to="/login" className="navbar__link">
+              {/* <Link to="/login" className="navbar__link">
                 {navItems[navItems.length - 1]}
-              </Link>
+              </Link> */}
             </nav>
           </>
         )}
       </div>
-    </div >
+    </div>
   );
 }
 
