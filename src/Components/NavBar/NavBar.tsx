@@ -51,13 +51,13 @@ function NavBar() {
                     </a>
                   );
                 })}
-                <Link
+                {/* <Link
                   to="/login"
                   onClick={() => setShowSidebar(false)}
                   className="navbar__link"
                 >
                   {navItems[navItems.length - 1]}
-                </Link>
+                </Link> */}
               </nav>
             </div>
           </>

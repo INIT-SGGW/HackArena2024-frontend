@@ -66,6 +66,7 @@
   font-size: 2rem;
   text-align: center;
   color: var(--text-two-color);
+  text-align: center;
 }
 
 .home--date > h1 {

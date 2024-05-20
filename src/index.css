@@ -1,5 +1,6 @@
 :root {
   /* COLORS */
+
   --background-color: #000314;
   --background-color-transparent: #000314e5;
   --background-secondary-color: #1a160f;
@@ -10,6 +11,7 @@
   --text-two-color: #000314;
   --input-color: var(--primary-color);
   --input-disabled-color: #6d5c0f;
+
   --shadow-color: #34554b5d;
   --warning-color: #ff0000;
   --warning-color-delicate: #f56f6f;
