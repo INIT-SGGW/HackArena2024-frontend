@@ -5,7 +5,6 @@ import { getEventDate, getEventTime, getRegistrationEndDate } from "../../Consta
 import text from "../../Assets/text.json";
 import ChevronIcon from "../../Assets/chevron-down.svg";
 import { useState } from "react";
-import $ from 'jquery';
 
 interface Props { }
 
@@ -37,50 +36,54 @@ function HomePage(props: Props) {
   const navigate = useNavigate();
   const timeToEvent = useTimeToEvent();
   const homeText = text.home;
-  const span: string = "<span>asdf</span>"
+  //TODO
   return (
     <div className="home">
       <div id="welcome" className="home--welcome pagewidth home--section">
-        <h1>{homeText.welcome.title}</h1>
+        <h1><span>Hack</span>Arena 2024</h1>
         <div className="welcome--text">
-          <h6>{homeText.welcome.description.first} <span>{homeText.welcome.description.second}</span></h6>
-          <p>{homeText.welcome.slogan}</p>
+          <h6>Bezpłatny, 8 godzinny hackathon odbywający się na terenie <span>SGGW w Warszawie</span></h6>
+          <p>Zbierz drużynę, stwórz bota, zwycięż w turnieju</p>
         </div>
         <div className="welcome--buttons">
-          <button onClick={() => navigate("/rejestracja")} className="account--button account--button__primary">{homeText.welcome.buttons.register}</button>
-          <button onClick={() => window.location.href = "#zadanie"} className="account--button account--button__secondary">{homeText.welcome.buttons.seeMore}</button>
+          <button onClick={() => navigate("/rejestracja")} className="account--button account--button__primary">Zapisz się</button>
+          <button onClick={() => window.location.href = "#zadanie"} className="account--button account--button__secondary">Zobacz więcej</button>
         </div>
       </div>
       <div className="home--date home--section">
-        <h3>{homeText.date.text.first} {getEventDate()} {homeText.date.text.second} {getEventTime()}</h3>
+        <h3>Start {getEventDate()} o {getEventTime()}</h3>
         <h1>{timeToEvent}</h1>
       </div>
       <div id="zadanie" className="home--about pagewidth home--section">
-        <h1>{homeText.zadanie.title}</h1>
-        <p>{homeText.zadanie.description.first} <span>{homeText.zadanie.description.second}</span> {homeText.zadanie.description.third} <span>{homeText.zadanie.description.fourth}</span> {homeText.zadanie.description.fifth} <span>{homeText.zadanie.description.sixth}</span> {homeText.zadanie.description.seventh} <span>{homeText.zadanie.description.eighth}</span></p>
+        <h1>Zadanie</h1>
+        <p>Waszym zadaniem będzie <span>stworzenie bota w języku python</span>, do gry która zostanie
+          ujawniona w dniu rozpoczęcia HackAreny. W maksymalnie <span>3 osobowych
+            grupach</span> będziecie mieli <span>8 godzin</span> na implementację algorytmu zdolnego
+          do samodzielnego przeprowadzenia rozgrywki. Komunikację z grą
+          zapewni dostarczone przez nas API. Na koniec wydarzenia zostanie
+          przeprowadzony <span>turniej, który wyłoni zwycięską drużynę.</span></p>
       </div>
       <div id="agenda" className="home--agenda home--section pagewidth">
-        <h1>{homeText.agenda.title}</h1>
+        <h1>Agenda</h1>
         <div className="agenda--schedule">
           {
             homeText.agenda.schedule.map(({ time, event }, index) => {
               return <div className="agenda--component">
                 <p>{time}</p>
                 <p>{event}</p>
-                <p />
               </div>
             })
           }
         </div>
       </div>
       <div id='nieczekaj' className="home--dwait pagewidth home--section">
-        <h1>{homeText.dontWait.title}</h1>
-        <h4>{homeText.dontWait.description}</h4>
-        <p>{homeText.dontWait.dateReminder} <b>{getRegistrationEndDate()}</b></p>
-        <button onClick={() => navigate("/rejestracja")} className="account--button account--button__primary">{homeText.dontWait.button}</button>
+        <h1>Nie czekaj!</h1>
+        <h4>Zbierz swój zespół i dołącz już teraz</h4>
+        <p>Zapisy trwają do <b>{getRegistrationEndDate()}</b></p>
+        <button onClick={() => navigate("/rejestracja")} className="account--button account--button__primary">Zarejestruj się</button>
       </div>
       <div id="faq" className="home--faq pagewidth home--section">
-        <h1>{homeText.faq.title}</h1>
+        <h1>FAQ</h1>
         <div className="faq--content">
           {
             homeText.faq.questions.map(({ question, answer }, index) => {
