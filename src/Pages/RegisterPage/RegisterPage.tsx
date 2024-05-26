@@ -8,6 +8,7 @@ import {
 import { InputTeam, InputErrors, RegisterBody } from "../../Types/types";
 import { useNavigate } from "react-router-dom";
 import AuthenticationService from "../../Services/AuthenticationService";
+import Alert from "../../Components/Alert/Alert";
 
 interface Props { }
 
@@ -16,7 +17,7 @@ function RegisterPage(props: Props) {
   const { register } = text;
   const [showErrors, setShowErrors] = useState<boolean>(false);
   const [inputsDisabled, setInputsDisabled] = useState<boolean>(false);
-
+  const [submitError, setSubmitError] = useState<string>("");
 
   const [values, setValues] = useState<InputTeam>({
     teamName: "",
@@ -83,16 +84,24 @@ function RegisterPage(props: Props) {
 
       AuthenticationService.register(requestBody)
         .then((response) => {
+          setInputsDisabled(false);
           if (response.status === 201) {
             navigate("/rejestracja/sukces");
-          } else {
-            setInputsDisabled(false);
-            alert("Coś poszło nie tak, spróbuj ponownie");
+          }
+          else if (response.status === 409) {
+            response.json().then((data) => {
+              if (data.error === "Cannot create new team, duplicate") {
+                let errorMessage = "Użyty email jest już zarejestrowany lub nazwa zespołu jest zajęta";
+                setSubmitError(errorMessage);
+              }
+            });
+          }
+          else {
+            alert("Wystąpił błąd podczas rejestracji");
           }
         })
         .catch((error) => {
-          setInputsDisabled(false);
-          alert("Coś poszło nie tak, spróbuj ponownie");
+          alert("Wystąpił błąd podczas rejestracji");
         });
     }
   };
@@ -150,6 +159,14 @@ function RegisterPage(props: Props) {
 
   return (
     <div className="register">
+      {submitError &&
+        <Alert
+          title="Błąd"
+          message={submitError}
+          buttonOneText="Spróbuj ponownie"
+          buttonOneAction={() => { setSubmitError(""); }}
+        />
+      }
       <div className="register--content pagewidth">
         <div className="register--heading">
           <h1 className="register--title">{register.title}</h1>

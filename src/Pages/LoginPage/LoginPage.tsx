@@ -6,6 +6,7 @@ import { handleErrorMessages } from "../../Utils/handleErrorMessages";
 import text from "../../Assets/text.json";
 import { LoginBody } from "../../Types/types";
 import AuthenticationService from "../../Services/AuthenticationService";
+import Alert from "../../Components/Alert/Alert";
 
 interface Props { }
 
@@ -32,6 +33,7 @@ function LoginPage(props: Props) {
     email: "",
     password: "",
   });
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     if (teamID) {
@@ -59,24 +61,21 @@ function LoginPage(props: Props) {
       password: data.password,
     };
     AuthenticationService.login(loginBody).then((response) => {
-      if (response.status === 202) {
-        console.log(response.headers);
-        response.json().then((data) => {
-          //TODO: actuall data handling
-          localStorage.setItem("teamID", "Team");
-          setTeamID(() => "Team");
-        });
-      } else {
-        response.json().then((data) => {
-          console.log(data);
-        });
-        setInputsDisabled(false);
-        alert("Wystąpił błąd podczas logowania. Spróbuj ponownie.");
-      }
-    }).catch((e) => {
-      console.error(e.message);
       setInputsDisabled(false);
-      alert("Wystąpił błąd podczas logowania. Spróbuj ponownie.");
+      response.json().then((data) => {
+        if (response.status === 202) {
+          localStorage.setItem("teamID", data.teamName);
+          navigate("/konto/" + data.teamName);
+        }
+        else if (response.status === 403 && data.error === "Invalid password or Team Name") {
+          setSubmitError("Podane dane są nieprawidłowe.");
+        }
+        else {
+          setSubmitError("Wystąpił błąd podczas logowania.");
+        }
+      });
+    }).catch((e) => {
+      alert("Wystąpił błąd podczas logowania.");
     });
   };
 
@@ -84,6 +83,15 @@ function LoginPage(props: Props) {
 
   return (
     <div className="login pagewidth">
+      {
+        submitError &&
+        <Alert
+          title="Błąd"
+          message={submitError}
+          buttonOneText="Zamknij"
+          buttonOneAction={() => setSubmitError(null)}
+        />
+      }
       <h2>{loginText.title}</h2>
       <form onSubmit={handleSubmit} className="login--form">
         <div className="login--input">

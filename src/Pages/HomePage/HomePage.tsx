@@ -64,7 +64,7 @@ function HomePage(props: Props) {
         <div className="agenda--schedule">
           {
             homeText.agenda.schedule.map(({ time, event }, index) => {
-              return <div className="agenda--component">
+              return <div key={index} className="agenda--component">
                 <p>{time}</p>
                 <p>{event}</p>
                 <p />

@@ -13,6 +13,7 @@ import FileUploader from "../../Components/FileUploader/FileUploader";
 import useWindowWidth from "../../Hooks/useWindowWidth";
 import Alert from "../../Components/Alert/Alert";
 import AccountService from "../../Services/AccountService";
+import AuthenticationService from "../../Services/AuthenticationService";
 
 interface Props { }
 
@@ -45,6 +46,7 @@ function AccountPage(props: Props) {
   const windowWidth = useWindowWidth();
   const accountText = text.account;
   const [showAlert, setShowAlert] = useState<boolean>(false);
+  const [alertErrorMessage, setAlertErrorMessage] = useState<string | null>(null);
 
   const [showErrors, setShowErrors] = useState<boolean>(false);
   const [inputsDisabled, setInputsDisabled] = useState<boolean>(true);
@@ -69,26 +71,34 @@ function AccountPage(props: Props) {
   const { zespolID } = useParams<{ zespolID: string }>();
 
   useEffect(() => {
-    AccountService.getTeam(zespolID).then((team) => {
-      console.log(team);
-      setValues(team);
-      setValuesBackup(team);
-      setErrors({
-        teamName: "",
-        password: "",
-        repeatPassword: "",
-        teamMembers: team.teamMembers.map(() => ({
-          firstName: "",
-          lastName: "",
-          email: "",
-          dateOfBirth: "",
-          occupation: "",
-          agreement: "",
-        }))
+    if (zespolID) {
+      AccountService.getTeam(zespolID).then((data) => {
+        data.json().then((team: AccountTeam) => {
+          team.teamMembers.forEach((teamMember) => {
+            teamMember.dateOfBirth = teamMember.dateOfBirth.split("T")[0];
+          });
+          setValues(team);
+          setValuesBackup(team);
+          setErrors({
+            teamName: "",
+            password: "",
+            repeatPassword: "",
+            teamMembers: team.teamMembers.map(() => {
+              return {
+                firstName: "",
+                lastName: "",
+                email: "",
+                dateOfBirth: '',
+                occupation: "",
+                agreement: "",
+              }
+            })
+          })
+        }).catch((error) => {
+          setAlertErrorMessage("Wystąpił błąd podczas pobierania danych z serwera")
+        });
       })
-    }).catch((error) => {
-      alert("Wystąpił błąd podczas pobierania danych z serwera. Spróbuj ponownie.")
-    });
+    }
   }, [])
 
   const handleTrySubmit = () => {
@@ -97,8 +107,6 @@ function AccountPage(props: Props) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-
-    console.log(values);
     setInputsDisabled(true);
   };
 
@@ -134,6 +142,19 @@ function AccountPage(props: Props) {
       ],
     });
   };
+
+  const hangleLogOut = () => {
+    AuthenticationService.logout().then((response) => {
+      if (response.status === 204) {
+        localStorage.removeItem("teamID");
+        navigate("/");
+      } else {
+        setAlertErrorMessage("Wystąpił błąd podczas wylogowywania")
+      }
+    }).catch(() => {
+      setAlertErrorMessage("Wystąpił błąd podczas wylogowywania")
+    });
+  }
 
   const handleDeleteTeamMember = (index: number) => {
     setValues({
@@ -187,6 +208,15 @@ function AccountPage(props: Props) {
 
   return (
     <div className="account pagewidth">
+      {
+        alertErrorMessage &&
+        <Alert
+          title="Błąd"
+          message={alertErrorMessage}
+          buttonOneText="Zamknij"
+          buttonOneAction={() => setAlertErrorMessage(null)}
+        />
+      }
       <form className="register--form" onSubmit={handleSubmit}>
         {/* TEAM NAME */}
         <div className="account--header">
@@ -633,10 +663,7 @@ function AccountPage(props: Props) {
 
         <button
           className="account--button account--button__primary"
-          onClick={() => {
-            localStorage.removeItem("teamID");
-            navigate("/");
-          }}
+          onClick={hangleLogOut}
         >
           {accountText.buttons.logout}
         </button>
@@ -647,13 +674,13 @@ function AccountPage(props: Props) {
         >
           {accountText.buttons.resetPassword}
         </button>
-        <button
+        {/* <button
           type="button"
           className="account--button account--button__primary"
           onClick={() => setShowAlert(true)}
         >
           {accountText.buttons.deleteTeam}
-        </button>
+        </button> */}
         {
           showAlert &&
           <Alert
