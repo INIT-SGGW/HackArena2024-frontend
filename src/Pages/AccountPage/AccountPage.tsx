@@ -145,7 +145,7 @@ function AccountPage(props: Props) {
 
   const hangleLogOut = () => {
     AuthenticationService.logout().then((response) => {
-      if (response.status === 204) {
+      if (response.status === 200) {
         localStorage.removeItem("teamID");
         navigate("/");
       } else {

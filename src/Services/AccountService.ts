@@ -1,6 +1,6 @@
 import { AccountTeam } from "../Types/types";
 
-export default class AuthenticationService {
+export default class AccountService {
   static API_URL = process.env.REACT_APP_API_URL;
 
   static async getTeam(teamID: string) {

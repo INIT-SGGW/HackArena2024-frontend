@@ -1,4 +1,4 @@
-import { RegisterBody, LoginBody } from "../Types/types";
+import { RegisterBody, LoginBody, ResetPasswordBody } from "../Types/types";
 
 export default class AuthenticationService {
   static API_URL = process.env.REACT_APP_API_URL;
@@ -41,6 +41,24 @@ export default class AuthenticationService {
         "Hack-Arena-API-Key": process.env.REACT_APP_API_KEY || "",
       },
     });
+    return response;
+  }
+
+  static async resetPassword({ email, password }: ResetPasswordBody) {
+    const teamID = localStorage.getItem("teamID");
+    const response = await fetch(
+      this.API_URL + "/" + teamID + "/changepassword",
+      {
+        method: "POST",
+        mode: "cors",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          "Hack-Arena-API-Key": process.env.REACT_APP_API_KEY || "",
+        },
+        body: JSON.stringify({ email, password }),
+      }
+    );
     return response;
   }
 }
