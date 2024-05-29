@@ -46,7 +46,7 @@ function FileUploader(props: Props) {
     setFile(null);
   }
 
-  if (!isEventLive(eventStartDate, eventEndDate)) {
+  if (!isEventLive()) {
     return (
       <p>{fileText.hidden.description}</p>
     )

@@ -230,13 +230,15 @@
       "text": {
         "first": "Start",
         "second": "o"
-      }
+      },
+      "textLiveEvent": "HackArena rozpoczęta!",
+      "textAfterEvent": "Dziękujemy za udział!"
     },
     "zadanie": {
       "title": "Zadanie",
       "description": {
         "first": "Waszym zadaniem będzie",
-        "second": "stworzenie bota",
+        "second": "stworzenie bota (w języku python)",
         "third": "do gry która zostanie ujawniona w dniu rozpoczęcia HackAreny. W maksymalnie",
         "fourth": "3 osobowych grupach",
         "fifth": "będziecie mieli",

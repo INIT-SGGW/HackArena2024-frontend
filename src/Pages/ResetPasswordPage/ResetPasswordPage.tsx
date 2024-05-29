@@ -9,7 +9,6 @@ import Alert from "../../Components/Alert/Alert";
 interface Props { }
 
 type ResetPasswordValues = {
-  email: string;
   password: string;
   repeatPassword: string;
 };
@@ -19,7 +18,6 @@ function ResetPasswordPage(props: Props) {
   const [showErrors, setShowErrors] = useState<boolean>(false);
   const [inputsDisabled, setInputsDisabled] = useState<boolean>(false);
   const [errors, setErrors] = useState<ResetPasswordValues>({
-    email: "",
     password: "",
     repeatPassword: "",
   });
@@ -36,7 +34,6 @@ function ResetPasswordPage(props: Props) {
     const form = e.currentTarget;
     const formData = new FormData(form);
     const data: ResetPasswordValues = {
-      email: formData.get("email") as string,
       password: formData.get("password") as string,
       repeatPassword: formData.get(
         resetPasswordText.formFields.repeatPassword.name
@@ -52,11 +49,11 @@ function ResetPasswordPage(props: Props) {
       setInputsDisabled(false);
       return;
     } else {
-      AuthenticationService.resetPassword({ email: data.email, password: data.password })
+      AuthenticationService.resetPassword({ password: data.password })
         .then((response) => {
           setInputsDisabled(false);
           if (response.status === 202) {
-            navigate("/login");
+            navigate("/reset/sukces");
           }
           else {
             setSubmitError("Wystąpił błąd podczas resetowania hasła")
@@ -81,45 +78,7 @@ function ResetPasswordPage(props: Props) {
       }
       <h2>{resetPasswordText.title}</h2>
       <form onSubmit={handleSubmit} className="login--form">
-        <div className="login--input">
-          {/* <label className="input--label" htmlFor="email">
-            Email:
-          </label> */}
-          <input
-            onInvalid={(e) => {
-              e.preventDefault();
-              handleErrorMessages<ResetPasswordValues>(
-                e.currentTarget,
-                resetPasswordText.formFields.email.errorMessage,
-                setErrors
-              );
-            }}
-            onChange={(e) => {
-              handleErrorMessages<ResetPasswordValues>(
-                e.currentTarget,
-                resetPasswordText.formFields.email.errorMessage,
-                setErrors
-              );
-            }}
-            disabled={inputsDisabled}
-            spellCheck={false}
-            type="email"
-            id={resetPasswordText.formFields.email.id}
-            name={resetPasswordText.formFields.email.name}
-            placeholder={resetPasswordText.formFields.email.label}
-            pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-            className={`input--input${showErrors && errors.email ? " input--input__error" : ""
-              }`}
-            required
-            maxLength={60}
-          />
-          <span
-            className={`input--span${showErrors ? " input--span__visible" : ""
-              }`}
-          >
-            {errors.email}
-          </span>
-        </div>
+
         <div className="login--input">
           {/* <label className="input--label" htmlFor="password">
             Hasło:

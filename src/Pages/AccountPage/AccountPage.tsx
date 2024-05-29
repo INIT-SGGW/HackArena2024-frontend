@@ -7,13 +7,13 @@ import {
   handleErrorMessages,
   handleErrorMessagesTeamMembers,
 } from "../../Utils/handleErrorMessages";
-import { eventEndDate, eventStartDate } from "../../Constants/Constants";
 import isEventLive from "../../Utils/isEventLive";
 import FileUploader from "../../Components/FileUploader/FileUploader";
 import useWindowWidth from "../../Hooks/useWindowWidth";
 import Alert from "../../Components/Alert/Alert";
 import AccountService from "../../Services/AccountService";
 import AuthenticationService from "../../Services/AuthenticationService";
+import isRegistrationOpen from "../../Utils/isRegistrationOpen";
 
 interface Props { }
 
@@ -72,32 +72,39 @@ function AccountPage(props: Props) {
 
   useEffect(() => {
     if (zespolID) {
-      AccountService.getTeam(zespolID).then((data) => {
-        data.json().then((team: AccountTeam) => {
-          team.teamMembers.forEach((teamMember) => {
-            teamMember.dateOfBirth = teamMember.dateOfBirth.split("T")[0];
-          });
-          setValues(team);
-          setValuesBackup(team);
-          setErrors({
-            teamName: "",
-            password: "",
-            repeatPassword: "",
-            teamMembers: team.teamMembers.map(() => {
-              return {
-                firstName: "",
-                lastName: "",
-                email: "",
-                dateOfBirth: '',
-                occupation: "",
-                agreement: "",
-              }
+      AccountService.getTeam(zespolID).then((response) => {
+        if (response.status === 200) {
+          response.json().then((team: AccountTeam) => {
+            team.teamMembers.forEach((teamMember) => {
+              teamMember.dateOfBirth = teamMember.dateOfBirth.split("T")[0];
+            });
+            setValues(team);
+            setValuesBackup(team);
+            setErrors({
+              teamName: "",
+              password: "",
+              repeatPassword: "",
+              teamMembers: team.teamMembers.map(() => {
+                return {
+                  firstName: "",
+                  lastName: "",
+                  email: "",
+                  dateOfBirth: '',
+                  occupation: "",
+                  agreement: "",
+                }
+              })
             })
           })
-        }).catch((error) => {
+        }
+        else {
+          setAlertErrorMessage("Wystąpił błąd podczas pobierania danych z serwera")
+        }
+
+      })
+        .catch((error) => {
           setAlertErrorMessage("Wystąpił błąd podczas pobierania danych z serwera")
         });
-      })
     }
   }, [])
 
@@ -270,7 +277,7 @@ function AccountPage(props: Props) {
                 disabled={inputsDisabled}
               />
             )}
-            {!isEventLive(eventStartDate, eventEndDate) && (
+            {(!isEventLive() && isRegistrationOpen()) && (
               <input
                 type="button"
                 className={`account--button account--button__primary${inputsDisabled ? "" : " account--button__halfborder"

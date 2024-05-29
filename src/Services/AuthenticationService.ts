@@ -44,7 +44,7 @@ export default class AuthenticationService {
     return response;
   }
 
-  static async resetPassword({ email, password }: ResetPasswordBody) {
+  static async resetPassword({ password }: ResetPasswordBody) {
     const teamID = localStorage.getItem("teamID");
     const response = await fetch(
       this.API_URL + "/" + teamID + "/changepassword",
@@ -56,7 +56,7 @@ export default class AuthenticationService {
           "Content-Type": "application/json",
           "Hack-Arena-API-Key": process.env.REACT_APP_API_KEY || "",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ password }),
       }
     );
     return response;

@@ -69,7 +69,6 @@ type LoginBody = {
 };
 
 type ResetPasswordBody = {
-  email: string;
   password: string;
 };
 

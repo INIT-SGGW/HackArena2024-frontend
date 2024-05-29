@@ -8,6 +8,17 @@
 .register--heading {
   margin-bottom: 3rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register--title {
+  color: var(--primary-color);
+}
+
+.register--social {
+  width: fit-content;
 }
 
 .register--content {

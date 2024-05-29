@@ -75,7 +75,7 @@ function LoginPage(props: Props) {
         }
       });
     }).catch((e) => {
-      alert("Wystąpił błąd podczas logowania.");
+      setSubmitError("Wystąpił błąd podczas logowania.");
     });
   };
 

@@ -26,6 +26,17 @@ const router = createBrowserRouter([
         element: <ResetPasswordPage />,
       },
       {
+        path: "/reset/sukces",
+        element: <MessagePage
+          title="Gratulacje!"
+          message="Hasło zostało zmienione."
+          buttonOneText="Konto"
+          buttonOneLink="/login"
+          buttonTwoText="Strona główna"
+          buttonTwoLink="/"
+        />
+      },
+      {
         path: "/rejestracja",
         element: <RegisterPage />,
       },

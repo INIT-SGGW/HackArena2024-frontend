@@ -5,7 +5,8 @@ import { getEventDate, getEventTime, getRegistrationEndDate } from "../../Consta
 import text from "../../Assets/text.json";
 import ChevronIcon from "../../Assets/chevron-down.svg";
 import { useState } from "react";
-import $ from 'jquery';
+import isRegistrationOpen from "../../Utils/isRegistrationOpen";
+import isEventLive from "../../Utils/isEventLive";
 
 interface Props { }
 
@@ -52,8 +53,16 @@ function HomePage(props: Props) {
         </div>
       </div>
       <div className="home--date home--section">
-        <h3>{homeText.date.text.first} {getEventDate()} {homeText.date.text.second} {getEventTime()}</h3>
-        <h1>{timeToEvent}</h1>
+        {
+          !isEventLive() ?
+            <>
+              <h3>{homeText.date.text.first} {getEventDate()} {homeText.date.text.second} {getEventTime()}</h3>
+              <h1>{timeToEvent}</h1>
+            </> :
+            <>
+              <h3>{homeText.date.textLiveEvent}</h3>
+            </>
+        }
       </div>
       <div id="zadanie" className="home--about pagewidth home--section">
         <h1>{homeText.zadanie.title}</h1>
@@ -73,12 +82,14 @@ function HomePage(props: Props) {
           }
         </div>
       </div>
-      <div id='nieczekaj' className="home--dwait pagewidth home--section">
-        <h1>{homeText.dontWait.title}</h1>
-        <h4>{homeText.dontWait.description}</h4>
-        <p>{homeText.dontWait.dateReminder} <b>{getRegistrationEndDate()}</b></p>
-        <button onClick={() => navigate("/rejestracja")} className="account--button account--button__primary">{homeText.dontWait.button}</button>
-      </div>
+      {
+        isRegistrationOpen() &&
+        <div id='nieczekaj' className="home--dwait pagewidth home--section">
+          <h1>{homeText.dontWait.title}</h1>
+          <h4>{homeText.dontWait.description}</h4>
+          <p>{homeText.dontWait.dateReminder} <b>{getRegistrationEndDate()}</b></p>
+          <button onClick={() => navigate("/rejestracja")} className="account--button account--button__primary">{homeText.dontWait.button}</button>
+        </div>}
       <div id="faq" className="home--faq pagewidth home--section">
         <h1>{homeText.faq.title}</h1>
         <div className="faq--content">
