@@ -168,7 +168,7 @@ function LoginPage(props: Props) {
             name={loginText.loginFields.password.name}
             className={`input--input${errors.password && showErrors ? " input--input__error" : ""
               }`}
-            pattern="^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$"
+            pattern=".*"
             required
             maxLength={80}
           />
