@@ -14,7 +14,6 @@ import Alert from "../../Components/Alert/Alert";
 import AccountService from "../../Services/AccountService";
 import AuthenticationService from "../../Services/AuthenticationService";
 import isRegistrationOpen from "../../Utils/isRegistrationOpen";
-import JSZip from "jszip";
 
 interface Props { }
 
