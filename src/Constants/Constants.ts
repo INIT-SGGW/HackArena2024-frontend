@@ -1,6 +1,6 @@
 // Dates Constants
 const today = new Date();
-const startDate = process.env.REACT_APP_EVENT_START_DATE || "2024-06-02T09:20:00+02:00";
+const startDate = process.env.REACT_APP_EVENT_START_DATE || "2024-06-02T10:00:00+02:00";
 const endDate = process.env.REACT_APP_EVENT_END_DATE || "2024-06-02T18:30:00+02:00";
 const future = new Date(
     today.getFullYear(),
