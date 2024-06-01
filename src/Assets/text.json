@@ -43,7 +43,7 @@
         "label": "Nazwa zespołu",
         "name": "teamName",
         "id": "teamName",
-        "errorMessage": ""
+        "errorMessage": "Slash jest znakiem niedozwolonym"
       },
       "password": {
         "label": "Hasło",
