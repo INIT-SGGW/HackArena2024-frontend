@@ -7,6 +7,7 @@ import AccountPage from "../Pages/AccountPage/AccountPage";
 import NotFound from "../Pages/NotFound/NotFound";
 import ResetPasswordPage from "../Pages/ResetPasswordPage/ResetPasswordPage";
 import MessagePage from "../Pages/MessagePage/MessagePage";
+import DownloadPage from "../Pages/DownloadPage/DownloadPage";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/konto/:zespolID",
         element: <AccountPage />,
+      },
+      {
+        path: "/download/:teamID",
+        element: <DownloadPage />,
       },
       {
         path: "*",

@@ -7,6 +7,7 @@ import ChevronIcon from "../../Assets/chevron-down.svg";
 import { useState } from "react";
 import isRegistrationOpen from "../../Utils/isRegistrationOpen";
 import isEventLive from "../../Utils/isEventLive";
+import isEventDone from "../../Utils/isEventDone";
 
 interface Props { }
 
@@ -54,14 +55,19 @@ function HomePage(props: Props) {
       </div>
       <div className="home--date home--section">
         {
-          !isEventLive() ?
-            <>
-              <h3>{homeText.date.text.first} {getEventDate()} {homeText.date.text.second} {getEventTime()}</h3>
-              <h1>{timeToEvent}</h1>
-            </> :
+          isEventLive() ?
             <>
               <h3>{homeText.date.textLiveEvent}</h3>
             </>
+            :
+            isEventDone() ?
+              <>
+                <h3>{homeText.date.textAfterEvent}</h3>
+              </> :
+              <>
+                <h3>{homeText.date.text.first} {getEventDate()} {homeText.date.text.second} {getEventTime()}</h3>
+                <h1>{timeToEvent}</h1>
+              </>
         }
       </div>
       <div id="zadanie" className="home--about pagewidth home--section">

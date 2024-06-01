@@ -35,22 +35,22 @@
   position: unset;
 }
 
-.kFhUBM {
+.sc-fqkvVR {
   margin-left: 0.5rem;
 }
 
-.kFhUBM > span {
+.sc-fqkvVR > span {
   text-decoration: none !important;
 }
 
-.guZdik {
+.sc-aXZVg {
   border-color: var(--input-color) !important;
   border-radius: 0.8rem !important;
 }
-.jWkLDY > span {
+.sc-eqUAAy > span {
   color: var(--text-one-color) !important;
 }
-.guZdik > svg {
+.sc-aXZVg > svg {
   filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
     hue-rotate(49deg) brightness(103%) contrast(103%);
 }

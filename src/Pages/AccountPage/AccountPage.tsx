@@ -14,6 +14,7 @@ import Alert from "../../Components/Alert/Alert";
 import AccountService from "../../Services/AccountService";
 import AuthenticationService from "../../Services/AuthenticationService";
 import isRegistrationOpen from "../../Utils/isRegistrationOpen";
+import JSZip from "jszip";
 
 interface Props { }
 
@@ -244,24 +245,6 @@ function AccountPage(props: Props) {
     navigate("/");
   }
 
-  const handleDownloadSolution = () => {
-    AccountService.downloadSolution(values.teamName).then((response) => {
-      if (response.status >= 200 && response.status < 300) {
-        response.blob().then((blob) => {
-          const url = window.URL.createObjectURL(blob);
-          const a = document.createElement("a");
-          a.href = url;
-          a.download = "solution.zip";
-          a.click();
-        });
-      } else {
-        setAlertErrorMessage("Wystąpił błąd podczas pobierania pliku")
-      }
-    }).catch(() => {
-      setAlertErrorMessage("Wystąpił błąd podczas pobierania pliku")
-    });
-  }
-
   return (
     <div className="account pagewidth">
       {
@@ -338,8 +321,6 @@ function AccountPage(props: Props) {
           </div>
         </div>
         <FileUploader />
-        {/* <button onClick={handleDownloadSolution}>Download</button> */}
-
         <div className="register--addfriend">
           {/* ADD FRIEND */}
           <div className="register--memberbuttons">
