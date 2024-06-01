@@ -95,7 +95,7 @@ function HomePage(props: Props) {
         <div className="faq--content">
           {
             homeText.faq.questions.map(({ question, answer }, index) => {
-              return <FAQComponent question={question} answer={answer} />
+              return <FAQComponent key={index} question={question} answer={answer} />
             })
           }
         </div>

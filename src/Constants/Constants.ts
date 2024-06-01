@@ -1,7 +1,8 @@
 // Dates Constants
 const today = new Date();
 const eventDuration = 2; // Event Duration in days
-const startDate = process.env.REACT_APP_EVENT_START_DATE || "2024-06-02T10:00:00+02:00";
+//TODO: Change the event start date
+const startDate = "2024-06-01T00:00:00+02:00";
 const future = new Date(
     today.getFullYear(),
     today.getMonth(),
@@ -18,8 +19,9 @@ const past = new Date(
     today.getMinutes(),
     today.getSeconds()
 );
+//TODO: Change the registration end date
 const regitrationEndDate =
-    "2024-05-31T10:00:00+02:00";
+    "2024-06-08T10:00:00+02:00";
 
 export const getEventDate = () => {
     let year = eventStartDate.getFullYear().toString();

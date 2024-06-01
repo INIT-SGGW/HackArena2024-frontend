@@ -41,6 +41,21 @@ type InputErrors = {
 // Types for account page
 type AccountTeam = Team;
 
+type AccountTeamMember = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  dateOfBirth: Date;
+  occupation: string;
+  isVegan: boolean;
+  agreement: boolean;
+};
+
+type AccountTeamRequestBody = {
+  teamName: string;
+  teamMembers: Array<AccountTeamMember>;
+};
+
 type AccountTeamErrors = Team & {
   teamMembers: Array<TeamMemberErrors>;
 };
@@ -75,6 +90,7 @@ type ResetPasswordBody = {
 export type {
   InputTeam,
   AccountTeam,
+  AccountTeamRequestBody,
   InputErrors,
   AccountTeamErrors,
   RegisterBody,

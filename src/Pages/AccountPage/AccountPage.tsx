@@ -1,6 +1,6 @@
 import "./AccountPage.css";
 import { useParams, useNavigate } from "react-router-dom";
-import { AccountTeam, InputErrors } from "../../Types/types";
+import { AccountTeam, AccountTeamRequestBody, InputErrors } from "../../Types/types";
 import React, { useEffect, useState } from "react";
 import text from "../../Assets/text.json";
 import {
@@ -114,7 +114,33 @@ function AccountPage(props: Props) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    setInputsDisabled(true);
+    const teamData = {
+      teamName: values.teamName,
+      teamMembers: values.teamMembers.map((teamMember) => {
+        return {
+          firstName: teamMember.firstName,
+          lastName: teamMember.lastName,
+          email: teamMember.email,
+          dateOfBirth: new Date(teamMember.dateOfBirth),
+          occupation: teamMember.occupation,
+          isVegan: teamMember.isVegan,
+          agreement: teamMember.agreement,
+        };
+      }),
+    } as AccountTeamRequestBody;
+    AccountService.updateTeam(valuesBackup.teamName, teamData).then((response) => {
+      setInputsDisabled(true);
+      if (response.status === 200) {
+        localStorage.setItem("teamID", values.teamName);
+        setValuesBackup({ ...values, teamMembers: [...values.teamMembers] });
+        setShowErrors(false);
+        navigate("/konto/" + values.teamName)
+      } else {
+        setAlertErrorMessage("Wystąpił błąd podczas zapisywania danych na serwerze")
+      }
+    }).catch(() => {
+      setAlertErrorMessage("Wystąpił błąd podczas zapisywania danych na serwerze")
+    })
   };
 
   const handleAddTeamMember = () => {
@@ -207,10 +233,33 @@ function AccountPage(props: Props) {
     }
   };
 
+  const handleUpdateTeam = () => {
+    handleTrySubmit();
+
+  }
+
   const handleDeleteTeam = () => {
     //TODO: delete team
     localStorage.removeItem("teamID");
     navigate("/");
+  }
+
+  const handleDownloadSolution = () => {
+    AccountService.downloadSolution(values.teamName).then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        response.blob().then((blob) => {
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "solution.zip";
+          a.click();
+        });
+      } else {
+        setAlertErrorMessage("Wystąpił błąd podczas pobierania pliku")
+      }
+    }).catch(() => {
+      setAlertErrorMessage("Wystąpił błąd podczas pobierania pliku")
+    });
   }
 
   return (
@@ -289,6 +338,7 @@ function AccountPage(props: Props) {
           </div>
         </div>
         <FileUploader />
+        {/* <button onClick={handleDownloadSolution}>Download</button> */}
 
         <div className="register--addfriend">
           {/* ADD FRIEND */}
@@ -334,7 +384,7 @@ function AccountPage(props: Props) {
                     id={accountText.registerFields.firstName.id + index}
                     type="text"
                     disabled={inputsDisabled}
-                    pattern="^[a-zA-Z .]*$"
+                    pattern="^[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ \-]*$"
                     onInvalid={(e) => {
                       handleErrorMessagesTeamMembers(
                         e.currentTarget,
@@ -389,7 +439,7 @@ function AccountPage(props: Props) {
                     id={accountText.registerFields.lastName.id + index}
                     type="text"
                     disabled={inputsDisabled}
-                    pattern="^[a-zA-Z .]*$"
+                    pattern="^[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ \-]*$"
                     onInvalid={(e) => {
                       handleErrorMessagesTeamMembers(
                         e.currentTarget,

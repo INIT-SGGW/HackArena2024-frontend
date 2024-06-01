@@ -217,7 +217,7 @@ function RegisterPage(props: Props) {
                 id={register.registerFields.teamName.id}
                 type="text"
                 disabled={inputsDisabled}
-                pattern=".*"
+                pattern="[^\/]*$"
                 onInvalid={(e) => {
                   handleErrorMessages<InputErrors>(
                     e.currentTarget,
@@ -368,7 +368,7 @@ function RegisterPage(props: Props) {
                         id={register.registerFields.firstName.id + index}
                         type="text"
                         disabled={inputsDisabled}
-                        pattern="^[a-zA-Z .]*$"
+                        pattern="^[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ \-]*$"
                         onInvalid={(e) => {
                           handleErrorMessagesTeamMembers(
                             e.currentTarget,
@@ -428,7 +428,7 @@ function RegisterPage(props: Props) {
                         id={register.registerFields.lastName.id + index}
                         type="text"
                         disabled={inputsDisabled}
-                        pattern="^[a-zA-Z .]*$"
+                        pattern="^[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ \-]*$"
                         onInvalid={(e) => {
                           handleErrorMessagesTeamMembers(
                             e.currentTarget,
