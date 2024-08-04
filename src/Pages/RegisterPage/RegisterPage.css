@@ -67,7 +67,7 @@
 }
 
 .input--select > option {
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
   color: var(--input-color);
 }
 
@@ -84,7 +84,7 @@ form label {
   border-radius: 2rem;
   font-size: 0.8rem;
   font-weight: bold;
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
   color: var(--input-color);
   transition: all 0.25s;
 }
@@ -119,14 +119,14 @@ form label {
 
 .input--input[disabled][type="submit"] {
   background-color: var(--input-disabled-color);
-  color: var(--background-color);
+  color: rgb(var(--background-color));
 }
 
 .input--checkbox[disabled],
 .input--checkbox[disabled]:hover {
   cursor: not-allowed;
   border-color: var(--input-disabled-color);
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
 }
 
 .input--checkbox[disabled]:checked {
@@ -144,7 +144,7 @@ input:-webkit-autofill:active {
 
 .input--input__error {
   color: var(--warning-color-delicate);
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
   border-color: var(--warning-color-delicate);
 }
 
@@ -194,19 +194,19 @@ input:-webkit-autofill:active {
 
 .input--submit__primary {
   background-color: var(--input-color);
-  color: var(--background-color);
+  color: rgb(var(--background-color));
   border: 3px solid var(--input-color);
 }
 
 .input--submit__primary:hover {
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
   color: var(--input-color);
 }
 
 @media screen and (max-width: 768px) {
   .input--submit__primary:hover {
     background-color: var(--input-color);
-    color: var(--background-color);
+    color: rgb(var(--background-color));
   }
 }
 

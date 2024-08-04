@@ -36,7 +36,7 @@
   font-size: 0.8rem;
   border: none;
   font-weight: bold;
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
   color: var(--input-color);
   transition: all 0.25s;
   border-bottom: var(--account-input-border-width) solid var(--input-color);
@@ -72,7 +72,7 @@
 
 .account--checkbox {
   background-color: var(--input-color);
-  color: var(--background-color);
+  color: rgb(var(--background-color));
   cursor: unset;
 }
 
@@ -89,7 +89,7 @@
   border-radius: 0.3rem;
   border: 3px solid var(--input-color);
   transition: all 0.25s;
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
 }
 
 .account--checkbox:checked {
@@ -107,7 +107,7 @@
   }
 
   .account--checkbox:hover:disabled:not(:checked) {
-    background-color: var(--background-color);
+    background-color: rgb(var(--background-color));
     border-color: var(--input-color);
   }
 
@@ -147,12 +147,12 @@
 
 .account--button__primary {
   background-color: var(--primary-color);
-  color: var(--background-color);
+  color: rgb(var(--background-color));
   border: 3px solid var(--primary-color);
 }
 
 .account--button__primary:hover {
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
   border-color: var(--primary-color);
   color: var(--primary-color);
 }
@@ -161,23 +161,23 @@
   .account--button__primary:hover {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
-    color: var(--background-color);
+    color: rgb(var(--background-color));
   }
 }
 
 .account--button__secondary {
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
   border: 3px solid var(--primary-color);
   color: var(--primary-color);
 }
 
 .account--button__secondary:hover {
   background-color: var(--primary-color);
-  color: var(--background-color);
+  color: rgb(var(--background-color));
 }
 @media screen and (max-width: 768px) {
   .account--button__secondary:hover {
-    background-color: var(--background-color);
+    background-color: rgb(var(--background-color));
     color: var(--primary-color);
   }
 }

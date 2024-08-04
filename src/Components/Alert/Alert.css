@@ -13,7 +13,7 @@
   --alert-shadow-blur: 10px;
   --alert-shadow-spread: -2px;
 
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
   max-width: 500px;
   width: calc(95% - var(--alert-content-padding) * 2);
   position: fixed;

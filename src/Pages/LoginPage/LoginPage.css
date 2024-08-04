@@ -30,7 +30,7 @@
 }
 
 .login--submit:hover {
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
   color: var(--primary-color);
 }
 

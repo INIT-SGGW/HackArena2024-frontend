@@ -1,6 +1,6 @@
 .navbar {
   width: 100%;
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
   z-index: 10;
 }
 
@@ -29,7 +29,7 @@
 .navbar--sidebar {
   --navbar-sidebar-padding: 1rem;
 
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
   position: absolute;
   top: var(--navbar-height);
   right: 0;
@@ -108,14 +108,14 @@
 
 @media screen and (min-width: 768px) {
   .navbar__link:hover {
-    color: var(--background-color);
+    color: rgb(var(--background-color));
     text-shadow: -1px -1px 0 white, 1px 1px 0 white, -1px 1px 0 white,
       1px -1px 0 white, -1px 0 0 white, 1px 0 0 white, 0 1px 0 white,
       0 -1px 0 white, 2px -2px 0 white, 1px -2px 0 white, 2px -1px 0 white;
   }
 
   .navbar__link--special:hover {
-    color: var(--background-color);
+    color: rgb(var(--background-color));
     text-shadow: -1px -1px 0 var(--primary-color),
       1px 1px 0 var(--primary-color), -1px 1px 0 var(--primary-color),
       1px -1px 0 var(--primary-color), -1px 0 0 var(--primary-color),

@@ -74,11 +74,11 @@
   margin-top: 3rem;
   cursor: pointer;
   background-color: var(--primary-color);
-  color: var(--background-color);
+  color: rgb(var(--background-color));
   width: 80%;
 }
 
 .loading--button:hover {
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
   color: var(--primary-color);
 }

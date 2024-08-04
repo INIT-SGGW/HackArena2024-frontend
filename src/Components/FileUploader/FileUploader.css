@@ -59,7 +59,7 @@
   --file-sending-padding: 1rem;
 
   position: absolute;
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
   width: calc(100% - 4px - 2 * var(--file-sending-padding));
   height: calc(100% - 4px - var(--file-sending-padding));
   border-radius: 0.8rem;

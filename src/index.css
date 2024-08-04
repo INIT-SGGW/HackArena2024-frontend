@@ -1,6 +1,6 @@
 :root {
   /* COLORS */
-  --background-color: #000314;
+  --background-color: 0, 3, 20;
   --background-color-transparent: #ffffff34;
   --background-secondary-color: #1a160f;
   --primary-color: #ffd200;
@@ -25,7 +25,7 @@
 }
 
 body {
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
 
   margin: 0;
   padding: 0;
@@ -165,23 +165,23 @@ label {
 
 .button-primary {
   background-color: var(--primary-color);
-  color: var(--background-color);
+  color: rgb(var(--background-color));
   border: 3px solid var(--primary-color);
 }
 
 .button-primary:hover {
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
   border-color: var(--primary-color);
   color: var(--primary-color);
 }
 
 .button-secondary {
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
   border: 3px solid var(--primary-color);
   color: var(--primary-color);
 }
 
 .button-secondary:hover {
   background-color: var(--primary-color);
-  color: var(--background-color);
+  color: rgb(var(--background-color));
 }
