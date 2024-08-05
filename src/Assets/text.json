@@ -2,6 +2,9 @@
   "nav": {
     "navItems": ["Rejestracja", "Zadanie", "Agenda", "FAQ", "Konto"]
   },
+  "topBar": {
+    "text": "HackArena 2.0 już w październiku!"
+  },
   "register": {
     "title": "Rejestracja",
     "description": "Zbierz swój zespół i dołącz do wydarzenia!",
@@ -215,15 +218,13 @@
   },
   "home": {
     "welcome": {
-      "title": "HackArena 2024",
+      "title": "HackArena",
       "description": {
-        "first": "Bezpłatny, 8 godzinny hackathon odbywający się na terenie",
-        "second": "SGGW w Warszawie"
+        "first": "Zbierz zespół i podejmij wyzwanie!"
       },
-      "slogan": "Zbierz drużynę, stwórz bota, zwycięż w turnieju",
       "buttons": {
-        "register": "Zapisz się",
-        "seeMore": "Zobacz więcej"
+        "events": "Wydarzenia",
+        "aboutUs": "O nas"
       }
     },
     "date": {
@@ -234,18 +235,14 @@
       "textLiveEvent": "HackArena rozpoczęta!",
       "textAfterEvent": "Dziękujemy za udział!"
     },
-    "zadanie": {
-      "title": "Zadanie",
-      "description": {
-        "first": "Waszym zadaniem będzie",
-        "second": "stworzenie bota (w języku python)",
-        "third": "do gry która zostanie ujawniona w dniu rozpoczęcia HackAreny. W maksymalnie",
-        "fourth": "3 osobowych grupach",
-        "fifth": "będziecie mieli",
-        "sixth": "8 godzin",
-        "seventh": "na implementację algorytmu zdolnego do samodzielnego przeprowadzenia rozgrywki. Komunikację z grą zapewni dostarczone przez nas API. Na koniec wydarzenia zostanie przeprowadzony",
-        "eighth": "turniej, który wyłoni zwycięską drużynę."
-      }
+    "aboutUs": {
+      "title": "O nas",
+      "description": "HackArena to wyjątkowy hackathon organizowany przez <b>Koło Naukowe INIT z SGGW w Warszawie.</b> W tym wydarzeniu zespoły programistów tworzą wirtualne roboty, które uczestniczą w bitwach przypominających <b>walki robotów.</b> Cała akcja toczy się w stworzonej przez nas grze, która jest ujawniana w dniu wydarzenia. Przygotowane przez uczestników boty następnie stają do walki w <b>turniejowym formacie</b> w celu uzyskania tytułu <b>mistrza HackAreny.</b>"
+    },
+    "nextEvent": {
+      "title": "HackArena 2.0",
+      "description": "HackArena 2.0 to druga edycja hackathonu organizowanego przez Koło Naukowe INIT z SGGW w Warszawie. Wirtualne bitwy robotów odbędą się pod koniec października. <b>Dołącz i walcz o zwycięstwo!</b>",
+      "button": "Więcej informacji"
     },
     "agenda": {
       "title": "Agenda",
