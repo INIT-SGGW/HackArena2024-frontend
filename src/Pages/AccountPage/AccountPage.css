@@ -165,6 +165,26 @@
   }
 }
 
+.account--button__primary-secondary {
+  background-color: var(--primary-color);
+  color: rgb(var(--background-color));
+  border: 3px solid var(--primary-color);
+}
+
+.account--button__primary-secondary:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+@media screen and (max-width: 768px) {
+  .account--button__primary-secondary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: rgb(var(--background-color));
+  }
+}
+
 .account--button__secondary {
   background-color: rgb(var(--background-color));
   border: 3px solid var(--primary-color);
@@ -179,6 +199,23 @@
   .account--button__secondary:hover {
     background-color: rgb(var(--background-color));
     color: var(--primary-color);
+  }
+}
+
+.account--button__tertiary {
+  background-color: var(--text-one-color);
+  border: 3px solid var(--text-one-color);
+  color: var(--secondary-color);
+}
+
+.account--button__tertiary:hover {
+  background-color: var(--secondary-color);
+  color: var(--text-one-color);
+}
+@media screen and (max-width: 768px) {
+  .account--button__tertiary:hover {
+    background-color: var(--text-one-color);
+    color: var(--secondary-color);
   }
 }
 
