@@ -172,7 +172,7 @@
 }
 
 .account--button__primary-secondary:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--light-background-color);
   border-color: var(--primary-color);
   color: var(--primary-color);
 }

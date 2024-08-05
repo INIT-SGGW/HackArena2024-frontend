@@ -88,7 +88,7 @@ h2 {
 }
 
 .home--about__event {
-  background-color: var(--secondary-color);
+  background-color: var(--light-background-color);
 }
 
 .home--about__event button {
@@ -101,8 +101,8 @@ h2 {
 }
 
 .home--about__event > div > p {
-  color: var(--background-color);
-  /* color: rgb(var(--background-color)); */
+  /* color: var(--background-color); */
+  color: rgb(var(--background-color));
 }
 
 .home--about b {
