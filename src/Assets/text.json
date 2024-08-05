@@ -1,6 +1,6 @@
 {
   "nav": {
-    "navItems": ["Rejestracja", "Zadanie", "Agenda", "FAQ", "Konto"]
+    "navItems": ["Rejestracja", "Wydarzenia", "O nas", "FAQ"]
   },
   "topBar": {
     "text": "HackArena 2.0 już w październiku!"
