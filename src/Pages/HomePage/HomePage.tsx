@@ -16,7 +16,7 @@ interface AgendaItemProps {
   answer: string;
 }
 
-const FAQComponent = ({ question, answer }: AgendaItemProps) => {
+export const FAQComponent = ({ question, answer }: AgendaItemProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
@@ -61,8 +61,8 @@ function HomePage(props: Props) {
           <h1>{homeText.welcome.title}</h1>
           <h6>{homeText.welcome.description.first}</h6>
           <div className="welcome--buttons">
-            <button onClick={() => navigate("/wydarzenia")} className="account--button account--button__primary">{homeText.welcome.buttons.events}</button>
-            <button onClick={() => window.location.href = "#o nas"} className="account--button account--button__secondary">{homeText.welcome.buttons.aboutUs}</button>
+            <button onClick={() => navigate("/wydarzenia")} className="account--button account--button__primary-black-2">{homeText.welcome.buttons.events}</button>
+            <button onClick={() => window.location.href = "#o nas"} className="account--button account--button__secondary-white">{homeText.welcome.buttons.aboutUs}</button>
           </div>
         </div>
       </div>
@@ -91,7 +91,7 @@ function HomePage(props: Props) {
         <div id="hackarena2" className="home--about pagewidth home--section">
           <h2>{homeText.nextEvent.title}</h2>
           <p id="next_event_text"></p>
-          <button onClick={() => navigate("/wydarzenia/hackarena2")} className="account--button account--button__primary-secondary">{homeText.nextEvent.button}</button>
+          <button onClick={() => navigate("/wydarzenia/hackarena2_0")} className="account--button account--button__primary-black">{homeText.nextEvent.button}</button>
         </div>
       </div>
       {/* <div id="agenda" className="home--agenda home--section pagewidth">

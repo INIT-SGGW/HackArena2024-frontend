@@ -1,13 +1,14 @@
 .home h1,
 h2 {
-  color: var(--primary-color);
+  color: rgb(var(--primary-color));
 }
 
 #welcome--wrapper {
-  background-image: url("../../Assets/hackarena1.0_yellow.JPG");
+  background-image: url("../../Assets/hackarena_1_0_yellow.jpg");
   background-size: cover;
   background-position: center;
   padding: 5rem 1rem;
+  z-index: -2;
 }
 
 .home--section {
@@ -19,17 +20,51 @@ h2 {
 }
 
 .home--welcome {
-  background-color: rgba(var(--background-color), 0.8);
+  /* background-color: rgba(var(--background-color), 0.8); */
   border-radius: 1.5rem;
 
   padding: 2rem 1rem;
   width: 100%;
   max-width: 700px;
   box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+}
+
+.home--welcome::before {
+  content: "";
+  display: block;
+  width: 150%;
+  height: 120%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  filter: blur(70px);
+  background-color: rgba(var(--primary-color), 0.2);
+  border-radius: 50%;
+  z-index: -1;
 }
 
 .home--welcome > h1 {
   letter-spacing: 0.1rem;
+  background-color: rgb(var(--primary-color));
+  /* background-color: var(--secondary-color); */
+
+  padding: 0.5rem 5rem;
+  color: rgb(var(--background-color));
+  /* color: var(--text-one-color); */
+}
+
+.home--welcome > h6 {
+  font-weight: bold;
+  /* background-color: var(--secondary-color); */
+  background-color: rgb(var(--background-color));
+
+  padding: 0.5rem 5rem;
+  /* color: rgb(var(--primary-color)); */
+  color: var(--text-one-color);
+  text-align: center;
 }
 
 .welcome--text {
@@ -41,7 +76,7 @@ h2 {
 }
 
 .home span {
-  color: var(--primary-color);
+  color: rgb(var(--primary-color));
   font-weight: bold;
 }
 
@@ -73,7 +108,7 @@ h2 {
 
 .home--date {
   padding: 2rem 0;
-  background-color: var(--primary-color);
+  background-color: rgb(var(--primary-color));
 }
 
 .home--date > h3 {
@@ -97,29 +132,39 @@ h2 {
 
 .home--about__event > div > h2 {
   /* color: rgb(var(--background-color)); */
-  color: var(--primary-color);
+  color: rgb(var(--primary-color));
+  background-color: rgb(var(--background-color));
+  padding: 0.2rem 1rem;
 }
 
 .home--about__event > div > p {
   /* color: var(--background-color); */
   color: rgb(var(--background-color));
+  font-weight: 300;
 }
 
-.home--about b {
-  color: var(--text-one-color);
+.home--about__event > div b {
+  color: rgb(var(--background-color));
 }
 
-.home--about__event b {
-  color: var(--text-one-color);
-}
 .home--about > h2 {
   margin-bottom: 1rem;
+  color: rgb(var(--background-color));
+  background-color: var(--text-one-color);
+  padding: 0.1rem 1rem;
 }
 
 .home--about > p {
-  color: var(--accent-color);
+  color: var(--text-one-color);
   max-width: 900px;
   text-align: center;
+  font-weight: 100;
+}
+
+.home--about b {
+  /* color: rgb(var(--primary-color)); */
+  color: var(--text-one-color);
+  font-weight: bold;
 }
 
 .home--about span {
@@ -151,7 +196,7 @@ h2 {
 }
 
 .agenda--component {
-  --agenda-background-color: var(--primary-color);
+  --agenda-background-color: rgb(var(--primary-color));
   --agenda-text-color: var(--text-two-color);
 
   width: 100%;
@@ -210,7 +255,7 @@ h2 {
   --faq-component-padding: 1.5rem;
   border-radius: var(--faq-component-border-radius);
   width: calc(100% - 2 * var(--faq-component-padding) - 8px);
-  border: 4px solid var(--primary-color);
+  border: 4px solid rgb(var(--primary-color));
   padding: calc(var(--faq-component-padding) / 1.5) var(--faq-component-padding);
 }
 
