@@ -14,7 +14,7 @@
 }
 
 .register--title {
-  color: var(--primary-color);
+  color: rgb(var(--primary-color));
 }
 
 .register--social {
@@ -139,7 +139,7 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px #443b11 inset !important;
   -webkit-text-fill-color: var(--input-color) !important;
-  caret-color: var(--primary-color);
+  caret-color: rgb(var(--primary-color));
 }
 
 .input--input__error {

@@ -8,5 +8,5 @@
 }
 
 .notfound > h2 {
-  color: var(--primary-color);
+  color: rgb(var(--primary-color));
 }

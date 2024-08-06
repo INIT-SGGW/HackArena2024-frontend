@@ -1,15 +1,15 @@
 :root {
   /* COLORS */
   --background-color: 0, 3, 20;
-  --light-background-color: #777777;
+  --light-background-color: #ffd000;
   --background-color-transparent: #ffffff34;
   --background-secondary-color: #1a160f;
-  --primary-color: #ffd200;
+  --primary-color: 255, 210, 0;
   --secondary-color: #4b5068;
   --accent-color: #757c9f;
   --text-one-color: #ffffff;
   --text-two-color: #000314;
-  --input-color: var(--primary-color);
+  --input-color: rgb(var(--primary-color));
   --input-disabled-color: #6d5c0f;
   --shadow-color: #34554b5d;
   --warning-color: #ff0000;
@@ -102,7 +102,7 @@ h1 {
 }
 
 h2 {
-  font-size: 2.7rem;
+  font-size: 2.6rem;
 }
 
 h3 {
@@ -165,24 +165,24 @@ label {
 }
 
 .button-primary {
-  background-color: var(--primary-color);
+  background-color: rgb(var(--primary-color));
   color: rgb(var(--background-color));
-  border: 3px solid var(--primary-color);
+  border: 3px solid rgb(var(--primary-color));
 }
 
 .button-primary:hover {
   background-color: rgb(var(--background-color));
-  border-color: var(--primary-color);
-  color: var(--primary-color);
+  border-color: rgb(var(--primary-color));
+  color: rgb(var(--primary-color));
 }
 
 .button-secondary {
   background-color: rgb(var(--background-color));
-  border: 3px solid var(--primary-color);
-  color: var(--primary-color);
+  border: 3px solid rgb(var(--primary-color));
+  color: rgb(var(--primary-color));
 }
 
 .button-secondary:hover {
-  background-color: var(--primary-color);
+  background-color: rgb(var(--primary-color));
   color: rgb(var(--background-color));
 }

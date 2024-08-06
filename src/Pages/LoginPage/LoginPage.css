@@ -31,7 +31,7 @@
 
 .login--submit:hover {
   background-color: rgb(var(--background-color));
-  color: var(--primary-color);
+  color: rgb(var(--primary-color));
 }
 
 .login--options {
