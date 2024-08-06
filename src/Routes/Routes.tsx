@@ -8,6 +8,8 @@ import NotFound from "../Pages/NotFound/NotFound";
 import ResetPasswordPage from "../Pages/ResetPasswordPage/ResetPasswordPage";
 import MessagePage from "../Pages/MessagePage/MessagePage";
 import DownloadPage from "../Pages/DownloadPage/DownloadPage";
+import EventPage from "../Pages/EventPage/EventPage";
+import EventListPage from "../Pages/EventListPage/EventListPage";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +60,14 @@ const router = createBrowserRouter([
       {
         path: "/download/:teamID",
         element: <DownloadPage />,
+      },
+      {
+        path: "/wydarzenia",
+        element: <EventListPage />,
+      },
+      {
+        path: "/wydarzenia/:eventName",
+        element: <EventPage />,
       },
       {
         path: "*",
