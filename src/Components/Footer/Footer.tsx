@@ -31,7 +31,7 @@ function Footer(props: Props) {
           >
             {navItems[1]}
           </Link>
-          {navItems.slice(1, navItems.length).map((item, index) => {
+          {navItems.slice(2, navItems.length).map((item, index) => {
             return (
               <a
                 key={index}
