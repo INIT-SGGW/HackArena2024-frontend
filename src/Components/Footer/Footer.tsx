@@ -25,7 +25,13 @@ function Footer(props: Props) {
           >
             {navItems[0]}
           </Link>
-          {navItems.slice(1, navItems.length - 1).map((item, index) => {
+          <Link
+            to="/wydarzenia"
+            className="navbar__link"
+          >
+            {navItems[1]}
+          </Link>
+          {navItems.slice(1, navItems.length).map((item, index) => {
             return (
               <a
                 key={index}
@@ -36,12 +42,12 @@ function Footer(props: Props) {
               </a>
             );
           })}
-          <Link
+          {/* <Link
             to="/login"
             className="navbar__link"
           >
             {navItems[navItems.length - 1]}
-          </Link>
+          </Link> */}
 
         </nav>
       }
