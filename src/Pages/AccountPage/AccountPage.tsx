@@ -65,8 +65,6 @@ function AccountPage(props: Props) {
     teamMembers: []
   })
 
-  const { zespolID } = useParams<{ zespolID: string }>();
-
   useEffect(() => {
     if (zespolID) {
       AccountService.getTeam(zespolID).then((response) => {
