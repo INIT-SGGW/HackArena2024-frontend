@@ -91,6 +91,7 @@ h2 {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
   gap: 1rem;
   margin-top: 2rem;
 }
@@ -114,8 +115,8 @@ h2 {
 
 .home--date > h3 {
   font-size: 2rem;
-  text-align: center;
   color: var(--text-two-color);
+  text-align: center;
 }
 
 .home--date > h2 {
@@ -211,7 +212,7 @@ h2 {
   min-width: 120px;
 }
 
-.agenda--component > p:nth-child(2) {
+.agenda--component > p:last-child {
   width: 100%;
 }
 

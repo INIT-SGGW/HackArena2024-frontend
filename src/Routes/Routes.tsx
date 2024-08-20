@@ -45,13 +45,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/rejestracja/sukces",
-        element: <MessagePage
-          title="Gratulajce!"
-          message="Twój zespół został stworzony."
-          buttonOneText="Zaloguj się"
-          buttonOneLink="/login"
-          buttonTwoText="Strona główna"
-        />
+        element: <MessagePage title="Gratulajce!" message="Twój zespół został stworzony." />
+      },
+      {
+        path: "/rejestracja",
+        element: <MessagePage title="Rejestracja" message="Zapisy rozpoczną się już wkrótce." />
       },
       {
         path: "/konto/:zespolID",

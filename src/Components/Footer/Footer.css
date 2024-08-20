@@ -13,7 +13,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem var(--footer-upper-padding);
+  padding: 1.5rem var(--footer-upper-padding);
   gap: 1rem;
   max-width: 1200px;
   width: calc(100% - 2 * var(--footer-upper-padding));
@@ -22,13 +22,13 @@
 @media screen and (max-width: 768px) {
   .footer--upper {
     flex-direction: column;
-    gap: 0rem;
+    gap: 2rem;
     padding: 2rem 0;
   }
 }
 
 .footer--upper > a > img {
-  height: 3rem;
+  height: 4rem;
 }
 
 .footer--nav {

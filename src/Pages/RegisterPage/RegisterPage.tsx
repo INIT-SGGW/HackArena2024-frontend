@@ -5,7 +5,7 @@ import {
   handleErrorMessages,
   handleErrorMessagesTeamMembers,
 } from "../../Utils/handleErrorMessages";
-import { InputTeam, InputErrors, RegisterBody } from "../../Types/types";
+import { InputTeam, InputErrors } from "../../Types/types";
 import { useNavigate } from "react-router-dom";
 import AuthenticationService from "../../Services/AuthenticationService";
 import Alert from "../../Components/Alert/Alert";
@@ -70,26 +70,13 @@ function RegisterPage(props: Props) {
       return;
     } else {
       setInputsDisabled(true);
-      const requestBody = {
-        teamName: values.teamName,
-        password: values.password,
-        teamMembers: values.teamMembers.map((teamMember) => {
-          return {
-            firstName: teamMember.firstName,
-            lastName: teamMember.lastName,
-            email: teamMember.email,
-            dateOfBirth: new Date(teamMember.dateOfBirth),
-            occupation: teamMember.occupation,
-            isVegan: teamMember.isVegan,
-            agreement: teamMember.agreement,
-          };
-        }),
-      } as RegisterBody;
-
-      AuthenticationService.register(requestBody)
+      console.log(process.env.REACT_APP_API_URL);
+      AuthenticationService.register(values)
         .then((response) => {
           setInputsDisabled(false);
           if (response.status === 201) {
+            const token = response.headers.get("Authorization");
+            console.log(token);
             navigate("/rejestracja/sukces");
           }
           else if (response.status === 409) {

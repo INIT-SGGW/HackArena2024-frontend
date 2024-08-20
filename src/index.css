@@ -21,7 +21,7 @@
   --laptop: 1024px;
   --desktop: 1440px;
 
-  --page-width: min(100%, 1100px);
+  --page-width: min(100%, 1000px);
   --section-padding: 4rem;
 }
 
@@ -32,9 +32,9 @@ body {
   padding: 0;
   min-height: 100vh;
 
-  font-family: "JetBrains Mono", "Poppins", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -143,18 +143,10 @@ label {
 }
 
 .pagewidth {
-  --pagewidth-padding: 1rem;
-
-  max-width: calc(var(--page-width) - 2 * var(--pagewidth-padding));
-  padding: 0 var(--pagewidth-padding);
+  max-width: calc(var(--page-width) - 2 * 1rem);
+  padding: 0 1rem;
   margin: 0 auto;
   width: 100%;
-}
-
-@media screen and (max-width: 768px) {
-  .pagewidth {
-    --pagewidth-padding: 1.5rem;
-  }
 }
 
 .button {

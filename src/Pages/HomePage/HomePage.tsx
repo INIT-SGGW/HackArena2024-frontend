@@ -79,7 +79,6 @@ function HomePage(props: Props) {
               return <div key={index} className="agenda--component">
                 <p>{time}</p>
                 <p>{event}</p>
-                <p />
               </div>
             })
           }

@@ -17,31 +17,36 @@ import isRegistrationOpen from "../../Utils/isRegistrationOpen";
 
 interface Props { }
 
-// const teamData: AccountTeam = {
-//   teamName: "Big cocks",
-//   teamMembers: [
-//     {
-//       firstName: "John",
-//       lastName: "Doe",
-//       email: "johndoe@gamil.com",
-//       dateOfBirth: "2000-01-01",
-//       occupation: "Student",
-//       isVegan: true,
-//       agreement: true,
-//     },
-//     {
-//       firstName: "Jane",
-//       lastName: "Doe",
-//       email: "janedoe@gmail.com",
-//       dateOfBirth: "2000-01-02",
-//       occupation: "Uczeń",
-//       isVegan: false,
-//       agreement: true,
-//     },
-//   ],
-// };
+const teamData: AccountTeam = {
+  _id: "1",
+  teamName: "Big cocks",
+  teamMembers: [
+    {
+      _id: "1",
+      firstName: "John",
+      lastName: "Doe",
+      email: "johndoe@gamil.com",
+      dateOfBirth: "2000-01-01",
+      occupation: "Student",
+      isVegan: true,
+      agreement: true,
+    },
+    {
+      _id: "2",
+      firstName: "Jane",
+      lastName: "Doe",
+      email: "janedoe@gmail.com",
+      dateOfBirth: "2000-01-02",
+      occupation: "Uczeń",
+      isVegan: false,
+      agreement: true,
+    },
+  ],
+};
 
 function AccountPage(props: Props) {
+  const register = text.register;
+  const { zespolID } = useParams<{ zespolID: string }>();
   const navigate = useNavigate();
   const windowWidth = useWindowWidth();
   const accountText = text.account;
@@ -51,16 +56,8 @@ function AccountPage(props: Props) {
   const [showErrors, setShowErrors] = useState<boolean>(false);
   const [inputsDisabled, setInputsDisabled] = useState<boolean>(true);
 
-  const [values, setValues] = useState<AccountTeam>({
-    teamName: "",
-    teamMembers: [],
-
-  });
-  const [valuesBackup, setValuesBackup] = useState<AccountTeam>({
-    teamName: "",
-    teamMembers: [],
-
-  });
+  const [values, setValues] = useState<AccountTeam>(teamData);
+  const [valuesBackup, setValuesBackup] = useState<AccountTeam>(teamData);
   const [errors, setErrors] = useState<InputErrors>({
     teamName: "",
     password: "",
@@ -149,6 +146,7 @@ function AccountPage(props: Props) {
       teamMembers: [
         ...values.teamMembers,
         {
+          _id: "",
           firstName: "",
           lastName: "",
           email: "",
@@ -221,7 +219,7 @@ function AccountPage(props: Props) {
         teamName: "",
         password: "",
         repeatPassword: "",
-        teamMembers: values.teamMembers.map(() => ({
+        teamMembers: teamData.teamMembers.map((member) => ({
           firstName: "",
           lastName: "",
           email: "",
@@ -262,16 +260,16 @@ function AccountPage(props: Props) {
             <input
               className={`account--input account--input__header${errors.teamName && showErrors ? " account--input__error" : ""
                 }`}
-              placeholder={accountText.registerFields.teamName.label}
-              name={accountText.registerFields.teamName.name}
-              id={accountText.registerFields.teamName.id}
+              placeholder={register.registerFields.teamName.label}
+              name={register.registerFields.teamName.name}
+              id={register.registerFields.teamName.id}
               type="text"
               disabled={inputsDisabled}
               pattern=".*"
               onInvalid={(e) => {
                 handleErrorMessages<InputErrors>(
                   e.currentTarget,
-                  accountText.registerFields.teamName.errorMessage,
+                  register.registerFields.teamName.errorMessage,
                   setErrors
                 );
                 e.preventDefault();
@@ -282,7 +280,7 @@ function AccountPage(props: Props) {
                 setValues({ ...values, teamName: e.currentTarget.value });
                 handleErrorMessages<InputErrors>(
                   e.currentTarget,
-                  accountText.registerFields.teamName.errorMessage,
+                  register.registerFields.teamName.errorMessage,
                   setErrors
                 );
               }}
@@ -300,10 +298,10 @@ function AccountPage(props: Props) {
           <div className="header--buttons">
             {!inputsDisabled && (
               <input
-                className={`account--button${windowWidth < 768 ? " account--button__secondary" : " account--button__primary"}${inputsDisabled ? "" : " account--button__halfborder"
+                className={`account--button account--button__primary${inputsDisabled ? "" : " account--button__halfborder"
                   }`}
                 type="submit"
-                value={inputsDisabled ? accountText.buttons.save.disabled : accountText.buttons.save.active}
+                value={inputsDisabled ? register.button.disabled : "Zapisz"}
                 onClick={handleTrySubmit}
                 disabled={inputsDisabled}
               />
@@ -314,7 +312,7 @@ function AccountPage(props: Props) {
                 className={`account--button account--button__primary${inputsDisabled ? "" : " account--button__halfborder"
                   }`}
                 onClick={handleEditForm}
-                value={inputsDisabled ? accountText.buttons["edit-cancel"].disabled : accountText.buttons["edit-cancel"].active}
+                value={inputsDisabled ? "Edytuj" : "Anuluj"}
               ></input>
             )}
           </div>
@@ -323,14 +321,14 @@ function AccountPage(props: Props) {
         <div className="register--addfriend">
           {/* ADD FRIEND */}
           <div className="register--memberbuttons">
-            <h4>{accountText.teamMembers}</h4>
+            <h4>{register.teamMembers}</h4>
 
             {!inputsDisabled && (
               <input
                 className="account--button account--button__primary"
                 type="button"
                 disabled={inputsDisabled || values.teamMembers.length >= 3}
-                value={accountText.buttons.addTeamMember}
+                value="Dodaj"
                 onClick={handleAddTeamMember}
               />
             )}
@@ -339,14 +337,14 @@ function AccountPage(props: Props) {
             <div key={index} className="register--innerform">
               <div className="register--memberbuttons">
                 <h5>
-                  {accountText.teamMember} {index + 1}
+                  {register.teamMember} {index + 1}
                 </h5>
 
                 {!inputsDisabled && values.teamMembers.length > 1 && (
                   <input
                     className="account--button account--button__secondary"
                     type="button"
-                    value={accountText.buttons.deleteTeamMember}
+                    value="Usuń"
                     onClick={() => handleDeleteTeamMember(index)}
                   />
                 )}
@@ -359,16 +357,16 @@ function AccountPage(props: Props) {
                       ? " account--input__error"
                       : ""
                       }`}
-                    placeholder={accountText.registerFields.firstName.label}
-                    name={accountText.registerFields.firstName.name + index}
-                    id={accountText.registerFields.firstName.id + index}
+                    placeholder={register.registerFields.firstName.label}
+                    name={register.registerFields.firstName.name + index}
+                    id={register.registerFields.firstName.id + index}
                     type="text"
                     disabled={inputsDisabled}
                     pattern="^[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ \-]*$"
                     onInvalid={(e) => {
                       handleErrorMessagesTeamMembers(
                         e.currentTarget,
-                        accountText.registerFields.firstName.errorMessage,
+                        register.registerFields.firstName.errorMessage,
                         setErrors,
                         index
                       );
@@ -391,7 +389,7 @@ function AccountPage(props: Props) {
 
                       handleErrorMessagesTeamMembers(
                         e.currentTarget,
-                        accountText.registerFields.firstName.errorMessage,
+                        register.registerFields.firstName.errorMessage,
                         setErrors,
                         index
                       );
@@ -414,16 +412,16 @@ function AccountPage(props: Props) {
                       ? " account--input__error"
                       : ""
                       }`}
-                    placeholder={accountText.registerFields.lastName.label}
-                    name={accountText.registerFields.lastName.name + index}
-                    id={accountText.registerFields.lastName.id + index}
+                    placeholder={register.registerFields.lastName.label}
+                    name={register.registerFields.lastName.name + index}
+                    id={register.registerFields.lastName.id + index}
                     type="text"
                     disabled={inputsDisabled}
                     pattern="^[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ \-]*$"
                     onInvalid={(e) => {
                       handleErrorMessagesTeamMembers(
                         e.currentTarget,
-                        accountText.registerFields.lastName.errorMessage,
+                        register.registerFields.lastName.errorMessage,
                         setErrors,
                         index
                       );
@@ -445,7 +443,7 @@ function AccountPage(props: Props) {
                       } as AccountTeam);
                       handleErrorMessagesTeamMembers(
                         e.currentTarget,
-                        accountText.registerFields.lastName.errorMessage,
+                        register.registerFields.lastName.errorMessage,
                         setErrors,
                         index
                       );
@@ -469,16 +467,16 @@ function AccountPage(props: Props) {
                     ? " account--input__error"
                     : ""
                     }`}
-                  placeholder={accountText.registerFields.email.label}
-                  name={accountText.registerFields.email.name + index}
-                  id={accountText.registerFields.email.id + index}
+                  placeholder={register.registerFields.email.label}
+                  name={register.registerFields.email.name + index}
+                  id={register.registerFields.email.id + index}
                   type="email"
                   disabled={inputsDisabled}
                   pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
                   onInvalid={(e) => {
                     handleErrorMessagesTeamMembers(
                       e.currentTarget,
-                      accountText.registerFields.email.errorMessage,
+                      register.registerFields.email.errorMessage,
                       setErrors,
                       index
                     );
@@ -500,7 +498,7 @@ function AccountPage(props: Props) {
                     } as AccountTeam);
                     handleErrorMessagesTeamMembers(
                       e.currentTarget,
-                      accountText.registerFields.email.errorMessage,
+                      register.registerFields.email.errorMessage,
                       setErrors,
                       index
                     );
@@ -523,16 +521,16 @@ function AccountPage(props: Props) {
                       ? " account--input__error"
                       : ""
                       }`}
-                    placeholder={accountText.registerFields.dateOfBirth.label}
-                    name={accountText.registerFields.dateOfBirth.name + index}
-                    id={accountText.registerFields.dateOfBirth.id + index}
+                    placeholder={register.registerFields.dateOfBirth.label}
+                    name={register.registerFields.dateOfBirth.name + index}
+                    id={register.registerFields.dateOfBirth.id + index}
                     type="date"
                     disabled={inputsDisabled}
                     pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
                     onInvalid={(e) => {
                       handleErrorMessagesTeamMembers(
                         e.currentTarget,
-                        accountText.registerFields.dateOfBirth.errorMessage,
+                        register.registerFields.dateOfBirth.errorMessage,
                         setErrors,
                         index
                       );
@@ -554,7 +552,7 @@ function AccountPage(props: Props) {
                       } as AccountTeam);
                       handleErrorMessagesTeamMembers(
                         e.currentTarget,
-                        accountText.registerFields.dateOfBirth.errorMessage,
+                        register.registerFields.dateOfBirth.errorMessage,
                         setErrors,
                         index
                       );
@@ -575,7 +573,7 @@ function AccountPage(props: Props) {
                     name="occupation"
                     className="input--select account--select account--input"
                     disabled={inputsDisabled}
-                    id={accountText.registerFields.occupation.id + index}
+                    id={register.registerFields.occupation.id + index}
                     value={values.teamMembers[index].occupation}
                     onChange={(e) => {
                       setValues({
@@ -591,7 +589,7 @@ function AccountPage(props: Props) {
                       } as AccountTeam);
                     }}
                   >
-                    {accountText.registerFields.occupation.occupationChoices.map(
+                    {register.registerFields.occupation.occupationChoices.map(
                       (option, index) => (
                         <option value={option} key={index}>
                           {option}
@@ -613,10 +611,10 @@ function AccountPage(props: Props) {
                 style={{ marginTop: "0.5rem" }}
               >
                 <label
-                  htmlFor={accountText.registerFields.vegan.id + index}
+                  htmlFor={register.registerFields.vegan.id + index}
                   className="input--label"
                 >
-                  {accountText.registerFields.vegan.label}
+                  {register.registerFields.vegan.label}
                 </label>
                 <input
                   className={`account--checkbox
@@ -635,8 +633,8 @@ function AccountPage(props: Props) {
                     } as AccountTeam);
                   }}
                   checked={values.teamMembers[index].isVegan}
-                  name={accountText.registerFields.vegan.name + index}
-                  id={accountText.registerFields.vegan.id + index}
+                  name={register.registerFields.vegan.name + index}
+                  id={register.registerFields.vegan.id + index}
                   type="checkbox"
                   disabled={inputsDisabled}
                 />
@@ -644,10 +642,10 @@ function AccountPage(props: Props) {
               {/* AGREEMENT */}
               <div className="register--checkbox">
                 <label
-                  htmlFor={accountText.registerFields.agreement.id + index}
+                  htmlFor={register.registerFields.agreement.id + index}
                   className="input--label"
                 >
-                  {accountText.registerFields.agreement.label}
+                  {register.registerFields.agreement.label}
                 </label>
                 <input
                   className={`account--checkbox${showErrors && errors.teamMembers[index].agreement
@@ -658,7 +656,7 @@ function AccountPage(props: Props) {
                   onChange={(e) => {
                     handleErrorMessagesTeamMembers(
                       e.currentTarget,
-                      accountText.registerFields.agreement.errorMessage,
+                      register.registerFields.agreement.errorMessage,
                       setErrors,
                       index
                     );
@@ -678,15 +676,15 @@ function AccountPage(props: Props) {
                   onInvalid={(e) => {
                     handleErrorMessagesTeamMembers(
                       e.currentTarget,
-                      accountText.registerFields.agreement.errorMessage,
+                      register.registerFields.agreement.errorMessage,
                       setErrors,
                       index
                     );
                     e.preventDefault();
                   }}
                   checked={values.teamMembers[index].agreement}
-                  name={accountText.registerFields.agreement.name + index}
-                  id={accountText.registerFields.agreement.id + index}
+                  name={register.registerFields.agreement.name + index}
+                  id={register.registerFields.agreement.id + index}
                   type="checkbox"
                   disabled={inputsDisabled}
                   required

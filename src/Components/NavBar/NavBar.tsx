@@ -32,17 +32,17 @@ export const NavBarButton = ({ text, link, special = false }: { text: string, li
 function NavBar() {
   const [showSidebar, setShowSidebar] = useState(false);
   const windowWidth = useWindowWidth();
-  const navItems = text.nav.navItems;
+  const navItems = text.main.header.navItems;
   return (
     <div className="navbar">
-      <div className="navbar--content pagewidth">
+      <div className="navbar__content pagewidth">
         <Link to="/" onClick={() => setShowSidebar(false)}>
           <img src={Logo} alt="HackArena" />
         </Link>
         {windowWidth < 768 ? (
           <>
             <a
-              className={`navbar--icon${!showSidebar ? " navbar--icon__closed" : ""
+              className={`navbar--openside${!showSidebar ? " navbar--openside__closed" : ""
                 }`}
               onClick={() => setShowSidebar(!showSidebar)}
             >
@@ -81,34 +81,39 @@ function NavBar() {
                   );
                 })}
                 {/* <Link
+                {/* <Link
                   to="/login"
                   onClick={() => setShowSidebar(false)}
                   className="navbar__link"
                 >
                   {navItems[navItems.length - 1]}
                 </Link> */}
-              </nav>
-            </div>
-          </>
-        ) : (
-          <>
-            <nav className="navbar__nav">
-              <NavBarButton text={navItems[0]} link="/rejestracja" special={true} />
-              <NavBarButton text={navItems[1]} link="/wydarzenia" />
+              </Link> */}
+            </nav>
+          </div>
+      </>
+      ) : (
+      <>
+        <nav className="navbar__nav">
+          <NavBarButton text={navItems[0]} link="/rejestracja" special={true} />
+          <NavBarButton text={navItems[1]} link="/wydarzenia" />
 
-              {navItems.slice(2, navItems.length).map((item, index) => {
-                return (
-                  <NavBarButton key={index} text={item} link={`/#${item.toLowerCase()}`} />
+          {navItems.slice(2, navItems.length).map((item, index) => {
+            return (
+              <NavBarButton key={index} text={item} link={`/#${item.toLowerCase()}`} />
 
-                );
-              })}
+            );
+          })}
+          {/* <Link to="/login" className="navbar__link">
               {/* <Link to="/login" className="navbar__link">
                 {navItems[navItems.length - 1]}
               </Link> */}
-            </nav>
-          </>
-        )}
-      </div>
+        </Link> */}
+      </nav>
+    </>
+  )
+}
+      </div >
     </div >
   );
 }

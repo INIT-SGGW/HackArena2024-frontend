@@ -1,5 +1,3 @@
-// general types for the application
-
 type Team = {
   teamName: string;
   teamMembers: Array<TeamMember>;

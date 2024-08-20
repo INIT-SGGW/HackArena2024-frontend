@@ -70,6 +70,7 @@
 .input--select > option {
   background-color: rgb(var(--background-color));
   color: var(--input-color);
+  padding: var(--input-padding);
 }
 
 form label {
@@ -191,6 +192,10 @@ input:-webkit-autofill:active {
 .input--submit {
   cursor: pointer;
   width: 100%;
+}
+
+.input--submit:hover {
+  transform: scaleX(0.98);
 }
 
 .input--submit__primary {

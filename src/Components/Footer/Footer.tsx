@@ -5,15 +5,16 @@ import Logo from "../../Assets/logo.png";
 import text from "../../Assets/text.json";
 import FacebookIcon from "../../Assets/facebook.svg";
 import InstagramIcon from "../../Assets/instagram.svg";
+import DiscordIcon from "../../Assets/discord.svg";
 import LinkedInIcon from "../../Assets/linkedin.svg";
 
 interface Props { }
 
 function Footer(props: Props) {
-  const navItems = text.nav.navItems;
+  const navItems = text.main.header.navItems;
   return <div className="footer">
     <div className="footer--upper">
-      <a href="/">
+      <a href="/#welcome">
         <img src={Logo} alt="HackArena" />
       </a>
 
@@ -57,8 +58,11 @@ function Footer(props: Props) {
       <a href="https://www.facebook.com/profile.php?id=61559358943109&is_tour_dismissed">
         <img src={FacebookIcon} alt="Facebook" />
       </a>
-      <a href="https://www.instagram.com/kn_init_/">
+      <a href="https://www.instagram.com/_init_2024/">
         <img src={InstagramIcon} alt="Instagram" />
+      </a>
+      <a href="https://discord.com/invite/YekgmBp9K4">
+        <img src={DiscordIcon} alt="Discord" />
       </a>
       <a href="https://www.linkedin.com/company/ko%C5%82o-naukowe-init/about/">
         <img src={LinkedInIcon} alt="LinkedIn" />

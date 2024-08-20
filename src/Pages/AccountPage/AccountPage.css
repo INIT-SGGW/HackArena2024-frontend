@@ -15,15 +15,13 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
   width: 100%;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 668px) {
   .account--header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0;
   }
 }
 
@@ -68,6 +66,7 @@
 .account--input:disabled {
   opacity: 1;
   cursor: text;
+  border-color: var(--background-color);
 }
 
 .account--checkbox {
@@ -120,17 +119,6 @@
 .header--buttons {
   display: flex;
   flex-direction: row;
-}
-
-@media screen and (max-width: 768px) {
-  .header--buttons {
-    width: 100%;
-    margin: 1rem 0;
-  }
-
-  .header--buttons > input {
-    width: 100%;
-  }
 }
 
 .account--button {
@@ -308,23 +296,4 @@
 
 .account--select:disabled {
   appearance: none !important;
-}
-
-.account--bottom {
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  align-self: flex-end;
-  gap: 1rem;
-}
-
-@media screen and (max-width: 768px) {
-  .account--bottom {
-    width: 100%;
-    flex-direction: column;
-  }
-
-  .account--bottom > button {
-    width: 100%;
-  }
 }

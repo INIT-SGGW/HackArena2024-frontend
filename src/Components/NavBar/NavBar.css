@@ -10,7 +10,7 @@
   }
 }
 
-.navbar--content {
+.navbar__content {
   --navbar-height: 4.4rem;
   --navbar-content-padding: 0.8rem;
 
@@ -21,7 +21,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .navbar--content {
+  .navbar__content {
     --navbar-content-padding: 1rem;
   }
 }
@@ -62,27 +62,29 @@
   }
 }
 
-.navbar--content > a > img {
+.navbar__content img {
   height: 100%;
 }
 
-.navbar--icon {
+.navbar--openside {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%)
     contrast(103%);
   cursor: pointer;
   position: relative;
 }
 
-@media screen and (max-width: 768px) {
-  .navbar--icon {
-    position: absolute;
-    top: var(--navbar-content-padding);
-    right: var(--navbar-content-padding);
-  }
+.navbar--openside > img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  transition: all 0.25s ease-in-out;
+}
 
-  .navbar--content {
-    justify-content: center;
-  }
+.navbar--openside > img {
+}
+
+.navbar--openside__closed > img:last-child {
 }
 
 .navbar__nav {
