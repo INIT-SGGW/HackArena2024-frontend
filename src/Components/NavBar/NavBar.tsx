@@ -42,7 +42,7 @@ function NavBar() {
         {windowWidth < 768 ? (
           <>
             <a
-              className={`navbar--openside${!showSidebar ? " navbar--openside__closed" : ""
+              className={`navbar__openside${!showSidebar ? " navbar__openside--closed" : ""
                 }`}
               onClick={() => setShowSidebar(!showSidebar)}
             >
@@ -50,7 +50,7 @@ function NavBar() {
               {/* <img src={MenuOpen} alt="-" /> */}
             </a>
             <div
-              className={`navbar--sidebar${!showSidebar ? " navbar--sidebar__hidden" : ""
+              className={`navbar__sidebar${!showSidebar ? " navbar__sidebar--hidden" : ""
                 }`}
             >
               <nav className="navbar__nav">

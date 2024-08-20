@@ -89,8 +89,7 @@ h2 {
 .welcome--buttons {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: center;
   width: 100%;
   gap: 1rem;
   margin-top: 2rem;

@@ -277,6 +277,12 @@
         }
       ]
     },
+    "dontWait": {
+      "title": "Nie czekaj",
+      "description": "Zbierz swój zespół i dołącz już teraz",
+      "dateReminder": "Zapisy trwają do",
+      "button": "Zarejestruj się"
+    },
     "faq": {
       "title": "FAQ",
       "questions": [

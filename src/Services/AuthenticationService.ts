@@ -1,4 +1,4 @@
-import { RegisterBody, LoginBody, ResetPasswordBody } from "../Types/types";
+import { RegisterBody, LoginBody, ResetPasswordBody, InputTeam } from "../Types/types";
 
 export default class AuthenticationService {
   static API_URL = process.env.REACT_APP_API_URL;
@@ -17,7 +17,7 @@ export default class AuthenticationService {
     return response;
   }
 
-  static async register(registerBody: RegisterBody) {
+  static async register(registerBody: InputTeam) {
     const response = await fetch(this.API_URL + "/register", {
       method: "POST",
       mode: "cors",

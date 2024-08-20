@@ -5,7 +5,7 @@ import {
   handleErrorMessages,
   handleErrorMessagesTeamMembers,
 } from "../../Utils/handleErrorMessages";
-import { InputTeam, InputErrors } from "../../Types/types";
+import { InputTeam, InputErrors, RegisterBody } from "../../Types/types";
 import { useNavigate } from "react-router-dom";
 import AuthenticationService from "../../Services/AuthenticationService";
 import Alert from "../../Components/Alert/Alert";
@@ -70,7 +70,6 @@ function RegisterPage(props: Props) {
       return;
     } else {
       setInputsDisabled(true);
-      console.log(process.env.REACT_APP_API_URL);
       AuthenticationService.register(values)
         .then((response) => {
           setInputsDisabled(false);
