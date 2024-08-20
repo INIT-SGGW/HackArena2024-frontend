@@ -1,6 +1,27 @@
 {
   "nav": {
-    "navItems": ["Rejestracja", "Wydarzenia", "O nas", "FAQ"]
+    "navItems": [
+      {
+        "title": "Rejestracja",
+        "path": "/rejestracja",
+        "special": true
+      },
+      {
+        "title": "Wydarzenia",
+        "path": "/wydarzenia",
+        "special": false
+      },
+      {
+        "title": "O nas",
+        "path": "/#o_nas",
+        "special": false
+      },
+      {
+        "title": "FAQ",
+        "path": "/#faq",
+        "special": false
+      }
+    ]
   },
   "topBar": {
     "text": "HackArena 2.0 już w październiku!"
