@@ -128,7 +128,7 @@
   height: var(--faq-icon-width);
 
   transition: all 0.25s ease-in-out;
-  z-index: 100;
+  z-index: 10;
 }
 
 @media screen and (min-width: 768px) {

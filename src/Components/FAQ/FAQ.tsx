@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './FAQ.css'
 import ChevronIcon from "../../Assets/chevron-down.svg";
+import useWindowWidth from '../../Hooks/useWindowWidth';
 
 
 interface FAQProps {
@@ -8,21 +9,13 @@ interface FAQProps {
     answer: string;
 }
 
-interface FAQComponentProps {
-    text: {
-        questions: {
-            question: string;
-            answer: string;
-        }[]
-    }
-}
-
 export const FAQ = ({ question, answer }: FAQProps) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const windowWidth = useWindowWidth();
     const answerElement = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        answerElement.current?.style.setProperty("margin-top", `-${answerElement.current?.scrollHeight}px`);
+        answerElement.current?.style.setProperty("margin-top", `-${answerElement.current?.scrollHeight + 10}px`);
     }, [])
 
     useEffect(() => {
@@ -31,7 +24,7 @@ export const FAQ = ({ question, answer }: FAQProps) => {
         } else {
             answerElement.current?.style.setProperty("margin-top", "0px");
         }
-    }, [isOpen]);
+    }, [isOpen, windowWidth]);
 
     return (
         <div className={`faq--component${isOpen ? " faq--component__selected" : ""}`}>
@@ -53,6 +46,16 @@ export const FAQ = ({ question, answer }: FAQProps) => {
 
         </div>
     );
+}
+
+
+interface FAQComponentProps {
+    text: {
+        questions: {
+            question: string;
+            answer: string;
+        }[]
+    }
 }
 
 const FAQComponent = ({ text }: FAQComponentProps) => {
