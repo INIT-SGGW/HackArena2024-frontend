@@ -39,7 +39,7 @@ function HomePage(props: Props) {
           <h6>{homeText.welcome.description.first}</h6>
           <div className="welcome--buttons">
             <button onClick={() => navigate("/wydarzenia")} className="account--button account--button__primary-black-2">{homeText.welcome.buttons.events}</button>
-            <button onClick={() => window.location.href = "#o nas"} className="account--button account--button__primary-white">{homeText.welcome.buttons.aboutUs}</button>
+            <button onClick={() => window.location.href = "#o_nas"} className="account--button account--button__primary-white">{homeText.welcome.buttons.aboutUs}</button>
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@ function HomePage(props: Props) {
               </>
         }
       </div> */}
-      <div id="o nas" className="home--about pagewidth home--section">
+      <div id="o_nas" className="home--about pagewidth home--section">
         <h2 className="header__white">{homeText.aboutUs.title}</h2>
         <p id="about_text"></p>
       </div>
