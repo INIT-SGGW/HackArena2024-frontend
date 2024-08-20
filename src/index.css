@@ -94,6 +94,7 @@ h6 {
   color: var(--text-one-color);
   padding: 0;
   margin: 0;
+  width: fit-content;
 }
 
 h1 {
@@ -185,4 +186,44 @@ label {
 .button-secondary:hover {
   background-color: rgb(var(--primary-color));
   color: rgb(var(--background-color));
+}
+
+.header__white {
+  color: rgb(var(--background-color));
+  background-color: var(--text-one-color);
+}
+
+.header__black {
+  background-color: rgb(var(--background-color));
+  color: rgb(var(--primary-color));
+}
+
+.header__black-white {
+  color: var(--text-one-color);
+  background-color: rgb(var(--background-color));
+}
+
+.header__yellow {
+  color: rgb(var(--background-color));
+  background-color: rgb(var(--primary-color));
+}
+
+.header__black,
+.header__white,
+.header__black-white,
+.header__yellow {
+  padding: 0rem 1.5rem;
+  text-align: center;
+}
+
+.header__wider {
+  --header__wider-padding: 2rem;
+  padding-left: var(--header__wider-padding);
+  padding-right: var(--header__wider-padding);
+}
+
+.header__taller {
+  --header__taller-padding: 0.5rem;
+  padding-bottom: var(--header__taller-padding);
+  padding-top: var(--header__taller-padding);
 }

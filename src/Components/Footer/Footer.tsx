@@ -16,41 +16,41 @@ function Footer(props: Props) {
       <a href="/">
         <img src={Logo} alt="HackArena" />
       </a>
-      {
 
-        <nav className="footer--nav">
-          <Link
-            to="/rejestracja"
-            className="navbar__link navbar__link--special"
-          >
-            {navItems[0]}
-          </Link>
-          <Link
-            to="/wydarzenia"
-            className="navbar__link"
-          >
-            {navItems[1]}
-          </Link>
-          {navItems.slice(2, navItems.length).map((item, index) => {
-            return (
-              <a
-                key={index}
-                href={`/#${item.toLowerCase()}`}
-                className="navbar__link"
-              >
-                {item}
-              </a>
-            );
-          })}
-          {/* <Link
+
+      <nav className="footer--nav">
+        <Link
+          to="/rejestracja"
+          className="navbar__link navbar__link--special"
+        >
+          {navItems[0]}
+        </Link>
+        <Link
+          to="/wydarzenia"
+          className="navbar__link"
+        >
+          {navItems[1]}
+        </Link>
+        {navItems.slice(2, navItems.length).map((item, index) => {
+          return (
+            <a
+              key={index}
+              href={`/#${item.toLowerCase()}`}
+              className="navbar__link"
+            >
+              {item}
+            </a>
+          );
+        })}
+        {/* <Link
             to="/login"
             className="navbar__link"
           >
             {navItems[navItems.length - 1]}
           </Link> */}
 
-        </nav>
-      }
+      </nav>
+
     </div>
     <div className="divider" />
     <div className="footer--social">

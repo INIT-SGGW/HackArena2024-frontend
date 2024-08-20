@@ -3,37 +3,14 @@ import { useNavigate } from "react-router";
 import useTimeToEvent from "../../Hooks/useTimeToEvent";
 import { getEventDate, getEventTime, getRegistrationEndDate } from "../../Constants/Constants";
 import text from "../../Assets/text.json";
-import ChevronIcon from "../../Assets/chevron-down.svg";
 import { useEffect, useState } from "react";
 import isRegistrationOpen from "../../Utils/isRegistrationOpen";
 import isEventLive from "../../Utils/isEventLive";
 import isEventDone from "../../Utils/isEventDone";
+import FAQ from "../../Components/FAQ/FAQ";
+import FAQComponent from "../../Components/FAQ/FAQ";
 
 interface Props { }
-
-interface AgendaItemProps {
-  question: string;
-  answer: string;
-}
-
-export const FAQComponent = ({ question, answer }: AgendaItemProps) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  return (
-    <div className="faq--component">
-      <div className={`faq--box faq--question`} onClick={() => setIsOpen(!isOpen)}>
-        <h6>{question}</h6>
-        <img src={ChevronIcon} alt=">" className={`${isOpen ? "faq--icon__open" : ""}`} />
-      </div>
-      <div className={`faq--answer__wrapper${isOpen ? " faq--answer__open" : ""}`}>
-        <div className={`faq--box faq--answer`}>
-          <p>{answer}</p>
-        </div>
-      </div>
-
-    </div>
-  );
-}
 
 function HomePage(props: Props) {
   const navigate = useNavigate();
@@ -62,7 +39,7 @@ function HomePage(props: Props) {
           <h6>{homeText.welcome.description.first}</h6>
           <div className="welcome--buttons">
             <button onClick={() => navigate("/wydarzenia")} className="account--button account--button__primary-black-2">{homeText.welcome.buttons.events}</button>
-            <button onClick={() => window.location.href = "#o nas"} className="account--button account--button__secondary-white">{homeText.welcome.buttons.aboutUs}</button>
+            <button onClick={() => window.location.href = "#o nas"} className="account--button account--button__primary-white">{homeText.welcome.buttons.aboutUs}</button>
           </div>
         </div>
       </div>
@@ -84,12 +61,12 @@ function HomePage(props: Props) {
         }
       </div> */}
       <div id="o nas" className="home--about pagewidth home--section">
-        <h2>{homeText.aboutUs.title}</h2>
+        <h2 className="header__white">{homeText.aboutUs.title}</h2>
         <p id="about_text"></p>
       </div>
       <div className="home--about__event">
         <div id="hackarena2" className="home--about pagewidth home--section">
-          <h2>{homeText.nextEvent.title}</h2>
+          <h2 className="header__black">{homeText.nextEvent.title}</h2>
           <p id="next_event_text"></p>
           <button onClick={() => navigate("/wydarzenia/hackarena2_0")} className="account--button account--button__primary-black">{homeText.nextEvent.button}</button>
         </div>
@@ -117,14 +94,8 @@ function HomePage(props: Props) {
           <button onClick={() => navigate("/rejestracja")} className="account--button account--button__primary">{homeText.dontWait.button}</button>
         </div>}
       <div id="faq" className="home--faq pagewidth home--section">
-        <h2>{homeText.faq.title}</h2>
-        <div className="faq--content">
-          {
-            homeText.faq.questions.map(({ question, answer }, index) => {
-              return <FAQComponent key={index} question={question} answer={answer} />
-            })
-          }
-        </div>
+        <h2 className="header__white">{homeText.faq.title}</h2>
+        <FAQComponent text={homeText.faq} />
       </div>
     </div>
   );

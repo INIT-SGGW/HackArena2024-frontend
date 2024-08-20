@@ -15,6 +15,7 @@
 
 .register--title {
   color: rgb(var(--primary-color));
+  margin-bottom: 1rem;
 }
 
 .register--social {

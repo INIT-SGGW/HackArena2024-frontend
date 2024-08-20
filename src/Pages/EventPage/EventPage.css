@@ -46,6 +46,8 @@
   flex-direction: column;
   align-items: center;
   max-width: 800px;
+  width: 100%;
+  box-sizing: border-box;
   text-align: center;
   padding-top: 5rem;
 }
@@ -65,4 +67,11 @@
   color: rgb(var(--background-color));
   width: 100%;
   text-align: center;
+}
+
+.event--faq {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 0;
 }

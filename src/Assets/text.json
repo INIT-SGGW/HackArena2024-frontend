@@ -6,6 +6,10 @@
     "text": "HackArena 2.0 już w październiku!"
   },
   "register": {
+    "closed": {
+      "title": "Rejestracja zamknięta",
+      "description": "Rejestracja na HackArenę 2.0 rozpocznie się 01.09.2024. Dziękujemy za zainteresowanie i zapraszamy na nasze portale społecznościowe!"
+    },
     "title": "Rejestracja",
     "description": "Zbierz swój zespół i dołącz do wydarzenia!",
     "teamMembers": "Członkowie zespołu",
@@ -237,11 +241,11 @@
     },
     "aboutUs": {
       "title": "O nas",
-      "description": "HackArena to hackathon organizowany przez <b>Koło Naukowe INIT z SGGW w Warszawie.</b> Podczas wydarzenia zespoły programistów tworzą boty do gry komputerowej, które następnie walczą przeciwko sobie w <b>turnieju</b> w celu uzyskania tytułu <b>mistrza HackAreny.</b>"
+      "description": "HackArena to hackathon organizowany przez <b>Koło Naukowe \"init\" z SGGW w Warszawie.</b> Podczas wydarzenia zespoły programistów tworzą boty do gry komputerowej, które następnie walczą przeciwko sobie w <b>turnieju</b> w celu uzyskania tytułu <b>mistrza HackAreny.</b>"
     },
     "nextEvent": {
       "title": "HackArena 2.0",
-      "description": "HackArena 2.0 to <b>druga edycja</b> hackathonu organizowanego przez <b>Koło Naukowe INIT</b> z SGGW w Warszawie. Wirtualne bitwy robotów odbędą się pod <b>koniec października.</b>",
+      "description": "HackArena 2.0 to <b>druga edycja</b> hackathonu organizowanego przez <b>Koło Naukowe \"init\"</b> z SGGW w Warszawie. Wirtualne bitwy robotów odbędą się <b>26 i 27 października.</b>",
       "button": "Więcej informacji"
     },
     "agenda": {
@@ -332,11 +336,11 @@
       "banner": {
         "title": "HackArena 1.0",
         "date": "02.06.2024 na SGGW w Warszawie",
-        "description": "HackArena 1.0 to pierwsza edycja hackathonu organizowanego przez Koło Naukowe INIT. W wydarzeniu wzięło udział 15 osób, które stworzyły 6 botów."
+        "description": "HackArena 1.0 to pierwsza edycja hackathonu organizowanego przez Koło Naukowe \"init\". W wydarzeniu wzięło udział 15 osób, które stworzyły 6 botów."
       },
       "results": {
         "title": "Wyniki",
-        "description": "Podium HackAreny 1.0",
+        "description": "Podium pierwszej edycji HackAreny",
         "firstPlace": "Pierwsze miejsce",
         "secondPlace": "Drugie miejsce",
         "teams": {
@@ -358,21 +362,21 @@
       "finished": false,
       "banner": {
         "title": "HackArena 2.0",
-        "date": "xx.10.2024 na SGGW w Warszawie",
-        "description": "Druga edycja hackathonu organizowanego przez Koło Naukowe INIT. Tym razem będzie aż 16 drużyn po 3 osoby każda."
+        "date": "26-27.10.2024 na SGGW w Warszawie",
+        "description": "Druga edycja hackathonu organizowanego przez Koło Naukowe \"init\". W tej edycji weźmie udział aż 16 drużyn po 3 osoby każda."
       },
-      "clock": "HackArena 2.0 odbędzie się pod koniec października",
+      "clock": "Początek rejestracji od 01.09.2024",
       "generalInformation": {
         "title": "Informator",
-        "description": "W wydarzeniu weźmie udział <b>16 zespołów</b>, każdy składający się z <b>2 lub 3 osób.</b> Wydarzenie będzie trwało przez <b>dwa dni</b> na SGGW w Warszawie w budynku numer 34 <b>(ul. Nowoursynowska 159).</b> W ciągu dnia zostaną udostępnione sale oraz będzie zapewnione jedzenie dla uczestników, ale <b>nie organizujemy nocowania na uczelni.</b>"
+        "description": "W wydarzeniu weźmie udział <b>16 zespołów</b>, każdy składający się z <b>2 lub 3 osób.</b> Wydarzenie będzie trwało przez <b>dwa dni</b> na SGGW w Warszawie w budynku numer 34 <b>(ul. Nowoursynowska 159).</b> W ciągu dnia zostaną udostępnione sale oraz będzie zapewnione jedzenie, ale <b>nie organizujemy noclegu dla uczestników.</b>"
       },
       "task": {
         "title": "Zadanie",
-        "description": "Waszym zadaniem będzie <b>stworzenie bota</b> do gry, która zostanie ujawniona w dniu rozpoczęcia HackAreny. W maksymalnie <b>3 osobowych grupach</b> będziecie mieli 2 dni na implementację algorytmu zdolnego do samodzielnego przeprowadzenia rozgrywki. Swoje rozwiązanie będzicie mogli napisać w <b>Pythonie, Javie, C# lub C++.</b> Na koniec wydarzenia zostanie przeprowadzony <b>turniej, który wyłoni zwycięską drużynę.</b>"
+        "description": "Waszym zadaniem będzie <b>stworzenie bota</b> do gry, która zostanie ujawniona w dniu rozpoczęcia HackAreny. W maksymalnie <b>3 osobowych grupach</b> będziecie mieli 2 dni na implementację algorytmu zdolnego do samodzielnego przeprowadzenia rozgrywki. Swoje rozwiązanie będzicie mogli napisać w <b>Python, Java, C#, C++, JavaScript, TypeScript, Go i Rust.</b> Na koniec wydarzenia zostanie przeprowadzony <b>turniej, który wyłoni zwycięską drużynę.</b>"
       },
       "format": {
         "title": "Format turnieju",
-        "description": "Turniej zostanie rozegrany <b>w trzech rundach.</b> W każdej rundzie będzie się zmagali w <b>pojedynku 4 na 4</b> przeciwko trzem innym botom. W pierwszym etapie, przydział do poszczególnych meczów będzie roztrzygnięty poprzez <b>losowanie.</b> Następnie w celu przejścia do kolejnych faz, wasz bot musi się znaleźć w <b>top 2 aktualnie rozgrywanego starcia.</b>  W wielkim finale, spośród 4 finalistów, zostanie wyłoniony <b>mistrz HackAreny 2.0.</b>"
+        "description": "Turniej zostanie rozegrany <b>w trzech rundach.</b> W każdej rundzie będziecię się zmagali w <b>pojedynku 1v1v1v1</b> - wasz bot przeciwko trzem innym. W pierwszym etapie, przydział do poszczególnych meczów będzie roztrzygnięty poprzez <b>losowanie.</b> Następnie w celu przejścia do kolejnych faz, wasz bot musi się znaleźć w <b>top 2 aktualnie rozgrywanego starcia.</b>  W wielkim finale, spośród 4 finalistów, zostanie wyłoniony <b>mistrz HackAreny 2.0.</b>"
       }
       
 

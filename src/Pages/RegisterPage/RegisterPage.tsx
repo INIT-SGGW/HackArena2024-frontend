@@ -181,8 +181,8 @@ function RegisterPage(props: Props) {
               </>
               :
               <>
-                <h2 className="register--title">Rejestracja zamknięta</h2>
-                <h6>Obserwuj nasze media społecznościowe, żeby nie przegapić przyszłych wydarzeń</h6>
+                <h2 className="register--title">{register.closed.title}</h2>
+                <h6>{register.closed.description}</h6>
                 <div className="footer--social register--social">
                   <a href="https://www.facebook.com/profile.php?id=61559358943109&is_tour_dismissed">
                     <img src={FacebookIcon} alt="Facebook" />

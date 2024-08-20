@@ -1,35 +1,46 @@
 .events {
   padding: 4rem 0;
+  padding-bottom: 6rem;
 }
 
-.events h1 {
+.events__header {
+  display: flex;
   width: 100%;
-  text-align: center;
-  color: rgb(var(--primary-color));
-  margin-bottom: 3rem;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 3.5rem;
 }
 
 .events h3 {
-  color: var(--text-one-color);
+  /* color: var(--text-one-color); */
+  width: fit-content;
   margin: 2rem 0 0.5rem 0;
 }
 
-.events > div {
+.events__group {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.events > div > div {
+.events__group > div {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 7rem;
+  height: 6rem;
   width: 100%;
-  border-radius: 1.5rem;
   overflow: hidden;
   cursor: pointer;
+  border: 5px solid;
+}
+
+.events__group--present > div {
+  border-color: rgb(var(--primary-color));
+}
+
+.events__group--past > div {
+  border-color: var(--text-one-color);
 }
 
 .events img {
@@ -41,34 +52,41 @@
   z-index: -1;
 }
 
-.events > div > div,
-.events > div > div > h4 {
+.events__group > div,
+.events__group > div > h4 {
   transition: all 0.25s;
 }
 
-.events > div > div > img {
+.events__group > div > img {
   transition: all 0.25s;
 }
 
-.events > div > div::after {
+.events__group > div::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  transform: translateY(-100%);
+  transform: translateX(-100%);
   width: 100%;
   height: 100%;
-  background-color: rgba(var(--primary-color), 0.7);
   z-index: -1;
   transition: all 0.25s;
 }
 
+.events__group--present > div::after {
+  background-color: rgba(var(--primary-color), 0.4);
+}
+
+.events__group--past > div::after {
+  background-color: #ffffff60;
+}
+
 @media screen and (min-width: 768px) {
-  .events > div > div:hover::after {
+  .events__group > div:hover::after {
     /* background-color: rgba(var(--primary-color), 0.5); */
-    transform: translateY(0);
+    transform: translateX(0);
   }
-  .events > div > div:hover > h4 {
+  .events__group > div:hover > h4 {
     /* color: rgba(var(--primary-color)); */
   }
 }

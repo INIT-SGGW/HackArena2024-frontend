@@ -5,7 +5,7 @@ import text from '../../Assets/text.json'
 import { useNavigate } from 'react-router-dom'
 import TitleAndDesc from '../../Components/TitleAndDesc/TitleAndDesc'
 import HackarenaFormatImage from "../../Assets/HackArena2_0Format.svg"
-import { FAQComponent } from '../HomePage/HomePage'
+import FAQComponent from '../../Components/FAQ/FAQ'
 
 
 interface PageContent {
@@ -84,12 +84,12 @@ function EventPage() {
                 </div>
                 <div className='event--clock'>
                     <div className='pagewidth'>
-                        <h4>{eventText.highlightInfo}</h4>
+                        <h4 >{eventText.highlightInfo}</h4>
                     </div>
                 </div>
                 <TitleAndDesc text={eventText.task} />
                 <div className="event--section">
-                    <h2>{eventText.results.title}</h2>
+                    <h2 className='header__white'>{eventText.results.title}</h2>
                     <span>{eventText.results.description}</span>
                     <ol type="I">
                         <li>{eventText.results.teams.firstPlace}</li>
@@ -115,7 +115,6 @@ function EventPage() {
                 <div className='event--clock'>
                     <div className='pagewidth'>
                         <h4>{eventText.clock}</h4>
-
                     </div>
                     {/* // isEventLive() ?
                         // <>
@@ -138,15 +137,9 @@ function EventPage() {
                 <div className='event--format pagewidth'>
                     <img src={HackarenaFormatImage} alt="HackArena 2.0 format" />
                 </div>
-                <div className="home--faq pagewidth event--section">
-                    <h2>{faqText.title}</h2>
-                    <div className="faq--content">
-                        {
-                            faqText.questions.map(({ question, answer }, index) => {
-                                return <FAQComponent key={index} question={question} answer={answer} />
-                            })
-                        }
-                    </div>
+                <div className="event--section pagewidth">
+                    <h2 className='header__white'>{faqText.title}</h2>
+                    <FAQComponent text={faqText} />
                 </div>
 
 

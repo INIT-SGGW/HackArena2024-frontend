@@ -1,0 +1,145 @@
+.faq--content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  max-width: 900px;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.faq--component {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.faq--box {
+  --faq-component-border-radius: 0rem;
+  --faq-component-padding: 1.5rem;
+  border-radius: var(--faq-component-border-radius);
+  width: 100%;
+  box-sizing: border-box;
+  /* border: 4px solid rgb(var(--primary-color)); */
+  border: 4px solid var(--text-one-color);
+  padding: calc(var(--faq-component-padding) / 1.8) var(--faq-component-padding);
+  /* transition: all 0.11s ease-in-out; */
+  /* background-color: var(--text-one-color); */
+}
+
+.faq--question__double {
+  position: absolute !important	;
+  border: none;
+  background-color: var(--text-one-color);
+  width: 0%;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  transition: all 0.25s ease-out;
+}
+
+.faq--question__double > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  width: calc(100% - 2 * var(--faq-component-padding));
+  height: 100%;
+  margin-left: var(--faq-component-padding);
+}
+
+.faq--question__double > div > h6 {
+  color: rgb(var(--background-color)) !important;
+  text-wrap: nowrap;
+}
+
+@media screen and (min-width: 768px) {
+  .faq--component:hover .faq--question__double {
+    width: 100%;
+  }
+}
+
+.faq--question {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+.faq--question > h6 {
+  /* color: rgb(var(--primary-color)); */
+  color: var(--text-one-color);
+  /* color: rgb(var(--background-color)); */
+}
+
+.faq--component__selected > .faq--box {
+  background-color: var(--text-one-color);
+}
+
+.faq--component__selected > .faq--box h6 {
+  color: rgb(var(--background-color));
+}
+
+.faq--answer__wrapper {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2px;
+  transition: all 0.11s linear;
+  overflow: hidden;
+}
+
+.faq--answer {
+  width: 100%;
+  background-color: var(--text-one-color);
+  transition: all 0.2s linear;
+  margin-top: -100%; /* it is overridden in typescript, set to -100% so it does not show after loading a page */
+}
+
+.faq--answer__open > .faq--answer {
+  margin-top: 0;
+}
+
+.faq--answer > p {
+  color: rgb(var(--background-color));
+  text-align: left;
+}
+
+.faq--question__double > div > img,
+.faq--question > img {
+  --faq-icon-width: 1.5rem;
+
+  width: var(--faq-icon-width);
+  height: var(--faq-icon-width);
+
+  transition: all 0.25s ease-in-out;
+  z-index: 100;
+}
+
+@media screen and (min-width: 768px) {
+  .faq--component:hover > .faq--question > .faq--question__double > div > img,
+  .faq--component:hover > .faq--question > img,
+  .faq--component__selected > .faq--question > img {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(108deg)
+      brightness(104%) contrast(104%);
+  }
+}
+
+.faq--icon__open {
+  transform: rotate(180deg) !important;
+}

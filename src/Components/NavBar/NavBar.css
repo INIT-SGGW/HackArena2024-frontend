@@ -12,7 +12,7 @@
 
 .navbar--content {
   --navbar-height: 4.4rem;
-  --navbar-content-padding: 0.5rem;
+  --navbar-content-padding: 0.8rem;
 
   display: flex;
   justify-content: space-between;
@@ -53,7 +53,13 @@
 }
 
 .navbar--content > a {
-  height: 2.4rem;
+  height: 1.7rem;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar--content > a {
+    height: 2.4rem;
+  }
 }
 
 .navbar--content > a > img {
@@ -82,7 +88,7 @@
 .navbar__nav {
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  gap: 0.5rem;
   align-items: center;
 }
 
@@ -94,20 +100,8 @@
   }
 }
 
-.navbar__link {
-  color: var(--text-one-color);
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.15s;
-}
-
-.navbar__link--special {
-  color: rgb(var(--primary-color));
-}
-
 @media screen and (min-width: 768px) {
-  .navbar__link:hover {
+  /* .navbar__link:hover {
     color: rgb(var(--background-color));
     text-shadow: -1px -1px 0 white, 1px 1px 0 white, -1px 1px 0 white,
       1px -1px 0 white, -1px 0 0 white, 1px 0 0 white, 0 1px 0 white,
@@ -122,5 +116,50 @@
       1px 0 0 rgb(var(--primary-color)), 0 1px 0 rgb(var(--primary-color)),
       0 -1px 0 rgb(var(--primary-color)), 2px -2px 0 rgb(var(--primary-color)),
       1px -2px 0 rgb(var(--primary-color)), 2px -1px 0 rgb(var(--primary-color));
+  } */
+}
+
+.navbar__link {
+  color: var(--text-one-color);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.15s;
+  position: relative;
+  padding: 0rem 0.7rem;
+}
+
+.navbar__link--special {
+  color: rgb(var(--primary-color));
+}
+
+.navbarButton {
+  position: relative;
+  overflow: hidden;
+}
+
+.navbarButton__double {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--text-one-color);
+  width: 0;
+  overflow: hidden;
+  transition: all 0.15s ease-out;
+}
+
+.navbarButton__double--special {
+  background-color: rgb(var(--primary-color));
+}
+
+.navbarButton__double > a {
+  color: rgb(var(--background-color));
+}
+
+@media screen and (min-width: 768px) {
+  .navbarButton:hover .navbarButton__double {
+    width: 100%;
   }
 }

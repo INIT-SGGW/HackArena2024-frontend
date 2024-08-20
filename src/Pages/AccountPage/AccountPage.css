@@ -135,14 +135,14 @@
 
 .account--button {
   --account-button-border-radius: 4rem;
-  padding: 0.5em 2.4rem;
+  padding: 0.5em 2rem;
   border: none;
   cursor: pointer;
   transition: background-color 0.25s, border-color 0.25s, color 0.25s;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
 
-  border-radius: var(--account-button-border-radius);
+  /* border-radius: var(--account-button-border-radius); */
 }
 
 .account--button__primary {
@@ -205,17 +205,11 @@
   border: 3px solid var(--text-one-color);
 }
 
-.account--button__primary-white:hover {
-  background-color: rgb(var(--background-color));
-  border-color: var(--text-one-color);
-  color: var(--text-one-color);
-}
-
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   .account--button__primary-white:hover {
-    background-color: var(--text-one-color);
-    color: rgb(var(--background-color));
-    border: 3px solid var(--text-one-color);
+    background-color: rgb(var(--background-color));
+    border-color: rgb(var(--background-color));
+    color: var(--text-one-color);
   }
 }
 
