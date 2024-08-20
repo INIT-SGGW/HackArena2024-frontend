@@ -1,0 +1,52 @@
+.alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 110%;
+  height: 110%;
+  background-color: var(--background-color-transparent);
+}
+
+.alert--content {
+  --alert-content-padding: 2rem;
+  --alert-shadow-blur: 10px;
+  --alert-shadow-spread: -2px;
+
+  background-color: rgb(var(--background-color));
+  max-width: 500px;
+  width: calc(95% - var(--alert-content-padding) * 2);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: var(--alert-content-padding);
+  text-align: center;
+  border-radius: 1rem;
+  /* -webkit-box-shadow: 0px 0px var(--alert-shadow-blur)
+    var(--alert-shadow-spread) rgb(var(--primary-color));
+  -moz-box-shadow: 0px 0px var(--alert-shadow-blur) var(--alert-shadow-spread)
+    rgb(var(--primary-color));
+  box-shadow: 0px 0px var(--alert-shadow-blur) var(--alert-shadow-spread)
+    rgb(var(--primary-color)); */
+}
+
+.alert--content > h3 {
+  color: rgb(var(--primary-color));
+}
+
+.alert--buttons {
+  display: flex;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.alert--buttons > button {
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .alert--buttons {
+    flex-direction: column;
+  }
+}

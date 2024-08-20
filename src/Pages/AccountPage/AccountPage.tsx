@@ -1,15 +1,19 @@
 import "./AccountPage.css";
 import { useParams, useNavigate } from "react-router-dom";
-import { AccountTeam, InputErrors } from "../../Types/types";
-import React, { useState } from "react";
+import { AccountTeam, AccountTeamRequestBody, InputErrors } from "../../Types/types";
+import React, { useEffect, useState } from "react";
 import text from "../../Assets/text.json";
 import {
   handleErrorMessages,
   handleErrorMessagesTeamMembers,
 } from "../../Utils/handleErrorMessages";
-import { eventEndDate, eventStartDate } from "../../Constants/Constants";
 import isEventLive from "../../Utils/isEventLive";
 import FileUploader from "../../Components/FileUploader/FileUploader";
+import useWindowWidth from "../../Hooks/useWindowWidth";
+import Alert from "../../Components/Alert/Alert";
+import AccountService from "../../Services/AccountService";
+import AuthenticationService from "../../Services/AuthenticationService";
+import isRegistrationOpen from "../../Utils/isRegistrationOpen";
 
 interface Props { }
 
@@ -44,6 +48,10 @@ function AccountPage(props: Props) {
   const register = text.register;
   const { zespolID } = useParams<{ zespolID: string }>();
   const navigate = useNavigate();
+  const windowWidth = useWindowWidth();
+  const accountText = text.account;
+  const [showAlert, setShowAlert] = useState<boolean>(false);
+  const [alertErrorMessage, setAlertErrorMessage] = useState<string | null>(null);
 
   const [showErrors, setShowErrors] = useState<boolean>(false);
   const [inputsDisabled, setInputsDisabled] = useState<boolean>(true);
@@ -54,15 +62,48 @@ function AccountPage(props: Props) {
     teamName: "",
     password: "",
     repeatPassword: "",
-    teamMembers: teamData.teamMembers.map((member) => ({
-      firstName: "",
-      lastName: "",
-      email: "",
-      dateOfBirth: "",
-      occupation: "",
-      agreement: "",
-    })),
-  });
+    teamMembers: []
+  })
+
+  const { zespolID } = useParams<{ zespolID: string }>();
+
+  useEffect(() => {
+    if (zespolID) {
+      AccountService.getTeam(zespolID).then((response) => {
+        if (response.status === 200) {
+          response.json().then((team: AccountTeam) => {
+            team.teamMembers.forEach((teamMember) => {
+              teamMember.dateOfBirth = teamMember.dateOfBirth.split("T")[0];
+            });
+            setValues(team);
+            setValuesBackup(team);
+            setErrors({
+              teamName: "",
+              password: "",
+              repeatPassword: "",
+              teamMembers: team.teamMembers.map(() => {
+                return {
+                  firstName: "",
+                  lastName: "",
+                  email: "",
+                  dateOfBirth: '',
+                  occupation: "",
+                  agreement: "",
+                }
+              })
+            })
+          })
+        }
+        else {
+          setAlertErrorMessage("Wystąpił błąd podczas pobierania danych z serwera")
+        }
+
+      })
+        .catch((error) => {
+          setAlertErrorMessage("Wystąpił błąd podczas pobierania danych z serwera")
+        });
+    }
+  }, [])
 
   const handleTrySubmit = () => {
     setShowErrors(true);
@@ -70,9 +111,33 @@ function AccountPage(props: Props) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-
-    console.log(values);
-    setInputsDisabled(true);
+    const teamData = {
+      teamName: values.teamName,
+      teamMembers: values.teamMembers.map((teamMember) => {
+        return {
+          firstName: teamMember.firstName,
+          lastName: teamMember.lastName,
+          email: teamMember.email,
+          dateOfBirth: new Date(teamMember.dateOfBirth),
+          occupation: teamMember.occupation,
+          isVegan: teamMember.isVegan,
+          agreement: teamMember.agreement,
+        };
+      }),
+    } as AccountTeamRequestBody;
+    AccountService.updateTeam(valuesBackup.teamName, teamData).then((response) => {
+      setInputsDisabled(true);
+      if (response.status === 200) {
+        localStorage.setItem("teamID", values.teamName);
+        setValuesBackup({ ...values, teamMembers: [...values.teamMembers] });
+        setShowErrors(false);
+        navigate("/konto/" + values.teamName)
+      } else {
+        setAlertErrorMessage("Wystąpił błąd podczas zapisywania danych na serwerze")
+      }
+    }).catch(() => {
+      setAlertErrorMessage("Wystąpił błąd podczas zapisywania danych na serwerze")
+    })
   };
 
   const handleAddTeamMember = () => {
@@ -108,6 +173,19 @@ function AccountPage(props: Props) {
       ],
     });
   };
+
+  const hangleLogOut = () => {
+    AuthenticationService.logout().then((response) => {
+      if (response.status === 200) {
+        localStorage.removeItem("teamID");
+        navigate("/");
+      } else {
+        setAlertErrorMessage("Wystąpił błąd podczas wylogowywania")
+      }
+    }).catch(() => {
+      setAlertErrorMessage("Wystąpił błąd podczas wylogowywania")
+    });
+  }
 
   const handleDeleteTeamMember = (index: number) => {
     setValues({
@@ -153,8 +231,28 @@ function AccountPage(props: Props) {
     }
   };
 
+  const handleUpdateTeam = () => {
+    handleTrySubmit();
+
+  }
+
+  const handleDeleteTeam = () => {
+    //TODO: delete team
+    localStorage.removeItem("teamID");
+    navigate("/");
+  }
+
   return (
     <div className="account pagewidth">
+      {
+        alertErrorMessage &&
+        <Alert
+          title="Błąd"
+          message={alertErrorMessage}
+          buttonOneText="Zamknij"
+          buttonOneAction={() => setAlertErrorMessage(null)}
+        />
+      }
       <form className="register--form" onSubmit={handleSubmit}>
         {/* TEAM NAME */}
         <div className="account--header">
@@ -208,7 +306,7 @@ function AccountPage(props: Props) {
                 disabled={inputsDisabled}
               />
             )}
-            {!isEventLive(eventStartDate, eventEndDate) && (
+            {(!isEventLive() && isRegistrationOpen()) && (
               <input
                 type="button"
                 className={`account--button account--button__primary${inputsDisabled ? "" : " account--button__halfborder"
@@ -220,7 +318,6 @@ function AccountPage(props: Props) {
           </div>
         </div>
         <FileUploader />
-
         <div className="register--addfriend">
           {/* ADD FRIEND */}
           <div className="register--memberbuttons">
@@ -265,7 +362,7 @@ function AccountPage(props: Props) {
                     id={register.registerFields.firstName.id + index}
                     type="text"
                     disabled={inputsDisabled}
-                    pattern="^[a-zA-Z .]*$"
+                    pattern="^[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ \-]*$"
                     onInvalid={(e) => {
                       handleErrorMessagesTeamMembers(
                         e.currentTarget,
@@ -320,7 +417,7 @@ function AccountPage(props: Props) {
                     id={register.registerFields.lastName.id + index}
                     type="text"
                     disabled={inputsDisabled}
-                    pattern="^[a-zA-Z .]*$"
+                    pattern="^[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ \-]*$"
                     onInvalid={(e) => {
                       handleErrorMessagesTeamMembers(
                         e.currentTarget,
@@ -597,22 +694,40 @@ function AccountPage(props: Props) {
           ))}
         </div>
       </form>
-      <button
-        className="account--button account--button__primary"
-        onClick={() => {
-          localStorage.removeItem("teamID");
-          navigate("/");
-        }}
-      >
-        Logout
-      </button>
-      <button
-        type="button"
-        className="account--button account--button__primary"
-        onClick={() => navigate("/reset")}
-      >
-        Zresetuj hasło
-      </button>
+      <div className="account--bottom">
+
+        <button
+          className="account--button account--button__primary"
+          onClick={hangleLogOut}
+        >
+          {accountText.buttons.logout}
+        </button>
+        <button
+          type="button"
+          className="account--button account--button__primary"
+          onClick={() => navigate("/reset")}
+        >
+          {accountText.buttons.resetPassword}
+        </button>
+        {/* <button
+          type="button"
+          className="account--button account--button__primary"
+          onClick={() => setShowAlert(true)}
+        >
+          {accountText.buttons.deleteTeam}
+        </button> */}
+        {
+          showAlert &&
+          <Alert
+            title={accountText.alert.title}
+            message={accountText.alert.message}
+            buttonOneText={accountText.alert.buttons.delete}
+            buttonOneAction={handleDeleteTeam}
+            buttonTwoText={accountText.alert.buttons.cancel}
+            buttonTwoAction={() => setShowAlert(false)}
+          />
+        }
+      </div>
     </div>
   );
 }

@@ -4,8 +4,11 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { handleErrorMessages } from "../../Utils/handleErrorMessages";
 import text from "../../Assets/text.json";
+import { LoginBody } from "../../Types/types";
+import AuthenticationService from "../../Services/AuthenticationService";
+import Alert from "../../Components/Alert/Alert";
 
-interface Props {}
+interface Props { }
 
 type LoginValues = {
   email: string;
@@ -30,6 +33,7 @@ function LoginPage(props: Props) {
     email: "",
     password: "",
   });
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     if (teamID) {
@@ -52,15 +56,42 @@ function LoginPage(props: Props) {
       rememberMe: formData.get("remember") === "on",
     };
 
-    console.log(data);
-    localStorage.setItem("teamID", "123");
-    setTeamID(() => "123");
+    const loginBody: LoginBody = {
+      email: data.email,
+      password: data.password,
+    };
+    AuthenticationService.login(loginBody).then((response) => {
+      setInputsDisabled(false);
+      response.json().then((data) => {
+        if (response.status === 202) {
+          localStorage.setItem("teamID", data.teamName);
+          navigate("/konto/" + data.teamName);
+        }
+        else if (response.status === 403 && data.error === "Invalid password or Team Name") {
+          setSubmitError("Podane dane są nieprawidłowe.");
+        }
+        else {
+          setSubmitError("Wystąpił błąd podczas logowania.");
+        }
+      });
+    }).catch((e) => {
+      setSubmitError("Wystąpił błąd podczas logowania.");
+    });
   };
 
   if (teamID) return null;
 
   return (
     <div className="login pagewidth">
+      {
+        submitError &&
+        <Alert
+          title="Błąd"
+          message={submitError}
+          buttonOneText="Zamknij"
+          buttonOneAction={() => setSubmitError(null)}
+        />
+      }
       <h2>{loginText.title}</h2>
       <form onSubmit={handleSubmit} className="login--form">
         <div className="login--input">
@@ -94,16 +125,14 @@ function LoginPage(props: Props) {
             name={loginText.loginFields.email.name}
             placeholder={loginText.loginFields.email.label}
             pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-            className={`input--input${
-              showErrors && errors.email ? " input--input__error" : ""
-            }`}
+            className={`input--input${showErrors && errors.email ? " input--input__error" : ""
+              }`}
             required
             maxLength={60}
           />
           <span
-            className={`input--span${
-              showErrors ? " input--span__visible" : ""
-            }`}
+            className={`input--span${showErrors ? " input--span__visible" : ""
+              }`}
           >
             {errors.email}
           </span>
@@ -137,23 +166,21 @@ function LoginPage(props: Props) {
             id={loginText.loginFields.password.id}
             placeholder={loginText.loginFields.password.label}
             name={loginText.loginFields.password.name}
-            className={`input--input${
-              errors.password && showErrors ? " input--input__error" : ""
-            }`}
-            pattern="^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$"
+            className={`input--input${errors.password && showErrors ? " input--input__error" : ""
+              }`}
+            pattern=".*"
             required
             maxLength={80}
           />
           <span
-            className={`input--span${
-              showErrors ? " input--span__visible" : ""
-            }`}
+            className={`input--span${showErrors ? " input--span__visible" : ""
+              }`}
           >
             {errors.password}
           </span>
         </div>
         <div className="login--options">
-          <Link to="/reset">{loginText.loginFields.forgotPassword.label}</Link>
+          {/* <Link to="/reset">{loginText.loginFields.forgotPassword.label}</Link> */}
           <Link to="/rejestracja">{loginText.loginFields.noAccount.label}</Link>
         </div>
         <div className="register--checkbox login--checkbox">

@@ -1,0 +1,92 @@
+.events {
+  padding: 4rem 0;
+  padding-bottom: 6rem;
+}
+
+.events__header {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 3.5rem;
+}
+
+.events h3 {
+  /* color: var(--text-one-color); */
+  width: fit-content;
+  margin: 2rem 0 0.5rem 0;
+}
+
+.events__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.events__group > div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 6rem;
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  border: 5px solid;
+}
+
+.events__group--present > div {
+  border-color: rgb(var(--primary-color));
+}
+
+.events__group--past > div {
+  border-color: var(--text-one-color);
+}
+
+.events img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-20%);
+  width: 100%;
+  z-index: -1;
+}
+
+.events__group > div,
+.events__group > div > h4 {
+  transition: all 0.25s;
+}
+
+.events__group > div > img {
+  transition: all 0.25s;
+}
+
+.events__group > div::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transition: all 0.25s;
+}
+
+.events__group--present > div::after {
+  background-color: rgba(var(--primary-color), 0.4);
+}
+
+.events__group--past > div::after {
+  background-color: #ffffff60;
+}
+
+@media screen and (min-width: 768px) {
+  .events__group > div:hover::after {
+    /* background-color: rgba(var(--primary-color), 0.5); */
+    transform: translateX(0);
+  }
+  .events__group > div:hover > h4 {
+    /* color: rgba(var(--primary-color)); */
+  }
+}

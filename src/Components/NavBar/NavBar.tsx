@@ -2,10 +2,32 @@ import { useState } from "react";
 import "./NavBar.css";
 import text from "../../Assets/text.json";
 import { Link } from "react-router-dom";
-import Logo from "../../Assets/logo.png";
+import Logo from "../../Assets/logo.svg";
 import useWindowWidth from "../../Hooks/useWindowWidth";
 import Menu from "../../Assets/menu.svg";
 // import MenuOpen from "../../Assets/menu-open.svg";
+
+export const NavBarButton = ({ text, link, special = false }: { text: string, link: string, special?: boolean }) => {
+  console.log(text, special)
+  return (
+    <div className="navbarButton">
+      <Link
+        to={link}
+        className={`navbar__link${special === true ? " navbar__link--special" : ""}`}
+      >
+        {text}
+      </Link>
+      <div className={`navbarButton__double${special === true ? " navbarButton__double--special" : ""}`}>
+        <Link
+          to={link}
+          className={`navbar__link${special === true ? " navbar__link--special" : ""}`}
+        >
+          {text}
+        </Link>
+      </div>
+    </div>
+  )
+}
 
 function NavBar() {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -39,7 +61,14 @@ function NavBar() {
                 >
                   {navItems[0]}
                 </Link>
-                {navItems.slice(1, navItems.length - 1).map((item, index) => {
+                <Link
+                  to="/wydarzenia"
+                  onClick={() => setShowSidebar(false)}
+                  className="navbar__link"
+                >
+                  {navItems[1]}
+                </Link>
+                {navItems.slice(2, navItems.length).map((item, index) => {
                   return (
                     <a
                       key={index}
@@ -52,43 +81,40 @@ function NavBar() {
                   );
                 })}
                 {/* <Link
+                {/* <Link
                   to="/login"
                   onClick={() => setShowSidebar(false)}
                   className="navbar__link"
                 >
                   {navItems[navItems.length - 1]}
                 </Link> */}
-              </nav>
-            </div>
-          </>
-        ) : (
-          <>
-            <nav className="navbar__nav">
-              <Link
-                to="/rejestracja"
-                className="navbar__link navbar__link--special"
-              >
-                {navItems[0]}
-              </Link>
-              {navItems.slice(1, navItems.length).map((item, index) => {
-                return (
-                  <a
-                    key={index}
-                    href={`/#${item.toLowerCase()}`}
-                    className="navbar__link"
-                  >
-                    {item}
-                  </a>
-                );
-              })}
+              </Link> */}
+            </nav>
+          </div>
+      </>
+      ) : (
+      <>
+        <nav className="navbar__nav">
+          <NavBarButton text={navItems[0]} link="/rejestracja" special={true} />
+          <NavBarButton text={navItems[1]} link="/wydarzenia" />
+
+          {navItems.slice(2, navItems.length).map((item, index) => {
+            return (
+              <NavBarButton key={index} text={item} link={`/#${item.toLowerCase()}`} />
+
+            );
+          })}
+          {/* <Link to="/login" className="navbar__link">
               {/* <Link to="/login" className="navbar__link">
                 {navItems[navItems.length - 1]}
               </Link> */}
-            </nav>
-          </>
-        )}
-      </div>
-    </div>
+        </Link> */}
+      </nav>
+    </>
+  )
+}
+      </div >
+    </div >
   );
 }
 

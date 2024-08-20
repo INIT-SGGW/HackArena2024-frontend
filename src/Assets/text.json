@@ -1,19 +1,15 @@
 {
-  "main": {
-    "header": {
-      "navItems": ["Rejestracja", "Zadanie", "Agenda", "FAQ"]
-    },
-    "welcome": {
-      "title": "HackArena"
-    },
-    "register": {
-      "title": "Rejestracja",
-      "description": "Zbierz swój zespół i dołącz do wydarzenia!",
-      "dateReminder": "Zapisy trawją do 17.10.2024",
-      "button": "Zapisz się"
-    }
+  "nav": {
+    "navItems": ["Rejestracja", "Wydarzenia", "O nas", "FAQ"]
+  },
+  "topBar": {
+    "text": "HackArena 2.0 już w październiku!"
   },
   "register": {
+    "closed": {
+      "title": "Rejestracja zamknięta",
+      "description": "Rejestracja na HackArenę 2.0 rozpocznie się 01.09.2024. Dziękujemy za zainteresowanie i zapraszamy na nasze portale społecznościowe!"
+    },
     "title": "Rejestracja",
     "description": "Zbierz swój zespół i dołącz do wydarzenia!",
     "teamMembers": "Członkowie zespołu",
@@ -54,7 +50,7 @@
         "label": "Nazwa zespołu",
         "name": "teamName",
         "id": "teamName",
-        "errorMessage": ""
+        "errorMessage": "Slash jest znakiem niedozwolonym"
       },
       "password": {
         "label": "Hasło",
@@ -147,9 +143,32 @@
     }
   },
   "home": {
-    "zadanie": {
-      "title": "Zadanie",
-      "description": "Waszym zadaniem będzie <span>stworzenie bota</span>, do gry która zostanie ujawniona w dniu rozpoczęcia HackAreny. W maksymalnie <span>3 osobowych grupach</span> będziecie mieli <span>8 godzin</span> na implementację algorytmu zdolnego do samodzielnego przeprowadzenia rozgrywki. Komunikację z grą zapewni dostarczone przez nas API. Na koniec wydarzenia zostanie przeprowadzony <span>turniej, który wyłoni zwycięską drużynę.</span>"
+    "welcome": {
+      "title": "HackArena",
+      "description": {
+        "first": "Zbierz zespół i podejmij wyzwanie!"
+      },
+      "buttons": {
+        "events": "Wydarzenia",
+        "aboutUs": "O nas"
+      }
+    },
+    "date": {
+      "text": {
+        "first": "Start",
+        "second": "o"
+      },
+      "textLiveEvent": "HackArena rozpoczęta!",
+      "textAfterEvent": "Dziękujemy za udział!"
+    },
+    "aboutUs": {
+      "title": "O nas",
+      "description": "HackArena to hackathon organizowany przez <b>Koło Naukowe \"init\" z SGGW w Warszawie.</b> Podczas wydarzenia zespoły programistów tworzą boty do gry komputerowej, które następnie walczą przeciwko sobie w <b>turnieju</b> w celu uzyskania tytułu <b>mistrza HackAreny.</b>"
+    },
+    "nextEvent": {
+      "title": "HackArena 2.0",
+      "description": "HackArena 2.0 to <b>druga edycja</b> hackathonu organizowanego przez <b>Koło Naukowe \"init\"</b> z SGGW w Warszawie. Wirtualne bitwy robotów odbędą się <b>26 i 27 października.</b>",
+      "button": "Więcej informacji"
     },
     "agenda": {
       "title": "Agenda",
@@ -189,7 +208,7 @@
         },
         {
           "question": "Czy mogę przyjść sam?",
-          "answer": "Tak, w przypaku niepełnych zespołów, będziemy się starali je uzupełnić o innych uczestników."
+          "answer": "Nie, dopuszczamy jedynie zespoły składające się z 2 lub 3 osób"
         },
         {
           "question": "Gdzie odbędzie się HackArena?",
@@ -201,7 +220,7 @@
         },
         {
           "question": "Czy będzie zapewnione wyżywienie?",
-          "answer": "Tak, zapewniamy podstawowe wyżywienie. Przez cały czas trwania HackAreny będzie dostępna woda i drobne przekąski, a około godziny 14:00 zaserwujemy pizzę. Jeżeli jesteś wege, zaznacz odpowiednią opcję w formularzu rejestracyjnym."
+          "answer": "Tak, zapewniamy podstawowe wyżywienie. Przez cały czas trwania HackAreny będzie dostępna woda, drobne przekąski oraz śniadania i obiady. Jeżeli jesteś wege, zaznacz odpowiednią opcję w formularzu rejestracyjnym."
         },
         {
           "question": "Czy mogę przyjść z gotowym projektem?",
@@ -209,5 +228,76 @@
         }
       ]
     }
+  },
+  "fileUploader": {
+    "showing": {
+      "title": "Dodaj plik z rozwiązaniem poniżej",
+      "label": "Przeciągnij plik lub kliknij, aby wybrać",
+      "buttons": {
+        "send": "Wyślij",
+        "cancel": "Cofnij"
+      }
+    },
+    "hidden": {
+      "description": "Tutaj oddasz swoje rozwiązanie w trakcie trwanie HackAreny"
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "description": "Strona, którą próbujesz otworzyć nie istnieje"
+  },
+  "events": {
+    "hackarena1_0": {
+      "finished": true,
+      "banner": {
+        "title": "HackArena 1.0",
+        "date": "02.06.2024 na SGGW w Warszawie",
+        "description": "HackArena 1.0 to pierwsza edycja hackathonu organizowanego przez Koło Naukowe \"init\". W wydarzeniu wzięło udział 15 osób, które stworzyły 6 botów."
+      },
+      "results": {
+        "title": "Wyniki",
+        "description": "Podium pierwszej edycji HackAreny",
+        "firstPlace": "Pierwsze miejsce",
+        "secondPlace": "Drugie miejsce",
+        "teams": {
+          "firstPlace": "Wild Pythons",
+          "secondPlace": "Essanse of Code"
+        }
+      },
+
+      "photos": {
+        "title": "Galeria"
+      },
+      "highlightInfo": "Dziękujemy za udział wszystkim uczestnikom",
+      "task": {
+        "title": "Zadanie",
+        "description": "Drużyny dostały zadanie stworzenie bota do gry typu <b>Bomberman.</b> Do wykonania zadania należało wykorzystać <b>język Python</b> i należało się zmieścić w czasie <b>8 godzin.</b>"
+      }
+    },
+    "hackarena2_0": {
+      "finished": false,
+      "banner": {
+        "title": "HackArena 2.0",
+        "date": "26-27.10.2024 na SGGW w Warszawie",
+        "description": "Druga edycja hackathonu organizowanego przez Koło Naukowe \"init\". W tej edycji weźmie udział aż 16 drużyn po 3 osoby każda."
+      },
+      "clock": "Początek rejestracji od 01.09.2024",
+      "generalInformation": {
+        "title": "Informator",
+        "description": "W wydarzeniu weźmie udział <b>16 zespołów</b>, każdy składający się z <b>2 lub 3 osób.</b> Wydarzenie będzie trwało przez <b>dwa dni</b> na SGGW w Warszawie w budynku numer 34 <b>(ul. Nowoursynowska 159).</b> W ciągu dnia zostaną udostępnione sale oraz będzie zapewnione jedzenie, ale <b>nie organizujemy noclegu dla uczestników.</b>"
+      },
+      "task": {
+        "title": "Zadanie",
+        "description": "Waszym zadaniem będzie <b>stworzenie bota</b> do gry, która zostanie ujawniona w dniu rozpoczęcia HackAreny. W maksymalnie <b>3 osobowych grupach</b> będziecie mieli 2 dni na implementację algorytmu zdolnego do samodzielnego przeprowadzenia rozgrywki. Swoje rozwiązanie będzicie mogli napisać w <b>Python, Java, C#, C++, JavaScript, TypeScript, Go i Rust.</b> Na koniec wydarzenia zostanie przeprowadzony <b>turniej, który wyłoni zwycięską drużynę.</b>"
+      },
+      "format": {
+        "title": "Format turnieju",
+        "description": "Turniej zostanie rozegrany <b>w trzech rundach.</b> W każdej rundzie będziecię się zmagali w <b>pojedynku 1v1v1v1</b> - wasz bot przeciwko trzem innym. W pierwszym etapie, przydział do poszczególnych meczów będzie roztrzygnięty poprzez <b>losowanie.</b> Następnie w celu przejścia do kolejnych faz, wasz bot musi się znaleźć w <b>top 2 aktualnie rozgrywanego starcia.</b>  W wielkim finale, spośród 4 finalistów, zostanie wyłoniony <b>mistrz HackAreny 2.0.</b>"
+      }
+      
+
+      
+    }
+    
   }
 }

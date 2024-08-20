@@ -30,16 +30,17 @@
 }
 
 .login--submit:hover {
-  background-color: var(--background-color);
-  color: var(--primary-color);
+  background-color: rgb(var(--background-color));
+  color: rgb(var(--primary-color));
 }
 
 .login--options {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  margin-top: 0.5rem;
+  padding: 0 0.5rem;
+  width: calc(100% - 1rem);
+  margin-bottom: 0.3rem;
 }
 
 .login--options > a {

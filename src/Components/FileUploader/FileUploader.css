@@ -16,19 +16,22 @@
   position: unset;
 }
 
-.kFhUBM span {
-  text-decoration: none !important;
+.sc-fqkvVR {
   margin-left: 0.5rem;
 }
 
-.guZdik {
+.sc-fqkvVR > span {
+  text-decoration: none !important;
+}
+
+.sc-aXZVg {
   border-color: var(--input-color) !important;
   border-radius: 0.8rem !important;
 }
-.jWkLDY > span {
+.sc-eqUAAy > span {
   color: var(--text-one-color) !important;
 }
-.guZdik > svg {
+.sc-aXZVg > svg {
   filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
     hue-rotate(49deg) brightness(103%) contrast(103%);
 }
@@ -37,7 +40,7 @@
   --file-sending-padding: 1rem;
 
   position: absolute;
-  background-color: var(--background-color);
+  background-color: rgb(var(--background-color));
   width: calc(100% - 4px - 2 * var(--file-sending-padding));
   height: calc(100% - 4px - var(--file-sending-padding));
   border-radius: 0.8rem;
