@@ -37,9 +37,16 @@ type InputErrors = {
 };
 
 // Types for account page
-type AccountTeam = Team;
+type AccountTeam = Team & {
+  _id: string;
+  teamMembers: Array<AccountTeamMember>;
+};
 
-type AccountTeamMember = {
+type AccountTeamMember = TeamMember & {
+  _id: string;
+};
+
+type AccountTeamRequestMember = {
   firstName: string;
   lastName: string;
   email: string;
@@ -47,11 +54,11 @@ type AccountTeamMember = {
   occupation: string;
   isVegan: boolean;
   agreement: boolean;
-};
+}
 
 type AccountTeamRequestBody = {
   teamName: string;
-  teamMembers: Array<AccountTeamMember>;
+  teamMembers: Array<AccountTeamRequestMember>;
 };
 
 type AccountTeamErrors = Team & {

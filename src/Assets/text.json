@@ -83,6 +83,84 @@
       "disabled": "Przekierowuję..."
     }
   },
+  "account": {
+    "teamMembers": "Członkowie zespołu",
+    "teamMember": "Członek zespołu",
+    "registerFields": {
+      "firstName": {
+        "label": "Imię",
+        "name": "firstName",
+        "id": "firstName",
+        "errorMessage": "Znaki specjalne są niedozwolone"
+      },
+      "lastName": {
+        "label": "Nazwisko",
+        "name": "lastName",
+        "id": "lastName",
+        "errorMessage": "Znaki specjalne są niedozwolone"
+      },
+      "email": {
+        "label": "Email",
+        "name": "email",
+        "id": "email",
+        "errorMessage": "Wprowadź poprawny adres email"
+      },
+      "dateOfBirth": {
+        "label": "Data urodzenia",
+        "name": "dateOfBirth",
+        "id": "dateOfBirth",
+        "errorMessage": ""
+      },
+      "occupation": {
+        "label": "Status zawodowy",
+        "name": "occupation",
+        "id": "occupation",
+        "occupationChoices": ["Uczeń", "Student", "Absolwent", "Inne"],
+        "errorMessage": ""
+      },
+      "teamName": {
+        "label": "Nazwa zespołu",
+        "name": "teamName",
+        "id": "teamName",
+        "errorMessage": ""
+      },
+      "vegan": {
+        "label": "Wegańskie menu",
+        "name": "isVegan",
+        "id": "isVegan",
+        "errorMessage": ""
+      },
+      "agreement": {
+        "label": "Wyrażam zgodę na przetwarzanie moich danych osobowych w celu rejestracji na HackArena 2024.*",
+        "name": "agreement",
+        "id": "agreement",
+        "errorMessage": ""
+      }
+    },
+    "buttons": {
+      "save": {
+        "active": "Zapisz",
+        "disabled": "Zapisuję..."
+      },
+      "edit-cancel": {
+        "active": "Cofniij",
+        "disabled": "Edytuj"
+      },
+      "addTeamMember": "Dodaj",
+      "deleteTeamMember": "Usuń",
+      "resetPassword": "Zmień hasło",
+      "deleteTeam": "Usuń zespół",
+      "logout": "Wyloguj"
+    },
+    "alert": {
+      "title": "Usuwanie zespołu",
+      "message": "Czy na pewno chcesz usunąć zespół?",
+      "buttons": {
+        "delete": "Usuń",
+        "cancel": "Anuluj"
+      }
+    }
+  },
   "login": {
     "title": "Logowanie",
     "loginFields": {
