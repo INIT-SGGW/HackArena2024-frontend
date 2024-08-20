@@ -32,7 +32,7 @@ export const NavBarButton = ({ text, link, special = false }: { text: string, li
 function NavBar() {
   const [showSidebar, setShowSidebar] = useState(false);
   const windowWidth = useWindowWidth();
-  const navItems = text.main.header.navItems;
+  const navItems = text.nav.navItems;
   return (
     <div className="navbar">
       <div className="navbar__content pagewidth">
@@ -81,38 +81,34 @@ function NavBar() {
                   );
                 })}
                 {/* <Link
-                {/* <Link
                   to="/login"
                   onClick={() => setShowSidebar(false)}
                   className="navbar__link"
                 >
                   {navItems[navItems.length - 1]}
                 </Link> */}
-              </Link> */}
-            </nav>
-          </div>
-      </>
-      ) : (
-      <>
-        <nav className="navbar__nav">
-          <NavBarButton text={navItems[0]} link="/rejestracja" special={true} />
-          <NavBarButton text={navItems[1]} link="/wydarzenia" />
+              </nav>
+            </div>
+          </>
+        ) : (
+          <>
+            <nav className="navbar__nav">
+              <NavBarButton text={navItems[0]} link="/rejestracja" special={true} />
+              <NavBarButton text={navItems[1]} link="/wydarzenia" />
 
-          {navItems.slice(2, navItems.length).map((item, index) => {
-            return (
-              <NavBarButton key={index} text={item} link={`/#${item.toLowerCase()}`} />
+              {navItems.slice(2, navItems.length).map((item, index) => {
+                return (
+                  <NavBarButton key={index} text={item} link={`/#${item.toLowerCase()}`} />
 
-            );
-          })}
-          {/* <Link to="/login" className="navbar__link">
+                );
+              })}
               {/* <Link to="/login" className="navbar__link">
                 {navItems[navItems.length - 1]}
               </Link> */}
-        </Link> */}
-      </nav>
-    </>
-  )
-}
+            </nav>
+          </>
+        )
+        }
       </div >
     </div >
   );
