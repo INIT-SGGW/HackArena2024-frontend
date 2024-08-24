@@ -50,19 +50,17 @@ export const FAQ = ({ question, answer }: FAQProps) => {
 
 
 interface FAQComponentProps {
-    text: {
-        questions: {
-            question: string;
-            answer: string;
-        }[]
-    }
+    questions: {
+        question: string;
+        answer: string;
+    }[]
 }
 
-const FAQComponent = ({ text }: FAQComponentProps) => {
+const FAQComponent = ({ questions }: FAQComponentProps) => {
     return (
         <div className="faq--content">
             {
-                text.questions.map(({ question, answer }, index) => {
+                questions.map(({ question, answer }, index) => {
                     return <FAQ key={index} question={question} answer={answer} />
                 })
             }
