@@ -37,48 +37,48 @@ const AllEventsData: { [key: string]: any } = {
         "photos": {
             "title": "Zdjęcia",
             "list": [
-                '../../Assets/HackArena1/DSC_6107',
-                '../../Assets/HackArena1/DSC_6131',
-                '../../Assets/HackArena1/DSC_6132',
-                '../../Assets/HackArena1/DSC_6144',
-                '../../Assets/HackArena1/DSC_6158',
-                '../../Assets/HackArena1/DSC_6165',
-                '../../Assets/HackArena1/DSC_6172',
-                '../../Assets/HackArena1/DSC_6173',
-                '../../Assets/HackArena1/DSC_6184',
-                '../../Assets/HackArena1/DSC_6187',
-                '../../Assets/HackArena1/DSC_6190',
-                '../../Assets/HackArena1/DSC_6222',
-                '../../Assets/HackArena1/DSC_6226',
-                '../../Assets/HackArena1/DSC_6228',
-                '../../Assets/HackArena1/DSC_6235',
-                '../../Assets/HackArena1/DSC_6242',
-                '../../Assets/HackArena1/DSC_6245',
-                '../../Assets/HackArena1/DSC_6248',
-                '../../Assets/HackArena1/DSC_6251',
-                '../../Assets/HackArena1/DSC_6268',
-                '../../Assets/HackArena1/DSC_6284',
-                '../../Assets/HackArena1/DSC_6294',
-                '../../Assets/HackArena1/DSC_6588',
-                '../../Assets/HackArena1/DSC_6590',
-                '../../Assets/HackArena1/DSC_6597',
-                '../../Assets/HackArena1/DSC_6605',
-                '../../Assets/HackArena1/DSC_6606',
-                '../../Assets/HackArena1/DSC_6608',
-                '../../Assets/HackArena1/DSC_6613',
-                '../../Assets/HackArena1/DSC_6623',
-                '../../Assets/HackArena1/DSC_6629',
-                '../../Assets/HackArena1/DSC_6631',
-                '../../Assets/HackArena1/DSC_6638',
-                '../../Assets/HackArena1/DSC_6639',
-                '../../Assets/HackArena1/DSC_6640',
-                '../../Assets/HackArena1/DSC_6642',
-                '../../Assets/HackArena1/DSC_6645',
-                '../../Assets/HackArena1/DSC_6650',
-                '../../Assets/HackArena1/DSC_6652',
-                '../../Assets/HackArena1/DSC_6654',
-                '../../Assets/HackArena1/DSC_6664',
-                '../../Assets/HackArena1/DSC_6669'
+                '/Assets/HackArena1/DSC_6107',
+                '/Assets/HackArena1/DSC_6131',
+                '/Assets/HackArena1/DSC_6132',
+                '/Assets/HackArena1/DSC_6144',
+                '/Assets/HackArena1/DSC_6158',
+                '/Assets/HackArena1/DSC_6165',
+                '/Assets/HackArena1/DSC_6172',
+                '/Assets/HackArena1/DSC_6173',
+                '/Assets/HackArena1/DSC_6184',
+                '/Assets/HackArena1/DSC_6187',
+                '/Assets/HackArena1/DSC_6190',
+                '/Assets/HackArena1/DSC_6222',
+                '/Assets/HackArena1/DSC_6226',
+                '/Assets/HackArena1/DSC_6228',
+                '/Assets/HackArena1/DSC_6235',
+                '/Assets/HackArena1/DSC_6242',
+                '/Assets/HackArena1/DSC_6245',
+                '/Assets/HackArena1/DSC_6248',
+                '/Assets/HackArena1/DSC_6251',
+                '/Assets/HackArena1/DSC_6268',
+                '/Assets/HackArena1/DSC_6284',
+                '/Assets/HackArena1/DSC_6294',
+                '/Assets/HackArena1/DSC_6588',
+                '/Assets/HackArena1/DSC_6590',
+                '/Assets/HackArena1/DSC_6597',
+                '/Assets/HackArena1/DSC_6605',
+                '/Assets/HackArena1/DSC_6606',
+                '/Assets/HackArena1/DSC_6608',
+                '/Assets/HackArena1/DSC_6613',
+                '/Assets/HackArena1/DSC_6623',
+                '/Assets/HackArena1/DSC_6629',
+                '/Assets/HackArena1/DSC_6631',
+                '/Assets/HackArena1/DSC_6638',
+                '/Assets/HackArena1/DSC_6639',
+                '/Assets/HackArena1/DSC_6640',
+                '/Assets/HackArena1/DSC_6642',
+                '/Assets/HackArena1/DSC_6645',
+                '/Assets/HackArena1/DSC_6650',
+                '/Assets/HackArena1/DSC_6652',
+                '/Assets/HackArena1/DSC_6654',
+                '/Assets/HackArena1/DSC_6664',
+                '/Assets/HackArena1/DSC_6669'
             ]
         }
     },
@@ -186,7 +186,7 @@ const PhotoGallery = ({ photos }: { photos: string[] }) => {
     const getPhotoSrcSet = (photo: string): string => {
         const sizes = ["1920", "1440", "1024", "768", "480", "320", "250", "200"]
 
-        return sizes.map((size) => `${photo}/${size}.JPG ${size}w`).join(", ")
+        return sizes.map((size) => `${photo}/${size}.jpg ${size}w`).join(", ")
     }
 
     // SWIPE GESTURE DETECTION
@@ -225,7 +225,7 @@ const PhotoGallery = ({ photos }: { photos: string[] }) => {
                 photos.map((photo: string, index: number) => (
                     <img
                         key={index}
-                        src={`${photo + "/480.JPG"}`}
+                        src={`${photo + "/480.jpg"}`}
                         sizes={`(max-width: 395px) 100vw, (max-width: 572px) 50vw, (max-width: 768px) 33vw, 350px`}
                         srcSet={getPhotoSrcSet(photo)}
                         alt={`photo ${index}`}
@@ -247,7 +247,7 @@ const PhotoGallery = ({ photos }: { photos: string[] }) => {
                         photos.map((photo: string, index: number) => (
                             <div key={index} className='photo-gallery__photo-wrapper'>
                                 <img
-                                    src={`${photo + "/1024.JPG"}`}
+                                    src={`${photo + "/1024.jpg"}`}
                                     srcSet={getPhotoSrcSet(photo)}
                                     sizes="(max-width: 1000px) 100vw, 80vw"
                                     alt={`photo ${index}`}
