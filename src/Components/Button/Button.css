@@ -1,0 +1,25 @@
+.button {
+  position: relative;
+  height: fit-content;
+  min-width: fit-content;
+  overflow: hidden;
+}
+
+.button {
+  text-wrap: nowrap;
+}
+
+.button__double {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  overflow: hidden;
+  transition: all var(--hover-transition-time) ease-out;
+}
+
+@media screen and (min-width: 768px) {
+  .button:hover .button__double {
+    width: 100%;
+  }
+}
