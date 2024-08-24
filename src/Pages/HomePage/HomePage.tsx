@@ -94,7 +94,7 @@ function HomePage(props: Props) {
         </div>}
       <div id="faq" className="home--faq pagewidth home--section">
         <h2 className="header__white">{homeText.faq.title}</h2>
-        <FAQComponent text={homeText.faq} />
+        <FAQComponent questions={homeText.faq.questions} />
       </div>
     </div>
   );
