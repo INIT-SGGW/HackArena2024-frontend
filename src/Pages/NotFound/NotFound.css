@@ -7,6 +7,18 @@
   text-align: center;
 }
 
-.notfound > h2 {
-  color: rgb(var(--primary-color));
+.notfound h6 {
+  /* color: rgb(var(--primary-color)); */
+  margin-top: 1rem;
+}
+
+.notfound div {
+  display: inline-flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.notfound > div > button {
+  flex-grow: 1;
 }
