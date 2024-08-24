@@ -124,7 +124,7 @@ h2 {
 }
 
 .home--about__event {
-  background-color: var(--light-background-color);
+  background-color: rgb(var(--primary-color));
 }
 
 .home--about__event button {
