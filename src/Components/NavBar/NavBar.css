@@ -96,7 +96,6 @@
 
 .navbarButton {
   position: relative;
-  overflow: hidden;
 }
 
 .navbarButton__double {
@@ -108,7 +107,7 @@
   background-color: var(--text-one-color);
   width: 0;
   overflow: hidden;
-  transition: all 0.15s ease-out;
+  transition: all var(--hover-transition-time) ease-out;
 }
 
 .navbarButton__double--special {
