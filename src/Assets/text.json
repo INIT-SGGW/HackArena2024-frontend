@@ -357,7 +357,11 @@
     }
   },
   "notFound": {
-    "title": "404",
-    "description": "Strona, którą próbujesz otworzyć nie istnieje"
+    "title": "Błąd 404",
+    "description": "Strona, którą próbujesz otworzyć nie istnieje",
+    "buttons": {
+      "home": "Strona główna",
+      "goBack": "Wróć"
+    }
   }
 }
