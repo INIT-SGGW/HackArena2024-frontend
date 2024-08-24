@@ -1,5 +1,6 @@
 import React from "react";
 import "./Loading.css";
+import Button from "../Button/Button";
 
 export enum Status {
   Waiting,
@@ -39,24 +40,24 @@ function Loading(props: Props) {
       {status === Status.Error && (
         <div className="loading--message">
           <h5>{messageError}</h5>
-          <button
+          <Button
             className="input--input loading--button"
             onClick={() => setRenderVariable(Status.Waiting)}
           >
             WRÓĆ
-          </button>
+          </Button>
         </div>
       )}
       {status === Status.Success && (
         <div className="loading--message">
           <h3>{titleSuccess}</h3>
           <h5>{messageSucces}</h5>
-          <button
+          <Button
             className="input--input loading--button"
             onClick={() => (window.location.href = successRedirect)}
           >
             OK
-          </button>
+          </Button>
         </div>
       )}
     </div>

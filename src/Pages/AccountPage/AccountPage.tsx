@@ -14,6 +14,7 @@ import Alert from "../../Components/Alert/Alert";
 import AccountService from "../../Services/AccountService";
 import AuthenticationService from "../../Services/AuthenticationService";
 import isRegistrationOpen from "../../Utils/isRegistrationOpen";
+import Button from "../../Components/Button/Button";
 
 interface Props { }
 
@@ -296,7 +297,7 @@ function AccountPage(props: Props) {
           <div className="header--buttons">
             {!inputsDisabled && (
               <input
-                className={`account--button account--button__primary${inputsDisabled ? "" : " account--button__halfborder"
+                className={`btn btn__primary${inputsDisabled ? "" : " btn__halfborder"
                   }`}
                 type="submit"
                 value={inputsDisabled ? register.button.disabled : "Zapisz"}
@@ -307,7 +308,7 @@ function AccountPage(props: Props) {
             {(!isEventLive() && isRegistrationOpen()) && (
               <input
                 type="button"
-                className={`account--button account--button__primary${inputsDisabled ? "" : " account--button__halfborder"
+                className={`btn btn__primary${inputsDisabled ? "" : " btn__halfborder"
                   }`}
                 onClick={handleEditForm}
                 value={inputsDisabled ? "Edytuj" : "Anuluj"}
@@ -323,7 +324,7 @@ function AccountPage(props: Props) {
 
             {!inputsDisabled && (
               <input
-                className="account--button account--button__primary"
+                className="btn btn__primary"
                 type="button"
                 disabled={inputsDisabled || values.teamMembers.length >= 3}
                 value="Dodaj"
@@ -340,7 +341,7 @@ function AccountPage(props: Props) {
 
                 {!inputsDisabled && values.teamMembers.length > 1 && (
                   <input
-                    className="account--button account--button__secondary"
+                    className="btn btn__secondary"
                     type="button"
                     value="Usuń"
                     onClick={() => handleDeleteTeamMember(index)}
@@ -694,26 +695,25 @@ function AccountPage(props: Props) {
       </form>
       <div className="account--bottom">
 
-        <button
-          className="account--button account--button__primary"
+        <Button
+          className="btn btn__primary"
           onClick={hangleLogOut}
         >
           {accountText.buttons.logout}
-        </button>
-        <button
-          type="button"
-          className="account--button account--button__primary"
+        </Button>
+        <Button
+          className="btn btn__primary"
           onClick={() => navigate("/reset")}
         >
           {accountText.buttons.resetPassword}
-        </button>
-        {/* <button
+        </Button>
+        {/* <Button
           type="button"
-          className="account--button account--button__primary"
+          className="btn btn__primary"
           onClick={() => setShowAlert(true)}
         >
           {accountText.buttons.deleteTeam}
-        </button> */}
+        </Button> */}
         {
           showAlert &&
           <Alert

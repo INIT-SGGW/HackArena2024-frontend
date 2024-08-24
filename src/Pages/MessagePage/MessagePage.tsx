@@ -1,6 +1,7 @@
 import React from "react";
 import "./MessagePage.css";
 import { useNavigate } from "react-router-dom";
+import Button from "../../Components/Button/Button";
 
 interface Props {
   title: string;
@@ -17,8 +18,8 @@ function MessagePage({ title, message, buttonOneText, buttonOneLink, buttonTwoTe
   return <div className="message">
     <h2>{title}</h2>
     <h4>{message}</h4>
-    {buttonOneLink && <button className="account--button account--button__primary" onClick={() => navigator(buttonOneLink)}>{buttonOneText}</button>}
-    {buttonTwoLink && <button className="account--button account--button__secondary" onClick={() => navigator(buttonTwoLink)}>{buttonTwoText}</button>}
+    {buttonOneLink && <Button className="btn btn__primary" onClick={() => navigator(buttonOneLink)}>{buttonOneText || ""}</Button>}
+    {buttonTwoLink && <Button className="btn btn__secondary" onClick={() => navigator(buttonTwoLink)}>{buttonTwoText || ""}</Button>}
   </div>
 }
 

@@ -5,6 +5,7 @@ import { eventEndDate, eventStartDate } from "../../Constants/Constants"
 import isEventLive from "../../Utils/isEventLive"
 import text from "../../Assets/text.json";
 import AccountService from "../../Services/AccountService";
+import Button from "../Button/Button";
 
 interface Props { }
 
@@ -78,8 +79,8 @@ function FileUploader(props: Props) {
             <span>{message}</span>
             {status !== FileStatus.SENDING &&
               <div>
-                <button onClick={handleCancel} className={`file--button account--button account--button__secondary${status !== FileStatus.SUCCESS ? " file--button__halfborder" : ""}`}>Cofnij</button>
-                {status !== FileStatus.SUCCESS && <button onClick={handleSendFile} className="file--button account--button account--button__secondary file--button__halfborder">Wyślij</button>}
+                <Button onClick={handleCancel} className={`file--button btn btn__secondary${status !== FileStatus.SUCCESS ? " file--button__halfborder" : ""}`}>Cofnij</Button>
+                {status !== FileStatus.SUCCESS && <Button onClick={handleSendFile} className="file--button btn btn__secondary file--button__halfborder">Wyślij</Button>}
               </div>
             }
           </div>

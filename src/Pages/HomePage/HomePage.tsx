@@ -9,6 +9,7 @@ import isEventLive from "../../Utils/isEventLive";
 import isEventDone from "../../Utils/isEventDone";
 import FAQ from "../../Components/FAQ/FAQ";
 import FAQComponent from "../../Components/FAQ/FAQ";
+import Button from "../../Components/Button/Button";
 
 interface Props { }
 
@@ -38,8 +39,8 @@ function HomePage(props: Props) {
           <h1>{homeText.welcome.title}</h1>
           <h6>{homeText.welcome.description.first}</h6>
           <div className="welcome--buttons">
-            <button onClick={() => navigate("/wydarzenia")} className="account--button account--button__primary-black-2">{homeText.welcome.buttons.events}</button>
-            <button onClick={() => window.location.href = "#o_nas"} className="account--button account--button__primary-white">{homeText.welcome.buttons.aboutUs}</button>
+            <Button onClick={() => navigate("/wydarzenia")} className="btn btn__primary-bw">{homeText.welcome.buttons.events}</Button>
+            <Button onClick={() => window.location.href = "#o_nas"} className="btn btn__primary-w">{homeText.welcome.buttons.aboutUs}</Button>
           </div>
         </div>
       </div>
@@ -68,7 +69,7 @@ function HomePage(props: Props) {
         <div id="hackarena2" className="home--about pagewidth home--section">
           <h2 className="header__black">{homeText.nextEvent.title}</h2>
           <p id="next_event_text"></p>
-          <button onClick={() => navigate("/wydarzenia/hackarena2_0")} className="account--button account--button__primary-black">{homeText.nextEvent.button}</button>
+          <Button onClick={() => navigate("/wydarzenia/hackarena2_0")} className="btn btn__primary-b btn__primary-b-border">{homeText.nextEvent.button}</Button>
         </div>
       </div>
       {/* <div id="agenda" className="home--agenda home--section pagewidth">
@@ -90,7 +91,7 @@ function HomePage(props: Props) {
           <h2>{homeText.dontWait.title}</h2>
           <h4>{homeText.dontWait.description}</h4>
           <p>{homeText.dontWait.dateReminder} <b>{getRegistrationEndDate()}</b></p>
-          <button onClick={() => navigate("/rejestracja")} className="account--button account--button__primary">{homeText.dontWait.button}</button>
+          <Button onClick={() => navigate("/rejestracja")} className="btn btn__primary">{homeText.dontWait.button}</Button>
         </div>}
       <div id="faq" className="home--faq pagewidth home--section">
         <h2 className="header__white">{homeText.faq.title}</h2>

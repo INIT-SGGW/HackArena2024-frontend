@@ -1,5 +1,6 @@
 import React from 'react'
 import './Alert.css'
+import Button from '../Button/Button'
 
 interface Props {
     title: string,
@@ -23,20 +24,20 @@ function Alert({
                 <h3>{title}</h3>
                 <p>{message}</p>
                 <div className='alert--buttons'>
-                    <button
-                        className='account--button account--button__secondary'
+                    <Button
+                        className='btn btn__secondary'
                         onClick={buttonOneAction}
                     >
                         {buttonOneText}
-                    </button>
+                    </Button>
                     {
                         (buttonTwoText && buttonTwoAction) &&
-                        <button
-                            className='account--button account--button__primary'
+                        <Button
+                            className='btn btn__primary'
                             onClick={buttonTwoAction}
                         >
                             {buttonTwoText}
-                        </button>
+                        </Button>
                     }
                 </div>
             </div>
