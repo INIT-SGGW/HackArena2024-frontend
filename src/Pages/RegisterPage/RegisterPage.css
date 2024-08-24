@@ -13,9 +13,12 @@
   align-items: center;
 }
 
-.register--title {
-  color: rgb(var(--primary-color));
-  margin-bottom: 1rem;
+.register--heading > .social {
+  margin-top: 2rem;
+}
+
+.register--heading > .header__white {
+  margin-bottom: 1.5rem;
 }
 
 .register--social {

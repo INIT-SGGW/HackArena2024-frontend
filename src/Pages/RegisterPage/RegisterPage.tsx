@@ -13,6 +13,7 @@ import isRegistrationOpen from "../../Utils/isRegistrationOpen"
 import FacebookIcon from "../../Assets/facebook.svg";
 import InstagramIcon from "../../Assets/instagram.svg";
 import LinkedInIcon from "../../Assets/linkedin.svg";
+import SocialMedia from "../../Components/SocialMedia/SocialMedia";
 
 interface Props { }
 
@@ -162,25 +163,14 @@ function RegisterPage(props: Props) {
           {
             isRegistrationOpen() ?
               <>
-                <h1 className="register--title">{register.title}</h1>
+                <h1 className="header__white">{register.title}</h1>
                 <h5>{register.description}</h5>
               </>
               :
               <>
-                <h2 className="register--title">{register.closed.title}</h2>
+                <h2 className="header__white">{register.closed.title}</h2>
                 <h6>{register.closed.description}</h6>
-                <div className="footer--social register--social">
-                  <a href="https://www.facebook.com/profile.php?id=61559358943109&is_tour_dismissed">
-                    <img src={FacebookIcon} alt="Facebook" />
-                  </a>
-                  <a href="https://www.instagram.com/kn_init_/">
-                    <img src={InstagramIcon} alt="Instagram" />
-                  </a>
-                  <a href="https://www.linkedin.com/company/ko%C5%82o-naukowe-init/about/">
-                    <img src={LinkedInIcon} alt="LinkedIn" />
-                  </a>
-
-                </div>
+                <SocialMedia />
               </>
           }
         </div>
