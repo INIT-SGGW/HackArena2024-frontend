@@ -13,12 +13,6 @@ import InstagramIcon from "./Assets/instagram.svg";
 import DiscordIcon from "./Assets/discord.svg";
 import LinkedInIcon from "./Assets/linkedin.svg";
 
-declare module 'react' {
-  interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
-    'skeleton-width'?: string; // Add your custom attribute here
-  }
-}
-
 const TopBar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
 
@@ -29,7 +23,6 @@ const TopBar = () => {
           <img src={Logo} alt="HackArena" />
         </Link>
         <NavBar showSideBar={showSidebar} setShowSidebar={setShowSidebar} />
-
       </div>
     </div>
   )
