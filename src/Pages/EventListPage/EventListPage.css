@@ -1,5 +1,5 @@
 .events {
-  padding: 4rem 0;
+  padding: 2rem 0;
   padding-bottom: 6rem;
 }
 
@@ -15,6 +15,11 @@
   /* color: var(--text-one-color); */
   width: fit-content;
   margin: 2rem 0 0.5rem 0;
+}
+
+.events__noevents {
+  width: 100%;
+  text-align: center;
 }
 
 .events__group {
@@ -39,7 +44,7 @@
   border-color: rgb(var(--primary-color));
 }
 
-.events__group--past > div {
+.events__group--finished > div {
   border-color: var(--text-one-color);
 }
 
@@ -77,7 +82,7 @@
   background-color: rgba(var(--primary-color), 0.4);
 }
 
-.events__group--past > div::after {
+.events__group--finished > div::after {
   background-color: #ffffff60;
 }
 
