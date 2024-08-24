@@ -50,6 +50,7 @@
   box-sizing: border-box;
   text-align: center;
   padding: 1rem;
+  padding-bottom: 0;
   padding-top: 5rem;
 }
 
