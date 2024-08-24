@@ -1,0 +1,50 @@
+.social {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.social img {
+  height: 100%;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(108deg)
+    brightness(104%) contrast(104%);
+}
+
+.social a {
+  display: block;
+  height: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .social a {
+    height: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .social {
+    padding: 2rem 0 !important;
+  }
+}
+
+.social-animation {
+  animation: wigle 0.35s ease-in-out;
+}
+
+@keyframes wigle {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(-13deg);
+  }
+  50% {
+    transform: rotate(0deg) scale(1.05);
+  }
+  75% {
+    transform: rotate(13deg);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
