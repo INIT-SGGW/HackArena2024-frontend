@@ -184,7 +184,7 @@
   height: 100%;
   width: fit-content;
   display: flex;
-  /* transition: transform 0.3s ease-in-out; */
+  transition: transform 0.3s ease-in-out;
 }
 
 .photo-gallery__photo-wrapper {
@@ -199,6 +199,7 @@
   max-width: 80%;
   max-height: 80%;
   object-fit: contain;
+  z-index: 1001;
 }
 
 @media screen and (max-width: 1000px) {

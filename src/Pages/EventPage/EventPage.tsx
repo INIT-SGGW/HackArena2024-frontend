@@ -37,48 +37,48 @@ const AllEventsData: { [key: string]: any } = {
         "photos": {
             "title": "Zdjęcia",
             "list": [
-                '../../Assets/HackArena_1/DSC_6107.JPG',
-                '../../Assets/HackArena_1/DSC_6131.JPG',
-                '../../Assets/HackArena_1/DSC_6132.JPG',
-                '../../Assets/HackArena_1/DSC_6144.JPG',
-                '../../Assets/HackArena_1/DSC_6158.JPG',
-                '../../Assets/HackArena_1/DSC_6165.JPG',
-                '../../Assets/HackArena_1/DSC_6172.JPG',
-                '../../Assets/HackArena_1/DSC_6173.JPG',
-                '../../Assets/HackArena_1/DSC_6184.JPG',
-                '../../Assets/HackArena_1/DSC_6187.JPG',
-                '../../Assets/HackArena_1/DSC_6190.JPG',
-                '../../Assets/HackArena_1/DSC_6222.JPG',
-                '../../Assets/HackArena_1/DSC_6226.JPG',
-                '../../Assets/HackArena_1/DSC_6228.JPG',
-                '../../Assets/HackArena_1/DSC_6235.JPG',
-                '../../Assets/HackArena_1/DSC_6242.JPG',
-                '../../Assets/HackArena_1/DSC_6245.JPG',
-                '../../Assets/HackArena_1/DSC_6248.JPG',
-                '../../Assets/HackArena_1/DSC_6251.JPG',
-                '../../Assets/HackArena_1/DSC_6268.JPG',
-                '../../Assets/HackArena_1/DSC_6284.JPG',
-                '../../Assets/HackArena_1/DSC_6294.JPG',
-                '../../Assets/HackArena_1/DSC_6588.JPG',
-                '../../Assets/HackArena_1/DSC_6590.JPG',
-                '../../Assets/HackArena_1/DSC_6597.JPG',
-                '../../Assets/HackArena_1/DSC_6605.JPG',
-                '../../Assets/HackArena_1/DSC_6606.JPG',
-                '../../Assets/HackArena_1/DSC_6608.JPG',
-                '../../Assets/HackArena_1/DSC_6613.JPG',
-                '../../Assets/HackArena_1/DSC_6623.JPG',
-                '../../Assets/HackArena_1/DSC_6629.JPG',
-                '../../Assets/HackArena_1/DSC_6631.JPG',
-                '../../Assets/HackArena_1/DSC_6638.JPG',
-                '../../Assets/HackArena_1/DSC_6639.JPG',
-                '../../Assets/HackArena_1/DSC_6640.JPG',
-                '../../Assets/HackArena_1/DSC_6642.JPG',
-                '../../Assets/HackArena_1/DSC_6645.JPG',
-                '../../Assets/HackArena_1/DSC_6650.JPG',
-                '../../Assets/HackArena_1/DSC_6652.JPG',
-                '../../Assets/HackArena_1/DSC_6654.JPG',
-                '../../Assets/HackArena_1/DSC_6664.JPG',
-                '../../Assets/HackArena_1/DSC_6669.JPG'
+                '../../Assets/HackArena1/DSC_6107',
+                '../../Assets/HackArena1/DSC_6131',
+                '../../Assets/HackArena1/DSC_6132',
+                '../../Assets/HackArena1/DSC_6144',
+                '../../Assets/HackArena1/DSC_6158',
+                '../../Assets/HackArena1/DSC_6165',
+                '../../Assets/HackArena1/DSC_6172',
+                '../../Assets/HackArena1/DSC_6173',
+                '../../Assets/HackArena1/DSC_6184',
+                '../../Assets/HackArena1/DSC_6187',
+                '../../Assets/HackArena1/DSC_6190',
+                '../../Assets/HackArena1/DSC_6222',
+                '../../Assets/HackArena1/DSC_6226',
+                '../../Assets/HackArena1/DSC_6228',
+                '../../Assets/HackArena1/DSC_6235',
+                '../../Assets/HackArena1/DSC_6242',
+                '../../Assets/HackArena1/DSC_6245',
+                '../../Assets/HackArena1/DSC_6248',
+                '../../Assets/HackArena1/DSC_6251',
+                '../../Assets/HackArena1/DSC_6268',
+                '../../Assets/HackArena1/DSC_6284',
+                '../../Assets/HackArena1/DSC_6294',
+                '../../Assets/HackArena1/DSC_6588',
+                '../../Assets/HackArena1/DSC_6590',
+                '../../Assets/HackArena1/DSC_6597',
+                '../../Assets/HackArena1/DSC_6605',
+                '../../Assets/HackArena1/DSC_6606',
+                '../../Assets/HackArena1/DSC_6608',
+                '../../Assets/HackArena1/DSC_6613',
+                '../../Assets/HackArena1/DSC_6623',
+                '../../Assets/HackArena1/DSC_6629',
+                '../../Assets/HackArena1/DSC_6631',
+                '../../Assets/HackArena1/DSC_6638',
+                '../../Assets/HackArena1/DSC_6639',
+                '../../Assets/HackArena1/DSC_6640',
+                '../../Assets/HackArena1/DSC_6642',
+                '../../Assets/HackArena1/DSC_6645',
+                '../../Assets/HackArena1/DSC_6650',
+                '../../Assets/HackArena1/DSC_6652',
+                '../../Assets/HackArena1/DSC_6654',
+                '../../Assets/HackArena1/DSC_6664',
+                '../../Assets/HackArena1/DSC_6669'
             ]
         }
     },
@@ -141,6 +141,8 @@ const PhotoGallery = ({ photos }: { photos: string[] }) => {
     const CarouselRef = React.useRef<HTMLDivElement>(null)
     const [touchStart, setTouchStart] = React.useState(0)
     const [touchEnd, setTouchEnd] = React.useState(0)
+    const [touchCurrent, setTouchCurrent] = React.useState(0)
+    const [noSwipeTrigger, setNoSwipeTrigger] = React.useState(false)
 
     useEffect(() => {
         document.addEventListener('keydown', (event) => {
@@ -160,7 +162,13 @@ const PhotoGallery = ({ photos }: { photos: string[] }) => {
         if (isZoomed && CarouselRef.current !== null) {
             CarouselRef.current.style.transform = `translateX(-${currentPhoto * 100}vw)`
         }
-    }, [currentPhoto])
+    }, [currentPhoto, noSwipeTrigger])
+
+    useEffect(() => {
+        if (isZoomed && CarouselRef.current !== null) {
+            CarouselRef.current.style.transform = `translateX(calc(-${currentPhoto * 100}vw - ${touchStart - touchCurrent}px))`
+        }
+    }, [touchCurrent])
 
     const handleNextPhoto = (): void => {
         setCurrentPhoto((prev) => Math.min(prev + 1, photos.length - 1))
@@ -175,6 +183,12 @@ const PhotoGallery = ({ photos }: { photos: string[] }) => {
         setCurrentPhoto(photoIndex)
     }
 
+    const getPhotoSrcSet = (photo: string): string => {
+        const sizes = ["1920", "1440", "1024", "768", "480", "320", "250", "200"]
+
+        return sizes.map((size) => `${photo}/${size}.JPG ${size}w`).join(", ")
+    }
+
     // SWIPE GESTURE DETECTION
 
     // the required distance between touchStart and touchEnd to be detected as a swipe
@@ -183,10 +197,12 @@ const PhotoGallery = ({ photos }: { photos: string[] }) => {
     const onTouchStart = (e: TouchEvent) => {
         setTouchEnd(0) // otherwise the swipe is fired even with usual touch events
         setTouchStart(e.targetTouches[0].clientX)
-        console.log('start', e.targetTouches[0].clientX)
     }
 
-    const onTouchMove = (e: TouchEvent) => setTouchEnd(e.targetTouches[0].clientX)
+    const onTouchMove = (e: TouchEvent) => {
+        setTouchCurrent(e.targetTouches[0].clientX)
+        setTouchEnd(e.targetTouches[0].clientX)
+    }
 
     const onTouchEnd = () => {
         if (!touchStart || !touchEnd) return
@@ -197,6 +213,9 @@ const PhotoGallery = ({ photos }: { photos: string[] }) => {
             handleNextPhoto()
         } else if (isRightSwipe) {
             handlePreviousPhoto()
+        } else {
+            console.log("no swipe")
+            setNoSwipeTrigger(!noSwipeTrigger)
         }
     }
 
@@ -204,7 +223,14 @@ const PhotoGallery = ({ photos }: { photos: string[] }) => {
         <div className={`photo-gallery`}>
             {
                 photos.map((photo: string, index: number) => (
-                    <img key={index} src={photo} alt={`photo ${index}`} onClick={() => handleZoomIn(index)} />
+                    <img
+                        key={index}
+                        src={`${photo + "/480.JPG"}`}
+                        sizes={`(max-width: 395px) 100vw, (max-width: 572px) 50vw, (max-width: 768px) 33vw, 350px`}
+                        srcSet={getPhotoSrcSet(photo)}
+                        alt={`photo ${index}`}
+                        onClick={() => handleZoomIn(index)}
+                    />
                 ))
             }
 
@@ -220,7 +246,15 @@ const PhotoGallery = ({ photos }: { photos: string[] }) => {
                     {
                         photos.map((photo: string, index: number) => (
                             <div key={index} className='photo-gallery__photo-wrapper'>
-                                <img src={photo} alt={`photo ${index}`} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} />
+                                <img
+                                    src={`${photo + "/1024.JPG"}`}
+                                    srcSet={getPhotoSrcSet(photo)}
+                                    sizes="(max-width: 1000px) 100vw, 80vw"
+                                    alt={`photo ${index}`}
+                                    onTouchStart={onTouchStart}
+                                    onTouchMove={onTouchMove}
+                                    onTouchEnd={onTouchEnd}
+                                />
                             </div>
                         ))
                     }
