@@ -13,11 +13,11 @@ function NotFound() {
   return (
     <Page pageTitle={pageText.meta.title} description={pageText.meta.description} noIndex>
       <div className="notfound pagewidth">
-        <h2 className="header__white">{pageText.title}</h2>
+        <h2 className="header__yellow">{pageText.title}</h2>
         <h6>{pageText.description}</h6>
         <div>
-          <Button className="btn btn__primary-w" onClick={() => navigation("/")}>{pageText.buttons.home}</Button>
-          <Button className="btn btn__secondary-w" onClick={() => navigation(-1)}>{pageText.buttons.goBack}</Button>
+          <Button className="btn btn__primary btn__primary-border" onClick={() => navigation("/")}>{pageText.buttons.home}</Button>
+          <Button className="btn btn__secondary" onClick={() => navigation(-1)}>{pageText.buttons.goBack}</Button>
         </div>
       </div>
     </Page>
