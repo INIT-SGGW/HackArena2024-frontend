@@ -35,7 +35,7 @@
   },
   "eventList": {
     "meta": {
-      "title": "Wydarzenia",
+      "title": "Wydarzenia | HackArena",
       "description": "Sprawdź zakończone i nadchodzące edycje HackAreny"
     },
     "title": "Wydarzenia",
@@ -45,7 +45,7 @@
   },
   "register": {
     "meta": {
-      "title": "Rejestracja",
+      "title": "Rejestracja | HackArena",
       "description": "Zbierz zespół i walcz o tytuł mistrza HackAreny w zbliżającej się edycji HackAreny!"
     },
     "closed": {
@@ -127,7 +127,7 @@
   },
   "account": {
     "meta": {
-      "title": "Moje konto",
+      "title": "Konto | HackArena",
       "description": "Po rejestrcji znajdziesz tutaj informacje o swojej drużynie"
     },
     "teamMembers": "Członkowie zespołu",
@@ -209,7 +209,7 @@
   },
   "login": {
     "meta": {
-      "title": "Logowanie",
+      "title": "Logowanie | HackArena",
       "description": "Zaloguj się na swoje konto HackArena"
     },
     "title": "Logowanie",
@@ -245,7 +245,7 @@
   },
   "resetPassword": {
     "meta": {
-      "title": "Resetowanie hasła",
+      "title": "Resetowanie hasła | HackArena",
       "description": "Resetowanie hasła do konta HackArena"
     },
     "title": "Resetowanie hasła",
@@ -276,7 +276,7 @@
   },
   "forgotPassword": {
     "meta": {
-      "title": "Resetowanie hasła",
+      "title": "Resetowanie hasła | HackArena",
       "description": "Resetowanie hasła do konta HackArena"
     },
     "title": "Resetowanie hasła",
@@ -417,7 +417,7 @@
   },
   "notFound": {
     "meta": {
-      "title": "Błąd 404",
+      "title": "Błąd 404 | HackArena",
       "description": "Strona, którą próbujesz otworzyć nie istnieje"
     },
     "title": "Błąd 404",
