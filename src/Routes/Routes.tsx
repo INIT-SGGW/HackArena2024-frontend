@@ -56,10 +56,6 @@ const router = createBrowserRouter([
         element: <AccountPage />,
       },
       {
-        path: "/download/:teamID",
-        element: <DownloadPage />,
-      },
-      {
         path: "/wydarzenia",
         element: <EventListPage />,
       },
