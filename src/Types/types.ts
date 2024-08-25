@@ -1,96 +1,103 @@
+export interface PageMetaText {
+  meta: {
+    title: string
+    description: string
+  }
+}
+
 type Team = {
-  teamName: string;
-  teamMembers: Array<TeamMember>;
-};
+  teamName: string
+  teamMembers: Array<TeamMember>
+}
 
 type TeamMember = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  dateOfBirth: string;
-  occupation: string;
-  isVegan: boolean;
-  agreement: boolean;
-};
+  firstName: string
+  lastName: string
+  email: string
+  dateOfBirth: string
+  occupation: string
+  isVegan: boolean
+  agreement: boolean
+}
 
 type TeamMemberErrors = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  dateOfBirth: string;
-  occupation: string;
-  agreement: string;
-};
+  firstName: string
+  lastName: string
+  email: string
+  dateOfBirth: string
+  occupation: string
+  agreement: string
+}
 
 // Types for register page
 
 type InputTeam = Team & {
-  password: string;
-  repeatPassword: string;
-};
+  password: string
+  repeatPassword: string
+}
 
 type InputErrors = {
-  teamName: string;
-  password: string;
-  repeatPassword: string;
-  teamMembers: Array<TeamMemberErrors>;
-};
+  teamName: string
+  password: string
+  repeatPassword: string
+  teamMembers: Array<TeamMemberErrors>
+}
 
 // Types for account page
 type AccountTeam = Team & {
-  _id: string;
-  teamMembers: Array<AccountTeamMember>;
-};
+  _id: string
+  teamMembers: Array<AccountTeamMember>
+}
 
 type AccountTeamMember = TeamMember & {
-  _id: string;
-};
+  _id: string
+}
 
 type AccountTeamRequestMember = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  dateOfBirth: Date;
-  occupation: string;
-  isVegan: boolean;
-  agreement: boolean;
+  firstName: string
+  lastName: string
+  email: string
+  dateOfBirth: Date
+  occupation: string
+  isVegan: boolean
+  agreement: boolean
 }
 
 type AccountTeamRequestBody = {
-  teamName: string;
-  teamMembers: Array<AccountTeamRequestMember>;
-};
+  teamName: string
+  teamMembers: Array<AccountTeamRequestMember>
+}
 
 type AccountTeamErrors = Team & {
-  teamMembers: Array<TeamMemberErrors>;
-};
+  teamMembers: Array<TeamMemberErrors>
+}
 
 // Types for authentication
 
 type RegisterTeamMemberBody = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  dateOfBirth: Date;
-  occupation: string;
-  isVegan: boolean;
-  agreement: boolean;
-};
+  firstName: string
+  lastName: string
+  email: string
+  dateOfBirth: Date
+  occupation: string
+  isVegan: boolean
+  agreement: boolean
+}
 
 type RegisterBody = {
-  teamName: string;
-  password: string;
-  teamMembers: RegisterTeamMemberBody[];
-};
+  teamName: string
+  password: string
+  teamMembers: RegisterTeamMemberBody[]
+}
 
 type LoginBody = {
-  email: string;
-  password: string;
-};
+  email: string
+  password: string
+}
 
 type ResetPasswordBody = {
-  password: string;
-};
+  password: string
+}
 
 export type {
   InputTeam,
@@ -101,4 +108,4 @@ export type {
   RegisterBody,
   LoginBody,
   ResetPasswordBody,
-};
+}

@@ -1,37 +1,39 @@
-export interface PageText {
-    photos: string;
+import { PageMetaText } from "../../Types/types"
+
+export interface PageText extends PageMetaText {
+    photos: string
 }
 
 export interface CheckEventStatusData {
-    finished: boolean;
-    [key: string]: any;
+    finished: boolean
+    [key: string]: any
 }
 
 export interface FinishedEventData {
-    finished: boolean;
+    finished: boolean
     banner: {
-        title: String;
-        date: String;
-        description: String;
+        title: String
+        date: String
+        description: String
     },
     task: {
-        title: string;
-        description: string;
+        title: string
+        description: string
     },
     results: {
-        title: String;
-        description: String;
-        firstPlace: String;
-        secondPlace: String;
+        title: String
+        description: String
+        firstPlace: String
+        secondPlace: String
         teams: {
-            firstPlace: String;
-            secondPlace: String;
+            firstPlace: String
+            secondPlace: String
         }
     },
     highlightInfo: string,
     photos: {
-        title: String;
-        list: string[];
+        title: String
+        list: string[]
     }
 }
 
@@ -40,20 +42,20 @@ export const isFinishedEventData = (eventData: FinishedEventData | UpcomingEvent
 }
 
 export interface UpcomingEventData {
-    finished: boolean;
+    finished: boolean
     banner: {
-        title: String;
-        date: String;
-        description: String;
+        title: String
+        date: String
+        description: String
     },
-    clock: string;
+    clock: string
     generalInformation: {
-        title: string;
-        description: string;
+        title: string
+        description: string
     },
     task: {
-        title: string;
-        description: string;
+        title: string
+        description: string
     },
     format: {
         title: string,

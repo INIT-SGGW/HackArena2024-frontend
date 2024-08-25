@@ -5,6 +5,7 @@ import HackArena2_0Image from "../../Assets/hackarena_2_0_bw.jpg"
 import { useNavigate } from 'react-router-dom'
 import text from '../../Assets/text.json'
 import { EventBannerData, EventsData, PageText } from './types'
+import Page from '../../Components/Page/Page'
 
 const events: EventsData = {
     count: 2,
@@ -48,32 +49,34 @@ function EventListPage(): JSX.Element {
     })
 
     return (
-        <div className='events pagewidth'>
-            <div className='events__header'>
-                <h1 className='header__yellow header__wider header__taller'>{pageText.title}</h1>
+        <Page pageTitle={pageText.meta.title} description={pageText.meta.description}>
+            <div className='events pagewidth'>
+                <div className='events__header'>
+                    <h1 className='header__yellow header__wider header__taller'>{pageText.title}</h1>
+                </div>
+                {
+                    (eventsData === null || eventsData.count === 0) &&
+                    <h5 className='events__noevents'>{pageText.noEvents}</h5>
+                }
+                {
+                    eventsData !== null && eventsData.count > 0 &&
+                    <>
+                        <h3 className='header__yellow'>{pageText.upcoming}</h3>
+                        {
+                            eventsData.upcoming.map((event: EventBannerData, index: number) => (
+                                <EventBanner key={index} image={event.banner} title={event.title} url={event.url} isPresent={true} />
+                            ))
+                        }
+                        <h3 className='header__white'>{pageText.finished}</h3>
+                        {
+                            eventsData.finished.map((event: EventBannerData, index: number) => (
+                                <EventBanner key={index} image={event.banner} title={event.title} url={event.url} />
+                            ))
+                        }
+                    </>
+                }
             </div>
-            {
-                (eventsData === null || eventsData.count === 0) &&
-                <h5 className='events__noevents'>{pageText.noEvents}</h5>
-            }
-            {
-                eventsData !== null && eventsData.count > 0 &&
-                <>
-                    <h3 className='header__yellow'>{pageText.upcoming}</h3>
-                    {
-                        eventsData.upcoming.map((event: EventBannerData, index: number) => (
-                            <EventBanner key={index} image={event.banner} title={event.title} url={event.url} isPresent={true} />
-                        ))
-                    }
-                    <h3 className='header__white'>{pageText.finished}</h3>
-                    {
-                        eventsData.finished.map((event: EventBannerData, index: number) => (
-                            <EventBanner key={index} image={event.banner} title={event.title} url={event.url} />
-                        ))
-                    }
-                </>
-            }
-        </div>
+        </Page>
     )
 }
 

@@ -27,15 +27,27 @@
     "text": "HackArena 2.0 już w październiku!"
   },
   "event": {
+    "meta": {
+      "title": "HackArena",
+      "description": "Weź udział w wydarzeniu, które łączy programistów w 2 dniowym maratonie kodowania. Wykorzystaj swoją kreatywność i zdobywaj nagrody!"
+    },
     "photos": "Zdjęcia"
   },
   "eventList": {
+    "meta": {
+      "title": "Wydarzenia",
+      "description": "Sprawdź zakończone i nadchodzące edycje HackAreny"
+    },
     "title": "Wydarzenia",
     "upcoming": "Nadchodzące",
     "finished": "Zakończone",
     "noEvents": "Brak wydarzeń do wyświetlenia. Zajrzyj ponownie wkrótce!"
   },
   "register": {
+    "meta": {
+      "title": "Rejestracja",
+      "description": "Zbierz zespół i walcz o tytuł mistrza HackAreny w zbliżającej się edycji HackAreny!"
+    },
     "closed": {
       "title": "Rejestracja zamknięta",
       "description": "Rejestracja na HackArenę 2.0 rozpocznie się 01.09.2024. Dziękujemy za zainteresowanie i zapraszamy na nasze portale społecznościowe!"
@@ -114,6 +126,10 @@
     }
   },
   "account": {
+    "meta": {
+      "title": "Moje konto",
+      "description": "Po rejestrcji znajdziesz tutaj informacje o swojej drużynie"
+    },
     "teamMembers": "Członkowie zespołu",
     "teamMember": "Członek zespołu",
     "registerFields": {
@@ -192,6 +208,10 @@
     }
   },
   "login": {
+    "meta": {
+      "title": "Logowanie",
+      "description": "Zaloguj się na swoje konto HackArena"
+    },
     "title": "Logowanie",
     "loginFields": {
       "email": {
@@ -224,6 +244,41 @@
     }
   },
   "resetPassword": {
+    "meta": {
+      "title": "Resetowanie hasła",
+      "description": "Resetowanie hasła do konta HackArena"
+    },
+    "title": "Resetowanie hasła",
+    "formFields": {
+      "email": {
+        "label": "Email",
+        "name": "email",
+        "id": "email",
+        "errorMessage": "Wprowadź poprawny adres email"
+      },
+      "password": {
+        "label": "Hasło",
+        "name": "password",
+        "id": "password",
+        "errorMessage": "Hasło musi mieć: minimum 8 znaków, jedną dużą literę, jedną małą literę, jedną cyfrę i jeden znak specjalny"
+      },
+      "repeatPassword": {
+        "label": "Powtórz hasło",
+        "name": "repeatPassword",
+        "id": "repeatPassword",
+        "errorMessage": "Hasła nie są takie same"
+      }
+    },
+    "button": {
+      "active": "Zresetuj",
+      "disabled": "Przekierowuję..."
+    }
+  },
+  "forgotPassword": {
+    "meta": {
+      "title": "Resetowanie hasła",
+      "description": "Resetowanie hasła do konta HackArena"
+    },
     "title": "Resetowanie hasła",
     "formFields": {
       "email": {
@@ -251,6 +306,10 @@
     }
   },
   "home": {
+    "meta": {
+      "title": "HackArena",
+      "description": "Weź udział w wydarzeniu, które łączy programistów w 2 dniowym maratonie kodowania. Wykorzystaj swoją kreatywność i zdobywaj nagrody!"
+    },
     "welcome": {
       "title": "HackArena",
       "description": {
@@ -357,6 +416,10 @@
     }
   },
   "notFound": {
+    "meta": {
+      "title": "Błąd 404",
+      "description": "Strona, którą próbujesz otworzyć nie istnieje"
+    },
     "title": "Błąd 404",
     "description": "Strona, którą próbujesz otworzyć nie istnieje",
     "buttons": {

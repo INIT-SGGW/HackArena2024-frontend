@@ -7,6 +7,8 @@ import text from "../../Assets/text.json";
 import { LoginBody } from "../../Types/types";
 import AuthenticationService from "../../Services/AuthenticationService";
 import Alert from "../../Components/Alert/Alert";
+import Page from "../../Components/Page/Page";
+import { PageText } from "./types";
 
 interface Props { }
 
@@ -22,7 +24,7 @@ type FormData = {
 };
 
 function LoginPage(props: Props) {
-  const loginText = text.login;
+  const pageText: PageText = text.login;
   const [teamID, setTeamID] = useState<string | null>(
     localStorage.getItem("teamID") || null
   );
@@ -82,133 +84,135 @@ function LoginPage(props: Props) {
   if (teamID) return null;
 
   return (
-    <div className="login pagewidth">
-      {
-        submitError &&
-        <Alert
-          title="Błąd"
-          message={submitError}
-          buttonOneText="Zamknij"
-          buttonOneAction={() => setSubmitError(null)}
-        />
-      }
-      <h2>{loginText.title}</h2>
-      <form onSubmit={handleSubmit} className="login--form">
-        <div className="login--input">
-          <label
-            className="input--label"
-            htmlFor={loginText.loginFields.email.id}
-          >
-            {loginText.loginFields.email.label}
-          </label>
-          <input
-            onInvalid={(e) => {
-              e.preventDefault();
+    <Page pageTitle={pageText.meta.title} description={pageText.meta.description} noIndex>
+      <div className="login pagewidth">
+        {
+          submitError &&
+          <Alert
+            title="Błąd"
+            message={submitError}
+            buttonOneText="Zamknij"
+            buttonOneAction={() => setSubmitError(null)}
+          />
+        }
+        <h2>{pageText.title}</h2>
+        <form onSubmit={handleSubmit} className="login--form">
+          <div className="login--input">
+            <label
+              className="input--label"
+              htmlFor={pageText.loginFields.email.id}
+            >
+              {pageText.loginFields.email.label}
+            </label>
+            <input
+              onInvalid={(e) => {
+                e.preventDefault();
 
-              handleErrorMessages<LoginValues>(
-                e.currentTarget,
-                loginText.loginFields.email.errorMessage,
-                setErrors
-              );
-            }}
-            onChange={(e) => {
-              handleErrorMessages<LoginValues>(
-                e.currentTarget,
-                loginText.loginFields.email.errorMessage,
-                setErrors
-              );
-            }}
-            spellCheck={false}
-            disabled={inputsDisabled}
-            type="email"
-            id={loginText.loginFields.email.id}
-            name={loginText.loginFields.email.name}
-            placeholder={loginText.loginFields.email.label}
-            pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-            className={`input--input${showErrors && errors.email ? " input--input__error" : ""
-              }`}
-            required
-            maxLength={60}
-          />
-          <span
-            className={`input--span${showErrors ? " input--span__visible" : ""
-              }`}
-          >
-            {errors.email}
-          </span>
-        </div>
-        <div className="login--input">
-          <label
-            className="input--label"
-            htmlFor={loginText.loginFields.password.id}
-          >
-            {loginText.loginFields.password.label}
-          </label>
-          <input
-            onInvalid={(e) => {
-              e.preventDefault();
+                handleErrorMessages<LoginValues>(
+                  e.currentTarget,
+                  pageText.loginFields.email.errorMessage,
+                  setErrors
+                );
+              }}
+              onChange={(e) => {
+                handleErrorMessages<LoginValues>(
+                  e.currentTarget,
+                  pageText.loginFields.email.errorMessage,
+                  setErrors
+                );
+              }}
+              spellCheck={false}
+              disabled={inputsDisabled}
+              type="email"
+              id={pageText.loginFields.email.id}
+              name={pageText.loginFields.email.name}
+              placeholder={pageText.loginFields.email.label}
+              pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+              className={`input--input${showErrors && errors.email ? " input--input__error" : ""
+                }`}
+              required
+              maxLength={60}
+            />
+            <span
+              className={`input--span${showErrors ? " input--span__visible" : ""
+                }`}
+            >
+              {errors.email}
+            </span>
+          </div>
+          <div className="login--input">
+            <label
+              className="input--label"
+              htmlFor={pageText.loginFields.password.id}
+            >
+              {pageText.loginFields.password.label}
+            </label>
+            <input
+              onInvalid={(e) => {
+                e.preventDefault();
 
-              handleErrorMessages<LoginValues>(
-                e.currentTarget,
-                loginText.loginFields.password.errorMessage,
-                setErrors
-              );
-            }}
-            onChange={(e) => {
-              handleErrorMessages<LoginValues>(
-                e.currentTarget,
-                loginText.loginFields.password.errorMessage,
-                setErrors
-              );
-            }}
-            type="password"
-            disabled={inputsDisabled}
-            id={loginText.loginFields.password.id}
-            placeholder={loginText.loginFields.password.label}
-            name={loginText.loginFields.password.name}
-            className={`input--input${errors.password && showErrors ? " input--input__error" : ""
-              }`}
-            pattern=".*"
-            required
-            maxLength={80}
-          />
-          <span
-            className={`input--span${showErrors ? " input--span__visible" : ""
-              }`}
-          >
-            {errors.password}
-          </span>
-        </div>
-        <div className="login--options">
-          {/* <Link to="/reset">{loginText.loginFields.forgotPassword.label}</Link> */}
-          <Link to="/rejestracja">{loginText.loginFields.noAccount.label}</Link>
-        </div>
-        <div className="register--checkbox login--checkbox">
-          <label
-            className="input--label"
-            htmlFor={loginText.loginFields.rememberMe.id}
-          >
-            {loginText.loginFields.rememberMe.label}
-          </label>
+                handleErrorMessages<LoginValues>(
+                  e.currentTarget,
+                  pageText.loginFields.password.errorMessage,
+                  setErrors
+                );
+              }}
+              onChange={(e) => {
+                handleErrorMessages<LoginValues>(
+                  e.currentTarget,
+                  pageText.loginFields.password.errorMessage,
+                  setErrors
+                );
+              }}
+              type="password"
+              disabled={inputsDisabled}
+              id={pageText.loginFields.password.id}
+              placeholder={pageText.loginFields.password.label}
+              name={pageText.loginFields.password.name}
+              className={`input--input${errors.password && showErrors ? " input--input__error" : ""
+                }`}
+              pattern=".*"
+              required
+              maxLength={80}
+            />
+            <span
+              className={`input--span${showErrors ? " input--span__visible" : ""
+                }`}
+            >
+              {errors.password}
+            </span>
+          </div>
+          <div className="login--options">
+            {/* <Link to="/reset">{pageText.loginFields.forgotPassword.label}</Link> */}
+            <Link to="/rejestracja">{pageText.loginFields.noAccount.label}</Link>
+          </div>
+          <div className="register--checkbox login--checkbox">
+            <label
+              className="input--label"
+              htmlFor={pageText.loginFields.rememberMe.id}
+            >
+              {pageText.loginFields.rememberMe.label}
+            </label>
+            <input
+              className="input--checkbox"
+              type="checkbox"
+              disabled={inputsDisabled}
+              id={pageText.loginFields.rememberMe.id}
+              name={pageText.loginFields.rememberMe.name}
+            />
+          </div>
           <input
-            className="input--checkbox"
-            type="checkbox"
+            className="input--input login--submit input--submit__primary"
+            type="submit"
             disabled={inputsDisabled}
-            id={loginText.loginFields.rememberMe.id}
-            name={loginText.loginFields.rememberMe.name}
+            value={
+              inputsDisabled ? pageText.button.disabled : pageText.button.acitve
+            }
+            onClick={handleTrySubmit}
           />
-        </div>
-        <input
-          className="input--input login--submit input--submit__primary"
-          type="submit"
-          disabled={inputsDisabled}
-          value={
-            inputsDisabled ? loginText.button.disabled : loginText.button.acitve
-          }
-          onClick={handleTrySubmit}
-        />
-      </form>
-    </div>
+        </form>
+      </div>
+    </Page>
   );
 }
 

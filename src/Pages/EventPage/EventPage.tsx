@@ -9,6 +9,7 @@ import FAQComponent from '../../Components/FAQ/FAQ'
 import { CheckEventStatusData, FinishedEventData, isFinishedEventData, isUpcomingEventData, PageText, UpcomingEventData } from './types'
 import CloseIcon from "../../Assets/close-cross.svg"
 import ChevronIcon from "../../Assets/chevron-down.svg"
+import Page from '../../Components/Page/Page'
 
 const AllEventsData: { [key: string]: any } = {
     "hackarena1_0": {
@@ -291,59 +292,64 @@ function EventPage(): JSX.Element {
     }, [])
 
     return (
-        <div className='event'>
-            {
-                eventData === null && (
-                    <div className="event--welcome pagewidth">
-                        <h1 className='skeleton' skeleton-width='400px'></h1>
-                        <span className='skeleton' skeleton-width='600px'></span>
-                        <h6 className='skeleton' skeleton-width='700px'></h6>
-                    </div>
-                )
-            }
-            {
-                (eventData !== null && isFinishedEventData(eventData)) && (
-                    <>
+        <Page
+            pageTitle={eventData ? eventData.banner.title as string : pageText.meta.title}
+            description={eventData ? eventData.banner.description as string : pageText.meta.description}
+        >
+
+            <div className='event'>
+                {
+                    eventData === null && (
                         <div className="event--welcome pagewidth">
-                            <h1>{eventData.banner.title}</h1>
-                            <span>{eventData.banner.date}</span>
-                            <h6>{eventData.banner.description}</h6>
+                            <h1 className='skeleton' skeleton-width='400px'></h1>
+                            <span className='skeleton' skeleton-width='600px'></span>
+                            <h6 className='skeleton' skeleton-width='700px'></h6>
                         </div>
-                        <div className='event--clock'>
-                            <div className='pagewidth'>
-                                <h4>{eventData.highlightInfo}</h4>
+                    )
+                }
+                {
+                    (eventData !== null && isFinishedEventData(eventData)) && (
+                        <>
+                            <div className="event--welcome pagewidth">
+                                <h1>{eventData.banner.title}</h1>
+                                <span>{eventData.banner.date}</span>
+                                <h6>{eventData.banner.description}</h6>
                             </div>
-                        </div>
-                        <TitleAndDesc text={eventData.task} />
-                        <div className="event--section">
-                            <h2 className='header__white'>{eventData.results.title}</h2>
-                            <span>{eventData.results.description}</span>
-                            <ol type="I">
-                                <li>{eventData.results.teams.firstPlace}</li>
-                                <li>{eventData.results.teams.secondPlace}</li>
-                            </ol>
-                        </div>
-                        <div className='event--section event--section__photos'>
-                            <h2 className='header__white'>{pageText.photos}</h2>
-                            <PhotoGallery photos={eventData.photos.list} />
-                        </div>
-                    </>
-                )
-            }
-            {
-                (eventData !== null && isUpcomingEventData(eventData)) &&
-                (
-                    <>
-                        <div className="event--welcome pagewidth">
-                            <h1>{eventData.banner.title}</h1>
-                            <span>{eventData.banner.date}</span>
-                            <h6>{eventData.banner.description}</h6>
-                        </div>
-                        <div className='event--clock'>
-                            <div className='pagewidth'>
-                                <h4>{eventData.clock}</h4>
+                            <div className='event--clock'>
+                                <div className='pagewidth'>
+                                    <h4>{eventData.highlightInfo}</h4>
+                                </div>
                             </div>
-                            {/* // isEventLive() ?
+                            <TitleAndDesc text={eventData.task} />
+                            <div className="event--section">
+                                <h2 className='header__white'>{eventData.results.title}</h2>
+                                <span>{eventData.results.description}</span>
+                                <ol type="I">
+                                    <li>{eventData.results.teams.firstPlace}</li>
+                                    <li>{eventData.results.teams.secondPlace}</li>
+                                </ol>
+                            </div>
+                            <div className='event--section event--section__photos'>
+                                <h2 className='header__white'>{pageText.photos}</h2>
+                                <PhotoGallery photos={eventData.photos.list} />
+                            </div>
+                        </>
+                    )
+                }
+                {
+                    (eventData !== null && isUpcomingEventData(eventData)) &&
+                    (
+                        <>
+                            <div className="event--welcome pagewidth">
+                                <h1>{eventData.banner.title}</h1>
+                                <span>{eventData.banner.date}</span>
+                                <h6>{eventData.banner.description}</h6>
+                            </div>
+                            <div className='event--clock'>
+                                <div className='pagewidth'>
+                                    <h4>{eventData.clock}</h4>
+                                </div>
+                                {/* // isEventLive() ?
                                     // <>
                                     //     <h3>{homeText.date.textLiveEvent}</h3>
                                     // </>
@@ -357,20 +363,20 @@ function EventPage(): JSX.Element {
                                     //     <h1>{timeToEvent}</h1>
                                     //     </> */}
 
-                        </div>
-                        <TitleAndDesc text={eventData.generalInformation} />
-                        <TitleAndDesc text={eventData.task} />
-                        <TitleAndDesc text={eventData.format} />
-                        <div className='event--format pagewidth'>
-                            <img src={HackarenaFormatImage} alt="HackArena 2.0 format" />
-                        </div>
-                        <div className="event--section pagewidth">
-                            <h2 className='header__white'>{eventData.faq.title}</h2>
-                            <FAQComponent questions={eventData.faq.questions} />
-                        </div>
+                            </div>
+                            <TitleAndDesc text={eventData.generalInformation} />
+                            <TitleAndDesc text={eventData.task} />
+                            <TitleAndDesc text={eventData.format} />
+                            <div className='event--format pagewidth'>
+                                <img src={HackarenaFormatImage} alt="HackArena 2.0 format" />
+                            </div>
+                            <div className="event--section pagewidth">
+                                <h2 className='header__white'>{eventData.faq.title}</h2>
+                                <FAQComponent questions={eventData.faq.questions} />
+                            </div>
 
 
-                        {/* <div className="event--section">
+                            {/* <div className="event--section">
                                 <h2>{eventText.results.title}</h2>
                                 <span>{eventText.results.description}</span>
                                 <ol type="I">
@@ -379,11 +385,13 @@ function EventPage(): JSX.Element {
                                 </ol>
                             </div> */}
 
-                    </>
-                )
+                        </>
+                    )
 
-            }
-        </div>
+                }
+            </div>
+        </Page>
+
     )
 }
 
