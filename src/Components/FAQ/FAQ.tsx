@@ -24,7 +24,7 @@ export const FAQ = ({ question, answer }: FAQProps) => {
         } else {
             answerElement.current?.style.setProperty("margin-top", "0px");
         }
-    }, [isOpen, windowWidth]);
+    }, [isOpen, windowWidth, answerElement.current?.scrollHeight]);
 
     return (
         <div className={`faq--component${isOpen ? " faq--component__selected" : ""}`}>
