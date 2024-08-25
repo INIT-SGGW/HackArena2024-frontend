@@ -239,7 +239,7 @@ label {
 .btn__primary {
   background-color: rgb(var(--primary-color));
   color: rgb(var(--background-color));
-  border: 3px solid rgb(var(--primary-color));
+  border-color: rgb(var(--primary-color));
 }
 
 .btn__primary-hover {
@@ -285,7 +285,9 @@ label {
 }
 
 .btn__primary-bw-border-hover {
+  background-color: var(--text-one-color);
   border-color: rgb(var(--background-color));
+  color: rgb(var(--background-color));
 }
 
 .btn__primary-w {
@@ -301,6 +303,8 @@ label {
 }
 
 .btn__primary-w-border-hover {
+  color: var(--text-one-color);
+  background-color: rgb(var(--background-color));
   border-color: var(--text-one-color);
 }
 
@@ -312,6 +316,7 @@ label {
 
 .btn__secondary-hover {
   background-color: rgb(var(--primary-color));
+  border: 3px solid rgb(var(--primary-color));
   color: rgb(var(--background-color));
 }
 
