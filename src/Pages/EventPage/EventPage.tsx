@@ -142,8 +142,6 @@ const PhotoGallery = ({ photos }: { photos: string[] }) => {
     const CarouselRef = React.useRef<HTMLDivElement>(null)
     const [touchStart, setTouchStart] = React.useState(0)
     const [touchEnd, setTouchEnd] = React.useState(0)
-    const [touchCurrent, setTouchCurrent] = React.useState(0)
-    const [noSwipeTrigger, setNoSwipeTrigger] = React.useState(false)
 
     useEffect(() => {
         document.addEventListener('keydown', (event) => {
@@ -163,13 +161,8 @@ const PhotoGallery = ({ photos }: { photos: string[] }) => {
         if (isZoomed && CarouselRef.current !== null) {
             CarouselRef.current.style.transform = `translateX(-${currentPhoto * 100}vw)`
         }
-    }, [currentPhoto, noSwipeTrigger])
+    }, [currentPhoto])
 
-    useEffect(() => {
-        if (isZoomed && CarouselRef.current !== null) {
-            CarouselRef.current.style.transform = `translateX(calc(-${currentPhoto * 100}vw - ${touchStart - touchCurrent}px))`
-        }
-    }, [touchCurrent])
 
     const handleNextPhoto = (): void => {
         setCurrentPhoto((prev) => Math.min(prev + 1, photos.length - 1))
@@ -201,7 +194,6 @@ const PhotoGallery = ({ photos }: { photos: string[] }) => {
     }
 
     const onTouchMove = (e: TouchEvent) => {
-        setTouchCurrent(e.targetTouches[0].clientX)
         setTouchEnd(e.targetTouches[0].clientX)
     }
 
@@ -214,9 +206,6 @@ const PhotoGallery = ({ photos }: { photos: string[] }) => {
             handleNextPhoto()
         } else if (isRightSwipe) {
             handlePreviousPhoto()
-        } else {
-            console.log("no swipe")
-            setNoSwipeTrigger(!noSwipeTrigger)
         }
     }
 
@@ -293,7 +282,7 @@ function EventPage(): JSX.Element {
 
     return (
         <Page
-            pageTitle={eventData ? eventData.banner.title as string : pageText.meta.title}
+            pageTitle={eventData ? eventData.banner.title as string + " | HackArena" : pageText.meta.title}
             description={eventData ? eventData.banner.description as string : pageText.meta.description}
         >
 
