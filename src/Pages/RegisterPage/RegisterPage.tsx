@@ -175,7 +175,7 @@ function RegisterPage(props: Props) {
                 </>
                 :
                 <>
-                  <h2 className="header__white">{pageText.closed.title}</h2>
+                  <h2 className="header__yellow">{pageText.closed.title}</h2>
                   <h6>{pageText.closed.description}</h6>
                   <SocialMedia />
                 </>
