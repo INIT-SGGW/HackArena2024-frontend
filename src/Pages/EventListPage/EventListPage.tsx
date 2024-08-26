@@ -52,7 +52,7 @@ function EventListPage(): JSX.Element {
         <Page pageTitle={pageText.meta.title} description={pageText.meta.description}>
             <div className='events pagewidth'>
                 <div className='events__header'>
-                    <h1 className='header__yellow header__wider header__taller'>{pageText.title}</h1>
+                    <h2 className='header__yellow header__wider header__taller'>{pageText.title}</h2>
                 </div>
                 {
                     (eventsData === null || eventsData.count === 0) &&
