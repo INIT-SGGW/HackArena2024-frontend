@@ -1,4 +1,4 @@
-import { eventStartDate } from "../Constants/Constants"
+import { eventStartDate } from "../Constants/Dates"
 import React, { useEffect } from "react"
 
 const calculateTimeLeft = () => {
