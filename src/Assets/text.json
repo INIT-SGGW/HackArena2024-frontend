@@ -48,9 +48,35 @@
       "title": "Rejestracja | HackArena",
       "description": "Zbierz zespół i walcz o tytuł mistrza HackAreny w zbliżającej się edycji HackAreny!"
     },
-    "closed": {
+    "closeToRegistration": {
+      "title": "Rejestracja już wkrótce!",
+      "description": "Rejestracja na {0} rozpocznie się {1}. Dziękujemy za zainteresowanie i zapraszamy na nasze portale społecznościowe!"
+    },
+    "registrationOpen": {
+      "title": "Rejestracja",
+      "description": "Zbierz swój zespół i dołącz do wydarzenia!",
+      "form": {
+        "teamName": {
+          "label": "Nazwa zespołu",
+          "errorMessage": ""
+        },
+        "email": {
+          "label": "Email",
+          "errorMessage": "Wprowadź poprawny adres email"
+        },
+        "submit": {
+          "active": "Zarejestruj",
+          "disabled": "Przekierowuję..."
+        }
+      }
+    },
+    "registrationClosed": {
+      "title": "Rejestracja zakończona",
+      "description": "Rejestracja na {0} została zakończona. Dziękujemy za zainteresowanie i zapraszamy na nasze portale społecznościowe!"
+    },
+    "default": {
       "title": "Rejestracja zamknięta",
-      "description": "Rejestracja na HackArenę 2.0 rozpocznie się 01.09.2024. Dziękujemy za zainteresowanie i zapraszamy na nasze portale społecznościowe!"
+      "description": "Aktualnie nie prowadzimy zapisów. Śledź nasze portale społecznościowe, żeby nie przegapić następnego wydarzenia!"
     },
     "title": "Rejestracja",
     "description": "Zbierz swój zespół i dołącz do wydarzenia!",
@@ -321,12 +347,9 @@
       }
     },
     "date": {
-      "text": {
-        "first": "Start",
-        "second": "o"
-      },
-      "textLiveEvent": "HackArena rozpoczęta!",
-      "textAfterEvent": "Dziękujemy za udział!"
+      "closeToRegistration": "Start {0} o {1}",
+      "eventLive": "HackArena rozpoczęta!",
+      "eventDone": "Dziękujemy za udział!"
     },
     "aboutUs": {
       "title": "O nas",
@@ -369,7 +392,7 @@
     "dontWait": {
       "title": "Nie czekaj",
       "description": "Zbierz swój zespół i dołącz już teraz",
-      "dateReminder": "Zapisy trwają do",
+      "dateReminder": "Zapisy trwają do {0}",
       "button": "Zarejestruj się"
     },
     "faq": {
@@ -401,6 +424,15 @@
         }
       ]
     }
+  },
+  "inputErrorMessages": {
+    "valueMissing": "To pole jest wymagane",
+    "tooShort": "Wprowadź co najmniej {0} znaków",
+    "tooLong": "Wprowadź maksymalnie {0} znaków",
+    "default": "Podana wartość jest nieprawidłowa",
+    "rangeOverflow": "Wprowadź wartość mniejszą lub równą {0}",
+    "rangeUnderflow": "Wprowadź wartość większą lub równą {0}",
+    "checkbox": "To pole jest wymagane"
   },
   "fileUploader": {
     "showing": {
