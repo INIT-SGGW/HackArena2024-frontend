@@ -21,7 +21,6 @@
   --desktop: 1440px;
 
   --page-width: min(100%, 1000px);
-  --section-padding: 4rem;
 
   --hover-transition-time: 0.14s;
 }
@@ -154,7 +153,7 @@ h6 {
 
 h1 {
   font-size: 3rem;
-  line-height: 3rem;
+  /* line-height: 3rem; */
 }
 
 h2 {
@@ -198,10 +197,20 @@ label {
 }
 
 .pagewidth {
-  max-width: calc(var(--page-width) - 2 * 1rem);
-  padding: 0 1rem;
-  margin: 0 auto;
+  max-width: var(--page-width);
+  padding: 0 1.5rem;
   width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.section {
+  padding-top: 6rem;
+  max-width: 900px;
+}
+
+.section__padding {
+  padding: 6rem 0;
 }
 
 /* BUTTONS */
@@ -370,7 +379,7 @@ label {
 .header__white,
 .header__black-white,
 .header__yellow {
-  padding: 0rem 1.5rem;
+  padding: 0em 1.5rem;
   text-align: center;
 }
 
@@ -381,7 +390,7 @@ label {
 }
 
 .header__taller {
-  --header__taller-padding: 0.5rem;
+  --header__taller-padding: 0.3rem;
   padding-bottom: var(--header__taller-padding);
   padding-top: var(--header__taller-padding);
 }
