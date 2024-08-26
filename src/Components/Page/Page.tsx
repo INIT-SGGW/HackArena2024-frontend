@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react'
+import './Page.css'
 
 interface PageProps {
     children: React.ReactNode;
     pageTitle: string;
     description: string;
+    paddingTop?: boolean;
     noIndex?: boolean;
 }
 
 // Comonent for setting meta tags for the page
-function Page({ children, pageTitle, description, noIndex = false }: PageProps) {
-    console.log(pageTitle);
+function Page({ children, pageTitle, description, paddingTop = true, noIndex = false }: PageProps) {
+    const [topBarHeight, setTopbarHeight] = React.useState<number>(0);
 
     useEffect(() => {
         {/* Setting page title */ }
@@ -48,11 +50,10 @@ function Page({ children, pageTitle, description, noIndex = false }: PageProps) 
         }
     }, [description, noIndex, pageTitle])
 
-
     return (
-        <>
+        <div className={`page-container${paddingTop ? ' page-container--padding-top' : ""}`}>
             {children}
-        </>
+        </div>
     )
 }
 
