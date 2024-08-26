@@ -1,4 +1,8 @@
 .app {
+  /* variables are used so main content can be moved down when topbar is fixed on mobile */
+  --topbar_wrapper-padding: 0.8em;
+  --topbar_height: 1.8em;
+
   min-height: 100vh;
 
   display: flex;
@@ -7,28 +11,28 @@
   overflow: hidden;
 }
 
+@media screen and (max-width: 768px) {
+  .app {
+    --topbar_wrapper-padding: 1em;
+  }
+}
+
 .app--content {
   flex: 1;
 }
 
-@media screen and (max-width: 768px) {
-  .app--content {
-    margin-top: 4.4rem;
-  }
-}
-
 .topbar__wrapper {
-  /* position: fixed; */
-  top: 0;
-  left: 0;
   width: 100%;
   background-color: rgb(var(--background-color));
   z-index: 100;
+  padding: var(--topbar_wrapper-padding) 0;
 }
 
 @media screen and (max-width: 768px) {
   .topbar__wrapper {
     position: fixed;
+    top: 0;
+    left: 0;
   }
 }
 
@@ -36,9 +40,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
   z-index: 100;
-  height: 2rem;
+  height: var(--topbar_height);
 }
 
 .topbar > a {
