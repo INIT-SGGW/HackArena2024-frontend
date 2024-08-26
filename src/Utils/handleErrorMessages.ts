@@ -1,4 +1,6 @@
 import { InputErrors } from "../Types/types";
+import text from "../Assets/text.json";
+import replacePlaceholders from "./replacePlaceholders";
 
 const handleErrorMessages = <T,>(
     input: HTMLInputElement,
@@ -73,4 +75,37 @@ const handleErrorMessagesTeamMembers = (
 
 };
 
-export { handleErrorMessages, handleErrorMessagesTeamMembers };
+const setErrorMessages = (
+    input: HTMLInputElement,
+    mismatchError: string,
+    setError: React.Dispatch<string>,
+) => {
+    const errorMessages = text.inputErrorMessages;
+    const validityState = input.validity;
+    let errorMessage = "";
+
+    if (validityState.valid) {
+        setError("");
+        return;
+    } else if (validityState.valueMissing) {
+        errorMessage = errorMessages.valueMissing;
+    } else if (validityState.rangeUnderflow) {
+        errorMessage = replacePlaceholders(errorMessages.rangeUnderflow, input.min);
+    } else if (validityState.rangeOverflow) {
+        errorMessage = replacePlaceholders(errorMessages.rangeOverflow, input.max);
+    } else if (validityState.tooShort) {
+        errorMessage = replacePlaceholders(errorMessages.tooShort, input.minLength.toString());
+    } else if (validityState.tooLong) {
+        errorMessage = replacePlaceholders(errorMessages.tooLong, input.maxLength.toString());
+    } else if (input.type === "checkbox" && !input.checked) {
+        errorMessage = errorMessages.checkbox;
+    } else if (validityState.patternMismatch) {
+        errorMessage = mismatchError;
+    } else {
+        errorMessage = errorMessages.default
+    }
+
+    setError(errorMessage);
+};
+
+export { handleErrorMessages, handleErrorMessagesTeamMembers, setErrorMessages };
