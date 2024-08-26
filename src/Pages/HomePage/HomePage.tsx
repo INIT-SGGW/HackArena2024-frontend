@@ -1,17 +1,16 @@
 import "./HomePage.css";
 import { useNavigate } from "react-router";
 import useTimeToEvent from "../../Hooks/useTimeToEvent";
-import { getEventDate, getEventTime, getRegistrationEndDate } from "../../Constants/Constants";
 import text from "../../Assets/text.json";
+import { eventStartDate, registrationStartDate } from "../../Constants/Dates";
+import dateFormat, { DateFormat } from "../../Utils/dateFormat"
 import { useEffect, useState } from "react";
-import isRegistrationOpen from "../../Utils/isRegistrationOpen";
-import isEventLive from "../../Utils/isEventLive";
-import isEventDone from "../../Utils/isEventDone";
-import FAQ from "../../Components/FAQ/FAQ";
 import FAQComponent from "../../Components/FAQ/FAQ";
 import Button from "../../Components/Button/Button";
 import Page from "../../Components/Page/Page";
 import { PageText } from "./types";
+import getEventStatus, { EventStatus } from "../../Utils/getEventStatus";
+import replacePlaceholders from "../../Utils/replacePlaceholders";
 
 interface Props { }
 
@@ -31,11 +30,10 @@ function HomePage(props: Props) {
     if (nextEventText) {
       nextEventText.innerHTML = pageText.nextEvent.description;
     }
-
   }, []);
 
   return (
-    <Page pageTitle={pageText.meta.title} description={pageText.meta.description}>
+    <Page pageTitle={pageText.meta.title} description={pageText.meta.description} paddingTop={false}>
       <div className="home">
         <div id="welcome--wrapper">
           <div id="welcome" className="home--welcome pagewidth home--section">
@@ -47,23 +45,43 @@ function HomePage(props: Props) {
             </div>
           </div>
         </div>
-        {/* <div className="home--date home--section">
         {
-          isEventLive() ?
-            <>
-              <h3>{pageText.date.textLiveEvent}</h3>
-            </>
-            :
-            isEventDone() ?
-              <>
-                <h3>{pageText.date.textAfterEvent}</h3>
-              </> :
-              <>
-                <h3>{pageText.date.text.first} {getEventDate()} {pageText.date.text.second} {getEventTime()}</h3>
-                <h1>{timeToEvent}</h1>
-              </>
+          getEventStatus() === EventStatus.EventLive &&
+          <div className="home--date home--section">
+
+            <h3>{pageText.date.eventLive}</h3>
+          </div>
         }
-      </div> */}
+        {
+          getEventStatus() === EventStatus.EventDone &&
+          <div className="home--date home--section">
+            <h3>{pageText.date.eventDone}</h3>
+          </div>
+        }
+        {
+          (getEventStatus() === EventStatus.CloseToRegistration ||
+            getEventStatus() === EventStatus.RegistrationOpen ||
+            getEventStatus() === EventStatus.RegistrationClosed) &&
+          <div className="home--date home--section">
+            {/* TODO: style home date */}
+            <h3>{replacePlaceholders(
+              pageText.date.closeToRegistration,
+              [dateFormat(eventStartDate, DateFormat.DATE), dateFormat(eventStartDate, DateFormat.TIME)])}
+            </h3>
+            <h2 className="header__black">{timeToEvent}</h2>
+          </div>
+        }
+
+        {
+          getEventStatus() === EventStatus.RegistrationOpen &&
+          <div id='nieczekaj' className="home--dwait pagewidth home--section">
+            {/* TODO: style dont wait change id? */}
+            <h2 className="header__white">{pageText.dontWait.title}</h2>
+            <h4>{pageText.dontWait.description}</h4>
+            <p>{replacePlaceholders(pageText.dontWait.dateReminder, dateFormat(registrationStartDate, DateFormat.DATE))}</p>
+            <Button onClick={() => navigate("/rejestracja")} className="btn btn__primary-w btn__primary-w-border">{pageText.dontWait.button}</Button>
+          </div>
+        }
         <div id="o_nas" className="home--about pagewidth home--section">
           <h2 className="header__white">{pageText.aboutUs.title}</h2>
           <p id="about_text"></p>
@@ -88,14 +106,7 @@ function HomePage(props: Props) {
           }
         </div>
       </div> */}
-        {
-          isRegistrationOpen() &&
-          <div id='nieczekaj' className="home--dwait pagewidth home--section">
-            <h2>{pageText.dontWait.title}</h2>
-            <h4>{pageText.dontWait.description}</h4>
-            <p>{pageText.dontWait.dateReminder} <b>{getRegistrationEndDate()}</b></p>
-            <Button onClick={() => navigate("/rejestracja")} className="btn btn__primary">{pageText.dontWait.button}</Button>
-          </div>}
+
         <div id="faq" className="home--faq pagewidth home--section">
           <h2 className="header__white">{pageText.faq.title}</h2>
           <FAQComponent questions={pageText.faq.questions} />

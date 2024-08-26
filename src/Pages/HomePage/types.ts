@@ -13,12 +13,9 @@ export interface PageText extends PageMetaText {
         }
     }
     date: {
-        text: {
-            first: string
-            second: string
-        }
-        textLiveEvent: string
-        textAfterEvent: string
+        closeToRegistration: string
+        eventLive: string
+        eventDone: string
     }
     aboutUs: {
         title: string

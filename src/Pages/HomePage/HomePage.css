@@ -112,17 +112,6 @@ h2 {
   background-color: rgb(var(--primary-color));
 }
 
-.home--date > h3 {
-  font-size: 2rem;
-  color: var(--text-two-color);
-  text-align: center;
-}
-
-.home--date > h2 {
-  font-size: 4rem;
-  color: var(--secondary-color);
-}
-
 .home--about__event {
   background-color: rgb(var(--primary-color));
 }
