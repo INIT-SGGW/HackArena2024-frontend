@@ -18,7 +18,7 @@ function TitleAndDesc({ text }: Props) {
     }, [])
 
     return (
-        <div className="tad">
+        <div className="tad pagewidth section">
             <h2 className='header__white'>{text.title}</h2>
             <p ref={descriptionRef}></p>
         </div>
