@@ -1,11 +1,10 @@
 import "./FileUploader.css";
 import { FileUploader as FU } from "react-drag-drop-files";
 import { useState } from "react";
-import { eventEndDate, eventStartDate } from "../../Constants/Constants"
-import isEventLive from "../../Utils/isEventLive"
 import text from "../../Assets/text.json";
 import AccountService from "../../Services/AccountService";
 import Button from "../Button/Button";
+import getEventStatus, { EventStatus } from "../../Utils/getEventStatus";
 
 interface Props { }
 
@@ -58,7 +57,7 @@ function FileUploader(props: Props) {
     span.innerHTML = fileText.showing.label;
   }
 
-  if (!isEventLive()) {
+  if (getEventStatus() === EventStatus.EventLive) {
     return (
       <p>Tutaj oddasz swoje rozwiązanie w trakcie trwanie HackAreny </p>
     )

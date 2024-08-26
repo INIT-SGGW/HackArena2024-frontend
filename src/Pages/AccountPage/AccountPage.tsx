@@ -7,16 +7,15 @@ import {
   handleErrorMessages,
   handleErrorMessagesTeamMembers,
 } from "../../Utils/handleErrorMessages";
-import isEventLive from "../../Utils/isEventLive";
 import FileUploader from "../../Components/FileUploader/FileUploader";
 import useWindowWidth from "../../Hooks/useWindowWidth";
 import Alert from "../../Components/Alert/Alert";
 import AccountService from "../../Services/AccountService";
 import AuthenticationService from "../../Services/AuthenticationService";
-import isRegistrationOpen from "../../Utils/isRegistrationOpen";
 import Button from "../../Components/Button/Button";
 import Page from "../../Components/Page/Page";
 import { PageText } from "./types";
+import getEventStatus, { EventStatus } from "../../Utils/getEventStatus";
 
 interface Props { }
 
@@ -308,7 +307,7 @@ function AccountPage(props: Props) {
                   disabled={inputsDisabled}
                 />
               )}
-              {(!isEventLive() && isRegistrationOpen()) && (
+              {getEventStatus() === EventStatus.RegistrationOpen && (
                 <input
                   type="button"
                   className={`btn btn__primary${inputsDisabled ? "" : " btn__halfborder"
