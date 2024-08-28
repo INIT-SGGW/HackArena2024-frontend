@@ -4,4 +4,6 @@ const eventEndDate: Date = new Date(process.env.REACT_APP_EVENT_END_DATE || "202
 const registrationStartDate: Date = new Date(process.env.REACT_APP_REGISTRATION_START_DATE || "2024-09-01T00:00:00+02:00");
 const registrationEndDate: Date = new Date(process.env.REACT_APP_REGISTRATION_END_DATE || "2024-10-19T00:00:00+02:00");
 
-export { eventStartDate, eventEndDate, registrationStartDate, registrationEndDate };
+const youngestParticipantAge: number = 13;
+
+export { eventStartDate, eventEndDate, registrationStartDate, registrationEndDate, youngestParticipantAge };
