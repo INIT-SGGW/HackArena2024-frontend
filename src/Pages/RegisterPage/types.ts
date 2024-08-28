@@ -1,10 +1,38 @@
 import { PageMetaText } from "../../Types/types"
 
 export interface PageText extends PageMetaText {
-    closed: {
-        title: string,
+    closeToRegistration: {
+        title: string
         description: string
-    },
+    }
+    registrationOpen: {
+        title: string
+        description: string
+        form: {
+            teamName: {
+                label: string
+                placeholder: string
+                errorMessage: string
+            },
+            email: {
+                label: string
+                placeholder: string
+                errorMessage: string
+            },
+            submit: {
+                active: string
+                disabled: string
+            }
+        }
+    }
+    registrationClosed: {
+        title: string
+        description: string
+    }
+    default: {
+        title: string
+        description: string
+    }
     title: string,
     description: string
     teamMembers: string
