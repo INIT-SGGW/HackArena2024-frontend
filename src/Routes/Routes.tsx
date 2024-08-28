@@ -10,6 +10,7 @@ import MessagePage from "../Pages/MessagePage/MessagePage";
 import DownloadPage from "../Pages/DownloadPage/DownloadPage";
 import EventPage from "../Pages/EventPage/EventPage";
 import EventListPage from "../Pages/EventListPage/EventListPage";
+import MemberRegisterPage from "../Pages/MemberRegisterPage/MemberRegisterPage";
 
 const router = createBrowserRouter([
   {
@@ -29,10 +30,10 @@ const router = createBrowserRouter([
         element: <ResetPasswordPage />,
       },
       {
-        path: "/reset/sukces",
+        path: "/sukces/reset",
         element: <MessagePage
           title="Gratulacje!"
-          message="Hasło zostało zmienione."
+          message="Twoje hasło zostało zmienione."
           buttonOneText="Konto"
           buttonOneLink="/login"
           buttonTwoText="Strona główna"
@@ -44,12 +45,19 @@ const router = createBrowserRouter([
         element: <RegisterPage />,
       },
       {
-        path: "/rejestracja/sukces",
-        element: <MessagePage title="Gratulajce!" message="Twój zespół został stworzony." />
+        path: "/rejestracja/:teamName",
+        element: <MemberRegisterPage />,
       },
       {
-        path: "/rejestracja",
-        element: <MessagePage title="Rejestracja" message="Zapisy rozpoczną się już wkrótce." />
+        path: "/sukces/rejestracja",
+        element: <MessagePage
+          title="Gratulajce!"
+          message="Twój zespół został stworzony."
+          buttonOneText="Konto"
+          buttonOneLink="/login"
+          buttonTwoText="Strona główna"
+          buttonTwoLink="/"
+        />
       },
       {
         path: "/konto/:zespolID",
