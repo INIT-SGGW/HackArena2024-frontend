@@ -75,6 +75,17 @@ const handleErrorMessagesTeamMembers = (
 
 };
 
+interface ErrorMessages {
+    valueMissing: string
+    rangeUnderflow: string
+    rangeOverflow: string
+    tooShort: string
+    tooLong: string
+    checkbox: string
+    email: string
+    default: string
+}
+
 const setErrorMessages = (
     input: HTMLInputElement,
     mismatchError: string,
@@ -90,15 +101,25 @@ const setErrorMessages = (
     } else if (validityState.valueMissing) {
         errorMessage = errorMessages.valueMissing;
     } else if (validityState.rangeUnderflow) {
-        errorMessage = replacePlaceholders(errorMessages.rangeUnderflow, input.min);
+        if (input.type === "date") {
+            errorMessage = replacePlaceholders(errorMessages.dateRangeUnderflow, input.min);
+        } else {
+            errorMessage = replacePlaceholders(errorMessages.rangeUnderflow, input.min);
+        }
     } else if (validityState.rangeOverflow) {
-        errorMessage = replacePlaceholders(errorMessages.rangeOverflow, input.max);
+        if (input.type === "date") {
+            errorMessage = replacePlaceholders(errorMessages.dateRangeOverflow, input.max);
+        } else {
+            errorMessage = replacePlaceholders(errorMessages.rangeOverflow, input.max);
+        }
     } else if (validityState.tooShort) {
         errorMessage = replacePlaceholders(errorMessages.tooShort, input.minLength.toString());
     } else if (validityState.tooLong) {
         errorMessage = replacePlaceholders(errorMessages.tooLong, input.maxLength.toString());
     } else if (input.type === "checkbox" && !input.checked) {
         errorMessage = errorMessages.checkbox;
+    } else if (validityState.typeMismatch && input.type === "email") {
+        errorMessage = errorMessages.email;
     } else if (validityState.patternMismatch) {
         errorMessage = mismatchError;
     } else {
