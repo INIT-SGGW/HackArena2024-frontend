@@ -1,0 +1,193 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.input__span {
+  font-size: 0.7rem;
+  color: var(--warning-color);
+  margin-bottom: 0.5em;
+  visibility: hidden;
+  align-self: center;
+  height: 1em;
+  display: block;
+  text-align: center;
+}
+
+.input__span--visible {
+  visibility: visible;
+}
+
+.input__element {
+  padding: 0.5rem 0.7rem;
+  font-size: 0.9rem;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+  font-weight: bold;
+  color: rgb(var(--background-color));
+  border: 3px solid;
+  min-width: 200px;
+  flex: 1;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--accent-color) inset !important;
+  -webkit-text-fill-color: rgb(var(--background-color)) !important;
+  caret-color: rgb(var(--background-color));
+  border-color: var(--accent-color);
+  box-shadow: none;
+}
+
+input:-internal-autofill-selected {
+  background-color: unset !important;
+  color: unset !important;
+}
+
+input:-webkit-autofill:disabled {
+  -webkit-box-shadow: 0 0 0 30px var(--disabled-color) inset !important;
+  -webkit-text-fill-color: var(--hover-color) !important;
+  caret-color: var(--hover-color);
+  border-color: var(--disabled-color);
+  box-shadow: none;
+}
+
+.input__element:disabled {
+  cursor: default;
+}
+
+.input__field {
+  border-color: var(--input-color);
+  background-color: var(--input-color);
+}
+
+/* .input__field:hover {
+  background-color: var(--input-hover);
+  color: var(--text-one-color);
+}
+
+.input__field:focus {
+  background-color: var(--input-acitve);
+  color: var(--text-one-color);
+} */
+
+.input__field:disabled {
+  background-color: var(--disabled-color);
+  border-color: var(--disabled-color);
+  color: var(--hover-color);
+}
+
+.input__element--error {
+  background-color: var(--input-error) !important;
+  border-color: var(--input-error) !important;
+  color: var(--hover-color) !important;
+}
+
+.input__element--error::placeholder {
+  color: var(--hover-color) !important;
+}
+
+.input__button {
+  background-color: rgb(var(--primary-color));
+  border-color: rgb(var(--primary-color));
+  cursor: pointer;
+  /* margin-top: 1rem; */
+}
+
+.input__button:hover {
+  background-color: rgb(var(--background-color));
+  color: rgb(var(--primary-color));
+}
+
+.input__button:disabled {
+  background-color: var(--input-disabled-color);
+  border-color: var(--input-disabled-color);
+  color: rgb(var(--background-color));
+}
+
+.input__field--picked {
+  background-color: var(--input-color);
+  border-color: var(--input-color);
+  color: var(--hover-color);
+  padding: 0.3rem 0.6rem;
+  padding-right: 1.5rem;
+  font-size: 0.7rem;
+  border: none;
+  cursor: default;
+  transition: none;
+}
+
+.input__icon {
+  width: 1.8em !important;
+}
+
+select.input__element {
+  border-color: var(--input-color);
+  outline: none;
+}
+
+select.input__element:disabled {
+  opacity: 1;
+  background-color: var(--disabled-color);
+
+  border-color: var(--disabled-color);
+  color: var(--hover-color);
+}
+
+input[type="checkbox"] {
+  width: 1.2rem;
+  min-width: 1.2rem;
+  height: 1.2rem;
+  margin: 0.4rem;
+  margin-right: 0.5rem;
+  appearance: none;
+  background-color: var(--input-color);
+  box-shadow: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+input[type="checkbox"]:checked {
+  appearance: none;
+  background-color: rgb(var(--primary-color));
+}
+
+input[type="checkbox"]:checked:disabled {
+  background-color: var(--input-disabled-color);
+}
+
+input[type="checkbox"]:disabled {
+  background-color: var(--disabled-color);
+  cursor: default;
+}
+
+.input__checkbox--invalid {
+  background-color: var(--input-error) !important;
+}
+
+.input__wrapper {
+  position: relative;
+  width: fit-content;
+  display: flex;
+}
+
+.input__wrapper--full-width {
+  width: 100%;
+}
+
+.input__wrapper > img {
+  position: absolute;
+  width: 0.85em;
+  top: 50%;
+  right: 0.3rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+  filter: brightness(0) saturate(100%) invert(5%) sepia(9%) saturate(4932%)
+    hue-rotate(182deg) brightness(114%) contrast(112%);
+}
