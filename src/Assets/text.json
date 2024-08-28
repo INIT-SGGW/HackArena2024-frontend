@@ -43,6 +43,77 @@
     "finished": "Zakończone",
     "noEvents": "Brak wydarzeń do wyświetlenia. Zajrzyj ponownie wkrótce!"
   },
+  "memberRegister": {
+    "meta": {
+      "title": "Rejestracja | HackArena",
+      "description": "Zbierz zespół i walcz o tytuł mistrza HackAreny w zbliżającej się edycji HackAreny!"
+    },
+    "title": "Rejestracja",
+    "description": "Wypełnij poniższy formularz w celu dołączenia do zespołu {0}.",
+    "registerFields": {
+      "firstName": {
+        "label": "Imię",
+        "placeholder": "Imię",
+        "errorMessage": "Znaki specjalne są niedozwolone"
+      },
+      "lastName": {
+        "label": "Nazwisko",
+        "placeholder": "Nazwisko",
+        "errorMessage": "Znaki specjalne są niedozwolone"
+      },
+      "dateOfBirth": {
+        "label": "Data urodzenia",
+        "placeholder": "Data urodzenia",
+        "errorMessage": ""
+      },
+      "occupation": {
+        "label": "Status zawodowy",
+        "placeholder": "Status zawodowy",
+        "occupationOptions": [{
+          "value": "student",
+          "text": "Uczeń"
+        }, {
+          "value": "undergraduate",
+          "text": "Student"
+        }, {
+          "value": "graduate",
+          "text": "Absolwent"
+        }, {
+          "value": "other",
+          "text": "Inne"
+        }],
+        "errorMessage": ""
+      },
+      "dietPreference": {
+        "label": "Preferencje żywieniowe",
+        "placeholder": "Preferencje żywieniowe",
+        "dietPreferenceOptions": [
+          {
+            "value": "none",
+            "text": "Brak preferencji"
+          },
+          {
+            "value": "vegan",
+            "text": "Wegańskie"
+          },
+          {
+            "value": "vegetarian",
+            "text": "Wegetariańskie"
+          }
+        ],
+        "errorMessage": ""
+      },
+      "agreement": {
+        "label": "Wyrażam zgodę na przetwarzanie moich danych osobowych w celu rejestracji na HackArena 2024.",
+        "placeholder": "Wyrażam zgodę na przetwarzanie moich danych osobowych w celu rejestracji na HackArena 2024.",
+        "errorMessage": ""
+      }
+    },
+    "button": {
+      "active": "Zarejestruj",
+      "disabled": "Przekierowuję..."
+    }
+  },
   "register": {
     "meta": {
       "title": "Rejestracja | HackArena",
@@ -58,10 +129,12 @@
       "form": {
         "teamName": {
           "label": "Nazwa zespołu",
-          "errorMessage": ""
+          "placeholder": "Nazwa zespołu",
+          "errorMessage": "SDKFJ"
         },
         "email": {
           "label": "Email",
+          "placeholder": "Email",
           "errorMessage": "Wprowadź poprawny adres email"
         },
         "submit": {
@@ -278,20 +351,17 @@
     "formFields": {
       "email": {
         "label": "Email",
-        "name": "email",
-        "id": "email",
+        "placeholder": "Email",
         "errorMessage": "Wprowadź poprawny adres email"
       },
       "password": {
         "label": "Hasło",
-        "name": "password",
-        "id": "password",
+        "placeholder": "Hasło",
         "errorMessage": "Hasło musi mieć: minimum 8 znaków, jedną dużą literę, jedną małą literę, jedną cyfrę i jeden znak specjalny"
       },
       "repeatPassword": {
         "label": "Powtórz hasło",
-        "name": "repeatPassword",
-        "id": "repeatPassword",
+        "placeholder": "Powtórz hasło",
         "errorMessage": "Hasła nie są takie same"
       }
     },
@@ -429,7 +499,10 @@
     "valueMissing": "To pole jest wymagane",
     "tooShort": "Wprowadź co najmniej {0} znaków",
     "tooLong": "Wprowadź maksymalnie {0} znaków",
+    "dateRangeUnderflow": "Wprowadź datę późniejszą niż {0}",
+    "dateRangeOverflow": "Wprowadź datę wcześniejszą niż {0}",
     "default": "Podana wartość jest nieprawidłowa",
+    "email": "Wprowadź poprawny adres email",
     "rangeOverflow": "Wprowadź wartość mniejszą lub równą {0}",
     "rangeUnderflow": "Wprowadź wartość większą lub równą {0}",
     "checkbox": "To pole jest wymagane"
