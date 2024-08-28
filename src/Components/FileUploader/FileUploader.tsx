@@ -49,7 +49,6 @@ function FileUploader(props: Props) {
   }
 
   const handleCancel = () => {
-    console.log("Canceling file upload");
     setMessage("");
     setStatus(FileStatus.UNSELECTED);
     setFile(null);
