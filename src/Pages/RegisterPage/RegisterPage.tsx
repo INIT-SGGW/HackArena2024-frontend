@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./RegisterPage.css";
 import text from "../../Assets/text.json";
-import {
-  handleErrorMessages,
-  handleErrorMessagesTeamMembers,
-} from "../../Utils/handleErrorMessages";
 import { InputTeam, InputErrors, RegisterBody } from "../../Types/types";
 import { useNavigate } from "react-router-dom";
 import AuthenticationService from "../../Services/AuthenticationService";

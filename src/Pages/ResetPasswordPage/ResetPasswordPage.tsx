@@ -1,6 +1,5 @@
 import "./ResetPasswordPage.css";
 import { FormEvent, useState } from "react";
-import { handleErrorMessages } from "../../Utils/handleErrorMessages";
 import text from "../../Assets/text.json";
 import AuthenticationService from "../../Services/AuthenticationService";
 import { useNavigate } from "react-router";
