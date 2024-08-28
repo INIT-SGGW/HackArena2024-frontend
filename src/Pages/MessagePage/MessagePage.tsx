@@ -19,10 +19,14 @@ function MessagePage({ title, message, buttonOneText, buttonOneLink, buttonTwoTe
   return (
     <Page pageTitle={title} description={message} noIndex>
       <div className="message">
-        <h2>{title}</h2>
-        <h4>{message}</h4>
-        {buttonOneLink && <Button className="btn btn__primary" onClick={() => navigator(buttonOneLink)}>{buttonOneText || ""}</Button>}
-        {buttonTwoLink && <Button className="btn btn__secondary" onClick={() => navigator(buttonTwoLink)}>{buttonTwoText || ""}</Button>}
+        <div className="section--column-05">
+          <h2 className="header header__yellow">{title}</h2>
+          <h6>{message}</h6>
+        </div>
+        <div className="section--row-1">
+          {buttonOneLink && <Button className="btn btn__primary btn__primary-border" onClick={() => navigator(buttonOneLink)}>{buttonOneText || ""}</Button>}
+          {buttonTwoLink && <Button className="btn btn__secondary" onClick={() => navigator(buttonTwoLink)}>{buttonTwoText || ""}</Button>}
+        </div>
       </div>
     </Page>
   );
