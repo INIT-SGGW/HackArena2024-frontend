@@ -4,15 +4,21 @@
   --background-color-transparent: #ffffff34;
   --background-secondary-color: #1a160f;
   --primary-color: 255, 210, 0;
+  --bg: #000314;
   --secondary-color: #4b5068;
   --accent-color: #757c9f;
   --text-one-color: #ffffff;
   --text-two-color: #000314;
-  --input-color: rgb(var(--primary-color));
-  --input-disabled-color: #6d5c0f;
+  --input-color: var(--text-one-color);
+  --input-disabled-color: #a88900;
   --shadow-color: #34554b5d;
-  --warning-color: #ff0000;
-  --warning-color-delicate: #f56f6f;
+  --warning-color: #f56f6f;
+
+  --input-color: var(--text-one-color);
+  --input-hover: rgb(var(--background-color));
+  --input-acitve: rgb(var(--background-color));
+  --input-error: var(--warning-color);
+  --disabled-color: rgb(71, 71, 71);
 
   /* SCREEN SIZES */
   --mobile: 375px;
@@ -25,6 +31,12 @@
   --hover-transition-time: 0.14s;
 }
 
+* {
+  font-family: "JetBrains Mono", "Poppins", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
 body {
   background-color: rgb(var(--background-color));
 
@@ -32,20 +44,24 @@ body {
   padding: 0;
   min-height: 100vh;
 
-  font-family: "JetBrains Mono", "Poppins", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+input {
+  border: none;
+  outline: none;
+}
+
 button {
-  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 600;
+}
+
+form {
+  width: 100%;
+  max-width: 800px;
 }
 
 code {
@@ -55,6 +71,11 @@ code {
 
 .hidden {
   visibility: hidden;
+}
+
+.not-clickable {
+  pointer-events: none;
+  cursor: default;
 }
 
 /* SKELETONS */
@@ -207,6 +228,35 @@ label {
 .section {
   padding-top: 6rem;
   max-width: 900px;
+}
+
+.section--column-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section--column-0 {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.section--column-05 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.section--row-1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .section__padding {
