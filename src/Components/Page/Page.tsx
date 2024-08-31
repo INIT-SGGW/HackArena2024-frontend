@@ -7,11 +7,11 @@ interface PageProps {
     description: string;
     paddingTop?: boolean;
     noIndex?: boolean;
+    paddingBottom?: boolean;
 }
 
 // Comonent for setting meta tags for the page
-function Page({ children, pageTitle, description, paddingTop = true, noIndex = false }: PageProps) {
-    const [topBarHeight, setTopbarHeight] = React.useState<number>(0);
+function Page({ children, pageTitle, description, paddingTop = true, noIndex = false, paddingBottom = true }: PageProps) {
 
     useEffect(() => {
         {/* Setting page title */ }
@@ -51,7 +51,7 @@ function Page({ children, pageTitle, description, paddingTop = true, noIndex = f
     }, [description, noIndex, pageTitle])
 
     return (
-        <div className={`page-container${paddingTop ? ' page-container--padding-top' : ""}`}>
+        <div className={`${paddingTop ? ' page-container--padding-top' : ""}${paddingBottom ? ' page-container--padding-bottom' : ""}`}>
             {children}
         </div>
     )

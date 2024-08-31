@@ -1,7 +1,7 @@
 import "./App.css";
 
 import { Outlet, Link, ScrollRestoration } from "react-router-dom";
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 // Components
 import NavBar from "./Components/NavBar/NavBar";
@@ -9,6 +9,7 @@ import NavBar from "./Components/NavBar/NavBar";
 // Assets
 import Logo from "./Assets/logo.svg"
 import SocialMedia from "./Components/SocialMedia/SocialMedia";
+import useWindowWidth from "./Hooks/useWindowWidth";
 
 const TopBar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -36,11 +37,23 @@ const Footer = () => {
 }
 
 function App() {
+  const appContentRef = useRef<HTMLDivElement | null>(null);
+  const windowWidth = useWindowWidth();
+
+  useEffect(() => {
+    const topBarHeight = document.querySelector('.topbar__wrapper')?.clientHeight || 0;
+    if (windowWidth <= 768 && appContentRef.current) {
+      appContentRef.current.style.marginTop = `${topBarHeight}px`;
+    } else {
+      appContentRef.current?.style.removeProperty('margin-top');
+    }
+  }, [windowWidth])
+
   return (
     <div className="app">
       <ScrollRestoration />
       <TopBar />
-      <div className="app--content">
+      <div ref={appContentRef} className="app--content">
         <Outlet />
       </div>
       <Footer />

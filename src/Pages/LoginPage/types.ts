@@ -2,17 +2,15 @@ import { PageMetaText } from "../../Types/types"
 
 export interface PageText extends PageMetaText {
     title: string
-    loginFields: {
+    form: {
         email: {
             label: string
-            name: string
-            id: string
+            placeholder: string
             errorMessage: string
         }
         password: {
             label: string
-            name: string
-            id: string
+            placeholder: string
             errorMessage: string
         }
         forgotPassword: {
@@ -28,7 +26,7 @@ export interface PageText extends PageMetaText {
         }
     }
     button: {
-        acitve: string
+        active: string
         disabled: string
     }
 }

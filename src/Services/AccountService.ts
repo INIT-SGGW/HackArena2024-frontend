@@ -1,5 +1,3 @@
-import { AccountTeam, AccountTeamRequestBody } from "../Types/types";
-
 export default class AccountService {
   static API_URL = process.env.REACT_APP_API_URL;
 
@@ -17,7 +15,7 @@ export default class AccountService {
     return response;
   }
 
-  static async updateTeam(teamName: string, teamData: AccountTeamRequestBody) {
+  static async updateTeam(teamName: string, teamData: any) {
     const response = await fetch(this.API_URL + "/" + teamName + "/update", {
       method: "POST",
       mode: "cors",

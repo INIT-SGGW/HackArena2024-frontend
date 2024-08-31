@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  max-width: 900px;
+  max-width: 800px;
   width: 100%;
   margin-top: 2rem;
 }
@@ -21,7 +21,9 @@
 
 .faq--box {
   --faq-component-border-radius: 0rem;
-  --faq-component-padding: 1.5rem;
+  --faq-component-padding: 1rem;
+  --faq-font-size: 0.9rem;
+
   border-radius: var(--faq-component-border-radius);
   width: 100%;
   box-sizing: border-box;
@@ -60,6 +62,7 @@
 .faq--question__double > div > h6 {
   color: rgb(var(--background-color)) !important;
   text-wrap: nowrap;
+  font-size: var(--faq-font-size);
 }
 
 @media screen and (min-width: 768px) {
@@ -81,6 +84,8 @@
 .faq--question > h6 {
   /* color: rgb(var(--primary-color)); */
   color: var(--text-one-color);
+  font-size: var(--faq-font-size);
+
   /* color: rgb(var(--background-color)); */
 }
 
@@ -118,6 +123,8 @@
 .faq--answer > p {
   color: rgb(var(--background-color));
   text-align: left;
+  font-size: var(--faq-font-size);
+  line-height: 1.4em;
 }
 
 .faq--question__double > div > img,

@@ -4,7 +4,7 @@ import useTimeToEvent from "../../Hooks/useTimeToEvent";
 import text from "../../Assets/text.json";
 import { eventStartDate, registrationStartDate } from "../../Constants/Dates";
 import dateFormat, { DateFormat } from "../../Utils/dateFormat"
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import FAQComponent from "../../Components/FAQ/FAQ";
 import Button from "../../Components/Button/Button";
 import Page from "../../Components/Page/Page";
@@ -33,7 +33,7 @@ function HomePage(props: Props) {
   }, []);
 
   return (
-    <Page pageTitle={pageText.meta.title} description={pageText.meta.description} paddingTop={false}>
+    <Page pageTitle={pageText.meta.title} description={pageText.meta.description} paddingTop={false} paddingBottom={false}>
       <div className="home">
         <div id="welcome--wrapper">
           <div id="welcome" className="home--welcome pagewidth home--section">
@@ -68,13 +68,13 @@ function HomePage(props: Props) {
               pageText.date.closeToRegistration,
               [dateFormat(eventStartDate, DateFormat.DATE), dateFormat(eventStartDate, DateFormat.TIME)])}
             </h3>
-            <h2 className="header__black">{timeToEvent}</h2>
+            <h2 className="header__yellow">{timeToEvent}</h2>
           </div>
         }
 
         {
           getEventStatus() === EventStatus.RegistrationOpen &&
-          <div id='nieczekaj' className="home--dwait pagewidth home--section">
+          <div id='nieczekaj' className="home--dontwait pagewidth home--section">
             {/* TODO: style dont wait change id? */}
             <h2 className="header__white">{pageText.dontWait.title}</h2>
             <h4>{pageText.dontWait.description}</h4>

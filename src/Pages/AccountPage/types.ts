@@ -1,6 +1,7 @@
 import { PageMetaText } from "../../Types/types"
 
 export interface PageText extends PageMetaText {
+    title: string;
     teamMembers: string
     teamMember: string
     registerFields: {

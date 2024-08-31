@@ -50,7 +50,7 @@
     },
     "title": "Rejestracja",
     "description": "Wypełnij poniższy formularz w celu dołączenia do zespołu {0}.",
-    "registerFields": {
+    "form": {
       "firstName": {
         "label": "Imię",
         "placeholder": "Imię",
@@ -60,6 +60,16 @@
         "label": "Nazwisko",
         "placeholder": "Nazwisko",
         "errorMessage": "Znaki specjalne są niedozwolone"
+      },
+      "password": {
+        "label": "Hasło",
+        "placeholder": "Hasło",
+        "errorMessage": "Hasło musi mieć: minimum 8 znaków, jedną dużą literę, jedną małą literę, jedną cyfrę i jeden znak specjalny"
+      },
+      "repeatPassword": {
+        "label": "Powtórz hasło",
+        "placeholder": "Powtórz hasło",
+        "errorMessage": "Hasła muszą być takie same"
       },
       "dateOfBirth": {
         "label": "Data urodzenia",
@@ -76,7 +86,7 @@
           "value": "undergraduate",
           "text": "Student"
         }, {
-          "value": "graduate",
+          "value": "postgraduate",
           "text": "Absolwent"
         }, {
           "value": "other",
@@ -229,6 +239,7 @@
       "title": "Konto | HackArena",
       "description": "Po rejestrcji znajdziesz tutaj informacje o swojej drużynie"
     },
+    "title": "Konto",
     "teamMembers": "Członkowie zespołu",
     "teamMember": "Członek zespołu",
     "registerFields": {
@@ -312,17 +323,15 @@
       "description": "Zaloguj się na swoje konto HackArena"
     },
     "title": "Logowanie",
-    "loginFields": {
+    "form": {
       "email": {
         "label": "Email",
-        "name": "email",
-        "id": "email",
+        "placeholder": "Email",
         "errorMessage": "Wprowadź poprawny adres email"
       },
       "password": {
         "label": "Hasło",
-        "name": "password",
-        "id": "password",
+        "placeholder": "Hasło",
         "errorMessage": "Hasło musi mieć: minimum 8 znaków, jedną dużą literę, jedną małą literę, jedną cyfrę i jeden znak specjalny"
       },
       "forgotPassword": {
@@ -338,7 +347,7 @@
       }
     },
     "button": {
-      "acitve": "Zaloguj się",
+      "active": "Zaloguj się",
       "disabled": "Przekierowuję..."
     }
   },
@@ -349,11 +358,29 @@
     },
     "title": "Resetowanie hasła",
     "formFields": {
-      "email": {
-        "label": "Email",
-        "placeholder": "Email",
-        "errorMessage": "Wprowadź poprawny adres email"
+      "password": {
+        "label": "Hasło",
+        "placeholder": "Hasło",
+        "errorMessage": "Hasło musi mieć: minimum 8 znaków, jedną dużą literę, jedną małą literę, jedną cyfrę i jeden znak specjalny"
       },
+      "repeatPassword": {
+        "label": "Powtórz hasło",
+        "placeholder": "Powtórz hasło",
+        "errorMessage": "Hasła nie są takie same"
+      }
+    },
+    "button": {
+      "active": "Zresetuj",
+      "disabled": "Przekierowuję..."
+    }
+  },
+  "changePassword": {
+    "meta": {
+      "title": "Zmiana hasła | HackArena",
+      "description": "Zmiana hasła do konta HackArena"
+    },
+    "title": "Zmiana hasła",
+    "formFields": {
       "password": {
         "label": "Hasło",
         "placeholder": "Hasło",
@@ -379,21 +406,8 @@
     "formFields": {
       "email": {
         "label": "Email",
-        "name": "email",
-        "id": "email",
+        "placeholder": "Email",
         "errorMessage": "Wprowadź poprawny adres email"
-      },
-      "password": {
-        "label": "Hasło",
-        "name": "password",
-        "id": "password",
-        "errorMessage": "Hasło musi mieć: minimum 8 znaków, jedną dużą literę, jedną małą literę, jedną cyfrę i jeden znak specjalny"
-      },
-      "repeatPassword": {
-        "label": "Powtórz hasło",
-        "name": "repeatPassword",
-        "id": "repeatPassword",
-        "errorMessage": "Hasła nie są takie same"
       }
     },
     "button": {

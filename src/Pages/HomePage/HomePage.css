@@ -109,7 +109,11 @@ h2 {
 
 .home--date {
   padding: 2rem 0;
-  background-color: rgb(var(--primary-color));
+  background-color: rgb(var(--background-color));
+}
+
+.home--date > h3 {
+  /* color: rgb(var(--primary-color)); */
 }
 
 .home--about__event {
@@ -151,16 +155,19 @@ h2 {
   color: var(--text-one-color);
 }
 
-.home--dwait {
+.home--dontwait {
   text-align: center;
 }
 
-.home--dwait > h4 {
-  color: var(--accent-color);
+.home--dontwait > h2 {
+  margin-bottom: 1rem;
+}
+
+.home--dontwait > h4 {
   font-weight: 400;
 }
 
-.home--dwait > button {
+.home--dontwait > .button {
   margin-top: 1rem;
 }
 

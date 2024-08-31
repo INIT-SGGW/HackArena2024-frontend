@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./RegisterPage.css";
 import text from "../../Assets/text.json";
-import { InputTeam, InputErrors, RegisterBody } from "../../Types/types";
-import { useNavigate } from "react-router-dom";
 import AuthenticationService from "../../Services/AuthenticationService";
 import Alert from "../../Components/Alert/Alert";
 import SocialMedia from "../../Components/SocialMedia/SocialMedia";
@@ -42,7 +40,6 @@ function RegisterPage(props: Props) {
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-    console.log("sumbit")
     e.preventDefault();
 
     const form = e.currentTarget;
@@ -71,7 +68,6 @@ function RegisterPage(props: Props) {
     }
 
     const data = new FormData(e.currentTarget);
-    console.log(Object.fromEntries(data));
     setInputsDisabled(true);
   }
 
@@ -130,7 +126,7 @@ function RegisterPage(props: Props) {
             getEventStatus() === EventStatus.RegistrationOpen && (
               <form id="register_form" className="section--column-0" onSubmit={handleSubmit} noValidate>
                 <Input pageText={pageText.registrationOpen.form.teamName} id="team_name" name="teamName" showError={showErrors} minLength={1} maxLength={40} inputDisabled={inputsDisabled} />
-                <Input pageText={pageText.registrationOpen.form.email} id="email" name="email" type="email" icon="/Assets/add-circle.svg" onIconClick={handleIconClick} showError={false} maxLength={60} inputDisabled={inputsDisabled || pickedEmails.length === 3} />
+                <Input pageText={pageText.registrationOpen.form.email} id="email" name="email" type="email" icon="/Assets/add-circle.svg" onIconClick={handleIconClick} showError={false} maxLength={60} inputDisabled={inputsDisabled || pickedEmails.length === 3} pattern="^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" />
                 <div className={`register__emails${pickedEmails.length > 0 ? " register__email--margin-bottom" : ""}`}>
                   {
                     pickedEmails.map((email, index) => (

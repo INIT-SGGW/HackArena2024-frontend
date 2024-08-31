@@ -1,35 +1,45 @@
-import { RegisterBody, LoginBody, ResetPasswordBody, InputTeam } from "../Types/types";
+import { ChangePasswordRequest, ForgotPasswordRequest, LoginRequest, RegisterTeamMemberRequest, RegisterTeamRequest, ResetPasswordRequest } from "../Types/requests"
 
 export default class AuthenticationService {
   static API_URL = process.env.REACT_APP_API_URL;
 
-  static async login({ email, password }: LoginBody) {
-    const response = await fetch(this.API_URL + "/login", {
+  static async registerTeam(body: RegisterTeamRequest) {
+    const response = await fetch(this.API_URL + "/register", {
       method: "POST",
       mode: "cors",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        "Hack-Arena-API-Key": process.env.REACT_APP_API_KEY || "",
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify(body),
     });
     return response;
   }
 
-  static async register(registerBody: InputTeam) {
+  static async registerTeamMember(body: RegisterTeamMemberRequest) {
     const response = await fetch(this.API_URL + "/register", {
       method: "POST",
       mode: "cors",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        "Hack-Arena-API-Key": process.env.REACT_APP_API_KEY || "",
       },
-      body: JSON.stringify(registerBody),
+      body: JSON.stringify(body),
     });
     return response;
   }
+
+
+  static async login(body: LoginRequest) {
+    const response = await fetch(this.API_URL + "/login", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    return response;
+  }
+
 
   static async logout() {
     const response = await fetch(this.API_URL + "/logout", {
@@ -38,13 +48,37 @@ export default class AuthenticationService {
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        "Hack-Arena-API-Key": process.env.REACT_APP_API_KEY || "",
       },
     });
     return response;
   }
 
-  static async resetPassword({ password }: ResetPasswordBody) {
+  static async forgotPassword(body: ForgotPasswordRequest) {
+    const response = await fetch(this.API_URL + "/forgotpassword", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    return response;
+  }
+
+  static async changePassword(body: ChangePasswordRequest) {
+    const response = await fetch(this.API_URL + "/changepassword", {
+      method: "POST",
+      mode: "cors",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    return response
+  }
+
+  static async resetPassword(body: ResetPasswordRequest) {
     const teamID = localStorage.getItem("teamID");
     const response = await fetch(
       this.API_URL + "/" + teamID + "/changepassword",
@@ -54,9 +88,8 @@ export default class AuthenticationService {
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          "Hack-Arena-API-Key": process.env.REACT_APP_API_KEY || "",
         },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify(body),
       }
     );
     return response;

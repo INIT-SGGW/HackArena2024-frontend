@@ -11,6 +11,8 @@ import DownloadPage from "../Pages/DownloadPage/DownloadPage";
 import EventPage from "../Pages/EventPage/EventPage";
 import EventListPage from "../Pages/EventListPage/EventListPage";
 import MemberRegisterPage from "../Pages/MemberRegisterPage/MemberRegisterPage";
+import ForgotPassword from "../Pages/ForgotPasswordPage/ForgotPassword";
+import ChangePasswordPage from "../Pages/ChangePasswordPage/ChangePasswordPage";
 
 const router = createBrowserRouter([
   {
@@ -26,8 +28,16 @@ const router = createBrowserRouter([
         element: <LoginPage />,
       },
       {
-        path: "/reset",
+        path: "/password/reset",
         element: <ResetPasswordPage />,
+      },
+      {
+        path: "/password/forgot",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "/password/change",
+        element: <ChangePasswordPage />,
       },
       {
         path: "/sukces/reset",

@@ -3,13 +3,23 @@ import { PageMetaText } from "../../Types/types";
 export interface PageText extends PageMetaText {
     title: string,
     description: string
-    registerFields: {
+    form: {
         firstName: {
             label: string
             placeholder: string
             errorMessage: string
         },
         lastName: {
+            label: string
+            placeholder: string
+            errorMessage: string
+        },
+        password: {
+            label: string
+            placeholder: string
+            errorMessage: string
+        },
+        repeatPassword: {
             label: string
             placeholder: string
             errorMessage: string

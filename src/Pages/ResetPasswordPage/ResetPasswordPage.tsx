@@ -10,11 +10,6 @@ import Input from "../../Components/Input/Input";
 
 interface Props { }
 
-type ResetPasswordValues = {
-  password: string;
-  repeatPassword: string;
-};
-
 function ResetPasswordPage(props: Props) {
   const pageText: PageText = text.resetPassword;
   const [showErrors, setShowErrors] = useState<boolean>(false);
@@ -26,7 +21,6 @@ function ResetPasswordPage(props: Props) {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    console.log(Object.fromEntries(data));
     setInputsDisabled(true);
   };
 
@@ -44,11 +38,8 @@ function ResetPasswordPage(props: Props) {
         }
         <h2 className="header header__yellow">{pageText.title}</h2>
         <form onSubmit={handleSubmit} className="section--column-0">
-          <Input pageText={pageText.formFields.email} id="email" name="email" type="email" showError={showErrors} maxLength={100} inputDisabled={inputsDisabled} />
-          <div className="section--row-1">
-            <Input pageText={pageText.formFields.password} id="password" name="password" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} />
-            <Input pageText={pageText.formFields.repeatPassword} id="repeat_password" name="repeatPassword" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} />
-          </div>
+          <Input pageText={pageText.formFields.password} id="password" name="password" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$' />
+          <Input pageText={pageText.formFields.repeatPassword} id="repeat_password" name="repeatPassword" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$" />
           <input type="submit" className="input__element input__button" onClick={() => setShowErrors(true)} disabled={inputsDisabled} value={inputsDisabled ? pageText.button.disabled : pageText.button.active} />
         </form>
       </div>
