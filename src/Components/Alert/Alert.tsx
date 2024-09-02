@@ -21,11 +21,11 @@ function Alert({
     return (
         <div className='alert'>
             <div className="alert--content">
-                <h3>{title}</h3>
+                <h3 className='header__yellow'>{title}</h3>
                 <p>{message}</p>
                 <div className='alert--buttons'>
                     <Button
-                        className='btn btn__secondary'
+                        className='btn btn__primary btn__primary-border'
                         onClick={buttonOneAction}
                     >
                         {buttonOneText}
@@ -33,7 +33,7 @@ function Alert({
                     {
                         (buttonTwoText && buttonTwoAction) &&
                         <Button
-                            className='btn btn__primary'
+                            className='btn btn__secondary btn__secondary-border'
                             onClick={buttonTwoAction}
                         >
                             {buttonTwoText}
