@@ -8,7 +8,8 @@ import Alert from "../../Components/Alert/Alert";
 import Page from "../../Components/Page/Page";
 import { PageText } from "./types";
 import Input from "../../Components/Input/Input";
-import { LoginRequest } from "../../Types/requests";
+import { LoginRequestBody } from "../../Types/requests";
+import { ErrorBodyResponse, LoginBodyResponse } from "../../Types/responses";
 
 function LoginPage() {
   const pageText: PageText = text.login;
@@ -17,21 +18,50 @@ function LoginPage() {
   const [inputsDisabled, setInputsDisabled] = useState<boolean>(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      navigate("/konto");
+    }
+  }, []);
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
     const dataObject = Object.fromEntries(data);
 
+    const body: LoginRequestBody = {
+      email: dataObject.email as string,
+      password: dataObject.password as string
+    };
+
     setInputsDisabled(true);
 
-    AuthenticationService.login(dataObject as LoginRequest)
+    AuthenticationService.login(body)
       .then((response) => {
         if (response.status === 200) {
-          navigate("/konto");
+          response.json().then((data: LoginBodyResponse) => {
+            try {
+              localStorage.setItem("user", JSON.stringify(data.user));
+              localStorage.setItem("teamName", JSON.stringify(data.teamName));
+              console.log("loggin", data.user, data.teamName);
+            } catch (error) {
+              setError("Wystąpił błąd podczas logowania");
+              localStorage.removeItem("user");
+              localStorage.removeItem("teamName");
+              setInputsDisabled(false);
+            }
+            navigate("/konto");
+          });
+        } else if (response.status === 400) {
+          response.json().then((body: ErrorBodyResponse) => {
+            setError(body.message)
+            setInputsDisabled(false)
+          })
         } else {
-          setError("Błędny email lub hasło");
-          setInputsDisabled(false);
+          setError("Wystąpił błąd podczas logowania");
+          setInputsDisabled(false)
         }
       })
       .catch((error) => {
