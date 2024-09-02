@@ -12,6 +12,9 @@ import replacePlaceholders from "../../Utils/replacePlaceholders";
 import dateFormat, { DateFormat } from "../../Utils/dateFormat";
 import { registrationStartDate } from "../../Constants/Dates";
 import closeIcon from "../../Assets/close-cross.svg";
+import { RegisterTeamRequestBody } from "../../Types/requests";
+import { useNavigate } from "react-router-dom";
+import { ErrorBodyResponse } from "../../Types/responses";
 
 interface Props { }
 
@@ -22,6 +25,7 @@ function RegisterPage(props: Props) {
   const [showErrors, setShowErrors] = useState<boolean>(false);
   const [pickedEmails, setPickedEmails] = useState<string[]>([]);
   const [emailsError, setEmailsError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const pickedEmails = document.getElementsByClassName("input__field--picked") as HTMLCollectionOf<HTMLInputElement>;
@@ -67,8 +71,34 @@ function RegisterPage(props: Props) {
       return;
     }
 
-    const data = new FormData(e.currentTarget);
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    const body: RegisterTeamRequestBody = {
+      teamName: data.teamName as string,
+      teamMembersEmails: emails,
+    };
+
     setInputsDisabled(true);
+
+    AuthenticationService.registerTeam(body)
+      .then((response) => {
+        console.log(response.status)
+        if (response.ok) {
+          navigate(`/sukces/rejestracja`);
+        } else if (response.status === 400) {
+          response.json().then((errorBody: ErrorBodyResponse) => {
+            setSubmitError(errorBody.message);
+            setInputsDisabled(false);
+          })
+        } else {
+          setSubmitError("Wystąpił błąd. Spróbuj ponownie.");
+          setInputsDisabled(false);
+        }
+      })
+      .catch(() => {
+        setSubmitError("Wystąpił błąd. Spróbuj ponownie.");
+        setInputsDisabled(false);
+      });
   }
 
   return (
