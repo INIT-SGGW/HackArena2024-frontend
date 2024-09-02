@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import './MemberRegisterPage.css'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import Page from '../../Components/Page/Page'
 import Input from '../../Components/Input/Input'
 import text from "../../Assets/text.json"
@@ -8,21 +8,23 @@ import { PageText } from './types'
 import { eventStartDate, youngestParticipantAge } from '../../Constants/Dates'
 import replacePlaceholders from '../../Utils/replacePlaceholders'
 import Select from '../../Components/Select/Select'
+import { DietPreference, Occupation, RegisterTeamMemberRequestBody } from '../../Types/requests'
+import Alert from '../../Components/Alert/Alert'
+import AuthenticationService from '../../Services/AuthenticationService'
+import { ErrorBodyResponse } from '../../Types/responses'
 
 function MemberRegisterPage() {
     const pageText: PageText = text.memberRegister
 
     const { teamName } = useParams<{ teamName: string }>()
     const [searchParams] = useSearchParams()
-
-    useEffect(() => {
-        const token = searchParams.get("token")
-        const email = searchParams.get("email")
-    }, [searchParams])
+    const navigate = useNavigate()
 
     const [showErrors, setShowErrors] = React.useState<boolean>(false)
     const [inputsDisabled, setInputsDisabled] = React.useState<boolean>(false)
     const [agreementError, setAgreementError] = React.useState<boolean>(false)
+    const [submitError, setSubmitError] = React.useState<string>("")
+
 
     const minDate = new Date(eventStartDate.getTime() - 1000 * 60 * 60 * 24 * 365 * youngestParticipantAge)
 
@@ -41,12 +43,57 @@ function MemberRegisterPage() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        const data = new FormData(e.currentTarget);
+        const data = Object.fromEntries(new FormData(e.currentTarget));
+        const token = searchParams.get("token")
+        const email = searchParams.get("email")
+
+        if (!token || !email) {
+            setSubmitError("Brak wymaganych parametrów w adresie URL");
+            return;
+        }
+
+        const body: RegisterTeamMemberRequestBody = {
+            firstName: data.firstName as string,
+            lastName: data.lastName as string,
+            password: data.password as string,
+            dateOfBirth: data.dateOfBirth as string,
+            occupation: data.occupation as Occupation,
+            dietPreference: data.dietPreference as DietPreference,
+            aggreement: data.agreement === "on",
+            verificationToken: token,
+            email: email
+        }
+
         setInputsDisabled(true);
+
+        AuthenticationService.registerTeamMember(body).then((response) => {
+            if (response.status === 200) {
+                navigate("/sukces/rejestracja/uczestnika")
+            } else if (response.status === 400) {
+                response.json().then((body: ErrorBodyResponse) => {
+                    setSubmitError(body.message)
+                    setInputsDisabled(false)
+                });
+            } else {
+                setSubmitError("Wystąpił błąd")
+                setInputsDisabled(false)
+            }
+        }).catch((error) => {
+            setSubmitError("Wystąpił błąd")
+            setInputsDisabled(false)
+        })
     }
-    //TODO: add password field
+
     return (
         <Page pageTitle={pageText.meta.title} description={pageText.meta.description} paddingTop noIndex>
+            {submitError &&
+                <Alert
+                    title="Błąd"
+                    message={submitError}
+                    buttonOneText="Spróbuj ponownie"
+                    buttonOneAction={() => { setSubmitError(""); }}
+                />
+            }
             <div className='memberRegister pagewidth'>
                 <div className='section--column-1 register--heading'>
                     <h2 className='header header__yellow'>{pageText.title}</h2>
