@@ -1,4 +1,4 @@
-export type RegisterTeamRequest = {
+export type RegisterTeamRequestBody = {
     teamName: string;
     teamMembersEmails: string[];
 };
@@ -24,19 +24,19 @@ export function isValidDietPreference(value: string): value is DietPreference {
     return Object.values(DietPreference).includes(value as DietPreference);
 }
 
-export type RegisterTeamMemberRequest = {
+export type RegisterTeamMemberRequestBody = {
     verificationToken: string;
     email: string;
     password: string;
     firstName: string;
     lastName: string;
-    dateOfBirth: Date;
+    dateOfBirth: string;
     occupation: Occupation;
     dietPreference: DietPreference;
     aggreement: boolean;
 };
 
-export type LoginRequest = {
+export type LoginRequestBody = {
     email: string;
     password: string;
 };
@@ -48,16 +48,16 @@ export type TokenUser = {
     role: string;
 };
 
-export type ForgotPasswordRequest = {
+export type ForgotPasswordRequestBody = {
     email: string;
 }
 
-export type ChangePasswordRequest = {
+export type ChangePasswordRequestBody = {
     newPassword: string;
     oldPassword: string;
 }
 
-export type ResetPasswordRequest = {
+export type ResetPasswordRequestBody = {
     email: string;
     password: string;
     token: string;
