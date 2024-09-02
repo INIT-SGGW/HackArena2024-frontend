@@ -18,8 +18,8 @@ function MessagePage({ title, message, buttonOneText, buttonOneLink, buttonTwoTe
 
   return (
     <Page pageTitle={title} description={message} noIndex>
-      <div className="message">
-        <div className="section--column-05">
+      <div className="message pagewidth">
+        <div className="section--column-1">
           <h2 className="header header__yellow">{title}</h2>
           <h6>{message}</h6>
         </div>
