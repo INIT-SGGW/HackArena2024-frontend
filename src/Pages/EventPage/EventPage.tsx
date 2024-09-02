@@ -292,7 +292,7 @@ function EventPage(): JSX.Element {
                 {
                     (eventData !== null && isFinishedEventData(eventData)) && (
                         <>
-                            <div className="event--welcome pagewidth section">
+                            <div className="event--welcome pagewidth">
                                 <h1>{eventData.banner.title}</h1>
                                 <span>{eventData.banner.date}</span>
                                 <h6>{eventData.banner.description}</h6>
