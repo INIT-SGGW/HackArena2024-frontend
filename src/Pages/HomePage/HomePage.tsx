@@ -2,7 +2,7 @@ import "./HomePage.css";
 import { useNavigate } from "react-router";
 import useTimeToEvent from "../../Hooks/useTimeToEvent";
 import text from "../../Assets/text.json";
-import { eventStartDate, registrationStartDate } from "../../Constants/Dates";
+import { eventStartDate, registrationEndDate, registrationStartDate } from "../../Constants/Dates";
 import dateFormat, { DateFormat } from "../../Utils/dateFormat"
 import { useEffect } from "react";
 import FAQComponent from "../../Components/FAQ/FAQ";
@@ -78,7 +78,7 @@ function HomePage(props: Props) {
             {/* TODO: style dont wait change id? */}
             <h2 className="header__white">{pageText.dontWait.title}</h2>
             <h4>{pageText.dontWait.description}</h4>
-            <p>{replacePlaceholders(pageText.dontWait.dateReminder, dateFormat(registrationStartDate, DateFormat.DATE))}</p>
+            <p>{replacePlaceholders(pageText.dontWait.dateReminder, dateFormat(registrationEndDate, DateFormat.DATE))}</p>
             <Button onClick={() => navigate("/rejestracja")} className="btn btn__primary-w btn__primary-w-border">{pageText.dontWait.button}</Button>
           </div>
         }
