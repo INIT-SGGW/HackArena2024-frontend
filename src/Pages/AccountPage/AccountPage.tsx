@@ -15,7 +15,6 @@ import getEventStatus, { EventStatus } from "../../Utils/getEventStatus";
 interface Props { }
 
 function AccountPage(props: Props) {
-  const { zespolID } = useParams<{ zespolID: string }>();
   const navigate = useNavigate();
   const windowWidth = useWindowWidth();
   const pageText: PageText = text.account;
@@ -26,7 +25,33 @@ function AccountPage(props: Props) {
   const [inputsDisabled, setInputsDisabled] = useState<boolean>(true);
 
   useEffect(() => {
+    let teamName = localStorage.getItem("teamName");
+    let user = localStorage.getItem("user");
+
+    if (!user) {
+      navigate("/login");
+    } else if (teamName === "undefined" || teamName === "null") {
+      // TODO: manage no team player
+      console.log("no team player");
+    } else {
+      try {
+        teamName = JSON.parse(teamName as string);
+        user = JSON.parse(user as string);
+      } catch (error) {
+        localStorage.removeItem("user");
+        localStorage.removeItem("teamName");
+        navigate("/login");
+      }
+    }
+
+
+
+    console.log(teamName, user);
     // TODO: get data from server
+
+
+
+
   }, [])
 
   const handleTrySubmit = () => {
@@ -46,7 +71,8 @@ function AccountPage(props: Props) {
     //TODO: check if it's correct
     AuthenticationService.logout().then((response) => {
       if (response.status === 200) {
-        localStorage.removeItem("teamID");
+        localStorage.removeItem("user");
+        localStorage.removeItem("teamName");
         navigate("/");
       } else {
         setAlertErrorMessage("Wystąpił błąd podczas wylogowywania")
@@ -93,16 +119,18 @@ function AccountPage(props: Props) {
         <form className="register--form" onSubmit={handleSubmit}>
 
         </form>
-        <div className="account--bottom">
+        <div className="section--row-1">
 
           <Button
             className="btn btn__primary"
+            border={true}
             onClick={hangleLogOut}
           >
             {pageText.buttons.logout}
           </Button>
           <Button
             className="btn btn__primary"
+            border={true}
             onClick={() => navigate("/change")}
           >
             {pageText.buttons.resetPassword}
