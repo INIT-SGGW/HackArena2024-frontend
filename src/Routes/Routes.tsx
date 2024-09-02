@@ -62,7 +62,16 @@ const router = createBrowserRouter([
         path: "/sukces/rejestracja",
         element: <MessagePage
           title="Gratulajce!"
-          message="Twój zespół został stworzony."
+          message="Twój zespół został stworzony. Sprawdź swoją skrzynkę mailową, aby dokończyć rejestrację."
+          buttonOneText="Strona główna"
+          buttonOneLink="/"
+        />
+      },
+      {
+        path: "/sukces/rejestracja/uczestnika",
+        element: <MessagePage
+          title="Gratulajce!"
+          message="Zakończyłeś proces rejestracji. Teraz możesz zalogować się na swoje konto."
           buttonOneText="Konto"
           buttonOneLink="/login"
           buttonTwoText="Strona główna"
@@ -70,7 +79,7 @@ const router = createBrowserRouter([
         />
       },
       {
-        path: "/konto/:zespolID",
+        path: "/konto",
         element: <AccountPage />,
       },
       {
