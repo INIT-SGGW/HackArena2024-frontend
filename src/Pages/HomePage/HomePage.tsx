@@ -11,6 +11,7 @@ import Page from "../../Components/Page/Page";
 import { PageText } from "./types";
 import getEventStatus, { EventStatus } from "../../Utils/getEventStatus";
 import replacePlaceholders from "../../Utils/replacePlaceholders";
+import Sponsors from "../../Components/Sponsors/Sponsors";
 
 interface Props { }
 
@@ -106,6 +107,10 @@ function HomePage(props: Props) {
           }
         </div>
       </div> */}
+        <div className="pagewidth home--section">
+          <Sponsors />
+
+        </div>
 
         <div id="faq" className="home--faq pagewidth home--section">
           <h2 className="header__white">{pageText.faq.title}</h2>

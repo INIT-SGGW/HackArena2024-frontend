@@ -415,6 +415,14 @@
       "disabled": "Przekierowuję..."
     }
   },
+  "sponsors": {
+    "titles": {
+      "sponsors": "Sponsorzy",
+      "partners": "Partnerzy",
+      "mediaPatronage": "Patronat medialny",
+      "patronage": "Patronat"
+    }
+  },
   "home": {
     "meta": {
       "title": "HackArena",
