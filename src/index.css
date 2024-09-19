@@ -172,6 +172,18 @@ h6 {
   width: fit-content;
 }
 
+@font-face {
+  font-family: "RussoOne";
+  src: url("./Assets/Fonts/RussoOne/RussoOne-Regular.ttf") format("truetype");
+}
+
+h1,
+h2,
+h3 {
+  font-family: "RussoOne";
+  letter-spacing: 0.03em;
+}
+
 h1 {
   font-size: 3rem;
   /* line-height: 3rem; */
