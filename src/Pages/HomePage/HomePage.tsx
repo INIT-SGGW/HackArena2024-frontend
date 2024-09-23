@@ -12,6 +12,7 @@ import { PageText } from "./types";
 import getEventStatus, { EventStatus } from "../../Utils/getEventStatus";
 import replacePlaceholders from "../../Utils/replacePlaceholders";
 import Sponsors from "../../Components/Sponsors/Sponsors";
+import HexagonGrid from "../../Components/HoneyComb/HoneyComb";
 
 interface Props { }
 
@@ -36,6 +37,8 @@ function HomePage(props: Props) {
   return (
     <Page pageTitle={pageText.meta.title} description={pageText.meta.description} paddingTop={false} paddingBottom={false}>
       <div className="home">
+        <HexagonGrid />
+
         <div id="welcome--wrapper">
           <div id="welcome" className="home--welcome pagewidth home--section">
             <h1>{pageText.welcome.title}</h1>

@@ -10,7 +10,7 @@ export interface ComponentText {
 export type Sponsor = {
     name: string;
     logo: string;
-    url: string;
+    url?: string;
     height?: number;
 }
 

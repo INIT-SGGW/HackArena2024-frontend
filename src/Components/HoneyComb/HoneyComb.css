@@ -1,0 +1,50 @@
+/* Layout for the hexagon grid */
+.hexagon-grid {
+  --hexagon-gap: 0.2vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding: 10px;
+  width: 100%;
+  gap: var(--hexagon-gap);
+  position: relative;
+}
+
+.hexagon-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: var(--hexagon-gap);
+}
+
+/* Hexagon shape */
+.hexagon {
+  aspect-ratio: 1;
+  background-color: transparent;
+  position: relative;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.hexagon:last-child {
+  visibility: hidden;
+}
+
+.hexagon-row:nth-child(even) > .hexagon:first-child {
+  visibility: hidden;
+}
+
+/* Background image within the hexagon */
+.hex-image {
+  width: 100%;
+  height: 100%;
+  background-size: 100vw; /* Adjust based on your full image size */
+  background-repeat: no-repeat;
+}
+
+/* Hover effect */
+.hexagon:hover {
+  z-index: 1; /* Bring the hexagon above others */
+}

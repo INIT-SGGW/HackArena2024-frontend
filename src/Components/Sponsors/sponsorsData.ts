@@ -1,7 +1,7 @@
 import { SponsorData } from "./types";
 
 import FabbricaLogo from "../../Assets/Sponsors/fabbrica.webp";
-import UlandLogo from "../../Assets/Sponsors/uland.webp";
+import UlandLogo from "../../Assets/Sponsors/uland.png";
 import StudentNewsLogo from "../../Assets/Sponsors/studentnews.png";
 import MamStartupLogo from "../../Assets/Sponsors/mamstartup.svg";
 import JustJoinITLogo from "../../Assets/Sponsors/justjoin.png";
@@ -12,8 +12,7 @@ import MevSpaceLogo from "../../Assets/Sponsors/mevspace.svg";
 import UrsynowLogo from "../../Assets/Sponsors/ursynow.jpg";
 import CosomoEyeLogo from "../../Assets/Sponsors/cosmoeye.svg";
 import SGGWLogo from "../../Assets/sggw_logo_white.png";
-
-
+import CoffeeHeroesRosteryLogo from "../../Assets/Sponsors/coffee_heroes_roastery.png";
 
 const SponsorsData: SponsorData = {
     sponsors: [
@@ -44,6 +43,11 @@ const SponsorsData: SponsorData = {
             name: "Uland",
             logo: UlandLogo,
             url: "https://www.uland.pl/",
+            height: 60
+        },
+        {
+            name: "Coffee Heroes Rostery",
+            logo: CoffeeHeroesRosteryLogo,
             height: 60
         }
 

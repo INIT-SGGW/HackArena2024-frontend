@@ -11,6 +11,10 @@ import CloseIcon from "../../Assets/close-cross.svg"
 import ChevronIcon from "../../Assets/chevron-down.svg"
 import Page from '../../Components/Page/Page'
 import { getAPIOrigin } from '../../Utils/getOrigin'
+import replacePlaceholders from '../../Utils/replacePlaceholders'
+import { registrationStartDate } from '../../Constants/Dates'
+import dateFormat, { DateFormat } from '../../Utils/dateFormat'
+import Sponsors from '../../Components/Sponsors/Sponsors'
 
 const AllEventsData: { [key: string]: any } = {
     "hackarena1_0": {
@@ -351,6 +355,9 @@ function EventPage(): JSX.Element {
                             <TitleAndDesc text={eventData.format} />
                             <div className='event--format pagewidth'>
                                 <img src={HackarenaFormatImage} alt="HackArena 2.0 format" />
+                            </div>
+                            <div className='event--section'>
+                                <Sponsors />
                             </div>
                             <div className="event--section pagewidth">
                                 <h2 className='header__white'>{eventData.faq.title}</h2>

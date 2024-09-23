@@ -4,7 +4,7 @@ import SponsorsData from './sponsorsData'
 import { ComponentText, Sponsor } from './types'
 import text from '../../Assets/text.json'
 
-function SponsorSection({ title, sponsors }: { title: string, sponsors: { name: string, logo: string, url: string, height?: number }[] }) {
+function SponsorSection({ title, sponsors }: { title: string, sponsors: Sponsor[] }) {
     return (
         <div className="sponsors__section">
             <h2 className="header__white">{title}</h2>
