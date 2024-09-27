@@ -102,8 +102,28 @@
   align-items: flex-start;
   z-index: 100;
   pointer-events: none;
-  padding: 0 2rem;
+  padding-left: 2rem;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 839px) {
+  .hexagon__header-wrapper {
+    align-items: center;
+    transform: translateY(-50%);
+    padding-right: 2rem;
+  }
+
+  .hexagon__header > div {
+    justify-content: center;
+  }
+
+  .hexagon__header > div > div {
+    flex-grow: 1;
+  }
+
+  .hexagon__header > div > div > button {
+    width: 100%;
+  }
 }
 
 .hexagon__header {
@@ -134,12 +154,20 @@
   color: rgb(var(--primary-color));
 }
 
+@media screen and (max-width: 839px) {
+  .hexagon__header > * {
+    text-align: center !important;
+    width: 100%;
+  }
+}
+
 .hexagon__header > div {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 1rem;
   margin-top: 1rem;
+  flex-wrap: wrap;
 }
 
 .hexagon__header > div > div {

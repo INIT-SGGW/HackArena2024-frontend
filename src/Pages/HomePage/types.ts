@@ -13,11 +13,7 @@ export interface PageText extends PageMetaText {
             aboutUs: string
         }
     }
-    date: {
-        closeToRegistration: string
-        eventLive: string
-        eventDone: string
-    }
+
     aboutUs: {
         title: string
         description: string
@@ -35,12 +31,7 @@ export interface PageText extends PageMetaText {
             event: string
         }[]
     }
-    dontWait: {
-        title: string
-        description: string
-        dateReminder: string
-        button: string
-    }
+
     faq: {
         title: string
         questions:

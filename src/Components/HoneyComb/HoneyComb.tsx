@@ -64,7 +64,7 @@ const HexagonGrid = ({ image, defaultHexagonSize, gap, componentText }: Props) =
     const [hexagonSize, setHexagonSize] = React.useState<number>(0);
     const [columnNumber, setColumnNumber] = React.useState<number>(0);
     const [rowNumber, setRowNumber] = React.useState<number>(0);
-    const [idealHexagonSize, setIdealHexagonSize] = React.useState<number>(windowWidth < 768 ? Math.floor(defaultHexagonSize * 0.75) : defaultHexagonSize);
+    const [idealHexagonSize, setIdealHexagonSize] = React.useState<number>(1);
 
     // refs
     const hexagonGridRef = useRef<HTMLDivElement>(null);
@@ -73,7 +73,7 @@ const HexagonGrid = ({ image, defaultHexagonSize, gap, componentText }: Props) =
 
     useEffect(() => {
         const idealHexagonSize =
-            windowWidth < 768 ?
+            windowWidth < 480 ? Math.floor(defaultHexagonSize * 0.6) : windowWidth < 900 ?
                 Math.floor(defaultHexagonSize * 0.75) :
                 defaultHexagonSize;
         setIdealHexagonSize(idealHexagonSize);
@@ -96,27 +96,20 @@ const HexagonGrid = ({ image, defaultHexagonSize, gap, componentText }: Props) =
     useEffect(() => {
         setColumnNumber(Math.floor(hexagonGridWidth / idealHexagonSize));
         let hexagonSize = 1 / columnNumber * hexagonGridWidth; // size of hexagons based on the number of columns
+        setHexagonSize(hexagonSize);
 
-        if (hexagonGridRef.current) {
-            const computedStyle = window.getComputedStyle(hexagonGridRef.current);
-            if (parseInt(computedStyle.height) < window.innerHeight * 0.7) {
-                setHexagonSize(hexagonSize);
-            }
-        }
-        const maxComponentHeight = 1920 * imageAspectRatio;
-        const minComponentHeight = 500;
-        let numberOfRows = Math.floor(imageAspectRatio * hexagonGridWidth / (hexagonSize + gap)) + 1; // calculate number of rows based on the image aspect ratio
-        if (numberOfRows * (hexagonSize + gap) > maxComponentHeight) {
-            numberOfRows = Math.floor(maxComponentHeight / (hexagonSize * 0.9 + gap));
-            console.log("maxComponentHeight", maxComponentHeight);
-        } else if (numberOfRows * (hexagonSize + gap) < minComponentHeight) {
-            console.log("minComponentHeight", minComponentHeight);
-            numberOfRows = Math.ceil(minComponentHeight / (hexagonSize * 1.25 + gap));
+        const minComponentHeight = 550;
+        const maxComponentHeight = minComponentHeight + 50;
+        const rowHeight = hexagonSize * 0.75 + gap;
+        let numberOfRows = Math.floor(imageAspectRatio * hexagonGridWidth / rowHeight) + 1; // calculate number of rows based on the image aspect ratio
+        if (numberOfRows * rowHeight > maxComponentHeight) {
+            numberOfRows = Math.floor(maxComponentHeight / rowHeight);
+        } else if (numberOfRows * rowHeight < minComponentHeight) {
+            numberOfRows = Math.floor(minComponentHeight / rowHeight);
         }
 
         // const result = numberOfRows * (hexagonSize + gap) > maxComponentHeight ? Math.floor(maxComponentHeight / (hexagonSize * 0.75 + gap)) : numberOfRows;
         setRowNumber(!Number.isNaN(numberOfRows) ? numberOfRows : 5);
-        console.log(numberOfRows)
     }, [imageAspectRatio, hexagonGridWidth]);
 
 
@@ -143,8 +136,11 @@ const HexagonGrid = ({ image, defaultHexagonSize, gap, componentText }: Props) =
             // const headerHeight = hexagonHeaderRef.current.offsetHeight;
             // const verticalHexagones = Math.floor((headerHeight + hexagonSize * 1.5) / (hexagonSize * 0.75 + gap)) + 1;
             const horizontalHexagones = new Array(columnNumber).fill(0).reduce((acc, _, i) => acc + isBlackHexagon(verticalHexagones, i), 0);
-            const hexagonHeaderWrapperHeight = verticalHexagones * (hexagonSize * 0.75 - gap);
-            const hexagonHeaderWrapperWidth = (horizontalHexagones - (verticalHexagones % 2 === 0 ? 0.5 : 0)) * hexagonSize;
+            const hexagonHeaderWrapperHeight = verticalHexagones * (hexagonSize * 0.75 + gap) - hexagonSize * 0.25;
+            let hexagonHeaderWrapperWidth = (horizontalHexagones - (verticalHexagones % 2 === 0 ? 0.5 : 0)) * hexagonSize;
+            if (windowWidth < 840) {
+                hexagonHeaderWrapperWidth = (horizontalHexagones) * hexagonSize;
+            }
             if (hexagonHeaderWrapperRef.current) {
                 hexagonHeaderWrapperRef.current.style.height = hexagonHeaderWrapperHeight + "px";
                 hexagonHeaderWrapperRef.current.style.width = hexagonHeaderWrapperWidth + "px";
@@ -153,16 +149,34 @@ const HexagonGrid = ({ image, defaultHexagonSize, gap, componentText }: Props) =
     }, [hexagonHeaderRef.current, hexagonSize, hexagonHeaderWrapperRef.current, rowNumber, columnNumber]);
 
     function isContentSection(row: number, column: number): boolean {
+        if (windowWidth < 840) {
+            return false;
+        }
         const halfIndex = Math.floor(columnNumber / 2) + 1; // gets the halfway index + 1
-        const exactIndex = halfIndex - (Math.floor((row + 1) / 2)); // since rows are translated relative to each other by 50%, we need to adjust the index
+        let exactIndex = halfIndex - (Math.floor((row + 1) / 2)); // since rows are translated relative to each other by 50%, we need to adjust the index
+        if (windowWidth < 1430) {
+            exactIndex += 1;
+        }
         return column < exactIndex;
     }
 
     const isBlackHexagon = (row: number, column: number) => {
+
         const halfIndex = Math.floor(columnNumber / 2); // content section half index is Math.floor(columnNumber / 2) + 1
-        const exactIndex = halfIndex - (Math.floor((row + 1) / 2)); // since rows are translated relative to each other by 50%, we need to adjust the index
+        let exactIndex = halfIndex - (Math.floor((row + 1) / 2)); // since rows are translated relative to each other by 50%, we need to adjust the index
+        if (windowWidth < 1430) {
+            exactIndex += 1;
+        }
         const headerHeight = hexagonHeaderRef.current ? hexagonHeaderRef.current.offsetHeight : 0;
-        const lastRow = Math.floor((headerHeight + hexagonSize * 1.5) / (hexagonSize * 0.75 + gap)) + 1;
+        const lastRow = Math.floor((headerHeight + hexagonSize * 1.5) / (hexagonSize * 0.75 + gap));
+
+        if (windowWidth < 840) {
+            const limit = Math.floor((rowNumber - (headerHeight / (hexagonSize * 0.75 + gap) + 1)) / 2);
+            if (row < limit || row > rowNumber - limit - 1 || (column === 0 && row % 2 === 0) || column === columnNumber - 1) {
+                return false;
+            }
+            return true;
+        }
 
         if (row < 1 || row > lastRow || column < 1 || column >= exactIndex) {
             return false;
@@ -180,8 +194,8 @@ const HexagonGrid = ({ image, defaultHexagonSize, gap, componentText }: Props) =
 
     const getBgTranslation = (row: number, column: number) => {
         // const xOffset = -column * hexagonSize + 0 + (row % 2 === 0 ? 0 : -hexagonSize / 2);
-        const xOffset = -(columnNumber - column) * hexagonSize + 0 + (row % 2 === 0 ? 0 : hexagonSize / 2);
-        const yOffset = -(rowNumber / 2 - row) * (hexagonSize * 0.75);
+        const xOffset = -(columnNumber - column - 1) * hexagonSize + 0 + (row % 2 === 0 ? 0 : hexagonSize / 2);
+        const yOffset = -(rowNumber / 2 - row) * (hexagonSize * 0.75 + gap) + hexagonSize * 0.5;
 
 
         return `calc(100% - ${xOffset}px) calc(50% - ${yOffset}px)`; // Translation (percentage based)
@@ -211,6 +225,9 @@ const HexagonGrid = ({ image, defaultHexagonSize, gap, componentText }: Props) =
     }
 
     const handleHexagonHover = (row: number, column: number) => {
+        if (windowWidth < 512) {
+            return;
+        }
         const rows = document && document.querySelectorAll('.hexagon-row');
         const indexRanges = indexRange(row, column, columnNumber, rows.length);
         removeHoverClass();
@@ -239,8 +256,8 @@ const HexagonGrid = ({ image, defaultHexagonSize, gap, componentText }: Props) =
                 className="hexagon__header-wrapper"
                 style={{
                     width: `${hexagonSize * 5}px`,
-                    top: `${hexagonSize * 0.75}px`,
-                    left: `${hexagonSize * 1.5}px`
+                    top: windowWidth < 840 ? "50%" : `${hexagonSize * 0.75}px`,
+                    left: windowWidth < 840 ? `${hexagonSize}px` : `${hexagonSize * 1.5}px`
                 }}
             >
                 <div
@@ -249,7 +266,7 @@ const HexagonGrid = ({ image, defaultHexagonSize, gap, componentText }: Props) =
                     <h1>{componentText.title}</h1>
                     <p>{componentText.description.first}</p>
                     <span>{componentText.description.second}</span>
-                    <div >
+                    <div>
                         <Button onClick={() => navigate("/wydarzenia")} className="btn btn__primary" border>{componentText.buttons.events}</Button>
                         <Button onClick={() => window.location.href = "#o_nas"} className="btn btn__secondary">{componentText.buttons.aboutUs}</Button>
                     </div>
@@ -266,7 +283,7 @@ const HexagonGrid = ({ image, defaultHexagonSize, gap, componentText }: Props) =
                                     width: `${hexagonSize}px`,
                                     height: `${hexagonSize}px`,
                                     backgroundImage: `url(${image})`,
-                                    backgroundSize: hexagonGridWidth * imageAspectRatio < hexagonGridHeight ? `auto ${hexagonGridHeight + hexagonSize}px` : `${hexagonGridWidth}px auto`,
+                                    backgroundSize: hexagonGridWidth * imageAspectRatio <= hexagonGridHeight ? `auto ${hexagonGridHeight + hexagonSize}px` : `${hexagonGridWidth}px auto`,
                                     backgroundPosition: getBgTranslation(row, column),
                                 }}
                             />

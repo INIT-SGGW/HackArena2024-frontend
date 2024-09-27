@@ -1,5 +1,5 @@
 export default class AccountService {
-  static API_URL = process.env.REACT_APP_API_URL;
+  static API_URL = "https://backend.hackarena.pl/api/v1";
 
   static async getTeam(teamID: string) {
     const response = await fetch(this.API_URL + "/" + teamID + "/users", {

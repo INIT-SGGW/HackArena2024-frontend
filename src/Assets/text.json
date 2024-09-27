@@ -15,11 +15,6 @@
         "title": "O nas",
         "path": "/#o_nas",
         "special": false
-      },
-      {
-        "title": "FAQ",
-        "path": "/#faq",
-        "special": false
       }
     ]
   },
@@ -423,6 +418,15 @@
       "patronage": "Patronat"
     }
   },
+  "liveEventHighlight": {
+    "title": {
+      "closeToRegistration": "Start {0} o {1}",
+      "eventLive": "HackArena rozpoczęta!",
+      "eventDone": "Dziękujemy za udział!"
+    },
+    "description": "Zapisy trwają do {0}",
+    "button": "Zarejestruj się"
+  },
   "home": {
     "meta": {
       "title": "HackArena",
@@ -439,11 +443,7 @@
         "aboutUs": "O nas"
       }
     },
-    "date": {
-      "closeToRegistration": "Start {0} o {1}",
-      "eventLive": "HackArena rozpoczęta!",
-      "eventDone": "Dziękujemy za udział!"
-    },
+    
     "aboutUs": {
       "title": "O nas",
       "description": "HackArena to hackathon organizowany przez <b>Koło Naukowe \"init\" z SGGW w Warszawie.</b> Podczas wydarzenia zespoły programistów tworzą boty do gry komputerowej, które następnie walczą przeciwko sobie w <b>turnieju</b> w celu uzyskania tytułu <b>mistrza HackAreny.</b>"
@@ -481,12 +481,6 @@
           "event": "Turniej"
         }
       ]
-    },
-    "dontWait": {
-      "title": "Nie czekaj",
-      "description": "Zbierz swój zespół i dołącz już teraz",
-      "dateReminder": "Zapisy trwają do {0}",
-      "button": "Zarejestruj się"
     },
     "faq": {
       "title": "FAQ",

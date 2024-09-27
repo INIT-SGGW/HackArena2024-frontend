@@ -83,6 +83,10 @@ const router = createBrowserRouter([
         element: <AccountPage />,
       },
       {
+        path: "/download/:teamName",
+        element: <DownloadPage />,
+      },
+      {
         path: "/wydarzenia",
         element: <EventListPage />,
       },

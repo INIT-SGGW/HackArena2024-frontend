@@ -12,9 +12,11 @@ import ChevronIcon from "../../Assets/chevron-down.svg"
 import Page from '../../Components/Page/Page'
 import { getAPIOrigin } from '../../Utils/getOrigin'
 import replacePlaceholders from '../../Utils/replacePlaceholders'
-import { registrationStartDate } from '../../Constants/Dates'
+import { eventStartDate, registrationEndDate, registrationStartDate } from '../../Constants/Dates'
 import dateFormat, { DateFormat } from '../../Utils/dateFormat'
 import Sponsors from '../../Components/Sponsors/Sponsors'
+import getEventStatus, { EventStatus } from '../../Utils/getEventStatus'
+import Button from '../../Components/Button/Button'
 
 const AllEventsData: { [key: string]: any } = {
     "hackarena1_0": {
@@ -268,6 +270,7 @@ function EventPage(): JSX.Element {
     const pageText: PageText = text.event
     const [photos, setPhotos] = React.useState<string[]>([]);
 
+
     useEffect(() => {
         if (eventName === undefined) {
             navigate('/404')
@@ -331,24 +334,26 @@ function EventPage(): JSX.Element {
                                 <span>{eventData.banner.date}</span>
                                 <h6>{eventData.banner.description}</h6>
                             </div>
+
                             <div className='event--clock'>
                                 <div className='pagewidth'>
-                                    <h4>{eventData.clock}</h4>
+                                    {
+                                        getEventStatus() === EventStatus.CloseToRegistration &&
+                                        <h4>{eventData.clock}</h4>
+                                    }
+                                    {
+                                        getEventStatus() === EventStatus.RegistrationOpen &&
+                                        <h4>{replacePlaceholders("Rejestracja otwarta do {0}", [dateFormat(registrationEndDate, DateFormat.DATE)])}</h4>
+                                    }
+                                    {
+                                        getEventStatus() === EventStatus.EventLive &&
+                                        <h4>HackArena w trakcie!</h4>
+                                    }
+                                    {
+                                        getEventStatus() === EventStatus.EventDone &&
+                                        <h4>Dziękujemy za udział</h4>
+                                    }
                                 </div>
-                                {/* // isEventLive() ?
-                                    // <>
-                                    //     <h3>{homeText.date.textLiveEvent}</h3>
-                                    // </>
-                                    // :
-                                    // isEventDone() ?
-                                    //     <>
-                                    //     <h3>{homeText.date.textAfterEvent}</h3>
-                                    //     </> :
-                                    //     <>
-                                    //     <h3>{homeText.date.text.first} {getEventDate()} {homeText.date.text.second} {getEventTime()}</h3>
-                                    //     <h1>{timeToEvent}</h1>
-                                    //     </> */}
-
                             </div>
                             <TitleAndDesc text={eventData.generalInformation} />
                             <TitleAndDesc text={eventData.task} />

@@ -1,6 +1,6 @@
 .app {
   /* variables are used so main content can be moved down when topbar is fixed on mobile */
-  --topbar_wrapper-padding: 0.8em;
+  --topbar_wrapper-padding: 1em;
   --topbar_height: 1.8em;
 
   min-height: 100vh;

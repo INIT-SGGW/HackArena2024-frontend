@@ -5,17 +5,18 @@ import AccountService from '../../Services/AccountService'
 interface Props { }
 
 function DownloadPage(props: Props) {
-    const teamID = useParams<{ teamID: string }>().teamID
+    const { teamName } = useParams<{ teamName: string }>()
+    console.log(teamName)
     const navigator = useNavigate()
 
     useEffect(() => {
-        AccountService.downloadSolution(teamID || "").then((response) => {
+        AccountService.downloadSolution(teamName || "").then((response) => {
             if (response.status >= 200 && response.status < 300) {
                 response.blob().then((blob) => {
                     const url = window.URL.createObjectURL(blob)
                     const a = document.createElement('a')
                     a.href = url
-                    a.download = `${teamID}.zip`
+                    a.download = `${teamName}.zip`
                     a.click()
                 }).then(() => {
                     navigator("/");

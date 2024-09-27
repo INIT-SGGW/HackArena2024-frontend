@@ -14,6 +14,7 @@ import replacePlaceholders from "../../Utils/replacePlaceholders";
 import Sponsors from "../../Components/Sponsors/Sponsors";
 import HexagonGrid from "../../Components/HoneyComb/HoneyComb";
 import WelcomImage from "../../Assets/hackarena_1_0_yellow_4.jpg"
+import LiveEventHighlight from "../../Components/LiveEventHighlight/LiveEventHighlight";
 
 interface Props { }
 
@@ -55,52 +56,23 @@ function HomePage(props: Props) {
             </div>
           </div>
         </div> */}
-        {
-          getEventStatus() === EventStatus.EventLive &&
-          <div className="home--date home--section">
+        <LiveEventHighlight />
 
-            <h3>{pageText.date.eventLive}</h3>
-          </div>
-        }
-        {
-          getEventStatus() === EventStatus.EventDone &&
-          <div className="home--date home--section">
-            <h3>{pageText.date.eventDone}</h3>
-          </div>
-        }
-        {
-          (getEventStatus() === EventStatus.CloseToRegistration ||
-            getEventStatus() === EventStatus.RegistrationOpen ||
-            getEventStatus() === EventStatus.RegistrationClosed) &&
-          <div className="home--date home--section">
-            {/* TODO: style home date */}
-            <h3>{replacePlaceholders(
-              pageText.date.closeToRegistration,
-              [dateFormat(eventStartDate, DateFormat.DATE), dateFormat(eventStartDate, DateFormat.TIME)])}
-            </h3>
-            <h2 className="header__yellow">{timeToEvent}</h2>
-          </div>
-        }
+        <div style={{
+          display: "flex",
+          flexDirection: getEventStatus() === EventStatus.Default ? "column-reverse" : "column",
+        }}>
 
-        {
-          getEventStatus() === EventStatus.RegistrationOpen &&
-          <div id='nieczekaj' className="home--dontwait pagewidth home--section">
-            {/* TODO: style dont wait change id? */}
-            <h2 className="header__white">{pageText.dontWait.title}</h2>
-            <h4>{pageText.dontWait.description}</h4>
-            <p>{replacePlaceholders(pageText.dontWait.dateReminder, dateFormat(registrationEndDate, DateFormat.DATE))}</p>
-            <Button onClick={() => navigate("/rejestracja")} className="btn btn__primary-w btn__primary-w-border">{pageText.dontWait.button}</Button>
+          <div className="home--about__event">
+            <div id="hackarena2" className="home--about pagewidth home--section">
+              <h2 className="header__black">{pageText.nextEvent.title}</h2>
+              <p id="next_event_text"></p>
+              <Button onClick={() => navigate("/wydarzenia/hackarena2_0")} className="btn btn__primary-b btn__primary-b-border">{pageText.nextEvent.button}</Button>
+            </div>
           </div>
-        }
-        <div id="o_nas" className="home--about pagewidth home--section">
-          <h2 className="header__white">{pageText.aboutUs.title}</h2>
-          <p id="about_text"></p>
-        </div>
-        <div className="home--about__event">
-          <div id="hackarena2" className="home--about pagewidth home--section">
-            <h2 className="header__black">{pageText.nextEvent.title}</h2>
-            <p id="next_event_text"></p>
-            <Button onClick={() => navigate("/wydarzenia/hackarena2_0")} className="btn btn__primary-b btn__primary-b-border">{pageText.nextEvent.button}</Button>
+          <div id="o_nas" className="home--about pagewidth home--section">
+            <h2 className="header__white">{pageText.aboutUs.title}</h2>
+            <p id="about_text"></p>
           </div>
         </div>
         {/* <div id="agenda" className="home--agenda home--section pagewidth">
@@ -121,12 +93,12 @@ function HomePage(props: Props) {
 
         </div>
 
-        <div id="faq" className="home--faq pagewidth home--section">
+        {/* <div id="faq" className="home--faq pagewidth home--section">
           <h2 className="header__white">{pageText.faq.title}</h2>
           <FAQComponent questions={pageText.faq.questions} />
-        </div>
+        </div> */}
       </div>
-    </Page>
+    </Page >
   );
 }
 
