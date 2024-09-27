@@ -431,7 +431,8 @@
     "welcome": {
       "title": "HackArena",
       "description": {
-        "first": "Zbierz zespół i podejmij wyzwanie!"
+        "first": "Hackathon na SGGW",
+        "second": "Zbierz zespół i podejmij wyzwanie!"
       },
       "buttons": {
         "events": "Wydarzenia",

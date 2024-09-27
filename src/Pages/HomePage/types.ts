@@ -6,6 +6,7 @@ export interface PageText extends PageMetaText {
         title: string
         description: {
             first: string
+            second: string
         }
         buttons: {
             events: string

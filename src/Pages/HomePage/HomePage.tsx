@@ -13,6 +13,7 @@ import getEventStatus, { EventStatus } from "../../Utils/getEventStatus";
 import replacePlaceholders from "../../Utils/replacePlaceholders";
 import Sponsors from "../../Components/Sponsors/Sponsors";
 import HexagonGrid from "../../Components/HoneyComb/HoneyComb";
+import WelcomImage from "../../Assets/hackarena_1_0_yellow_4.jpg"
 
 interface Props { }
 
@@ -37,9 +38,14 @@ function HomePage(props: Props) {
   return (
     <Page pageTitle={pageText.meta.title} description={pageText.meta.description} paddingTop={false} paddingBottom={false}>
       <div className="home">
-        <HexagonGrid />
+        <div className="home--welcome">
+          <HexagonGrid image={WelcomImage} defaultHexagonSize={90} gap={2} componentText={pageText.welcome} />
+        </div>
+        <div className="test">
 
-        <div id="welcome--wrapper">
+        </div>
+
+        {/* <div id="welcome--wrapper">
           <div id="welcome" className="home--welcome pagewidth home--section">
             <h1>{pageText.welcome.title}</h1>
             <h6>{pageText.welcome.description.first}</h6>
@@ -48,7 +54,7 @@ function HomePage(props: Props) {
               <Button onClick={() => window.location.href = "#o_nas"} className="btn btn__primary-w">{pageText.welcome.buttons.aboutUs}</Button>
             </div>
           </div>
-        </div>
+        </div> */}
         {
           getEventStatus() === EventStatus.EventLive &&
           <div className="home--date home--section">

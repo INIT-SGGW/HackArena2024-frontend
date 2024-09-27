@@ -20,8 +20,20 @@ h2 {
   padding-bottom: 4rem;
 }
 
+.test {
+  background-image: url("../../Assets/hackarena_1_0_yellow_3.jpg");
+  width: 100%;
+  height: 100%;
+}
+
 .home--welcome {
-  /* background-color: rgba(var(--background-color), 0.8); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .home--welcome {
   border-radius: 1.5rem;
 
   padding: 2rem 1rem;
@@ -30,9 +42,9 @@ h2 {
   box-sizing: border-box;
   position: relative;
   z-index: 1;
-}
+} */
 
-.home--welcome::before {
+/* .home--welcome::before {
   content: "";
   display: block;
   width: 150%;
@@ -45,29 +57,7 @@ h2 {
   background-color: rgba(var(--primary-color), 0.1);
   border-radius: 50%;
   z-index: -1;
-}
-
-.home--welcome > h1 {
-  letter-spacing: 0.1rem;
-  /* background-color: rgb(var(--primary-color)); */
-  background-color: var(--text-one-color);
-
-  padding: 0.5rem 3rem;
-  box-sizing: border-box;
-  color: rgb(var(--background-color));
-  /* color: var(--text-one-color); */
-}
-
-.home--welcome > h6 {
-  font-weight: bold;
-  /* background-color: var(--secondary-color); */
-  background-color: rgb(var(--background-color));
-
-  padding: 0.5rem 4rem;
-  /* color: rgb(var(--primary-color)); */
-  color: var(--text-one-color);
-  text-align: center;
-}
+} */
 
 .welcome--text {
   display: flex;
