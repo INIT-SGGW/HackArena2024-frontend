@@ -403,6 +403,18 @@ label {
   border-color: var(--text-one-color);
 }
 
+.btn__secondary-b {
+  background-color: rgb(var(--primary-color));
+  border: 3px solid rgb(var(--background-color));
+  color: rgb(var(--background-color));
+}
+
+.btn__secondary-b-hover {
+  background-color: rgb(var(--background-color));
+  color: rgb(var(--primary-color));
+  border-color: rgb(var(--background-color));
+}
+
 .btn__halfborder:first-child {
   border-right: none;
   border-radius: var(--account-button-border-radius) 0 0
