@@ -10,6 +10,7 @@ import NavBar from "./Components/NavBar/NavBar";
 import Logo from "./Assets/logo.svg"
 import SocialMedia from "./Components/SocialMedia/SocialMedia";
 import useWindowWidth from "./Hooks/useWindowWidth";
+import SGGW from "./Assets/sggw_logo_white.png";
 
 const TopBar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -17,9 +18,15 @@ const TopBar = () => {
   return (
     <div className="topbar__wrapper">
       <div className="topbar pagewidth">
-        <Link to="/">
-          <img src={Logo} alt="HackArena" />
-        </Link>
+        <div style={{ height: '100%' }} className="section--row-1" >
+          <Link to="/">
+            <img src={Logo} alt="HackArena" />
+          </Link>
+          <a href="https://www.sggw.edu.pl">
+            <img src={SGGW} alt="SGGW" />
+          </a>
+
+        </div>
         <NavBar showSideBar={showSidebar} setShowSidebar={setShowSidebar} />
       </div>
     </div>

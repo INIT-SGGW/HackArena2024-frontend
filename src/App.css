@@ -44,7 +44,7 @@
   height: var(--topbar_height);
 }
 
-.topbar > a {
+.topbar > div > a {
   height: 90%;
 }
 
