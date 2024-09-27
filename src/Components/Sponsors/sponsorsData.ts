@@ -9,7 +9,7 @@ import CrossWebLogo from "../../Assets/Sponsors/crossweb.svg";
 import ScrumDoLogo from "../../Assets/Sponsors/scrumdo.png";
 import KochamSkakacLogo from "../../Assets/Sponsors/kochamskakac.png";
 import MevSpaceLogo from "../../Assets/Sponsors/mevspace.svg";
-import UrsynowLogo from "../../Assets/Sponsors/ursynow.jpg";
+import UrsynowLogo from "../../Assets/Sponsors/ursynow.png";
 import CosomoEyeLogo from "../../Assets/Sponsors/cosmoeye.svg";
 import SGGWLogo from "../../Assets/sggw_logo_white.png";
 import CoffeeHeroesRosteryLogo from "../../Assets/Sponsors/coffee_heroes_roastery.png";
