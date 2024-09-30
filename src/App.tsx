@@ -38,7 +38,7 @@ const Footer = () => {
     <div className="footer">
       <NavBar />
       <div className="divider" />
-      <SocialMedia />
+      <SocialMedia mobileHeight />
     </div>
   )
 }

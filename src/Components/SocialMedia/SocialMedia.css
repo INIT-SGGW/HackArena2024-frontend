@@ -22,7 +22,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .social {
+  .social-mobile {
     padding: 2rem 0 !important;
   }
 }

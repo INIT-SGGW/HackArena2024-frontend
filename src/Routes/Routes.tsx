@@ -13,6 +13,7 @@ import EventListPage from "../Pages/EventListPage/EventListPage";
 import MemberRegisterPage from "../Pages/MemberRegisterPage/MemberRegisterPage";
 import ForgotPassword from "../Pages/ForgotPasswordPage/ForgotPassword";
 import ChangePasswordPage from "../Pages/ChangePasswordPage/ChangePasswordPage";
+import Contact from "../Pages/Contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,17 @@ const router = createBrowserRouter([
         element: <ForgotPassword />,
       },
       {
+        path: "/sukces/forgot",
+        element: <MessagePage
+          title="Sukces!"
+          message="Link do zmiany hasła został wysłany na podany adres email."
+          buttonOneText="Konto"
+          buttonOneLink="/login"
+          buttonTwoText="Strona główna"
+          buttonTwoLink="/"
+        />
+      },
+      {
         path: "/password/change",
         element: <ChangePasswordPage />,
       },
@@ -49,6 +61,10 @@ const router = createBrowserRouter([
           buttonTwoText="Strona główna"
           buttonTwoLink="/"
         />
+      },
+      {
+        path: "/kontakt",
+        element: <Contact />
       },
       {
         path: "/rejestracja",
@@ -81,10 +97,6 @@ const router = createBrowserRouter([
       {
         path: "/konto",
         element: <AccountPage />,
-      },
-      {
-        path: "/download/:teamName",
-        element: <DownloadPage />,
       },
       {
         path: "/wydarzenia",

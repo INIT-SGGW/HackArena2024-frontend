@@ -9,12 +9,9 @@
   align-items: center;
 }
 
-.login--form {
-  width: 95%;
-  max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
+.login > form {
+  margin-top: 2rem;
+  max-width: 600px;
 }
 
 .login--input {
@@ -54,4 +51,11 @@
 
 .login--checkbox {
   margin: 0.5rem 0 !important;
+}
+
+.login__forgot {
+  text-align: right;
+  font-size: 1rem;
+  color: var(--text-one-color);
+  margin-top: 0.5rem;
 }

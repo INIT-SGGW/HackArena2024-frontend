@@ -7,6 +7,7 @@ import Alert from "../../Components/Alert/Alert";
 import Page from "../../Components/Page/Page";
 import { PageText } from "./types";
 import Input from "../../Components/Input/Input";
+import { ForgotPasswordRequestBody } from "../../Types/requests";
 
 interface Props { }
 
@@ -27,7 +28,23 @@ function ForgotPasswordPage(props: Props) {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const data = new FormData(e.currentTarget);
+
+        const body: ForgotPasswordRequestBody = {
+            email: data.get("email") as string
+        }
+
         setInputsDisabled(true);
+        AuthenticationService.forgotPassword(body).then((response) => {
+            if (response.status === 201) {
+                navigate("/sukces/forgot");
+            } else {
+                setSubmitError("Wystąpił błąd podczas resetowania hasła");
+                setInputsDisabled(false);
+            }
+        }).catch(() => {
+            setSubmitError("Wystąpił błąd podczas resetowania hasła");
+            setInputsDisabled(false);
+        });
     };
 
     return (

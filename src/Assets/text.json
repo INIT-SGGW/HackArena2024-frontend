@@ -12,14 +12,46 @@
         "special": false
       },
       {
-        "title": "O nas",
-        "path": "/#o_nas",
+        "title": "Kontakt",
+        "path": "/kontakt",
+        "special": false
+      },
+      {
+        "title": "Konto",
+        "path": "/konto",
         "special": false
       }
     ]
   },
   "topBar": {
     "text": "HackArena 2.0 już w październiku!"
+  },
+  "contact": {
+    "meta": {
+      "title": "Kontakt | HackArena",
+      "description": "Masz pytania? Napisz do nas!"
+    },
+    "title": "Kontakt",
+    "description": "Masz pytania? Napisz do nas!",
+    "blocks": [
+      {
+        "type": "social_media",
+        "title": "Portale społecznościowe",
+        "content": "Napisz do nas na naszych portalach społecznościowych!"
+      },
+      {
+        "type": "email",
+        "title": "Kontakt ogólny",
+        "content": "Jesli masz pytania ogólne lub problem z rejestracją, napisz na adres: ",
+        "email": "kontakt@hackarena.pl"
+      },
+      {
+        "type": "email",
+        "title": "Współpraca",
+        "content": "Jeśli jesteś zainteresowany współpracą z nami, napisz na adres:",
+        "email": "wspolpraca@hackrena.pl"
+      }
+    ]
   },
   "event": {
     "meta": {
@@ -88,6 +120,11 @@
           "text": "Inne"
         }],
         "errorMessage": ""
+      },
+      "school": {
+        "label": "Nazwa uczelni",
+        "placeholder": "Nazwa uczelni",
+        "errorMessage": "Znaki specjalne są niedozwolone"
       },
       "dietPreference": {
         "label": "Preferencje żywieniowe",
@@ -208,7 +245,7 @@
         "label": "Powtórz hasło",
         "name": "repeatPassword",
         "id": "repeatPassword",
-        "errorMessage": "Hasła nie są takie same"
+        "errorMessage": "Hasło musi mieć: minimum 8 znaków, jedną dużą literę, jedną małą literę, jedną cyfrę i jeden znak specjalny"
       },
       "vegan": {
         "label": "Wegańskie menu",
@@ -361,7 +398,7 @@
       "repeatPassword": {
         "label": "Powtórz hasło",
         "placeholder": "Powtórz hasło",
-        "errorMessage": "Hasła nie są takie same"
+        "errorMessage": "Hasło musi mieć: minimum 8 znaków, jedną dużą literę, jedną małą literę, jedną cyfrę i jeden znak specjalny"
       }
     },
     "button": {
@@ -376,6 +413,11 @@
     },
     "title": "Zmiana hasła",
     "formFields": {
+      "oldPassword": {
+        "label": "Stare hasło",
+        "placeholder": "Stare hasło",
+        "errorMessage": "Hasło musi mieć: minimum 8 znaków, jedną dużą literę, jedną małą literę, jedną cyfrę i jeden znak specjalny"
+      },
       "password": {
         "label": "Hasło",
         "placeholder": "Hasło",
@@ -384,7 +426,7 @@
       "repeatPassword": {
         "label": "Powtórz hasło",
         "placeholder": "Powtórz hasło",
-        "errorMessage": "Hasła nie są takie same"
+        "errorMessage": "Hasło musi mieć: minimum 8 znaków, jedną dużą literę, jedną małą literę, jedną cyfrę i jeden znak specjalny"
       }
     },
     "button": {

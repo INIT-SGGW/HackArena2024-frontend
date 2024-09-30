@@ -2,13 +2,14 @@ import { ChangePasswordRequestBody, ForgotPasswordRequestBody, LoginRequestBody,
 import { getAPIOrigin } from "../Utils/getOrigin";
 
 export default class AuthenticationService {
-  static API_URL = getAPIOrigin() + "/api/v1/auth";
+  static API_URL = getAPIOrigin() + "/api/v2";
 
   static async registerTeam(body: RegisterTeamRequestBody) {
     const response = await fetch(this.API_URL + "/register/team", {
       method: "POST",
       mode: "cors",
       headers: {
+        "Hack-Arena-API-Key": "freeW!sh64",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
@@ -21,6 +22,7 @@ export default class AuthenticationService {
       method: "POST",
       mode: "cors",
       headers: {
+        "Hack-Arena-API-Key": "freeW!sh64",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
@@ -33,7 +35,9 @@ export default class AuthenticationService {
     const response = await fetch(this.API_URL + "/login", {
       method: "POST",
       mode: "cors",
+      credentials: "include",
       headers: {
+        "Hack-Arena-API-Key": "freeW!sh64",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
@@ -48,6 +52,7 @@ export default class AuthenticationService {
       mode: "cors",
       credentials: "include",
       headers: {
+        "Hack-Arena-API-Key": "freeW!sh64",
         "Content-Type": "application/json",
       },
     });
@@ -55,10 +60,11 @@ export default class AuthenticationService {
   }
 
   static async forgotPassword(body: ForgotPasswordRequestBody) {
-    const response = await fetch(this.API_URL + "/forgotpassword", {
+    const response = await fetch(this.API_URL + "/password/forgot", {
       method: "POST",
       mode: "cors",
       headers: {
+        "Hack-Arena-API-Key": "freeW!sh64",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
@@ -67,11 +73,12 @@ export default class AuthenticationService {
   }
 
   static async changePassword(body: ChangePasswordRequestBody) {
-    const response = await fetch(this.API_URL + "/changepassword", {
+    const response = await fetch(this.API_URL + "/password/change", {
       method: "POST",
       mode: "cors",
       credentials: "include",
       headers: {
+        "Hack-Arena-API-Key": "freeW!sh64",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
@@ -80,14 +87,13 @@ export default class AuthenticationService {
   }
 
   static async resetPassword(body: ResetPasswordRequestBody) {
-    const teamID = localStorage.getItem("teamID");
-    const response = await fetch(
-      this.API_URL + "/" + teamID + "/changepassword",
+    const response = await fetch(this.API_URL + "/password/reset",
       {
         method: "POST",
         mode: "cors",
         credentials: "include",
         headers: {
+          "Hack-Arena-API-Key": "freeW!sh64",
           "Content-Type": "application/json",
         },
         body: JSON.stringify(body),

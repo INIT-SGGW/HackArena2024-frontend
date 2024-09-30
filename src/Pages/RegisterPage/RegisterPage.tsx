@@ -85,18 +85,13 @@ function RegisterPage(props: Props) {
         console.log(response.status)
         if (response.ok) {
           navigate(`/sukces/rejestracja`);
-        } else if (response.status === 400) {
-          response.json().then((errorBody: ErrorBodyResponse) => {
-            setSubmitError(errorBody.message);
-            setInputsDisabled(false);
-          })
         } else {
-          setSubmitError("Wystąpił błąd. Spróbuj ponownie.");
+          setSubmitError("Wystąpił błąd podczas rejestracji");
           setInputsDisabled(false);
         }
       })
       .catch(() => {
-        setSubmitError("Wystąpił błąd. Spróbuj ponownie.");
+        setSubmitError("Wystąpił błąd podczas rejestracji");
         setInputsDisabled(false);
       });
   }

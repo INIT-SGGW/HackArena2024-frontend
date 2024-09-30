@@ -100,7 +100,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  z-index: 100;
+  z-index: 30;
   pointer-events: none;
   padding-left: 2rem;
   box-sizing: border-box;

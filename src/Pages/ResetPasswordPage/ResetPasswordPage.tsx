@@ -7,6 +7,8 @@ import Alert from "../../Components/Alert/Alert";
 import Page from "../../Components/Page/Page";
 import { PageText } from "./types";
 import Input from "../../Components/Input/Input";
+import { ResetPasswordRequestBody } from "../../Types/requests";
+import { useSearchParams } from "react-router-dom";
 
 interface Props { }
 
@@ -16,12 +18,34 @@ function ResetPasswordPage(props: Props) {
   const [inputsDisabled, setInputsDisabled] = useState<boolean>(false);
   const navigate = useNavigate();
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [searchParams] = useSearchParams()
 
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const token = searchParams.get("token")
+    const email = searchParams.get("email")
     const data = new FormData(e.currentTarget);
     setInputsDisabled(true);
+
+    const body: ResetPasswordRequestBody = {
+      password: data.get("password") as string,
+      token: token as string,
+      email: email as string
+    }
+
+    AuthenticationService.resetPassword(body).then((response) => {
+      if (response.status === 201) {
+        navigate("/sukces/reset");
+      } else {
+        setSubmitError("Wystąpił błąd podczas resetowania hasła");
+        setInputsDisabled(false);
+      }
+    }).catch(() => {
+      setSubmitError("Wystąpił błąd podczas resetowania hasła");
+      setInputsDisabled(false);
+    });
   };
 
   return (

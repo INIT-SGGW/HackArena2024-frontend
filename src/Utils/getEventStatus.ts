@@ -16,6 +16,7 @@ const getDaysBetweenDates = (date1: Date, date2: Date) => {
 
 const getEventStatus = () => {
     const currentDate = new Date();
+    return EventStatus.RegistrationOpen;
     if (getDaysBetweenDates(currentDate, registrationStartDate) <= 14) {
         return EventStatus.CloseToRegistration;
     } else if (currentDate >= registrationStartDate && currentDate < registrationEndDate) {

@@ -38,6 +38,11 @@ export interface PageText extends PageMetaText {
             }[]
             errorMessage: string
         },
+        school: {
+            label: string
+            placeholder: string
+            errorMessage: string
+        }
         dietPreference: {
             label: string
             placeholder: string

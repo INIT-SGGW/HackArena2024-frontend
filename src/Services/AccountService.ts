@@ -1,14 +1,17 @@
-export default class AccountService {
-  static API_URL = "https://backend.hackarena.pl/api/v1";
+import { GetTeamRequestBody } from "../Types/requests";
+import { getAPIOrigin } from "../Utils/getOrigin";
 
-  static async getTeam(teamID: string) {
-    const response = await fetch(this.API_URL + "/" + teamID + "/users", {
+export default class AccountService {
+  static API_URL = getAPIOrigin() + "/api/v2";
+
+  static async getTeam(teamName: string) {
+    const response = await fetch(this.API_URL + "/team/" + teamName, {
       method: "GET",
       mode: "cors",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        "Hack-Arena-API-Key": process.env.REACT_APP_API_KEY || "",
+        "Hack-Arena-API-Key": "freeW!sh64",
       },
     });
 

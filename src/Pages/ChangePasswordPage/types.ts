@@ -3,6 +3,11 @@ import { PageMetaText } from "../../Types/types";
 export interface PageText extends PageMetaText {
     title: string
     formFields: {
+        oldPassword: {
+            label: string,
+            placeholder: string,
+            errorMessage: string
+        }
         password: {
             label: string,
             placeholder: string,

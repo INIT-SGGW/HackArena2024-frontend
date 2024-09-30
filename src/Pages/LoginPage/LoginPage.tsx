@@ -40,25 +40,19 @@ function LoginPage() {
 
     AuthenticationService.login(body)
       .then((response) => {
-        if (response.status === 200) {
+        if (response.status === 202) {
           response.json().then((data: LoginBodyResponse) => {
             try {
-              localStorage.setItem("user", JSON.stringify(data.user));
+              localStorage.setItem("email", JSON.stringify(data.email));
               localStorage.setItem("teamName", JSON.stringify(data.teamName));
-              console.log("loggin", data.user, data.teamName);
             } catch (error) {
               setError("Wystąpił błąd podczas logowania");
-              localStorage.removeItem("user");
+              localStorage.removeItem("email");
               localStorage.removeItem("teamName");
               setInputsDisabled(false);
             }
             navigate("/konto");
           });
-        } else if (response.status === 400) {
-          response.json().then((body: ErrorBodyResponse) => {
-            setError(body.message)
-            setInputsDisabled(false)
-          })
         } else {
           setError("Wystąpił błąd podczas logowania");
           setInputsDisabled(false)
@@ -104,7 +98,6 @@ function LoginPage() {
             maxLength={70}
             pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$"
           />
-          <Link to="/reset-password">Zapomniałeś hasła?</Link>
           <input
             type="submit"
             className="input__element input__button"
@@ -112,6 +105,7 @@ function LoginPage() {
             disabled={inputsDisabled}
             value={inputsDisabled ? pageText.button.disabled : pageText.button.active}
           />
+          <Link className="login__forgot" to="/password/forgot">Zapomniałeś hasła?</Link>
         </form>
       </div>
     </Page>

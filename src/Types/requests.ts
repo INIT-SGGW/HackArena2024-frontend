@@ -33,7 +33,8 @@ export type RegisterTeamMemberRequestBody = {
     dateOfBirth: string;
     occupation: Occupation;
     dietPreference: DietPreference;
-    aggreement: boolean;
+    agreement: boolean;
+    school?: string;
 };
 
 export type LoginRequestBody = {
@@ -61,4 +62,8 @@ export type ResetPasswordRequestBody = {
     email: string;
     password: string;
     token: string;
+}
+
+export type GetTeamRequestBody = {
+    teamName: string;
 }

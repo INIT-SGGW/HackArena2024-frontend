@@ -18,7 +18,7 @@
   transition: all var(--hover-transition-time) ease-out;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 840px) {
   .button:hover .button__double {
     width: 100%;
   }

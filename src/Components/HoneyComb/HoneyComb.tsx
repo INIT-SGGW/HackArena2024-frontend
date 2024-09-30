@@ -3,7 +3,6 @@ import "./HoneyComb.css";
 import useWindowWidth from "../../Hooks/useWindowWidth";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
-import image from "../../Assets/hackarena_1_0_yellow_4.jpg";
 
 interface ComponentText {
     title: string;
@@ -88,15 +87,14 @@ const HexagonGrid = ({ image, defaultHexagonSize, gap, componentText }: Props) =
             const hexagonGridHeight: number = computedStyle.height ? parseInt(computedStyle.height) : 0;
             const hexagonGridPadding: number = computedStyle.paddingLeft ? parseInt(computedStyle.paddingLeft) : 0;
             const hexagonGridWidthNoPadding: number = hexagonGridWidth - hexagonGridPadding * 2;
+            console.log("hexagonGridWidthNoPadding", hexagonGridWidthNoPadding);
             setHexagonGridWidth(hexagonGridWidthNoPadding);
             setHexagonGridHeight(hexagonGridHeight);
         }
-    }, [windowWidth, hexagonSize]);
+    }, [windowWidth, hexagonGridRef.current]);
 
     useEffect(() => {
         setColumnNumber(Math.floor(hexagonGridWidth / idealHexagonSize));
-        let hexagonSize = 1 / columnNumber * hexagonGridWidth; // size of hexagons based on the number of columns
-        setHexagonSize(hexagonSize);
 
         const minComponentHeight = 550;
         const maxComponentHeight = minComponentHeight + 50;
@@ -110,9 +108,12 @@ const HexagonGrid = ({ image, defaultHexagonSize, gap, componentText }: Props) =
 
         // const result = numberOfRows * (hexagonSize + gap) > maxComponentHeight ? Math.floor(maxComponentHeight / (hexagonSize * 0.75 + gap)) : numberOfRows;
         setRowNumber(!Number.isNaN(numberOfRows) ? numberOfRows : 5);
-    }, [imageAspectRatio, hexagonGridWidth]);
+    }, [imageAspectRatio, hexagonGridWidth, idealHexagonSize, hexagonSize]);
 
-
+    useEffect(() => {
+        let hexagonSize = 1 / columnNumber * (hexagonGridWidth); // size of hexagons based on the number of columns
+        setHexagonSize(hexagonSize);
+    }, [columnNumber, hexagonGridWidth]);
 
     // hexagon grid height setup
     useEffect(() => {
@@ -120,7 +121,7 @@ const HexagonGrid = ({ image, defaultHexagonSize, gap, componentText }: Props) =
             const height = new String((hexagonSize * 0.75 + gap) * rowNumber - hexagonSize * 0.25 - gap);
             hexagonGridRef.current.style.height = height + "px";
         }
-    }, [hexagonGridWidth, rowNumber]);
+    }, [hexagonSize, rowNumber]);
 
     // image aspect ratio setup
     useEffect(() => {
@@ -135,7 +136,10 @@ const HexagonGrid = ({ image, defaultHexagonSize, gap, componentText }: Props) =
             const verticalHexagones = new Array(rowNumber).fill(0).reduce((acc, _, i) => acc + isBlackHexagon(i, 1), 0);
             // const headerHeight = hexagonHeaderRef.current.offsetHeight;
             // const verticalHexagones = Math.floor((headerHeight + hexagonSize * 1.5) / (hexagonSize * 0.75 + gap)) + 1;
-            const horizontalHexagones = new Array(columnNumber).fill(0).reduce((acc, _, i) => acc + isBlackHexagon(verticalHexagones, i), 0);
+            let horizontalHexagones = new Array(columnNumber).fill(0).reduce((acc, _, i) => acc + isBlackHexagon(Math.floor((rowNumber - verticalHexagones) / 2), i), 0);
+            if (isBlackHexagon(Math.floor((rowNumber - verticalHexagones) / 2), 0)) {
+                horizontalHexagones -= 1;
+            }
             const hexagonHeaderWrapperHeight = verticalHexagones * (hexagonSize * 0.75 + gap) - hexagonSize * 0.25;
             let hexagonHeaderWrapperWidth = (horizontalHexagones - (verticalHexagones % 2 === 0 ? 0.5 : 0)) * hexagonSize;
             if (windowWidth < 840) {
@@ -196,7 +200,6 @@ const HexagonGrid = ({ image, defaultHexagonSize, gap, componentText }: Props) =
         // const xOffset = -column * hexagonSize + 0 + (row % 2 === 0 ? 0 : -hexagonSize / 2);
         const xOffset = -(columnNumber - column - 1) * hexagonSize + 0 + (row % 2 === 0 ? 0 : hexagonSize / 2);
         const yOffset = -(rowNumber / 2 - row) * (hexagonSize * 0.75 + gap) + hexagonSize * 0.5;
-
 
         return `calc(100% - ${xOffset}px) calc(50% - ${yOffset}px)`; // Translation (percentage based)
     }
@@ -273,22 +276,25 @@ const HexagonGrid = ({ image, defaultHexagonSize, gap, componentText }: Props) =
                 </div>
             </div>
             {new Array(rowNumber).fill(0).map((_, row) => (
-                <div className="hexagon-row" style={{ top: `${getTop(row)}px`, left: `${getLeft(row)}px`, gap: gap + "px" }}>
+                <div key={row} className="hexagon-row" style={{ top: `${getTop(row)}px`, left: `${getLeft(row)}px`, gap: gap + "px" }}>
                     {
-                        new Array(columnNumber).fill(0).map((_, column) => (
-                            <div key={column} className={`hexagon ${isContentSection(row, column) ? 'hidden' : ''} ${isBlackHexagon(row, column) ? "hexagon-black" : ""}`}
-                                onMouseEnter={() => handleHexagonHover(row, column)}
-                                onMouseLeave={removeHoverClass}
-                                style={{
-                                    width: `${hexagonSize}px`,
-                                    height: `${hexagonSize}px`,
-                                    backgroundImage: `url(${image})`,
-                                    backgroundSize: hexagonGridWidth * imageAspectRatio <= hexagonGridHeight ? `auto ${hexagonGridHeight + hexagonSize}px` : `${hexagonGridWidth}px auto`,
-                                    backgroundPosition: getBgTranslation(row, column),
-                                }}
-                            />
+                        new Array(columnNumber).fill(0).map((_, column) => {
+                            console.log("hexagonGridWidht", hexagonGridWidth);
+                            return (
+                                <div key={column} className={`hexagon ${isContentSection(row, column) ? 'hidden' : ''} ${isBlackHexagon(row, column) ? "hexagon-black" : ""}`}
+                                    onMouseEnter={() => handleHexagonHover(row, column)}
+                                    onMouseLeave={removeHoverClass}
+                                    style={{
+                                        width: `${hexagonSize}px`,
+                                        height: `${hexagonSize}px`,
+                                        backgroundImage: `url(${image})`,
+                                        backgroundSize: hexagonGridWidth * imageAspectRatio <= hexagonGridHeight ? `auto ${hexagonGridHeight + hexagonSize}px` : `${hexagonGridWidth}px auto`,
+                                        backgroundPosition: getBgTranslation(row, column),
+                                    }}
+                                />
 
-                        ))
+                            )
+                        })
                     }
                 </div>
             ))

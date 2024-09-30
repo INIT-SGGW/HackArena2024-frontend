@@ -3,8 +3,8 @@ export const getAPIOrigin = (): string => {
         case 'production':
             return 'https://backend.hackarena.pl';
         case 'test':
-            return 'https://testbackend.hackarena.pl';
+            return 'https://backend.hackarena.pl';
         default:
-            return 'http://localhost:5000';
+            return 'http://localhost:8080';
     }
 }

@@ -33,7 +33,7 @@ function FileUploader(props: Props) {
     setMessage("Wysyłanie pliku...")
     setStatus(FileStatus.SENDING);
 
-    const teamName = localStorage.getItem("teamID") || "";
+    const teamName = localStorage.getItem("teamName") || "";
     AccountService.uploadSolution(teamName, file as File).then((response) => {
       if (response.status >= 200 && response.status < 300) {
         setMessage("Plik został wysłany pomyślnie")
