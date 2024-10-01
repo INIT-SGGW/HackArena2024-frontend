@@ -4,6 +4,7 @@ import Button from '../Button/Button'
 
 interface Props {
     title: string,
+    description?: string,
     message: string,
     buttonOneText: string,
     buttonOneAction: () => void,
@@ -13,6 +14,7 @@ interface Props {
 
 function Alert({
     title,
+    description,
     message,
     buttonOneAction,
     buttonOneText,
@@ -22,7 +24,10 @@ function Alert({
         <div className='alert'>
             <div className="alert--content">
                 <h3 className='header__yellow'>{title}</h3>
-                <p>{message}</p>
+                <div>
+                    <p>{description}</p>
+                    <p className={`${description ? "alert--secondary-text" : ""}`}>{message}</p>
+                </div>
                 <div className='alert--buttons'>
                     <Button
                         className='btn btn__primary btn__primary-border'

@@ -10,6 +10,7 @@ import { PageText } from "./types";
 import Input from "../../Components/Input/Input";
 import { LoginRequestBody } from "../../Types/requests";
 import { ErrorBodyResponse, LoginBodyResponse } from "../../Types/responses";
+import { EmailRegex, PasswordRegex } from "../../Constants/Regex";
 
 function LoginPage() {
   const pageText: PageText = text.login;
@@ -54,12 +55,17 @@ function LoginPage() {
             navigate("/konto");
           });
         } else {
-          setError("Wystąpił błąd podczas logowania");
-          setInputsDisabled(false)
+          response.json().then((data: ErrorBodyResponse) => {
+            setError(data.error);
+            setInputsDisabled(false);
+          }).catch(() => {
+            setError("Błąd serwera");
+            setInputsDisabled(false);
+          });
         }
       })
       .catch((error) => {
-        setError("Wystąpił błąd podczas logowania");
+        setError("Błąd połączenia z serwerem");
         setInputsDisabled(false);
       });
   };
@@ -69,6 +75,7 @@ function LoginPage() {
       {error &&
         <Alert
           title="Błąd"
+          description="Wystąpił błąd podczas logowania:"
           message={error}
           buttonOneText="Spróbuj ponownie"
           buttonOneAction={() => { setError(""); }}
@@ -85,7 +92,7 @@ function LoginPage() {
             showError={showErrors}
             maxLength={70}
             inputDisabled={inputsDisabled}
-            pattern="^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$"
+            pattern={EmailRegex}
           />
           <Input
             pageText={pageText.form.password}
@@ -96,7 +103,7 @@ function LoginPage() {
             inputDisabled={inputsDisabled}
             minLength={8}
             maxLength={70}
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$"
+            pattern={PasswordRegex}
           />
           <input
             type="submit"

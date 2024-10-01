@@ -6,7 +6,6 @@ interface Props { }
 
 function DownloadPage(props: Props) {
     const { teamName } = useParams<{ teamName: string }>()
-    console.log(teamName)
     const navigator = useNavigate()
 
     useEffect(() => {

@@ -12,6 +12,7 @@ import { DietPreference, Occupation, RegisterTeamMemberRequestBody } from '../..
 import Alert from '../../Components/Alert/Alert'
 import AuthenticationService from '../../Services/AuthenticationService'
 import { ErrorBodyResponse } from '../../Types/responses'
+import { PasswordRegex, TextRegex } from '../../Constants/Regex'
 
 function MemberRegisterPage() {
     const pageText: PageText = text.memberRegister
@@ -48,6 +49,8 @@ function MemberRegisterPage() {
         const token = searchParams.get("token")
         const email = searchParams.get("email")
 
+
+
         if (!token || !email) {
             setSubmitError("Brak wymaganych parametrów w adresie URL");
             return;
@@ -76,11 +79,16 @@ function MemberRegisterPage() {
             if (response.status === 201) {
                 navigate("/sukces/rejestracja/uczestnika")
             } else {
-                setSubmitError("Wystąpił błąd podczas rejestracji")
-                setInputsDisabled(false)
+                response.json().then((data: ErrorBodyResponse) => {
+                    setSubmitError(data.error)
+                    setInputsDisabled(false)
+                }).catch(() => {
+                    setSubmitError("Błąd serwera")
+                    setInputsDisabled(false)
+                })
             }
         }).catch((error) => {
-            setSubmitError("Wystąpił błąd podczas rejestracji")
+            setSubmitError("Błąd połączenia z serwerem")
             setInputsDisabled(false)
         })
     }
@@ -88,7 +96,6 @@ function MemberRegisterPage() {
     const handleChange = (): void => {
         // get value of select of id occupation
         const occupation = (document.getElementById("occupation") as HTMLSelectElement).value
-        console.log(occupation)
         if (occupation === "undergraduate") {
             setSchoolInputVisible(true)
         } else {
@@ -101,6 +108,7 @@ function MemberRegisterPage() {
             {submitError &&
                 <Alert
                     title="Błąd"
+                    description='Wystąpił błąd podczas rejestracji:'
                     message={submitError}
                     buttonOneText="Spróbuj ponownie"
                     buttonOneAction={() => { setSubmitError(""); }}
@@ -113,12 +121,12 @@ function MemberRegisterPage() {
                 </div>
                 <form className='section--column-0' onChange={handleChange} onSubmit={handleSubmit}>
                     <div className="section--row-1">
-                        <Input pageText={pageText.form.firstName} id='first_name' name='firstName' showError={showErrors} minLength={1} maxLength={40} inputDisabled={inputsDisabled} pattern="^[A-Za-zÀ-ÖØ-öø-ÿąćółżźńęĄĆÓŁŻŹŃĘ' \-]+$" />
-                        <Input pageText={pageText.form.lastName} id='last_name' name='lastName' showError={showErrors} minLength={1} maxLength={40} inputDisabled={inputsDisabled} pattern="^[A-Za-zÀ-ÖØ-öø-ÿąćółżźńęĄĆÓŁŻŹŃĘ' \-]+$" />
+                        <Input pageText={pageText.form.firstName} id='first_name' name='firstName' showError={showErrors} minLength={1} maxLength={40} inputDisabled={inputsDisabled} pattern={TextRegex} />
+                        <Input pageText={pageText.form.lastName} id='last_name' name='lastName' showError={showErrors} minLength={1} maxLength={40} inputDisabled={inputsDisabled} pattern={TextRegex} />
                     </div>
                     <div className="section--row-1">
-                        <Input pageText={pageText.form.password} id="password" name="password" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$" />
-                        <Input pageText={pageText.form.repeatPassword} id="repeat_password" name="repeatPassword" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$" />
+                        <Input pageText={pageText.form.password} id="password" name="password" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern={PasswordRegex} />
+                        <Input pageText={pageText.form.repeatPassword} id="repeat_password" name="repeatPassword" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern={PasswordRegex} />
                     </div>
                     <Input pageText={pageText.form.dateOfBirth} id='date_of_birth' name='dateOfBirth' type="date" maxNumber={minDate.toISOString().slice(0, 10)} showError={showErrors} inputDisabled={inputsDisabled} />
                     <div className="section--row-1" style={{ alignItems: "flex-start" }}>
@@ -129,7 +137,7 @@ function MemberRegisterPage() {
                         {
                             schoolInputVisible && (
                                 <div className="section--column-0">
-                                    <Input pageText={pageText.form.school} id="school" name="school" showError={showErrors} minLength={2} maxLength={200} inputDisabled={inputsDisabled} pattern="^[A-Za-zÀ-ÖØ-öø-ÿąćółżźńęĄĆÓŁŻŹŃĘ' \-]+$" />
+                                    <Input pageText={pageText.form.school} id="school" name="school" showError={showErrors} minLength={2} maxLength={200} inputDisabled={inputsDisabled} pattern={TextRegex} />
                                 </div>
                             )
                         }

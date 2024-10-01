@@ -40,7 +40,7 @@ function HomePage(props: Props) {
     <Page pageTitle={pageText.meta.title} description={pageText.meta.description} paddingTop={false} paddingBottom={false}>
       <div className="home">
         <div className="home--welcome">
-          <HexagonGrid image={WelcomImage} defaultHexagonSize={90} gap={2} componentText={pageText.welcome} />
+          <HexagonGrid image={WelcomImage} defaultHexagonSize={85} gap={2} componentText={pageText.welcome} />
         </div>
         <div className="test">
 

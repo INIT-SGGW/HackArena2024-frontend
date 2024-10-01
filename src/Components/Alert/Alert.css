@@ -28,3 +28,8 @@
   align-items: center;
   text-align: center;
 }
+
+.alert--secondary-text {
+  color: var(--accent-color);
+  font-size: 0.9rem;
+}

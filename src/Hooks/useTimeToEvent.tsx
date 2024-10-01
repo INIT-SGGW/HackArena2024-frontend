@@ -13,11 +13,7 @@ const calculateTimeLeft = () => {
     minutes = minutes.length === 1 ? `0${minutes}` : minutes;
     let seconds = Math.floor((distance % (1000 * 60)) / 1000).toString();
     seconds = seconds.length === 1 ? `0${seconds}` : seconds;
-    if (days !== "00") {
-        timeLeft = `${days}:${hours}:${minutes}:${seconds}`;
-    } else {
-        timeLeft = `${hours}:${minutes}:${seconds}`;
-    }
+    timeLeft = `${days}:${hours}:${minutes}:${seconds}`;
     return timeLeft;
 }
 

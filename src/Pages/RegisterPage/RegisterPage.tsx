@@ -15,6 +15,7 @@ import closeIcon from "../../Assets/close-cross.svg";
 import { RegisterTeamRequestBody } from "../../Types/requests";
 import { useNavigate } from "react-router-dom";
 import { ErrorBodyResponse } from "../../Types/responses";
+import { EmailRegex } from "../../Constants/Regex";
 
 interface Props { }
 
@@ -82,16 +83,20 @@ function RegisterPage(props: Props) {
 
     AuthenticationService.registerTeam(body)
       .then((response) => {
-        console.log(response.status)
         if (response.ok) {
           navigate(`/sukces/rejestracja`);
         } else {
-          setSubmitError("Wystąpił błąd podczas rejestracji");
-          setInputsDisabled(false);
+          response.json().then((data: ErrorBodyResponse) => {
+            setSubmitError(data.error);
+            setInputsDisabled(false);
+          }).catch(() => {
+            setSubmitError("Błąd serwera");
+            setInputsDisabled(false);
+          });
         }
       })
       .catch(() => {
-        setSubmitError("Wystąpił błąd podczas rejestracji");
+        setSubmitError("Błąd połączenia z serwerem");
         setInputsDisabled(false);
       });
   }
@@ -106,6 +111,7 @@ function RegisterPage(props: Props) {
         {submitError &&
           <Alert
             title="Błąd"
+            description="Wystąpił błąd podczas rejestracji:"
             message={submitError}
             buttonOneText="Spróbuj ponownie"
             buttonOneAction={() => { setSubmitError(""); }}
@@ -151,7 +157,7 @@ function RegisterPage(props: Props) {
             getEventStatus() === EventStatus.RegistrationOpen && (
               <form id="register_form" className="section--column-0" onSubmit={handleSubmit} noValidate>
                 <Input pageText={pageText.registrationOpen.form.teamName} id="team_name" name="teamName" showError={showErrors} minLength={1} maxLength={40} inputDisabled={inputsDisabled} />
-                <Input pageText={pageText.registrationOpen.form.email} id="email" name="email" type="email" icon="/Assets/add-circle.svg" onIconClick={handleIconClick} showError={false} maxLength={60} inputDisabled={inputsDisabled || pickedEmails.length === 3} pattern="^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" />
+                <Input pageText={pageText.registrationOpen.form.email} id="email" name="email" type="email" icon="/Assets/add-circle.svg" onIconClick={handleIconClick} showError={false} maxLength={60} inputDisabled={inputsDisabled || pickedEmails.length === 3} pattern={EmailRegex} />
                 <div className={`register__emails${pickedEmails.length > 0 ? " register__email--margin-bottom" : ""}`}>
                   {
                     pickedEmails.map((email, index) => (

@@ -478,11 +478,12 @@
       "title": "HackArena",
       "description": {
         "first": "Hackathon na SGGW",
-        "second": "Zbierz zespół i podejmij wyzwanie!"
+        "second": "Zbierz zespół i zdobywaj nagrody!"
       },
       "buttons": {
         "events": "Wydarzenia",
-        "aboutUs": "O nas"
+        "aboutUs": "O nas",
+        "register": "Rejestracja"
       }
     },
     
@@ -492,7 +493,7 @@
     },
     "nextEvent": {
       "title": "HackArena 2.0",
-      "description": "HackArena 2.0 to <b>druga edycja</b> hackathonu organizowanego przez <b>Koło Naukowe \"init\"</b> z SGGW w Warszawie. Wirtualne bitwy robotów odbędą się <b>26 i 27 października.</b>",
+      "description": "HackArena 2.0 to <b>druga edycja</b> hackathonu organizowanego przez <b>Koło Naukowe \"init\"</b> z SGGW w Warszawie. Wirtualne bitwy robotów odbędą się <b>26 i 27 października,</b> a na zwycięzców czeka pula nagród w wysokości <b>6000 zł.</b> ",
       "button": "Więcej informacji"
     },
     "agenda": {

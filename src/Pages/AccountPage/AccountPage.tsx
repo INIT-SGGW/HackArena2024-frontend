@@ -54,10 +54,14 @@ function AccountPage(props: Props) {
             setShowVerificationInfo(unverifiedMembersCount > 0);
           });
         } else {
-          setAlertErrorMessage("Wystąpił błąd podczas pobierania danych z serwera");
+          response.json().then((data) => {
+            setAlertErrorMessage(data.error);
+          }).catch(() => {
+            setAlertErrorMessage("Błąd serwera");
+          });
         }
       }).catch(() => {
-        setAlertErrorMessage("Wystąpił błąd podczas pobierania danych z serwera");
+        setAlertErrorMessage("Błąd połączenia z serwerem");
       });
     }
 
@@ -86,10 +90,14 @@ function AccountPage(props: Props) {
         localStorage.removeItem("teamName");
         navigate("/");
       } else {
-        setAlertErrorMessage("Wystąpił błąd podczas wylogowywania")
+        response.json().then((data) => {
+          setAlertErrorMessage(data.error);
+        }).catch(() => {
+          setAlertErrorMessage("Bład serwera");
+        });
       }
     }).catch(() => {
-      setAlertErrorMessage("Wystąpił błąd podczas wylogowywania")
+      setAlertErrorMessage("Bład połączenia z serwerem");
     });
   }
 
@@ -118,6 +126,7 @@ function AccountPage(props: Props) {
           alertErrorMessage &&
           <Alert
             title="Błąd"
+            description="Wystąpił błąd podczas łączenia z serwerem:"
             message={alertErrorMessage}
             buttonOneText="Zamknij"
             buttonOneAction={() => setAlertErrorMessage(null)}

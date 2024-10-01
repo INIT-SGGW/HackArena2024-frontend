@@ -1,6 +1,5 @@
 export type ErrorBodyResponse = {
-    message: string;
-    context?: { [key: string]: any };
+    error: string;
 }
 
 // export type TokenUser = {

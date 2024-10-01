@@ -11,6 +11,7 @@ export interface PageText extends PageMetaText {
         buttons: {
             events: string
             aboutUs: string
+            register: string
         }
     }
 

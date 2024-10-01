@@ -8,6 +8,7 @@ import Page from "../../Components/Page/Page";
 import { PageText } from "./types";
 import Input from "../../Components/Input/Input";
 import { ForgotPasswordRequestBody } from "../../Types/requests";
+import { PasswordRegex } from "../../Constants/Regex";
 
 interface Props { }
 
@@ -38,11 +39,16 @@ function ForgotPasswordPage(props: Props) {
             if (response.status === 201) {
                 navigate("/sukces/forgot");
             } else {
-                setSubmitError("Wystąpił błąd podczas resetowania hasła");
-                setInputsDisabled(false);
+                response.json().then((data) => {
+                    setSubmitError(data.error);
+                    setInputsDisabled(false);
+                }).catch(() => {
+                    setSubmitError("Błąd serwera");
+                    setInputsDisabled(false);
+                });
             }
         }).catch(() => {
-            setSubmitError("Wystąpił błąd podczas resetowania hasła");
+            setSubmitError("Błąd połączenia z serwerem");
             setInputsDisabled(false);
         });
     };
@@ -54,6 +60,7 @@ function ForgotPasswordPage(props: Props) {
                     submitError &&
                     <Alert
                         title="Błąd"
+                        description="Wystąpił błąd podczas resetowania hasła:"
                         message={submitError}
                         buttonOneAction={() => setSubmitError(null)}
                         buttonOneText="Spróbuj ponownie"
@@ -69,7 +76,7 @@ function ForgotPasswordPage(props: Props) {
                         showError={showErrors}
                         maxLength={70}
                         inputDisabled={inputsDisabled}
-                        pattern="^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$"
+                        pattern={PasswordRegex}
                     />
                     <input type="submit" className="input__element input__button" onClick={() => setShowErrors(true)} disabled={inputsDisabled} value={inputsDisabled ? pageText.button.disabled : pageText.button.active} />
                 </form>

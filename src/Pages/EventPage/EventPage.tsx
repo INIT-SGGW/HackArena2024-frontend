@@ -138,7 +138,7 @@ const AllEventsData: { [key: string]: any } = {
         "banner": {
             "title": "HackArena 2.0",
             "date": "26-27.10.2024 na SGGW w Warszawie",
-            "description": "Druga edycja hackathonu organizowanego przez Koło Naukowe \"init\". W tej edycji weźmie udział aż 16 drużyn po 3 osoby każda."
+            "description": "Druga edycja hackathonu organizowanego przez Koło Naukowe \"init\". W tej edycji weźmie udział aż 16 drużyn po 3 osoby każda, a na zwycięzców czekają nagrody o łącznej wartości 6000 zł."
         },
         "clock": "Początek rejestracji od 01.09.2024",
         "generalInformation": {
@@ -166,16 +166,17 @@ const AllEventsData: { [key: string]: any } = {
                 },
                 {
                     "question": "Gdzie odbędzie się HackArena?",
-                    "answer": "HackArena odbędzie się w budynku 34 kampusu SGGW w Warszawie. Adres: ul. Nowoursynowska 159, 02-787 Warszawa."
-                },
-                {
-                    "question": "Czy muszę przynieść własny komputer?",
-                    "answer": "Tak, nie zapewniamy sprzętu, każdy uczestnik musi przynieść własny komputer. Nie zapomnij również o ładowarce!"
+                    "answer": "HackArena odbędzie się w Auli Kryształowej kampusu SGGW w Warszawie. Adres: ul. Nowoursynowska 166, budynek 9, Warszawa."
                 },
                 {
                     "question": "Czy będzie zapewnione wyżywienie?",
-                    "answer": "Tak, zapewniamy podstawowe wyżywienie. Przez cały czas trwania HackAreny będzie dostępna woda, drobne przekąski oraz śniadania i obiady. Jeżeli jesteś wege, zaznacz odpowiednią opcję w formularzu rejestracyjnym."
+                    "answer": "Tak, zapewniamy podstawowe wyżywienie. Przez cały czas trwania HackAreny będzie dostępna woda, drobne przekąski oraz dwa posiłki (śniadanie oraz pizza). Jeżeli jesteś wege, zaznacz odpowiednią opcję w formularzu rejestracyjnym."
                 },
+                {
+                    "question": "Czy muszę przynieść własny komputer?",
+                    "answer": "Tak, każdy uczestnik musi przynieść własny komputer. Zapewniamy jedynie miejsce do pracy, zasilanie oraz internet."
+                },
+
                 {
                     "question": "Czy mogę przyjść z gotowym projektem?",
                     "answer": "Nie, projekty muszą być tworzone od zera."
@@ -398,6 +399,37 @@ function EventPage(): JSX.Element {
                                 </div>
                             </div>
                             <TitleAndDesc text={eventData.generalInformation} />
+                            <div className='prizes pagewidth event--section'>
+                                <div className='prizes__header'>
+                                    <h2 className='header__white'>Nagrody</h2>
+                                    <span>Wszyscy uczestnicy otrzymają giftbagi na początku wydarzenia</span>
+
+                                </div>
+                                <ul className='prizes__podium'>
+                                    <li className='prizes__standing prizes__standing--second'>
+                                        <h4>Drugie miejsce</h4>
+                                        <ul>
+                                            <li>Mysz Logitech G Pro X Superlight</li>
+                                            <li>Podkładka SteelSeries Qck Edge</li>
+                                        </ul>
+                                    </li>
+                                    <li className='prizes__standing prizes__standing--first'>
+                                        <h4>Pierwsze miejsce</h4>
+                                        <ul>
+                                            <li>Słuchawki Logitech G Pro X</li>
+                                            <li>Mysz Logitech G Pro X Superlight</li>
+                                            <li>Podkładka SteelSeries Qck Edge</li>
+                                        </ul>
+                                    </li>
+                                    <li className='prizes__standing prizes__standing--third'>
+                                        <h4>Trzecie miejsce</h4>
+                                        <ul>
+                                            <li>Mysz SteelSeries Rival 5</li>
+                                            <li>Podkładka SteelSeries Qck Edge</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
                             <TitleAndDesc text={eventData.task} />
                             <TitleAndDesc text={eventData.format} />
                             <div className='event--format pagewidth'>

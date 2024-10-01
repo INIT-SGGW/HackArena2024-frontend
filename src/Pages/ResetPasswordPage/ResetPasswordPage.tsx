@@ -9,6 +9,7 @@ import { PageText } from "./types";
 import Input from "../../Components/Input/Input";
 import { ResetPasswordRequestBody } from "../../Types/requests";
 import { useSearchParams } from "react-router-dom";
+import { PasswordRegex } from "../../Constants/Regex";
 
 interface Props { }
 
@@ -39,11 +40,16 @@ function ResetPasswordPage(props: Props) {
       if (response.status === 201) {
         navigate("/sukces/reset");
       } else {
-        setSubmitError("Wystąpił błąd podczas resetowania hasła");
-        setInputsDisabled(false);
+        response.json().then((data) => {
+          setSubmitError(data.error);
+          setInputsDisabled(false);
+        }).catch(() => {
+          setSubmitError("Błąd serwera");
+          setInputsDisabled(false);
+        });
       }
     }).catch(() => {
-      setSubmitError("Wystąpił błąd podczas resetowania hasła");
+      setSubmitError("Błąd połączenia z serwerem");
       setInputsDisabled(false);
     });
   };
@@ -55,6 +61,7 @@ function ResetPasswordPage(props: Props) {
           submitError &&
           <Alert
             title="Błąd"
+            description="Wystąpił błąd podczas resetowania hasła:"
             message={submitError}
             buttonOneAction={() => setSubmitError(null)}
             buttonOneText="Spróbuj ponownie"
@@ -62,8 +69,8 @@ function ResetPasswordPage(props: Props) {
         }
         <h2 className="header header__yellow">{pageText.title}</h2>
         <form onSubmit={handleSubmit} className="section--column-0">
-          <Input pageText={pageText.formFields.password} id="password" name="password" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$' />
-          <Input pageText={pageText.formFields.repeatPassword} id="repeat_password" name="repeatPassword" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$" />
+          <Input pageText={pageText.formFields.password} id="password" name="password" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern={PasswordRegex} />
+          <Input pageText={pageText.formFields.repeatPassword} id="repeat_password" name="repeatPassword" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern={PasswordRegex} />
           <input type="submit" className="input__element input__button" onClick={() => setShowErrors(true)} disabled={inputsDisabled} value={inputsDisabled ? pageText.button.disabled : pageText.button.active} />
         </form>
       </div>

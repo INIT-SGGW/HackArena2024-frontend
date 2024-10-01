@@ -9,6 +9,7 @@ import text from '../../Assets/text.json';
 import AccountService from '../../Services/AccountService';
 import AuthenticationService from '../../Services/AuthenticationService';
 import { ChangePasswordRequestBody } from '../../Types/requests';
+import { PasswordRegex } from '../../Constants/Regex';
 
 function ChangePasswordPage() {
     const pageText: PageText = text.changePassword;
@@ -41,11 +42,16 @@ function ChangePasswordPage() {
                 setInputsDisabled(false);
             }
             else {
-                setSubmitError("Wystąpił błąd podczas zmiany hasła");
-                setInputsDisabled(false);
+                response.json().then((data) => {
+                    setSubmitError(data.error);
+                    setInputsDisabled(false);
+                }).catch(() => {
+                    setSubmitError("Błąd serwera");
+                    setInputsDisabled(false);
+                });
             }
         }).catch((error) => {
-            setSubmitError("Wystąpił błąd podczas zmiany hasła");
+            setSubmitError("Błąd połączenia z serwerem");
             setInputsDisabled(false);
         });
     };
@@ -57,6 +63,7 @@ function ChangePasswordPage() {
                     submitError &&
                     <Alert
                         title="Błąd"
+                        description='Wystąpił błąd podczas zmiany hasła:'
                         message={submitError}
                         buttonOneAction={() => setSubmitError(null)}
                         buttonOneText="Spróbuj ponownie"
@@ -64,9 +71,9 @@ function ChangePasswordPage() {
                 }
                 <h2 className="header header__yellow">{pageText.title}</h2>
                 <form onSubmit={handleSubmit} className="section--column-0">
-                    <Input pageText={pageText.formFields.oldPassword} id="oldPassword" name="oldPassword" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$' />
-                    <Input pageText={pageText.formFields.password} id="password" name="password" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$' />
-                    <Input pageText={pageText.formFields.repeatPassword} id="repeat_password" name="repeatPassword" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$" />
+                    <Input pageText={pageText.formFields.oldPassword} id="oldPassword" name="oldPassword" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern={PasswordRegex} />
+                    <Input pageText={pageText.formFields.password} id="password" name="password" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern={PasswordRegex} />
+                    <Input pageText={pageText.formFields.repeatPassword} id="repeat_password" name="repeatPassword" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern={PasswordRegex} />
                     <input type="submit" className="input__element input__button" onClick={() => setShowErrors(true)} disabled={inputsDisabled} value={inputsDisabled ? pageText.button.disabled : pageText.button.active} />
                 </form>
             </div>

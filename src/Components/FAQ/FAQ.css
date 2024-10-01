@@ -45,7 +45,7 @@
   top: 0;
   left: 0;
   overflow: hidden;
-  transition: all 0.25s ease-out;
+  transition: all 0.15s ease-out;
 }
 
 .faq--question__double > div {
@@ -63,6 +63,7 @@
   color: rgb(var(--background-color)) !important;
   text-wrap: nowrap;
   font-size: var(--faq-font-size);
+  text-align: left;
 }
 
 @media screen and (min-width: 768px) {
@@ -85,6 +86,7 @@
   /* color: rgb(var(--primary-color)); */
   color: var(--text-one-color);
   font-size: var(--faq-font-size);
+  text-align: left;
 
   /* color: rgb(var(--background-color)); */
 }
@@ -105,7 +107,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 2px;
-  transition: all 0.11s linear;
+  /* transition: all 0.11s linear; */
   overflow: hidden;
 }
 
@@ -134,7 +136,7 @@
   width: var(--faq-icon-width);
   height: var(--faq-icon-width);
 
-  transition: all 0.25s ease-in-out;
+  transition: all 0.2s ease-in-out;
   z-index: 10;
 }
 
