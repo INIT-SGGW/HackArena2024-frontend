@@ -25,6 +25,7 @@ function MemberRegisterPage() {
     const [inputsDisabled, setInputsDisabled] = React.useState<boolean>(false)
     const [agreementError, setAgreementError] = React.useState<boolean>(false)
     const [submitError, setSubmitError] = React.useState<string>("")
+    const [serverError, setServerError] = React.useState<string>("")
     const [schoolInputVisible, setSchoolInputVisible] = React.useState<boolean>(false)
 
 
@@ -45,11 +46,11 @@ function MemberRegisterPage() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
+        setSubmitError("");
+
         const data = Object.fromEntries(new FormData(e.currentTarget));
         const token = searchParams.get("token")
         const email = searchParams.get("email")
-
-
 
         if (!token || !email) {
             setSubmitError("Brak wymaganych parametrów w adresie URL");
@@ -80,15 +81,15 @@ function MemberRegisterPage() {
                 navigate("/sukces/rejestracja/uczestnika")
             } else {
                 response.json().then((data: ErrorBodyResponse) => {
-                    setSubmitError(data.error)
+                    setServerError(data.error)
                     setInputsDisabled(false)
                 }).catch(() => {
-                    setSubmitError("Błąd serwera")
+                    setServerError("Błąd serwera")
                     setInputsDisabled(false)
                 })
             }
         }).catch((error) => {
-            setSubmitError("Błąd połączenia z serwerem")
+            setServerError("Błąd połączenia z serwerem")
             setInputsDisabled(false)
         })
     }
@@ -105,13 +106,13 @@ function MemberRegisterPage() {
 
     return (
         <Page pageTitle={pageText.meta.title} description={pageText.meta.description} paddingTop noIndex>
-            {submitError &&
+            {serverError &&
                 <Alert
                     title="Błąd"
                     description='Wystąpił błąd podczas rejestracji:'
-                    message={submitError}
+                    message={serverError}
                     buttonOneText="Spróbuj ponownie"
-                    buttonOneAction={() => { setSubmitError(""); }}
+                    buttonOneAction={() => { setServerError(""); }}
                 />
             }
             <div className='memberRegister pagewidth'>
@@ -126,7 +127,7 @@ function MemberRegisterPage() {
                     </div>
                     <div className="section--row-1">
                         <Input pageText={pageText.form.password} id="password" name="password" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern={PasswordRegex} />
-                        <Input pageText={pageText.form.repeatPassword} id="repeat_password" name="repeatPassword" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern={PasswordRegex} />
+                        <Input pageText={pageText.form.password} id="repeat_password" name="repeatPassword" type="password" showError={showErrors} minLength={8} maxLength={100} inputDisabled={inputsDisabled} pattern={PasswordRegex} />
                     </div>
                     <Input pageText={pageText.form.dateOfBirth} id='date_of_birth' name='dateOfBirth' type="date" maxNumber={minDate.toISOString().slice(0, 10)} showError={showErrors} inputDisabled={inputsDisabled} />
                     <div className="section--row-1" style={{ alignItems: "flex-start" }}>
@@ -153,6 +154,8 @@ function MemberRegisterPage() {
                         <label htmlFor='agreement' style={inputsDisabled ? { cursor: "default" } : { cursor: "pointer" }}>{pageText.form.agreement.label}</label>
                     </div>
                     <input type='submit' className='input__element input__button' onClick={() => setShowErrors(true)} disabled={inputsDisabled} value={inputsDisabled ? pageText.button.disabled : pageText.button.active} />
+                    <span className={`input__span${submitError ? " input__span--visible" : ""}`}>{submitError}</span>
+
                 </form>
             </div>
         </Page>
