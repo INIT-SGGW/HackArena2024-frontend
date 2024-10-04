@@ -42,6 +42,7 @@ function RegisterPage(props: Props) {
 
   const handleIconClick = (email: string) => {
     setPickedEmails((prev) => [...prev, email]);
+    setEmailsError(null);
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -57,12 +58,20 @@ function RegisterPage(props: Props) {
 
     const emailInputs = form.querySelectorAll("input[name^='email']") as NodeListOf<HTMLInputElement>;
     let emails = Array.from(emailInputs).map((input) => input.value);
+
+
+    const emailInput = emails[0];
     emails = emails.slice(1, emails.length);
 
     setEmailsError(null);
 
     if (emails.length < 2) {
       setEmailsError("W drużynie muszą być co najmniej 2 osoby");
+      return;
+    }
+
+    if (emailInput !== "") {
+      setEmailsError("Pole email musi być puste. Jeżeli chcesz dodać więcej osób do drużyny, użyj przycisku z ikoną plusa");
       return;
     }
 
