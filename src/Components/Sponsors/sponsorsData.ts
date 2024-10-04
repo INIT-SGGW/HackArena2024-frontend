@@ -13,6 +13,7 @@ import UrsynowLogo from "../../Assets/Sponsors/ursynow.png";
 import CosomoEyeLogo from "../../Assets/Sponsors/cosmoeye.svg";
 import SGGWLogo from "../../Assets/sggw_logo_white.png";
 import CoffeeHeroesRosteryLogo from "../../Assets/Sponsors/coffee_heroes_roastery.png";
+import Bempresa from "../../Assets/Sponsors/bempresa.png";
 
 const SponsorsData: SponsorData = {
     sponsors: [
@@ -30,6 +31,11 @@ const SponsorsData: SponsorData = {
             name: "CosmoEye",
             logo: CosomoEyeLogo,
             url: "https://cosmoeye.ai/"
+        },
+        {
+            name: "Bempresa",
+            logo: Bempresa,
+            url: "http://bempresa.com/"
         }
     ],
     partners: [
